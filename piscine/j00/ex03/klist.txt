@@ -1,0 +1,5 @@
+Credentials cache: API:13543
+        Principal: ylarbi@42.FR
+
+  Issued                Expires               Principal
+Jul  7 14:24:17 2015  Jul  8 00:23:39 2015  krbtgt/42.FR@42.FR
