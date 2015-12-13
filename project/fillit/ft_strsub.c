@@ -6,16 +6,16 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 19:04:53 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/10 00:06:09 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/13 12:51:06 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char		*ft_strsub(char *s, unsigned int start, int len)
+char	*ft_strsub(char *s, unsigned int start, int len)
 {
 	char	*buf;
-	int	count;
+	int		count;
 
 	count = 0;
 	if (s == NULL)

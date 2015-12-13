@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 19:01:56 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/12 19:05:23 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/13 12:54:52 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int			ft_create_item(t_global *global)
 			return (ft_error(global, 20));
 	}
 	else
-		if (!(global->item = ft_create_elem(global)))
-			return (ft_error(global, 20));
+	if (!(global->item = ft_create_elem(global)))
+		return (ft_error(global, 20));
 	return (1);
 }

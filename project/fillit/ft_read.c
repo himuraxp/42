@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/08 18:59:29 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/13 12:51:20 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/09 18:45:26 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/10 04:23:59 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int ac, char **av)
+void	ft_bzero(t_global *global)
 {
-	if (ac != 2)
+	int		i;
+
+	i = 0;
+	while (i < BUF_SIZE)
 	{
-		write(2, "error\n", 6);
-		return (0);
+		global->buf[i] = '\0';
+		i++;
 	}
-	fillit(av[1]);
-	return (0);
+}
+
+int		ft_read(t_global *global)
+{
+	int	rd;
+
+	rd = 0;
+	while ((rd = read(global->fd, global->buf, BUF_SIZE)) > 0)
+	{
+		global->buf[BUF_SIZE] = '\0';
+		if (!(ft_parse(global)))
+			return (0);
+		ft_bzero(global);
+	}
+	return (1);
 }

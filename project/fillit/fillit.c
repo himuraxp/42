@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 23:31:16 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/12 17:15:06 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/13 12:49:49 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_freeall(t_global *global)
 
 void	ft_printerror(t_global *global)
 {
-	write (1, "error\n", 7);
+	write(1, "error\n", 7);
 	printf("%d", global->error);
 	ft_freeall(global);
 }
@@ -60,9 +60,10 @@ void	ft_printerror(t_global *global)
 void	fillit(char *file)
 {
 	t_global	*global;
+
 	if (!(global = ft_create_global(file)))
 	{
-		write (1, "error\n", 7);
+		write(1, "error\n", 7);
 		return ;
 	}
 	if (!(ft_open(global)))

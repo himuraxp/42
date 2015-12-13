@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 19:39:55 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/13 13:53:07 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/13 13:41:29 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 
 # define BUF_SIZE 21
 
-typedef	struct s_item	t_item;
-struct			s_item
+typedef	struct	s_item
 {
 	char		id;
 	int			*inter;
@@ -33,10 +32,9 @@ struct			s_item
 	int			xmax;
 	int			ymax;
 	t_item		*next;
-};
+}				t_item;
 
-typedef	struct s_global	t_global;
-struct			s_global
+typedef	struct	s_global
 {
 	int			nb;
 	t_item		*item;
@@ -49,13 +47,12 @@ struct			s_global
 	char		*file;
 	char		*buf;
 	int			used;
-};
+}				t_global;
 
-typedef	struct s_piece	t_piece;
-struct			s_piece
+typedef	struct	s_piece
 {
 	int			piece[26];
-};
+}				t_piece;
 
 unsigned int	ft_strlen(char *str);
 int				ft_open(t_global *global);
