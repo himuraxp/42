@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 23:31:16 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/13 12:49:49 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/13 19:28:11 by gmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_freeall(t_global *global)
 void	ft_printerror(t_global *global)
 {
 	write(1, "error\n", 7);
-	printf("%d", global->error);
 	ft_freeall(global);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 19:29:42 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/13 13:00:26 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/13 19:27:37 by gmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,8 @@ int			ft_tetri_case(char *str)
 	return (i);
 }
 
-int			ft_tetri_integr(char *str, t_global *global)
+int			ft_tetri_integr(char *str, t_global *global, int i, int k)
 {
-	int		i;
-	int		k;
-
-	i = 0;
-	k = 0;
 	while (str[i++])
 		if (str[i] == '#')
 		{
@@ -83,6 +78,35 @@ int			ft_tetri_integr(char *str, t_global *global)
 	return (1);
 }
 
+int			ft_tetri_follow(char *str, t_global *global, int i)
+{
+	while (str[i++])
+	{
+		if (str[i] == '#')
+		{
+			if (i < 18)
+				if (str[i + 1] == '#' && str[i + 2] == '#')
+					return (1);
+			if (i < 14)
+				if (str[i + 1] == '#' && str[i + 6] == '#')
+					return (1);
+			if (i < 10)
+				if (str[i + 5] == '#' && str[i + 10] == '#')
+					return (1);
+			if (i < 15)
+				if (str[i + 5] == '#' && str[i + 4] == '#')
+					return (1);
+			if (i < 15)
+				if (str[i + 5] == '#' && str[i + 1] == '#')
+					return (1);
+			if (i < 14)
+				if (str[i + 5] == '#' && str[i + 6] == '#')
+					return (1);
+		}
+	}
+	return (ft_error(global, 110));
+}
+
 int			ft_parse(t_global *global)
 {
 	if (global->nb >= 26)
@@ -91,7 +115,9 @@ int			ft_parse(t_global *global)
 		return (0);
 	if (ft_tetri_case(global->buf) != 4)
 		return (ft_error(global, 13));
-	if (!(ft_tetri_integr(global->buf, global)))
+	if (!(ft_tetri_integr(global->buf, global, 0, 0)))
+		return (0);
+	if (!(ft_tetri_follow(global->buf, global, 0)))
 		return (0);
 	if (!(ft_create_item(global)))
 		return (ft_error(global, 14));
