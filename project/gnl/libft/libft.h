@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 14:03:26 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/06 19:29:13 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/21 20:06:20 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef struct		s_list
 {
