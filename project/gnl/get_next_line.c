@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:53:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/21 23:46:56 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/22 01:49:10 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,24 @@ int		get_next_line(int const fd, char **line)
 	int			stop;
 
 	stop = 0;
+	ft_putstr("get_next_line start\n");
 	if (fd < 0 || !line)
 		return (-1);
 	if (!(next = ft_strchr(buf, '\n')))
 	{
+		ft_putstr("if next = ft_strchr\n");
 		if (!(tmp = ft_read(fd, &stop)))
+		{
+			ft_putstr("if tmp = ft_read\n");
 			return (-1);
+		}
 		next = ft_strchr(tmp, '\n');
 	}
-	if (next)
+	if (!(next == NULL))
+	{
+		ft_putstr("if next existe\n");
 		*next = '\0';
+	}
 	*line = ft_eof(buf, &tmp, next);
 	return (ft_return(line, stop));
 }
