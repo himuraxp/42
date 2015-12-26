@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 14:09:43 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/22 20:30:32 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/23 19:11:10 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/23 19:12:41 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strnew(size_t size)
+int		ft_strlen(char *str)
 {
-	char	*buffer;
-	size_t	i;
+	int i;
 
-	if ((buffer = (char *)malloc(size)) == 0)
-		return (NULL);
 	i = 0;
-	while (i < size)
-		buffer[i++] = 0;
-	return (buffer);
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
 }

@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 14:09:43 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/22 20:30:32 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/23 18:40:22 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/23 18:44:47 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+void	ft_print_nbr(void);
 
-char	*ft_strnew(size_t size)
+int		main(void)
 {
-	char	*buffer;
-	size_t	i;
-
-	if ((buffer = (char *)malloc(size)) == 0)
-		return (NULL);
-	i = 0;
-	while (i < size)
-		buffer[i++] = 0;
-	return (buffer);
+	ft_print_nbr();
+	return (0);
 }

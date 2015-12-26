@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 14:09:43 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/22 20:30:32 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/23 18:45:55 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/23 18:55:03 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-char	*ft_strnew(size_t size)
+void	ft_putstr(char *str)
 {
-	char	*buffer;
-	size_t	i;
+	int i;
 
-	if ((buffer = (char *)malloc(size)) == 0)
-		return (NULL);
 	i = 0;
-	while (i < size)
-		buffer[i++] = 0;
-	return (buffer);
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 }

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   aff_z.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 14:09:43 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/22 20:30:32 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/23 18:16:17 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/23 18:36:42 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-char	*ft_strnew(size_t size)
+void		aff_z(char *str)
 {
-	char	*buffer;
-	size_t	i;
+	int i;
 
-	if ((buffer = (char *)malloc(size)) == 0)
-		return (NULL);
 	i = 0;
-	while (i < size)
-		buffer[i++] = 0;
-	return (buffer);
+	while (str[i])
+	{
+		if (str[i] == 'z')
+		{
+			write(1, "z\n", 2);
+			break;
+		}
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:53:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/22 01:49:10 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/25 13:31:14 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		get_next_line(int const fd, char **line)
 		}
 		next = ft_strchr(tmp, '\n');
 	}
-	if (!(next == NULL))
+	if (next)
 	{
 		ft_putstr("if next existe\n");
 		*next = '\0';
