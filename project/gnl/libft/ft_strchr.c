@@ -6,17 +6,13 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 19:02:47 by ylarbi            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/12/27 11:21:30 by ylarbi           ###   ########.fr       */
-=======
-/*   Updated: 2015/12/22 20:35:37 by ylarbi           ###   ########.fr       */
->>>>>>> 4f42a4fe446ce3cdedb9b97a5e28297c741c7aaf
+/*   Updated: 2015/12/27 13:04:57 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *str, int c)
 {
 	int i;
 

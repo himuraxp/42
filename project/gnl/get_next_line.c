@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 21:53:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/25 13:31:14 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/27 14:02:08 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ static char		*ft_read(int fd, int *stop)
 	{
 		eof = read(fd, buf, BUFF_SIZE);
 		if (eof < 0)
+		{
 			return (NULL);
+		}
 		if (!eof)
 		{
 			*stop = 1;
@@ -32,7 +34,6 @@ static char		*ft_read(int fd, int *stop)
 		}
 		buf[eof] = '\0';
 		tmp = ft_strjoin(tmp, buf);
-		ft_strdel((char**)&buf);
 	}
 	return (tmp);
 }
@@ -69,24 +70,16 @@ int		get_next_line(int const fd, char **line)
 	int			stop;
 
 	stop = 0;
-	ft_putstr("get_next_line start\n");
 	if (fd < 0 || !line)
 		return (-1);
 	if (!(next = ft_strchr(buf, '\n')))
 	{
-		ft_putstr("if next = ft_strchr\n");
 		if (!(tmp = ft_read(fd, &stop)))
-		{
-			ft_putstr("if tmp = ft_read\n");
 			return (-1);
-		}
 		next = ft_strchr(tmp, '\n');
 	}
 	if (next)
-	{
-		ft_putstr("if next existe\n");
 		*next = '\0';
-	}
 	*line = ft_eof(buf, &tmp, next);
 	return (ft_return(line, stop));
 }

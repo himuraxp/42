@@ -6,16 +6,11 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:14:11 by ylarbi            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/12/22 20:28:16 by ylarbi           ###   ########.fr       */
-=======
-/*   Updated: 2015/12/26 09:48:19 by ylarbi           ###   ########.fr       */
->>>>>>> 4f42a4fe446ce3cdedb9b97a5e28297c741c7aaf
+/*   Updated: 2015/12/27 14:02:04 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 int	main(void)
 {
@@ -23,7 +18,12 @@ int	main(void)
 	int fd;
 
 	fd = open("txt", O_RDONLY);
-	get_next_line(fd, &str);
-		printf("%s", str);
+	while (fd)
+	{
+		get_next_line(fd, &str);
+		ft_putstr(str);
+		write(1, "\n", 1);
+		free(str);
+	}
 	return (0);
 }
