@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 19:02:47 by ylarbi            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/12/27 11:21:30 by ylarbi           ###   ########.fr       */
-=======
-/*   Updated: 2015/12/22 20:35:37 by ylarbi           ###   ########.fr       */
->>>>>>> 4f42a4fe446ce3cdedb9b97a5e28297c741c7aaf
+/*   Created: 2015/12/23 18:49:22 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/23 18:56:14 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putstr(char *str);
+
+int		main(int ac, char **av)
 {
 	int i;
 
-	i = 0;
-	if (!str)
+	i = 1;
+	if (ac < 2)
 		return (0);
-	while (str[i] != '\0')
+	while (av[i])
 	{
-		if (str[i] == c)
-			return (str + i);
+		ft_putstr(av[i]);
+		write(1, "\n", 1);
 		i++;
 	}
-	if (c == '\0')
-		return (str + i);
 	return (0);
 }
