@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 14:03:26 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/06 19:29:13 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/27 13:08:16 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef struct		s_list
 {
@@ -72,7 +71,7 @@ char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncat(char *s1, const char *s2, size_t n);
 char				*ft_strdup(const char *s1);
 char				*ft_strnew(size_t size);
-char				*ft_strchr(const char *s, int c);
+char				*ft_strchr(char *str, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *s1, const char *s2);
 char				*ft_strnstr(const char *s1, const char *s2, size_t n);

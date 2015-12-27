@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/27 11:22:42 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/27 16:40:16 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,19 +18,26 @@ INCLUDE = libft.h
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): logo
 		@gcc $(FLAGS) -I$(INCLUDE) -c $(SRC)
-		@echo "Compilation programme"
+		@echo "\033[32m------------>\033[0m        Compilation programme"
 		@ar rc $(NAME) $(OBJ)
-		@echo "Creation librairie"
+		@echo "\033[36m------------>\033[0m           Creation librairie"
 		@ranlib $(NAME)
-		@echo "Creation index librairie"
-clean:
-		@echo "Suppression .o"
+		@echo "\033[36m------------>\033[0m     Creation index librairie"
+logo:
+		@echo "\033[31m            _       _    _                \033[0m"
+		@echo "\033[31m __        | |     |_|  | |             __ \033[0m"
+		@echo "\033[32m|**|       | |      _   | |___         |**|\033[0m"
+		@echo "\033[33m|==|       | |___  | |  |   __ \       |==|\033[0m"
+		@echo "\033[36m ********** \____| |_|   \ _____|********* \033[0m"
+		@echo "\n"
+clean: logo
+		@echo "\033[31m------------>\033[0m               Suppression .o"
 		@rm -rf $(OBJ)
 fclean: clean
-		@echo "Suppression programme"
+		@echo "\033[31m------------>\033[0m        Suppression programme"
 		@rm -rf $(NAME)
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all logo

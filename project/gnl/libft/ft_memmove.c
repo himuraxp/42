@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 22:16:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/04 16:03:52 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/27 15:05:53 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*str;
+	void	*swap;
 
-	if ((str = (char *)malloc(sizeof(*str) * len)) == NULL)
-		return (NULL);
-	ft_memcpy(str, src, len);
-	ft_memcpy(dst, str, len);
-	free(str);
-	return (dst);
+	swap = (void*)malloc(len);
+	if (swap)
+	{
+
+		ft_memcpy(swap, src, len);
+		ft_memcpy(dst, swap, len);
+		free(swap);
+		return (dst);
+	}
+	return (NULL);
 }

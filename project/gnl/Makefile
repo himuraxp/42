@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/27 13:01:12 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/27 16:39:05 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ logo:
 		@echo "\033[31m              ___   _  _   _               \033[0m"
 		@echo "\033[31m __         /  __| | \| | | |           __ \033[0m"
 		@echo "\033[32m|**|       | /  _  |    | | |          |**|\033[0m"
-		@echo "\033[33m|__|       | \ | | |    | | |__        |__|\033[0m"
+		@echo "\033[33m|==|       | \ | | |    | | |__        |==|\033[0m"
 		@echo "\033[36m ********** \____| |_|\_| |____|********** \033[0m"
 		@echo "\n"
 mouli1: logo
@@ -55,4 +55,4 @@ fclean: clean
 		@rm -rf $(NAME) $(GNL)
 re: fclean all
 
-.PHONY: clean fclean re all mouli1 mouli2
+.PHONY: clean fclean re all mouli1 mouli2 logo

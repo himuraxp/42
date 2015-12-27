@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 14:09:43 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/22 20:30:32 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/27 15:33:40 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 char	*ft_strnew(size_t size)
 {
-	char	*buffer;
-	size_t	i;
+	char	*buf;
 
-	if ((buffer = (char *)malloc(size)) == 0)
+	if (!(buf = (char*)malloc(size)))
 		return (NULL);
-	i = 0;
-	while (i < size)
-		buffer[i++] = 0;
-	return (buffer);
+	ft_strclr(buf);
+	return (buf);
 }
