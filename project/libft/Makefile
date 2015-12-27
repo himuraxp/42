@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/09 17:14:39 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/27 11:22:42 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,4 +33,4 @@ fclean: clean
 		@rm -rf $(NAME)
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: clean fclean re all
