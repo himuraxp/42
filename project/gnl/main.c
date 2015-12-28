@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 15:14:11 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/27 17:18:39 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/28 15:39:12 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	main(int ac, char **av)
 	if (gnl == -1)
 		ft_putstr("Error reading file.\n");
 	if (fd != 0)
-		close (fd);
+		close(fd);
 	return (0);
 }
