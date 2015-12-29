@@ -6,55 +6,44 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 18:42:48 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/28 14:15:39 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/29 17:43:24 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	*ft_right(char *av1, char *av2)
+void	ft_union(char *s1, char *c)
 {
-	int i;
+	int	i;
+	int	j;
 
 	i = 0;
-	if (av1 && av2)
+	j = 0;
+	while (s1[i])
 	{
-		while (av1[i] != '\0')
-			i++;
-		i = 0;
-		while (av2[i] != '\0')
-			i++;
-	}
-	return (0);
-}
-
-void	ft_union(char *av1, char *av2)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 1;
-	while (ft_right(av1, av2))
-	{
-		while (av1[j] || av2[j])
-		{
-			if (av1[i] == av1[j] || av2[i] == av2[j])
-			break;
+		j = 0;
+		while (c[j] && s1[i] != c[j])
 			j++;
+		if (!c[j])
+		{
+			write(1, &s1[i], 1);
+			c[j] = s1[i];
+			c[j + 1] = 0;
 		}
-		write(1, &av1[i], 1);
 		i++;
 	}
 }
 
-int		main(int ac, char **av)
+int		main(int argc, char **argv)
 {
-	if (ac != 3)
+	char	c[128];
+
+	c[0] = 0;
+	if (argc == 3)
 	{
-		write(1, "\n", 1);
-		return (0);
+		ft_union(argv[1], c);
+		ft_union(argv[2], c);
 	}
-	ft_union(av[1], av[2]);
+	write(1, "\n", 1);
 	return (0);
 }
