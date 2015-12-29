@@ -6,9 +6,10 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/27 16:39:05 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/29 14:09:54 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = ./libft/libft.a
 SRC  = ./libft/*.c
@@ -29,12 +30,16 @@ $(NAME): logo
 		@ranlib $(NAME)
 		@echo "\033[36m------------>\033[0m     Creation index librairie"
 logo:
-		@echo "\033[31m              ___   _  _   _               \033[0m"
-		@echo "\033[31m __         /  __| | \| | | |           __ \033[0m"
-		@echo "\033[32m|**|       | /  _  |    | | |          |**|\033[0m"
-		@echo "\033[33m|==|       | \ | | |    | | |__        |==|\033[0m"
-		@echo "\033[36m ********** \____| |_|\_| |____|********** \033[0m"
 		@echo "\n"
+		@echo "\033[31m          ::::::::   ::::    :::  :::     \033[0m"
+		@echo "\033[31m        :+:    :+:  :+:+:   :+:  :+:      \033[0m"
+		@echo "\033[32m       +:+         :+:+:+  +:+  +:+       \033[0m"
+		@echo "\033[32m      :#:         +#+ +:+ +#+  +#+        \033[0m"
+		@echo "\033[33m     +#+   +#+#  +#+  +#+#+#  +#+         \033[0m"
+		@echo "\033[33m    #+#    #+#  #+#   #+#+#  #+#          \033[0m"
+		@echo "\033[36m    ########   ###    ####  ##########    \033[0m"
+		@echo "\n"
+		@echo "\033[36m                    Get Next Line - ylarbi\033[0m"
 mouli1: logo
 		@-C libft/ fclean && make -C libft/
 		@echo "\033[32m------------>\033[0m          Compilation mouli 1"
@@ -56,3 +61,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean fclean re all mouli1 mouli2 logo
+
+

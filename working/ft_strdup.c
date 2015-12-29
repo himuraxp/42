@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/21 15:14:11 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/28 16:17:48 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/29 13:27:27 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/29 13:36:21 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include <stdlib.h>
 
-int	main(int ac, char **av)
+char	*ft_strdup(char *str)
 {
-	char	*line;
-	int		fd;
-	int		gnl;
+	char	*new;
+	int		len;
+	int		i;
 
-	gnl = 0;
-	if (ac < 2)
-		return (0);
-	if (ac == 2)
-		fd = open(av[1], O_RDONLY);
-	else
-		fd = 0;
-	gnl = get_next_line(fd, &line);
-	while (gnl != 0 && gnl != -1)
+	len = 0;
+	i = 0;
+	while (str[len] != '\0')
 	{
-		ft_putstr(line);
-		write(1, "\n", 1);
-		gnl = get_next_line(fd, &line);
+		len++;
 	}
-	if (gnl == -1)
-		ft_putstr("Error reading file.\n");
-	if (fd != 0)
-		close(fd);
+	if (!(new = (char *)malloc(sizeof(str) * len + 1)))
+		return (NULL);
+	while (str[i] != '\0')
+	{
+		new[i] = str[i];
+		i++;
+	}
+	new[i] = '\0';
 	return (0);
 }
