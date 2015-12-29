@@ -6,11 +6,11 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/29 23:20:34 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/29 23:54:52 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libft/libft.a
+NAME	= libft/libft.a
 SRC		= `ls | grep "\.c"`
 OBJ		= `ls | grep "\.o"`
 SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
@@ -33,7 +33,7 @@ LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJNAME = $(SRCNAME:.c=.o)
 OBJPATH = obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
-FLAGS	=  -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror
 INCLUDE	= -Ilibft/libft.h
 LIB		= -Llibft/ -lft
 EXE		= ft_ls
@@ -59,6 +59,8 @@ logo:
 lib:
 		@gcc -c $(LBSRC)
 		@echo "\033[36m------------>\033[0m          Compilation library"
+		@mkdir $(OBJPATH) 2> /dev/null || true
+		@echo "\033[35m------------>\033[0m            Create obj folder"
 		@mv $(OBJNAME) $(OBJPATH)
 		@echo "\033[35m------------>\033[0m        Move .o to obj folder"
 		@ar rc $(NAME) $(LBOBJ)
@@ -68,7 +70,7 @@ lib:
 
 clean: logo
 		@echo "\033[31m------------>\033[0m               Suppression .o"
-		@rm -rf $(LBOBJ)
+		@rm -rf $(OBJPATH)
 fclean: clean
 		@echo "\033[31m------------>\033[0m          Suppression program"
 		@rm -rf $(NAME) $(EXE)

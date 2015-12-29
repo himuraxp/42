@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/29 23:41:51 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/29 23:56:05 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ mouli2: logo
 lib:
 		@gcc -c $(LBSRC)
 		@echo "\033[36m------------>\033[0m          Compilation library"
+		@mkdir $(OBJPATH) 2> /dev/null || true
+		@echo "\033[35m------------>\033[0m            Create obj folder"
 		@mv $(OBJNAME) $(OBJPATH)
 		@echo "\033[35m------------>\033[0m        Move .o to obj folder"
 		@ar rc $(NAME) $(LBOBJ)
@@ -78,7 +80,7 @@ lib:
 
 clean: logo
 		@echo "\033[31m------------>\033[0m               Suppression .o"
-		@rm -rf $(LBOBJ)
+		@rm -rf $(OBJPATH)
 fclean: clean
 		@echo "\033[31m------------>\033[0m          Suppression program"
 		@rm -rf $(NAME) $(EXE)
