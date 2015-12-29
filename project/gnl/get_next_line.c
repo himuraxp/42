@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:14:59 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/27 17:07:48 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/29 15:59:27 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	ft_lineclr(char **line, char *str)
+{
+	*line = ft_strdup(str);
+	ft_strclr(str);
+}
 
 int		get_next_line(int const fd, char **line)
 {
@@ -32,7 +38,7 @@ int		get_next_line(int const fd, char **line)
 	if (ft_strchr(str[fd], '\n'))
 		*line = ft_strsub(str[fd], 0, ft_strchr(str[fd], '\n') - str[fd]);
 	else
-		*line = ft_strdup(str[fd]);
+		ft_lineclr(line, str[fd]);
 	if (ft_strchr(str[fd], '\n'))
 		str[fd] = ft_strsub(str[fd], ft_strchr(str[fd], '\n') - str[fd] + 1,
 				ft_strlen(ft_strchr(str[fd], '\n')));
