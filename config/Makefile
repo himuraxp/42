@@ -6,12 +6,12 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/30 10:24:18 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 10:23:37 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libft/libft.a
-SRC		= `ls | grep "\.c"`
+NAME	= libft/libft.a #Path and name library
+SRC		= `ls | grep "\.c"` #Search src to current folder
 SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_lstiter.c    ft_putendl.c    ft_strequ.c     ft_strnew.c  \
 			ft_atoi.c       ft_lstmap.c     ft_putendl_fd.c ft_striter.c \
@@ -28,13 +28,13 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_lstadd.c     ft_memset.c     ft_strcpy.c     ft_strncpy.c \
 			ft_lstdel.c     ft_putchar.c    ft_strdel.c     ft_strndup.c
 SRCPATH = libft/
-LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
-OBJNAME = $(SRCNAME:.c=.o)
+LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME)) #Concatenate src_path + src_name
+OBJNAME = $(SRCNAME:.c=.o) #Convert src_name '.c' to obj_name '.o'
 OBJPATH = obj/
-LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
-FLAGS	= -Wall -Wextra -Werror
-INCLUDE	= -Ilibft/libft.h
-LIB		= -Llibft/ -lft
+LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME)) #Concatenate obj_path + obj_name
+FLAGS	= -Wall -Wextra -Werror #GCC compilation option
+INCLUDE	= -Ilibft/libft.h #Path and name header file
+LIB		= -Llibft/ -lft #GCC path library for compilation
 EXE		= ft_ls
 
 all: $(NAME)

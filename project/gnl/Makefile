@@ -6,13 +6,12 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/29 23:56:05 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 10:24:42 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft/libft.a
 SRC		= `ls | grep "\.c"`
-OBJ		= `ls | grep "\.o"`
 SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_lstiter.c    ft_putendl.c    ft_strequ.c     ft_strnew.c  \
 			ft_atoi.c       ft_lstmap.c     ft_putendl_fd.c ft_striter.c \
@@ -70,9 +69,9 @@ lib:
 		@gcc -c $(LBSRC)
 		@echo "\033[36m------------>\033[0m          Compilation library"
 		@mkdir $(OBJPATH) 2> /dev/null || true
-		@echo "\033[35m------------>\033[0m            Create obj folder"
+		@echo "\033[33m------------>\033[0m            Create obj folder"
 		@mv $(OBJNAME) $(OBJPATH)
-		@echo "\033[35m------------>\033[0m        Move .o to obj folder"
+		@echo "\033[33m------------>\033[0m        Move .o to obj folder"
 		@ar rc $(NAME) $(LBOBJ)
 		@echo "\033[36m------------>\033[0m             Creation library"
 		@ranlib $(NAME)

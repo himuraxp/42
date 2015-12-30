@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/29 23:35:38 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 10:25:24 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ lib:
 		@gcc -c $(LBSRC)
 		@echo "\033[36m------------>\033[0m          Compilation library"
 		@mv $(OBJNAME) $(OBJPATH)
-		@echo "\033[35m------------>\033[0m        Move .o to obj folder"
+		@echo "\033[33m------------>\033[0m        Move .o to obj folder"
 		@ar rc $(NAME) $(LBOBJ)
 		@echo "\033[36m------------>\033[0m             Creation library"
 		@ranlib $(NAME)
