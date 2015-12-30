@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/30 14:44:58 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 15:41:07 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 SRCPATH = .
 LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJNAME = $(SRCNAME:.c=.o)
-OBJPATH = ../obj/
+OBJPATH = obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
 FLAGS	=  -Wall -Wextra -Werror
 INCLUDE	= -Ilibft.h
@@ -67,7 +67,7 @@ clean: logo
 		@rm -rf $(LBOBJ)
 fclean: clean
 		@echo "\033[31m------------>\033[0m          Suppression program"
-		@rm -rf $(NAME)
+		@rm -rf $(NAME) $(OBJPATH)
 re: fclean all
 
 .PHONY: clean fclean re all logo lib

@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/30 14:51:25 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 15:38:09 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 SRCPATH = libft/
 LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJNAME = $(SRCNAME:.c=.o)
-OBJPATH = obj/
+OBJPATH = libft/obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
 FLAGS	= -Wall -Wextra -Werror
 INCLUDE	= -Ilibft/libft.h

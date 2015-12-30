@@ -6,21 +6,26 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:23:54 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/04 18:06:08 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/30 18:00:08 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	count;
+	char	*str;
 
-	count = 0;
-	while (count < len)
+	str = b;
+	if (len == 0)
+		return (b);
+	else
 	{
-		((char *)b)[count] = (unsigned char)(c);
-		count++;
+		while (len >= 1)
+		{
+			str[len - 1] = (unsigned char)c;
+			len--;
+		}
 	}
-	return (b);
+	return (str);
 }

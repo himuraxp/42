@@ -3,46 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ndudnicz <ndudnicz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/22 20:14:59 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/29 15:59:27 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/19 18:38:19 by ndudnicz          #+#    #+#             */
+/*   Updated: 2015/12/30 15:10:58 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft/libft.h"
 
-void	ft_lineclr(char **line, char *str)
+static int		cut(char *str_chr, char *save)
 {
-	*line = ft_strdup(str);
-	ft_strclr(str);
+	if (!str_chr)
+		return (0);
+	*str_chr = '\0';
+	str_chr++;
+	ft_strcpy(save, str_chr);
+	ft_memset(str_chr, 0, ft_strlen(str_chr));
+	return (1);
 }
 
-int		get_next_line(int const fd, char **line)
+static char		*strjoin_free(char **line, char *buf)
+{
+	char	*tmp;
+
+	tmp = *line;
+	*line = ft_strjoin(*line, buf);
+	free(tmp);
+	return (*line);
+}
+
+int				get_next_line(int const fd, char **line)
 {
 	int				ret;
-	char			*tmp;
+	char			*str_chr;
 	char			buf[BUFF_SIZE + 1];
-	static char		*str[255];
+	static char		save[2147483648][BUFF_SIZE];
 
-	if (BUFF_SIZE <= 0 || !line || fd < 0 ||
-			!(str[fd] = !str[fd] ? ft_strnew(1) : str[fd]))
+	if (!line || fd < 0)
 		return (-1);
-	while (!ft_strchr(str[fd], '\n') && (ret = read(fd, buf, BUFF_SIZE)) > 0)
+	if (!(*line = *save[fd] ? ft_strdup(save[fd]) : ft_strnew(1)))
+		return (-1);
+	buf[0] = 0;
+	while (((str_chr = ft_strchr(*line, '\n')) == NULL)
+			&& ((ret = read(fd, buf, BUFF_SIZE)) > 0))
 	{
-		tmp = str[fd];
 		buf[ret] = '\0';
-		str[fd] = ft_strjoin(str[fd], buf);
-		free(tmp);
+		if (!(*line = strjoin_free(line, buf)))
+			return (-1);
 	}
-	if (ft_strchr(str[fd], '\n'))
-		*line = ft_strsub(str[fd], 0, ft_strchr(str[fd], '\n') - str[fd]);
-	else
-		ft_lineclr(line, str[fd]);
-	if (ft_strchr(str[fd], '\n'))
-		str[fd] = ft_strsub(str[fd], ft_strchr(str[fd], '\n') - str[fd] + 1,
-				ft_strlen(ft_strchr(str[fd], '\n')));
-	if (ret == -1)
-		return (-1);
-	return (!ret && !ft_strlen(str[fd]) && !ft_strlen(*line) ? 0 : 1);
+	if (cut(str_chr, save[fd]) == 1 || ret > 0)
+		return (1);
+	return (ret == 0 ? 0 : -1);
 }
