@@ -6,7 +6,7 @@
 /*   By: ndudnicz <ndudnicz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 18:38:19 by ndudnicz          #+#    #+#             */
-/*   Updated: 2015/12/30 12:17:19 by ndudnicz         ###   ########.fr       */
+/*   Updated: 2015/12/30 14:41:19 by ndudnicz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,8 @@ static int		cut(char *str_chr, char *save)
 	*str_chr = '\0';
 	str_chr++;
 	ft_strcpy(save, str_chr);
+	ft_memset(str_chr, 0, ft_strlen(str_chr));
 	return (1);
-}
-
-static void		cut_line(char *line)
-{
-	while (*line && *line != '\n')
-		line++;
-	*line = '\0';
 }
 
 static char		*strjoin_free(char **line, char *buf)
@@ -61,7 +55,6 @@ int				get_next_line(int const fd, char **line)
 		if (!(*line = strjoin_free(line, buf)))
 			return (-1);
 	}
-	cut_line(*line);
 	if (cut(str_chr, save[fd]) == 1 || ret > 0)
 		return (1);
 	return (ret == 0 ? 0 : -1);
