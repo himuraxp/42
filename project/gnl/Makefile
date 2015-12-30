@@ -6,12 +6,12 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/30 10:24:42 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 14:51:25 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft/libft.a
-SRC		= `ls | grep "\.c"`
+SRC		= main.c get_next_line.c
 SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_lstiter.c    ft_putendl.c    ft_strequ.c     ft_strnew.c  \
 			ft_atoi.c       ft_lstmap.c     ft_putendl_fd.c ft_striter.c \
@@ -36,10 +36,12 @@ FLAGS	= -Wall -Wextra -Werror
 INCLUDE	= -Ilibft/libft.h
 LIB		= -Llibft/ -lft
 EXE		= gnl
+LIBFT	= -Clibft/
 
 all: $(NAME)
 
-$(NAME): logo lib
+$(NAME): logo
+		@make $(LIBFT)
 		@gcc $(FLAGS) $(INCLUDE) $(SRC) $(LIB) -o $(EXE)
 		@echo "\033[32m------------>\033[0m          Program compilation"
 logo:
@@ -53,18 +55,6 @@ logo:
 		@echo "\033[36m    ########   ###    ####  ##########    \033[0m"
 		@echo "\n"
 		@echo "\033[36m                    Get Next Line - ylarbi\033[0m"
-mouli1: logo
-		@-C libft/ fclean && make -C libft/
-		@echo "\033[32m------------>\033[0m          Compilation mouli 1"
-mouli2: logo
-		@clang -Wall -Wextra -Werror -I libft/includes -o get_next_line.o -c
-		get_next_line.c
-		@echo "\033[32m------------>\033[0m        Compilation mouli 2.1"
-		@clang  -Wall -Wextra -Werror -I libft/includes -o main.o -c main.o
-		@echo "\033[32m------------>\033[0m        Compilation mouli 2.2"
-		@clang -o test_gnl main.o get_next_line.o -I libft/includes -L libft/
-		-lft
-		@echo "\033[32m------------>\033[0m  Compilation mouli 2.3 Final"
 lib:
 		@gcc -c $(LBSRC)
 		@echo "\033[36m------------>\033[0m          Compilation library"
@@ -76,7 +66,6 @@ lib:
 		@echo "\033[36m------------>\033[0m             Creation library"
 		@ranlib $(NAME)
 		@echo "\033[36m------------>\033[0m    Creation of library index"
-
 clean: logo
 		@echo "\033[31m------------>\033[0m               Suppression .o"
 		@rm -rf $(OBJPATH)

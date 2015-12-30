@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/29 23:35:38 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 14:44:58 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 SRCPATH = .
 LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJNAME = $(SRCNAME:.c=.o)
-OBJPATH = obj/
+OBJPATH = ../obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
 FLAGS	=  -Wall -Wextra -Werror
 INCLUDE	= -Ilibft.h
@@ -53,6 +53,8 @@ logo:
 lib:
 		@gcc -c $(LBSRC)
 		@echo "\033[36m------------>\033[0m          Compilation library"
+		@mkdir $(OBJPATH) 2> /dev/null || true
+		@echo "\033[33m------------>\033[0m            Create obj folder"
 		@mv $(OBJNAME) $(OBJPATH)
 		@echo "\033[35m------------>\033[0m        Move .o to obj folder"
 		@ar rc $(NAME) $(LBOBJ)
