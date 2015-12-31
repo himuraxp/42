@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/30 10:24:18 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/31 11:59:27 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,16 +30,18 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 SRCPATH = libft/
 LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJNAME = $(SRCNAME:.c=.o)
-OBJPATH = obj/
+OBJPATH = libft/obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
 FLAGS	= -Wall -Wextra -Werror
 INCLUDE	= -Ilibft/libft.h
 LIB		= -Llibft/ -lft
 EXE		= ft_ls
+LIBFT	= -Clibft/
 
 all: $(NAME)
 
-$(NAME): logo lib
+$(NAME): logo
+		@make $(LIBFT)
 		@gcc $(FLAGS) $(INCLUDE) $(SRC) $(LIB) -o $(EXE)
 		@echo "\033[32m------------>\033[0m          Program compilation"
 

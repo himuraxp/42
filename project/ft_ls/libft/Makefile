@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/30 10:12:04 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2015/12/30 15:41:07 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,10 @@ logo:
 lib:
 		@gcc -c $(LBSRC)
 		@echo "\033[36m------------>\033[0m          Compilation library"
+		@mkdir $(OBJPATH) 2> /dev/null || true
+		@echo "\033[33m------------>\033[0m            Create obj folder"
 		@mv $(OBJNAME) $(OBJPATH)
-		@echo "\033[33m------------>\033[0m        Move .o to obj folder"
+		@echo "\033[35m------------>\033[0m        Move .o to obj folder"
 		@ar rc $(NAME) $(LBOBJ)
 		@echo "\033[36m------------>\033[0m             Creation library"
 		@ranlib $(NAME)
@@ -65,7 +67,7 @@ clean: logo
 		@rm -rf $(LBOBJ)
 fclean: clean
 		@echo "\033[31m------------>\033[0m          Suppression program"
-		@rm -rf $(NAME)
+		@rm -rf $(NAME) $(OBJPATH)
 re: fclean all
 
 .PHONY: clean fclean re all logo lib

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:13:06 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/11/30 16:55:12 by ylarbi           ###   ########.fr       */
+/*   Updated: 2015/12/30 18:02:27 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 char	*ft_strcpy(char *dst, const char *src)
 {
-	int i;
+	int		i;
 
 	i = 0;
-	while (src[i] != '\0' || dst[i] != '\0')
+	while (src[i])
 	{
 		dst[i] = src[i];
+		i++;
+	}
+	while (dst[i])
+	{
+		dst[i] = '\0';
 		i++;
 	}
 	dst[i] = '\0';
