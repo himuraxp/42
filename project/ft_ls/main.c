@@ -6,27 +6,22 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/31 20:05:30 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/01 20:04:26 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <sys/types.h>
-#include <dirent.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "ft_ls.h"
 
-int		main(void)
+int		main(int ac, char **av)
 {
-	struct	dirent *play;
-	DIR *rep;
+	int i;
 
-	rep = opendir(".");
-	while ((play = readdir(rep)))
-	{
-		ft_putstr(play->d_name);
-		ft_putstr("\n");
-	}
-	closedir(rep);
+	i = ac;
+	if (ac > 1 /*&& (*av[1] == '1')*/)
+		ft_ls(av[i - 1]);
+/*	if (ac > 1 && (*av[1] == '2'))
+		ft_stat(av[i - 1]);*/
+	else
+		ft_ls(NULL);
 	return (0);
 }
