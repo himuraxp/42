@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2015/12/30 10:25:24 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/02 13:43:47 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,31 +41,33 @@ $(NAME): logo lib
 
 logo:
 		@echo "\n"
-		@echo "\033[31m          :::         :::::::::::  :::::::::     \033[0m"
-		@echo "\033[31m         :+:             :+:      :+:    :+:     \033[0m"
-		@echo "\033[32m        +:+             +:+      +:+    +:+      \033[0m"
-		@echo "\033[32m       +#+             +#+      +#++:++#+        \033[0m"
-		@echo "\033[33m      +#+              +#+     +#+    +#+        \033[0m"
-		@echo "\033[33m     #+#             #+#      #+#    #+#         \033[0m"
-		@echo "\033[36m    ##########  ###########  #########           \033[0m"
-		@echo "\n"
+		@echo "\033[31m       :::         :::::::::::  ::::::::: \033[0m"
+		@echo "\033[31m      :+:             :+:      :+:    :+: \033[0m"
+		@echo "\033[32m     +:+             +:+      +:+    +:+  \033[0m"
+		@echo "\033[32m    +#+             +#+      +#++:++#+    \033[0m"
+		@echo "\033[33m   +#+              +#+     +#+    +#+    \033[0m"
+		@echo "\033[33m  #+#             #+#      #+#    #+#     \033[0m"
+		@echo "\033[36m ##########  ###########  #########       \033[0m"
 		@echo "\033[36m                            Libft - ylarbi\033[0m"
+		@echo "\n"
 lib:
 		@gcc -c $(LBSRC)
-		@echo "\033[36m------------>\033[0m          Compilation library"
+		@echo "\033[36m------------>          Compilation library\033[0m"
+		@mkdir $(OBJPATH) 2> /dev/null || true
+		@echo "\033[33m------------>            Create obj folder\033[0m"
 		@mv $(OBJNAME) $(OBJPATH)
-		@echo "\033[33m------------>\033[0m        Move .o to obj folder"
+		@echo "\033[35m------------>        Move .o to obj folder\033[0m"
 		@ar rc $(NAME) $(LBOBJ)
-		@echo "\033[36m------------>\033[0m             Creation library"
+		@echo "\033[36m------------>             Creation library\033[0m"
 		@ranlib $(NAME)
-		@echo "\033[36m------------>\033[0m    Creation of library index"
+		@echo "\033[36m------------>    Creation of library index\033[0m"
 
 clean: logo
-		@echo "\033[31m------------>\033[0m               Suppression .o"
+		@echo "\033[31m------------>               Suppression .o\033[0m"
 		@rm -rf $(LBOBJ)
 fclean: clean
-		@echo "\033[31m------------>\033[0m          Suppression program"
-		@rm -rf $(NAME)
+		@echo "\033[31m------------>          Suppression program\033[0m"
+		@rm -rf $(NAME) $(OBJPATH)
 re: fclean all
 
 .PHONY: clean fclean re all logo lib
