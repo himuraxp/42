@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 11:16:27 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/30 18:39:24 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/02 16:28:21 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include "./libft/libft.h"
-# define BUFF_SIZE 6
+# define BUFF_SIZE 10
 
 int		get_next_line(int const fd, char **line);
 
