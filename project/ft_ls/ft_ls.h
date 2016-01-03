@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 17:51:05 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/02 18:34:48 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/03 13:47:06 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # include <dirent.h>
 # include <unistd.h>
 
-void	ft_ls(char *path);
+void	ft_ls(char *path, char *arg);
 void	ft_stat(char *path);
+int		ft_ls_hidden(char *str);
 /*struct stat {
 		dev_t    st_dev;
 		ino_t    st_ino;
