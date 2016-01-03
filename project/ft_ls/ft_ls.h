@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 17:51:05 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/03 13:47:06 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/03 20:44:06 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,11 @@
 # include <dirent.h>
 # include <unistd.h>
 
+void	ft_col(struct dirent *play, size_t max);
 void	ft_ls(char *path, char *arg);
 void	ft_stat(char *path);
+int		ft_len(char *str);
+int		ft_arg(int ac, char **av, int i);
 int		ft_ls_hidden(char *str);
-/*struct stat {
-		dev_t    st_dev;
-		ino_t    st_ino;
-		mode_t   st_mode;
-		nlink_t  st_nlink;
-		uid_t    st_uid;
-		gid_t    st_gid;
-		dev_t    st_rdev;
-		struct timespec st_atimespec;
-		struct timespec st_mtimespec;
-		struct timespec st_ctimespec;
-		off_t    st_size;
-		quad_t   st_blocks;
-		u_long   st_blksize;
-		u_long   st_flags;
-		u_long   st_gen;
-};*/
 
 #endif
