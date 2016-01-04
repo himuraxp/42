@@ -1,49 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   union.c                                            :+:      :+:    :+:   */
+/*   open.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/15 18:42:48 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/04 12:28:13 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/08 18:26:46 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/10 00:28:43 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "fillit.h"
 
-void	ft_union(char *s1, char *c)
+int		ft_open(t_global *global)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (s1[i])
-	{
-		j = 0;
-		while (c[j] && s1[i] != c[j])
-			j++;
-		if (!c[j])
-		{
-			write(1, &s1[i], 1);
-			c[j] = s1[i];
-			c[j + 1] = 0;
-		}
-		i++;
-	}
-}
-
-int		main(int argc, char **argv)
-{
-	char	c[128];
-
-	c[0] = 0;
-	if (argc == 3)
-	{
-		ft_union(argv[1], c);
-		ft_union(argv[2], c);
-	}
-	write(1, "\n", 1);
-	return (0);
+	global->fd = open(global->file, O_RDONLY);
+	if (global->fd == -1)
+		return (ft_error(global, 2));
+	if (!(ft_read(global)))
+		return (0);
+	if (close(global->fd) == -1)
+		return (ft_error(global, 3));
+	return (1);
 }

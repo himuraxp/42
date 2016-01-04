@@ -1,49 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   union.c                                            :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/15 18:42:48 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/04 12:28:13 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/11/26 19:04:53 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/13 12:51:06 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "fillit.h"
 
-void	ft_union(char *s1, char *c)
+char	*ft_strsub(char *s, unsigned int start, int len)
 {
-	int	i;
-	int	j;
+	char	*buf;
+	int		count;
 
-	i = 0;
-	j = 0;
-	while (s1[i])
+	count = 0;
+	if (s == NULL)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (NULL);
+	if ((buf = (char *)malloc(sizeof(*buf) * (len + 1))) == NULL)
+		return (NULL);
 	{
-		j = 0;
-		while (c[j] && s1[i] != c[j])
-			j++;
-		if (!c[j])
+		while (count < len && s[start] != '\0')
 		{
-			write(1, &s1[i], 1);
-			c[j] = s1[i];
-			c[j + 1] = 0;
+			buf[count] = s[start];
+			start++;
+			count++;
 		}
-		i++;
+		buf[count] = '\0';
 	}
-}
-
-int		main(int argc, char **argv)
-{
-	char	c[128];
-
-	c[0] = 0;
-	if (argc == 3)
-	{
-		ft_union(argv[1], c);
-		ft_union(argv[2], c);
-	}
-	write(1, "\n", 1);
-	return (0);
+	return (char *)(buf);
 }

@@ -1,49 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   union.c                                            :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/15 18:42:48 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/04 12:28:13 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/09 18:45:26 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/12/14 18:14:42 by gmarguer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "fillit.h"
 
-void	ft_union(char *s1, char *c)
+void	ft_bzero(t_global *global)
 {
-	int	i;
-	int	j;
+	int		i;
 
 	i = 0;
-	j = 0;
-	while (s1[i])
+	while (i < BUF_SIZE)
 	{
-		j = 0;
-		while (c[j] && s1[i] != c[j])
-			j++;
-		if (!c[j])
-		{
-			write(1, &s1[i], 1);
-			c[j] = s1[i];
-			c[j + 1] = 0;
-		}
+		global->buf[i] = '\0';
 		i++;
 	}
 }
 
-int		main(int argc, char **argv)
+int		ft_read(t_global *global)
 {
-	char	c[128];
+	int	rd;
 
-	c[0] = 0;
-	if (argc == 3)
+	rd = 0;
+	while ((rd = read(global->fd, global->buf, BUF_SIZE)) > 0)
 	{
-		ft_union(argv[1], c);
-		ft_union(argv[2], c);
+		global->buf[BUF_SIZE] = '\0';
+		if (!(ft_parse(global)))
+			return (0);
+		ft_bzero(global);
 	}
-	write(1, "\n", 1);
-	return (0);
+	if (global->nb == 0)
+		return (0);
+	return (1);
 }
