@@ -6,12 +6,12 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/05 20:54:19 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/06 14:30:34 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	fdf.a
-SRC		=	main.c
+SRC		=	main.c fdf.c
 #SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_lstiter.c    ft_putendl.c    ft_strequ.c     ft_strnew.c  \
 			ft_atoi.c       ft_lstmap.c     ft_putendl_fd.c ft_striter.c \
@@ -40,11 +40,12 @@ MINILX	= -Lminilibx/ -lmlx
 EXE		= fdf
 LIBFT	= -Clibft/
 MINILIB = -Cminilibx/
+MLX		= -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 $(NAME): logo minilibx
-		@gcc $(FLAGS) $(MINIINC) $(SRC) $(MINILX) -o $(EXE)
+		@gcc $(FLAGS) $(MINIINC) $(SRC) $(MLX) -o $(EXE)
 		@echo "\033[32m------------>          Program compilation\033[0m"
 
 logo:
