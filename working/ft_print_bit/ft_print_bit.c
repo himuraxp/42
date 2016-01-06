@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_bit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/05 20:05:42 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/04 22:18:51 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/04 22:52:20 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minilibx/mlx.h"
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
-int		main(void)
+void	ft_print_bit(unsigned char octet)
 {
-	void *mlx;
-	void *win;
+	int	i;
+	char c;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 1920, 1080, "42");
-	sleep(5);
-	return (0);
+	i = 0;
+	while (i < 8)
+	{
+		c = ((octet >> (7 - i)) & 1) + 48;
+		write(1, &c, 1);
+		i++;
+	}
+	write(1, '\n', 1);
 }
