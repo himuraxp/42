@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/06 14:30:34 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/06 21:03:45 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC		=	main.c fdf.c
 FLAGS	= -Wall -Wextra -Werror
 #INCLUDE	= -Ilibft/libft.h
 LIB		= -Llibft/ -lft
-MINIINC	= -Iminilibx/mlx.h
+MINIINC	= -Iminilibx/
 MINILX	= -Lminilibx/ -lmlx
 EXE		= fdf
 LIBFT	= -Clibft/
