@@ -6,12 +6,17 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/07 20:24:20 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/08 18:46:44 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libft/libft.a
-SRC		= `ls | grep "\.c"`
+NAME	=	libft/libft.a
+SRC		= 	init.c 			print.c 		print_file.c 	filter.c	 \
+			parse.c 		ft_ls.c 		error.c			tools.c		 \
+			more_list.c		list.c			dir.c			file.c		 \
+			data_lst.c 		sort.c			more_print.c 	moar_list.c	 \
+			multi_arg.c		permissions.c	hack.c			columns.c	 \
+		  	more_sort.c		more_print_file.c
 SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_lstiter.c    ft_putendl.c    ft_strequ.c     ft_strnew.c  \
 			ft_atoi.c       ft_lstmap.c     ft_putendl_fd.c ft_striter.c \
@@ -27,16 +32,16 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_itoa.c       ft_memmove.c    ft_strcmp.c     ft_strncmp.c \
 			ft_lstadd.c     ft_memset.c     ft_strcpy.c     ft_strncpy.c \
 			ft_lstdel.c     ft_putchar.c    ft_strdel.c     ft_strndup.c
-SRCPATH = libft/
-LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
-OBJNAME = $(SRCNAME:.c=.o)
-OBJPATH = libft/obj/
-LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
-FLAGS	= -Wall -Wextra -Werror
-INCLUDE	= -Ilibft/libft.h
-LIB		= -Llibft/ -lft
-EXE		= ft_ls
-LIBFT	= -Clibft/
+SRCPATH =	libft/
+LBSRC	=	$(addprefix $(SRCPATH)/,$(SRCNAME))
+OBJNAME =	$(SRCNAME:.c=.o)
+OBJPATH =	libft/obj/
+LBOBJ	=	$(addprefix $(OBJPATH)/,$(OBJNAME))
+FLAGS	=	-Wall -Wextra -Werror
+INCLUDE	=	-Ilibft/libft.h
+LIB		=	-Llibft/ -lft
+EXE		=	ft_ls
+LIBFT	=	-Clibft/
 
 all: $(NAME)
 

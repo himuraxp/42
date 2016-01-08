@@ -5,50 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/01 17:53:23 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/04 13:20:27 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/08 16:18:55 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/08 16:25:09 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_ls_hidden(char *str)
+char			*g_flags;
+int				*g_settings;
+
+void			get_shell_size(void)
 {
-	if (str[0] == '.')
-		return (1);
-	return (0);
+	struct winsize	w;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	g_settings[S_WIN_COLS] = w.ws_col;
+	g_settings[S_WIN_ROWS] = w.ws_row;
 }
 
-void	ft_print(char *str)
+int				main(int ac, char **av)
 {
-		ft_putstr(str);
-		ft_putchar(' ');
-		ft_putstr("\t");
-}
+	t_data		*arg_lst;
 
-void	ft_ls(char *path, char *arg)
-{
-	struct dirent	*play;
-	DIR				*rep;
-
-	if(path != NULL)
-		rep = opendir(path);
-	else
-		rep = opendir(".");
-	while ((play = readdir(rep)))
-	{
-		if (arg != NULL && (ft_strcmp(arg, "-a") == 0))
-		{
-				ft_print(play->d_name);
-		}
-		else
-		{
-			if(ft_ls_hidden(play->d_name) == 0)
-			{
-				ft_print(play->d_name);
-			}
-		}
-	}
-	ft_putchar('\n');
-	closedir(rep);
+	g_flags = (char*)malloc(sizeof(char) * 17);
+	bzero(g_flags, sizeof(char) * 17);
+	g_settings = (int*)malloc(sizeof(int) * 6);
+	bzero(g_settings, sizeof(int) * 6);
+	get_shell_size();
+	arg_lst = NULL;
+	parse(ac - 1, av + 1, &arg_lst);
+	if (!arg_lst)
+		lst_push_data(lst_new_data(ft_strdup("."), ft_strdup(".")), &arg_lst);
+	g_settings[S_NB_ARGS] = lst_count(arg_lst);
+	initialize(arg_lst);
+	return (g_settings[S_RETURN]);
 }

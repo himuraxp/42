@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/02 13:43:47 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/08 14:49:19 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,15 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 			ft_iswhite.c    ft_memdel.c     ft_strclr.c     ft_strncat.c \
 			ft_itoa.c       ft_memmove.c    ft_strcmp.c     ft_strncmp.c \
 			ft_lstadd.c     ft_memset.c     ft_strcpy.c     ft_strncpy.c \
-			ft_lstdel.c     ft_putchar.c    ft_strdel.c     ft_strndup.c
+			ft_lstdel.c     ft_putchar.c    ft_strdel.c     ft_strndup.c \
+			get_next_line.c ft_sizelen.c	ft_putlnbr.c	ft_intlen.c
 SRCPATH = .
 LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJNAME = $(SRCNAME:.c=.o)
 OBJPATH = obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
 FLAGS	=  -Wall -Wextra -Werror
-INCLUDE	= -Ilibft.h
+INCLUDE	= -Ilibft.h get_next_line.h
 LIB		= -L. -lft
 
 all: $(NAME)
