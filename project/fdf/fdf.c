@@ -6,51 +6,46 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:23:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/12 12:14:00 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/12 16:48:48 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minilibx/fdf.h"
 
-int		ft_degrade(void)
+int		ft_degrade(int color)
 {
-	int color;
-
-	color = 0x000000;
-	while (color < 0xffffff)
+	if (color <= 0xFFFFFF)
 	{
-		color += 0x020202;
-		printf("%d\n", color);
+		color += 0x010203;
 	}
 	return (color);
 }
 
 void	draw(void *mlx, void *win)
 {
-	int color;
+	int	color;
 	int	x;
 	int y;
 	int x2;
 	int y2;
 
-	y = 800;
-	x = 800;
-	y2 = y / 2;
+	y = 0;
+	x = 0;
 	x2 = x / 2;
-	color = 0x090909;
-	while (x2 > 0)
+	y2 = y / 2;
+	color = 0x000000;
+	while (x <= 400)
 	{
-
-		while (y2 > 0)
+		y = 0;
+		while (y <= 400)
 		{
-				mlx_pixel_put(mlx, win, x2, y2, color);
-
-			y2--;
-			if (color < 0xff00ff)
-				color += 0x020815;
+			mlx_pixel_put(mlx, win, x, y, color);
+			y++;
 		}
-		x2--;
+		color = ft_degrade(color);
+		x++;
 	}
+
 }
 
 int		expose_hook(t_env *e)
