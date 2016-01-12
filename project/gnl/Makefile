@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/02 13:49:48 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/11 10:47:06 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,17 +55,6 @@ logo:
 		@echo "\033[36m    ########   ###    ####  ##########    \033[0m"
 		@echo "\033[36m                    Get Next Line - ylarbi\033[0m"
 		@echo "\n"
-lib:
-		@gcc -c $(LBSRC)
-		@echo "\033[36m------------>          Compilation library\033[0m"
-		@mkdir $(OBJPATH) 2> /dev/null || true
-		@echo "\033[33m------------>            Create obj folder\033[0m"
-		@mv $(OBJNAME) $(OBJPATH)
-		@echo "\033[33m------------>        Move .o to obj folder\033[0m"
-		@ar rc $(NAME) $(LBOBJ)
-		@echo "\033[36m------------>             Creation library\033[0m"
-		@ranlib $(NAME)
-		@echo "\033[36m------------>    Creation of library index\033[0m"
 clean: logo
 		@echo "\033[31m------------>               Suppression .o\033[0m"
 		@rm -rf $(OBJPATH)
