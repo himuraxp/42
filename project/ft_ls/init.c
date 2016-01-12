@@ -6,9 +6,11 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:33:56 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 18:52:05 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/12 11:02:19 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_ls.h"
 
 int					initialize(t_data *arg_lst)
 {

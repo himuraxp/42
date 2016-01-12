@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:23:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/07 20:27:36 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/12 12:14:00 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,24 @@ void	draw(void *mlx, void *win)
 	int y;
 	int x2;
 	int y2;
-	int x3;
-	int y3;
 
-	y = 400;
-	y2 = y / 4;
-	x = 400;
-	x2 = x / 4;
+	y = 800;
+	x = 800;
+	y2 = y / 2;
+	x2 = x / 2;
 	color = 0x090909;
-	while (x2 != x / 2 && y2 != y / 2)
+	while (x2 > 0)
 	{
-		y3 = y - y2;
-		while (y3 < y2)
-		{
-			x3 = x - x2;
-			while (x3 < x2)
-			{
-				mlx_pixel_put(mlx, win, x, y, color);
-				x3++;
-			}
 
-			y3++;
+		while (y2 > 0)
+		{
+				mlx_pixel_put(mlx, win, x2, y2, color);
+
+			y2--;
 			if (color < 0xff00ff)
 				color += 0x020815;
 		}
-		x2++;
-		y2++;
+		x2--;
 	}
 }
 
