@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:23:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 11:13:06 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/13 14:49:02 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		mouse_hook(int button, int x, int y)
 	return (0);
 }
 
-int		ft_fdf(char **av)
+int		ft_fdf(char *av)
 {
 	t_env	e;
 

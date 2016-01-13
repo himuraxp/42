@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/13 11:58:27 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/13 14:20:54 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJNAME = $(SRCNAME:.c=.o)
 OBJPATH = obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
 FLAGS	=  -Wall -Wextra -Werror
-INCLUDE	= -Ilibft.h
+INCLUDE	= -Iinclude/
 LIB		= -L. -lft
 
 all: $(NAME)
@@ -49,10 +49,10 @@ logo:
 		@echo "\033[33m   +#+              +#+     +#+    +#+    \033[0m"
 		@echo "\033[33m  #+#             #+#      #+#    #+#     \033[0m"
 		@echo "\033[36m ##########  ###########  #########       \033[0m"
-		@echo "\033[36m              Libft & GetNextLine - ylarbi\033[0m"
+		@echo "\033[36m            Libft & Get Next Line - ylarbi\033[0m"
 		@echo "\n"
 lib:
-		@gcc -c $(LBSRC)
+		@gcc  $(INCLUDE) -c $(LBSRC)
 		@echo "\033[36m------------>          Compilation library\033[0m"
 		@mkdir $(OBJPATH) 2> /dev/null || true
 		@echo "\033[33m------------>            Create obj folder\033[0m"

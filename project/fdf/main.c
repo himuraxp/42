@@ -6,11 +6,15 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 11:18:45 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/13 14:48:13 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/uio.h>
 #include "./minilibx/fdf.h"
+#include "./libft/include/get_next_line.h"
 
 int		main(int ac, char **av)
 {
@@ -28,7 +32,7 @@ int		main(int ac, char **av)
 	gnl = get_next_line(fd, &line);
 	while (gnl != 0 && gnl != -1)
 	{
-		ft_fdf(av[1]);
+		ft_fdf();
 		gnl = get_next_line(fd, &line);
 	}
 	if (gnl == -1)

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:53:45 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/12 16:36:42 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/13 14:48:18 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <mlx.h>
+#include <sys/types.h>
+#include <sys/uio.h>
 
 typedef struct	s_env
 {
@@ -31,6 +33,6 @@ typedef struct	s_color
 	int		b;
 }				t_color;
 
-int		ft_fdf(void);
+int		ft_fdf(char *av);
 
 #endif
