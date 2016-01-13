@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndudnicz <ndudnicz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/19 18:38:19 by ndudnicz          #+#    #+#             */
-/*   Updated: 2015/12/30 18:58:36 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/19 18:38:19 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/13 12:45:00 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft/libft.h"
+#include "libft/include/libft.h"
 
 static int		cut(char *str_chr, char *save)
 {
+	save[0] = 0;
 	if (!str_chr)
 		return (0);
 	*str_chr = '\0';
@@ -31,6 +32,7 @@ static char		*strjoin_free(char **line, char *buf)
 	tmp = *line;
 	*line = ft_strjoin(*line, buf);
 	free(tmp);
+	tmp = NULL;
 	return (*line);
 }
 
@@ -53,7 +55,7 @@ int				get_next_line(int const fd, char **line)
 		if (!(*line = strjoin_free(line, buf)))
 			return (-1);
 	}
-	if (cut(str_chr, save[fd]) == 1 || ret > 0)
+	if (cut(str_chr, save[fd]) == 1 || ft_strlen(*line) || ret > 0)
 		return (1);
 	return (ret == 0 ? 0 : -1);
 }
