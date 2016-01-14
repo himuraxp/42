@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 20:00:57 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 22:12:57 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/14 22:13:26 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,31 @@ void	init(t_data **data, char *map)
 	(*data)->win = mlx_new_window((*data)->mlx, WIDTH, HEIGHT, "FDF");
 	if (!(*data)->win)
 		exit(EXIT_FAILURE);
-//	get_map(*data, map);
-	if (map)
-	{};
+	get_next_map(*data, map);
+	set_down(*data);
 }
 
-int		key_hook(int keycode)
+int		key_hook(int keycode, t_color *color)
 {
 	ft_putstr("key: ");
 	ft_putnbr(keycode);
 	ft_putchar('\n');
 	if (keycode == 53)
 		exit(0);
+	if (keycode == 69)
+		color->b += 0x000010;
 	return (0);
 
+}
+
+int     mouse_hook(int button, int x, int y)
+{
+	ft_putstr("mouse: ");
+	ft_putnbr(button);
+	ft_putstr(" position: ");
+	ft_putnbr(x);
+	ft_putchar(':');
+	ft_putnbr(y);
+	ft_putchar('\n');
+    return (0);
 }

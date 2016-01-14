@@ -1,26 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 22:03:41 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/14 22:13:29 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/14 17:47:15 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/14 19:58:34 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_color(t_color *color)
+t_node		*end(t_node *map)
 {
-	int	result;
+	t_node	*pos;
 
-	result = 0;
-	color->r = 0x500000;
-	color->v = 0x009900;
-	color->b = 0x000012;
-	result = color->r + color->v + color->b;
-	return (result);
+	pos = map;
+	if(pos)
+	{
+		while(pos != NULL && pos->right != NULL)
+		{
+			pos = pos->right;
+		}
+	}
+	return (pos);
 }
 
+void		set_down(t_data *data)
+{
+	t_node	*x;
+	t_node	*y;
+	t_node	*y_down;
+
+	y = data->map;
+	while (y)
+	{
+		y_down = y->down;
+		x = y;
+		while (x)
+		{
+			x->down = y_down ? y_down : NULL;
+			x = x->right;
+			y_down = y_down ? y_down->right : NULL;
+		}
+		y = y->down;
+	}
+}

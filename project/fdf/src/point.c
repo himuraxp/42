@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 22:03:41 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/14 22:13:29 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/14 19:58:49 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/14 21:19:32 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_color(t_color *color)
+t_point	*new_point(float x, float y, float z)
 {
-	int	result;
+	t_point	*new;
 
-	result = 0;
-	color->r = 0x500000;
-	color->v = 0x009900;
-	color->b = 0x000012;
-	result = color->r + color->v + color->b;
-	return (result);
+	if (!(new = malloc(sizeof(t_point))))
+		return (0);
+	new->x = (x - y) * ZOOM;
+	new->y = (x + y) * ZOOM;
+	new->y -= (z * POS) / 4;
+	new->x += (800 / 2);
+	new->y += (600 / 2);
+	new->z = z;
+	return(new);
 }
-
