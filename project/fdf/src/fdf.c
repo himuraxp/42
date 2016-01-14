@@ -6,59 +6,36 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:23:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 14:49:02 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/13 22:12:59 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minilibx/fdf.h"
-
-int		ft_degrade(int color)
-{
-	if (color <= 0xFFFFFF)
-	{
-		color += 0x010203;
-	}
-	return (color);
-}
+#include "fdf.h"
 
 void	draw(void *mlx, void *win)
 {
-	int	color;
+	t_color	color;
 	int	x;
 	int y;
-	int x2;
-	int y2;
 
 	y = 0;
 	x = 0;
-	x2 = x / 2;
-	y2 = y / 2;
-	color = 0x000000;
-	while (x <= 400)
+	while (y <= HEIGHT)
 	{
-		y = 0;
-		while (y <= 400)
+		x = 0;
+		while (x <= WIDTH)
 		{
-			mlx_pixel_put(mlx, win, x, y, color);
-			y++;
+			mlx_pixel_put(mlx, win, x, y, ft_color(&color));
+			x++;
 		}
-		color = ft_degrade(color);
-		x++;
+		y++;
 	}
 
 }
 
-int		expose_hook(t_env *e)
+int		expose_hook(t_data *e)
 {
 	draw(e->mlx, e->win);
-	return (0);
-}
-
-int		key_hook(int keycode)
-{
-	printf("key: %d\n", keycode);
-	if (keycode == 53)
-		exit(0);
 	return (0);
 }
 
@@ -68,15 +45,14 @@ int		mouse_hook(int button, int x, int y)
 	return (0);
 }
 
-int		ft_fdf(char *av)
+int		ft_fdf(char *map)
 {
-	t_env	e;
+	t_data	*data;
 
-	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, 800, 800, "42");
-	mlx_key_hook(e.win, key_hook, &e);
-	mlx_mouse_hook(e.win, mouse_hook, &e);
-	mlx_expose_hook(e.win, expose_hook, &e);
-	mlx_loop(e.mlx);
+	init(&data, map);
+	mlx_key_hook(data->win, key_hook, data);
+	mlx_mouse_hook(data->win, mouse_hook, data);
+	mlx_expose_hook(data->win, expose_hook, data);
+	mlx_loop(data->mlx);
 	return (0);
 }

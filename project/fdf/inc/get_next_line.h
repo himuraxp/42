@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/07 15:53:45 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 14:48:18 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/12/21 11:16:27 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/13 15:53:12 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <mlx.h>
-#include <sys/types.h>
-#include <sys/uio.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include "libft.h"
+# define BUFF_SIZE 8
 
-typedef struct	s_env
-{
-	void		*mlx;
-	void		*win;
-}				t_env;
-
-typedef struct	s_color
-{
-	int		r;
-	int		v;
-	int		b;
-}				t_color;
-
-int		ft_fdf(char *av);
+int		get_next_line(int const fd, char **line);
 
 #endif
