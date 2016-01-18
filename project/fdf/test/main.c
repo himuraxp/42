@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/14 19:58:49 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 17:03:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/17 17:32:47 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/17 18:01:24 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "mlx.h"
 
-t_point	*new_point(float x, float y, float z)
+int		main()
 {
-	t_point	*new;
-	ft_putstr("new_point start\n");
-	if (!(new = malloc(sizeof(t_point))))
-		return (0);
-	new->x = (x - y) * ZOOM;
-	new->y = (x + y) * ZOOM;
-	new->y -= (z * POS) / 4;
-	new->x += (800 / 2);
-	new->y += (600 / 2);
-	new->z = z;
-	ft_putstr("new_point end\n");
-	return(new);
+	void	*mlx;
+	void	*win;
+	int		y;
+	int		x;
+
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 800, 800, "test");
+	y =	200;
+/*	while (y < 600)
+	{
+		x = 200;
+		while (x < 600)
+		{
+			x++;
+		}
+		y++;
+	}*/
+	mlx_pixel_put(mlx, win, y, x, 0x00FFFFFF);
+	mlx_loop(mlx);
+	return (0);
 }

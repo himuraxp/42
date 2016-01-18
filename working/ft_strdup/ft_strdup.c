@@ -1,29 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 16:33:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/18 14:08:12 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/18 14:25:49 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/uio.h>
-#include "fdf.h"
-#include "get_next_line.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+int		ft_len(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(char *str)
+{
+	int i;
+	char *buf;
+
+	i = 0;
+	if (!(buf = malloc(sizeof(char) * ft_len(str) + 1)))
+		return (0);
+	while (str[i] != '\0')
+	{
+		buf[i] = str[i];
+		i++;
+	}
+	buf[i] = '\0';
+	return (buf);
+}
 
 int		main(int ac, char **av)
 {
-	if (ac < 2)
-	{
-		ft_putstr("\033[31m---->	Map not found\033[0m");
+	if (ac != 2)
 		return (0);
-	}
-	if (ac == 2)
-		ft_fdf(av[1]);
+	printf("%s\n", ft_strdup(av[1]));
 	return (0);
 }

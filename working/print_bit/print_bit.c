@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.c                                            :+:      :+:    :+:   */
+/*   print_bit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/14 19:58:49 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 17:03:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/18 15:29:00 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/18 16:18:08 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <unistd.h>
 
-t_point	*new_point(float x, float y, float z)
+void	print_bit(unsigned char octet)
 {
-	t_point	*new;
-	ft_putstr("new_point start\n");
-	if (!(new = malloc(sizeof(t_point))))
-		return (0);
-	new->x = (x - y) * ZOOM;
-	new->y = (x + y) * ZOOM;
-	new->y -= (z * POS) / 4;
-	new->x += (800 / 2);
-	new->y += (600 / 2);
-	new->z = z;
-	ft_putstr("new_point end\n");
-	return(new);
+	int i;
+	int j;
+	char result[8];
+
+	i = 0;
+	j = 128;
+	while (i < 8)
+	{
+		if ((octet / j) == 0)
+			result[i] = '0';
+		else
+		{
+			octet = octet % j;
+			result[i] = '1';
+		}
+		j = j / 2;
+		i++;
+	}
+	write(1, &result, 8);
 }

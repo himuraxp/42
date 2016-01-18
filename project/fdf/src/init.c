@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 20:00:57 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/14 22:13:26 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/17 17:21:49 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 void	init(t_data **data, char *map)
 {
+	ft_putstr("init start\n");
 	if (!(*data = malloc(sizeof(t_data))))
 		exit(-1);
+	ft_putstr("init -> mlx_init\n");
 	(*data)->mlx = mlx_init();
 	if (!(*data)->mlx)
 		exit(EXIT_FAILURE);
 	(*data)->width = WIDTH;
 	(*data)->height = HEIGHT;
 	(*data)->win = mlx_new_window((*data)->mlx, WIDTH, HEIGHT, "FDF");
-	if (!(*data)->win)
-		exit(EXIT_FAILURE);
+	ft_putstr("init -> get_next_map\n");
 	get_next_map(*data, map);
+	ft_putstr("init -> set_down\n");
 	set_down(*data);
+	ft_putstr("init end\n");
 }
 
 int		key_hook(int keycode, t_color *color)

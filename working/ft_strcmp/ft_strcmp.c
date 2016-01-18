@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/14 19:58:49 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 17:03:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/18 13:38:06 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/18 14:06:17 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <stdio.h>
 
-t_point	*new_point(float x, float y, float z)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	t_point	*new;
-	ft_putstr("new_point start\n");
-	if (!(new = malloc(sizeof(t_point))))
+	size_t	i;
+
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac != 3)
 		return (0);
-	new->x = (x - y) * ZOOM;
-	new->y = (x + y) * ZOOM;
-	new->y -= (z * POS) / 4;
-	new->x += (800 / 2);
-	new->y += (600 / 2);
-	new->z = z;
-	ft_putstr("new_point end\n");
-	return(new);
+	printf("%d\n",ft_strcmp(av[1], av[2]));
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 19:18:18 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/15 14:10:31 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/17 17:20:18 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 void	background(t_data *data)
 {
-    t_color color;
+//    t_color color;
     int x;
     int y;
 
-    y = 0;
+    ft_putstr("background start\n");
+	y = 0;
     x = 0;
     while (y <= HEIGHT)
     {
         x = 0;
         while (x <= WIDTH)
         {
-            mlx_pixel_put(data->mlx, data->win, x, y, ft_color(&color));
+            mlx_pixel_put(data->mlx, data->win, x, y, 0xFFFFFF);
             x++;
         }
         y++;
     }
+    ft_putstr("background end\n");
 }
 
 void	back(t_data *data)
@@ -39,6 +41,7 @@ void	back(t_data *data)
 
     y = 0;
     x = 0;
+    ft_putstr("back start\n");
     while (y <= HEIGHT / 2)
     {
         x = 0;
@@ -49,11 +52,14 @@ void	back(t_data *data)
         }
         y++;
     }
+    ft_putstr("back start\n");
 }
 
 void    draw(t_data *data)
 {
+	ft_putstr("draw -> background\n");
 	background(data);
+	ft_putstr("draw -> back\n");
 	back(data);
 }
 

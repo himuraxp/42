@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 18:38:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 16:01:27 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/17 16:47:19 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				get_next_line(int const fd, char **line)
 	int				ret;
 	char			*str_chr;
 	char			buf[BUFF_SIZE + 1];
-	static char		save[2147483648][BUFF_SIZE];
+	static char		save[4096][BUFF_SIZE];
 
 	if (!line || fd < 0)
 		return (-1);

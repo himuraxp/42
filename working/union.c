@@ -1,29 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.c                                            :+:      :+:    :+:   */
+/*   union.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/14 19:58:49 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 17:03:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/18 20:13:39 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/18 20:21:10 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <unistd.h>
 
-t_point	*new_point(float x, float y, float z)
+void	ft_union(char *s1, char *c)
 {
-	t_point	*new;
-	ft_putstr("new_point start\n");
-	if (!(new = malloc(sizeof(t_point))))
-		return (0);
-	new->x = (x - y) * ZOOM;
-	new->y = (x + y) * ZOOM;
-	new->y -= (z * POS) / 4;
-	new->x += (800 / 2);
-	new->y += (600 / 2);
-	new->z = z;
-	ft_putstr("new_point end\n");
-	return(new);
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		j = 0;
+		while (c[j] && s1[i] != c[j])
+			j++;
+		if (!c[j])
+		{
+			write(1, &s1[i], 1);
+			c[j] = s1[i];
+			c[j + 1] = 0;
+		}
+		i++;
+	}
+}
+
+int		main(int ac, char **av)
+{
+	char c[128];
+
+	c[0] = 0;
+	if (ac == 3)
+	{
+		ft_union(av[1], c);
+		ft_union(av[2], c);
+	}
+	write(1, "\n", 1);
+	return (0);
 }

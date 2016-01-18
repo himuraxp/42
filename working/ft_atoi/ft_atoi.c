@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 13:27:27 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/29 13:36:21 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/18 12:17:03 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/18 12:30:03 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strdup(char *str)
+int		ft_atoi(char *str)
 {
-	char	*new;
-	int		len;
-	int		i;
+	int	result;
+	int i;
+	int sign;
 
-	len = 0;
+	result = 0;
 	i = 0;
-	while (str[len] != '\0')
+	sign = 1;
+	if (str[i] == '-')
+		sign = -1;
+	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
 	{
-		len++;
-	}
-	if (!(new = (char *)malloc(sizeof(str) * len + 1)))
-		return (NULL);
-	while (str[i] != '\0')
-	{
-		new[i] = str[i];
+		if (str[i] < '0' || str[i] > '9')
+			break ;
+		result = result * 10 + str[i] - '0';
 		i++;
 	}
-	new[i] = '\0';
-	return (0);
+	return (sign * result);
 }
