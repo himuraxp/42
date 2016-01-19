@@ -6,12 +6,13 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/13 22:06:21 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/17 16:04:50 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= fdf.a
-SRCNAME = main.c fdf.c get_next_line.c init.c color.c
+SRCNAME =	main.c fdf.c get_next_line.c init.c color.c move.c parse.c draw.c \
+			point.c
 SRCPATH = src/
 SRC		= $(addprefix $(SRCPATH)/,$(SRCNAME))
 FLAGS	= -Wall -Wextra -Werror
@@ -19,7 +20,8 @@ INCLUDE	= -Iinc
 LIB		= -Llibft/ -lft
 EXE		= fdf
 LIBFT	= -Clibft/
-MLX		= -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
+MLX		= -L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
+MYMLX	= -L/minilibx/ -I/minilibx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 

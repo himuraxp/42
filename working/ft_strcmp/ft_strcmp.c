@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 16:33:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/18 13:38:06 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/18 14:06:17 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/uio.h>
-#include "fdf.h"
-#include "get_next_line.h"
+#include <stdio.h>
+
+int		ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
 
 int		main(int ac, char **av)
 {
-	if (ac < 2)
-	{
-		ft_putstr("\033[31m---->	Map not found\033[0m");
+	if (ac != 3)
 		return (0);
-	}
-	if (ac == 2)
-		ft_fdf(av[1]);
+	printf("%d\n",ft_strcmp(av[1], av[2]));
 	return (0);
 }

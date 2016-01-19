@@ -5,25 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 16:33:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/17 17:32:47 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/17 18:01:24 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/uio.h>
-#include "fdf.h"
-#include "get_next_line.h"
+#include "mlx.h"
 
-int		main(int ac, char **av)
+int		main()
 {
-	if (ac < 2)
+	void	*mlx;
+	void	*win;
+	int		y;
+	int		x;
+
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 800, 800, "test");
+	y =	200;
+/*	while (y < 600)
 	{
-		ft_putstr("\033[31m---->	Map not found\033[0m");
-		return (0);
-	}
-	if (ac == 2)
-		ft_fdf(av[1]);
+		x = 200;
+		while (x < 600)
+		{
+			x++;
+		}
+		y++;
+	}*/
+	mlx_pixel_put(mlx, win, y, x, 0x00FFFFFF);
+	mlx_loop(mlx);
 	return (0);
 }

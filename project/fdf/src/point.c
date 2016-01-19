@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 16:33:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/14 19:58:49 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/17 17:03:15 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/uio.h>
 #include "fdf.h"
-#include "get_next_line.h"
 
-int		main(int ac, char **av)
+t_point	*new_point(float x, float y, float z)
 {
-	if (ac < 2)
-	{
-		ft_putstr("\033[31m---->	Map not found\033[0m");
+	t_point	*new;
+	ft_putstr("new_point start\n");
+	if (!(new = malloc(sizeof(t_point))))
 		return (0);
-	}
-	if (ac == 2)
-		ft_fdf(av[1]);
-	return (0);
+	new->x = (x - y) * ZOOM;
+	new->y = (x + y) * ZOOM;
+	new->y -= (z * POS) / 4;
+	new->x += (800 / 2);
+	new->y += (600 / 2);
+	new->z = z;
+	ft_putstr("new_point end\n");
+	return(new);
 }

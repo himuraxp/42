@@ -3,27 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ylarbi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 16:33:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2015/07/30 14:46:11 by ylarbi            #+#    #+#             */
+/*   Updated: 2015/07/30 14:52:01 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/uio.h>
-#include "fdf.h"
-#include "get_next_line.h"
+#include <stdio.h>
 
-int		main(int ac, char **av)
+int		ft_atoi(char *str);
+
+int		main(int argc, char **argv)
 {
-	if (ac < 2)
-	{
-		ft_putstr("\033[31m---->	Map not found\033[0m");
+	int nb;
+
+	if (argc != 2)
 		return (0);
-	}
-	if (ac == 2)
-		ft_fdf(av[1]);
+	nb = ft_atoi(argv[1]);
+	printf("%d", nb);
 	return (0);
 }

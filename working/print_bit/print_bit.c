@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_bit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/29 22:49:51 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 16:33:15 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/19 08:47:44 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/19 08:51:58 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/uio.h>
-#include "fdf.h"
-#include "get_next_line.h"
+#include <unistd.h>
 
-int		main(int ac, char **av)
+void	ft_print_bit(unsigned char octet)
 {
-	if (ac < 2)
+	int		i;
+	char	c;
+
+	i = 0;
+	while (i < 8)
 	{
-		ft_putstr("\033[31m---->	Map not found\033[0m");
-		return (0);
+		c = ((octet >> (7 - i)) & 1) + 48;
+		write(1, &c, 1);
+		i++;
 	}
-	if (ac == 2)
-		ft_fdf(av[1]);
-	return (0);
+	write(1, "\n", 1);
 }
