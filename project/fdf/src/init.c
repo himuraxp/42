@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 20:00:57 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 22:12:57 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/14 10:29:03 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,16 @@ int		key_hook(int keycode)
 		exit(0);
 	return (0);
 
+}
+
+int		mouse_hook(int button, int x, int y)
+{
+	ft_putstr("mouse: ");
+	ft_putnbr(button);
+	ft_putstr(" position: ");
+	ft_putnbr(x);
+	ft_putchar(':');
+	ft_putnbr(y);
+	ft_putchar('\n');
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:53:45 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 22:06:00 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/14 10:23:33 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct		s_data
 
 int		ft_fdf(char *av);
 int		key_hook(int keycode);
+int		mouse_hook(int button, int x, int y);
 int		ft_color(t_color *color);
 void	init(t_data **data, char *map);
 

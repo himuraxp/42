@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:23:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/13 22:12:59 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/14 10:24:05 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ void	draw(void *mlx, void *win)
 int		expose_hook(t_data *e)
 {
 	draw(e->mlx, e->win);
-	return (0);
-}
-
-int		mouse_hook(int button, int x, int y)
-{
-	printf("mouse: %d position: %d:%d\n", button, x, y);
 	return (0);
 }
 
