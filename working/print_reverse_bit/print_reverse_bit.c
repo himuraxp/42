@@ -1,49 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   union.c                                            :+:      :+:    :+:   */
+/*   print_reverse_bit.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 20:13:39 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/18 20:21:10 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/19 08:52:24 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/19 08:56:08 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_union(char *s1, char *c)
+unsigned char	reverse_bit(unsigned char octet)
 {
-	int	i;
-	int j;
+	unsigned char	tmp;
+	int				i;
 
 	i = 0;
-	j = 0;
-	while (s1[i])
+	tmp = 0;
+	while (i < 8)
 	{
-		j = 0;
-		while (c[j] && s1[i] != c[j])
-			j++;
-		if (!c[j])
-		{
-			write(1, &s1[i], 1);
-			c[j] = s1[i];
-			c[j + 1] = 0;
-		}
+		tmp |= ((octet >> i) & 1) << (7 - i);
 		i++;
 	}
-}
-
-int		main(int ac, char **av)
-{
-	char c[128];
-
-	c[0] = 0;
-	if (ac == 3)
-	{
-		ft_union(av[1], c);
-		ft_union(av[2], c);
-	}
-	write(1, "\n", 1);
-	return (0);
+	return (tmp);
 }

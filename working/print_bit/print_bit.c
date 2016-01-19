@@ -5,32 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 15:29:00 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/18 16:18:08 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/19 08:47:44 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/19 08:51:58 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	print_bit(unsigned char octet)
+void	ft_print_bit(unsigned char octet)
 {
-	int i;
-	int j;
-	char result[8];
+	int		i;
+	char	c;
 
 	i = 0;
-	j = 128;
 	while (i < 8)
 	{
-		if ((octet / j) == 0)
-			result[i] = '0';
-		else
-		{
-			octet = octet % j;
-			result[i] = '1';
-		}
-		j = j / 2;
+		c = ((octet >> (7 - i)) & 1) + 48;
+		write(1, &c, 1);
 		i++;
 	}
-	write(1, &result, 8);
+	write(1, "\n", 1);
 }
