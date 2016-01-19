@@ -6,11 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 20:00:57 by ylarbi            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/01/14 10:29:03 by ylarbi           ###   ########.fr       */
-=======
-/*   Updated: 2016/01/17 17:21:49 by ylarbi           ###   ########.fr       */
->>>>>>> 63d0eed7292ad24f9f19f1fd2484ea44b68c7c10
+/*   Updated: 2016/01/19 20:04:36 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +44,7 @@ int		key_hook(int keycode, t_color *color)
 
 }
 
-<<<<<<< HEAD
-int		mouse_hook(int button, int x, int y)
-=======
 int     mouse_hook(int button, int x, int y)
->>>>>>> 63d0eed7292ad24f9f19f1fd2484ea44b68c7c10
 {
 	ft_putstr("mouse: ");
 	ft_putnbr(button);
@@ -61,9 +53,5 @@ int     mouse_hook(int button, int x, int y)
 	ft_putchar(':');
 	ft_putnbr(y);
 	ft_putchar('\n');
-<<<<<<< HEAD
-	return (0);
-=======
     return (0);
->>>>>>> 63d0eed7292ad24f9f19f1fd2484ea44b68c7c10
 }

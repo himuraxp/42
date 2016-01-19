@@ -6,36 +6,15 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:23:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/19 19:27:26 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/19 20:17:01 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw(void *mlx, void *win)
+int		expose_hook(t_data *data)
 {
-	t_color	color;
-	int	x;
-	int y;
-
-	y = 0;
-	x = 0;
-	while (y <= HEIGHT)
-	{
-		x = 0;
-		while (x <= WIDTH)
-		{
-			mlx_pixel_put(mlx, win, x, y, ft_color(&color));
-			x++;
-		}
-		y++;
-	}
-
-}
-
-int		expose_hook(t_data *e)
-{
-	draw(e->mlx, e->win);
+	ft_draw(data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 19:18:18 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/17 17:20:18 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/19 20:25:30 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,20 @@ void	back(t_data *data)
     ft_putstr("back start\n");
 }
 
-void    draw(t_data *data)
+void	print_point(t_data *data)
+{
+	t_point *point;
+    mlx_pixel_put(data->mlx, data->win, point->x, point->y, 0x666666);
+}
+
+void    ft_draw(t_data *data)
 {
 	ft_putstr("draw -> background\n");
 	background(data);
 	ft_putstr("draw -> back\n");
 	back(data);
+	ft_putstr("draw -> print_point\n");
+	print_point(data);
 }
 
 
