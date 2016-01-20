@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/17 16:04:50 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/20 11:45:45 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIB		= -Llibft/ -lft
 EXE		= fdf
 LIBFT	= -Clibft/
 MLX		= -L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
-MYMLX	= -L/minilibx/ -I/minilibx -lmlx -framework OpenGL -framework AppKit
+MYMLX	= -L/minilibx/libmlx.a -I/minilibx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 

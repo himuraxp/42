@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:53:45 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/19 20:25:26 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/20 17:19:20 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct		s_node
 	t_point			*pos;
 	struct s_node	*right;
 	struct s_node	*down;
-	void			*point;
+	struct s_point	*point;
 }					t_node;
 
 typedef struct		s_data
