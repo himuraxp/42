@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 17:37:08 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 18:33:52 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/21 19:43:58 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	color_xusr_active(t_data *file)
 void	color_dir(t_data *file)
 {
 	if (file->type == T_DIR)
-		ft_putstr("\033[36m");
+		ft_putstr("\033[1m\033[36m");
 }
 
 void	color_link(t_data *file)
