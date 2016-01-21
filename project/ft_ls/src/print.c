@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 18:19:00 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 18:25:57 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/21 19:14:18 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void				print_data_lst(t_data *data_lst)
 	else if (g_flags[FLAG_CC])
 		print_columns_data_lst(data_lst);
 	else
-		print_basic_data_lst(data_lst);
+		print_columns_data_lst(data_lst);
+//		print_basic_data_lst(data_lst);
 	lst_pseudo_free(data_lst);
 }
 
@@ -70,7 +71,9 @@ void				print_header_dir(t_data *dir)
 		ft_putchar('\n');
 	if (g_settings[S_PRINT] > 0 || g_settings[S_NB_ARGS] > 1)
 	{
+		ft_putstr("\033[36m");
 		ft_putstr(dir->path);
+		ft_putstr("\033[0m");
 		ft_putendl(":");
 	}
 }

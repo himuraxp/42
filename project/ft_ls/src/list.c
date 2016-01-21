@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:35:43 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 16:42:12 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/21 14:35:11 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ void			lst_insert_after(t_data *insert, t_data *here)
 
 int				lst_count(t_data *data_lst)
 {
-	int			sum;
+	int			count;
 
-	sum = 0;
+	count = 0;
 	while (data_lst)
 	{
-		sum++;
+		count++;
 		data_lst = data_lst->next;
 	}
-	return (sum);
+	return (count);
 }

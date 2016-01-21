@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 15:26:32 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 15:41:32 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/21 18:46:34 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void			print_mcolumns(t_data *lst, int *sizes, int count, int width)
 			if (j * sizes[0] + i >= count)
 				continue ;
 			file = lst_at(j * sizes[0] + i, lst);
-			ft_putstr(file->d_name);
+			color_dir(file);
+			color_xusr_active(file);
+			color_link(file);
+			print_name_stop_color(file);
 			len = ft_strlen(file->d_name);
 			if ((j + 1) * sizes[0] + i < count)
 				while (len++ <= width)

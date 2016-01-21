@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 19:18:18 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/20 18:51:46 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/20 23:19:52 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	background(t_data *data)
     ft_putstr("background end\n");
 }
 
-/*void	back(t_data *data)
+void	back(t_data *data)
 {
     int x;
     int y;
@@ -53,25 +53,25 @@ void	background(t_data *data)
         y++;
     }
     ft_putstr("back start\n");
-}*/
+}
 
-void	print_point(t_data *data)
+/*void	print_point(t_data *data)
 {
 	while (data->count != NULL)
 	{
 		mlx_pixel_put(data->mlx, data->win, data->map->point->x, data->map->point->y, 0xFFFFFF);
 		ft_putstr("print_point while\n");
 	}
-}
+}*/
 
 void    ft_draw(t_data *data)
 {
 	ft_putstr("draw -> background\n");
 	background(data);
-//	ft_putstr("draw -> back\n");
-//	back(data);
-	ft_putstr("draw -> print_point\n");
-	print_point(data);
+	ft_putstr("draw -> back\n");
+	back(data);
+//	ft_putstr("draw -> print_point\n");
+//	print_point(data);
 }
 
 

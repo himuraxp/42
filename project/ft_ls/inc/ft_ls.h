@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:25:20 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/12 11:02:16 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/21 18:33:54 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <time.h>
 # include <pwd.h>
 # include <grp.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 # define S_WIN_COLS			0
 # define S_WIN_ROWS			1
@@ -165,4 +165,8 @@ void				activate_flag(char flag);
 void				more_activate_flag(char flag);
 void				moar_activate_flag(char flag);
 
+void				print_name_stop_color(t_data *file);
+void				color_xusr_active(t_data *file);
+void				color_dir(t_data *file);
+void				color_link(t_data *file);
 #endif

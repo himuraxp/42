@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 17:26:06 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 18:28:03 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/21 18:46:40 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void				print_basic_file(t_data *file)
 {
-	ft_putstr(file->d_name);
+	color_dir(file);
+	color_xusr_active(file);
+	color_link(file);
+	print_name_stop_color(file);
 	if (g_flags[FLAG_P] && file->type == T_DIR)
 		ft_putchar('/');
 	ft_putchar('\n');
@@ -34,10 +37,17 @@ void				print_detailled_file(t_data *file, int *width)
 	else
 		print_nbr_col(file->stat->st_size, device_len);
 	print_which_date(file->stat);
-	ft_putstr(file->d_name);
+	color_dir(file);
+	color_xusr_active(file);
 	if (file->type == T_LNK)
+	{
+		color_link(file);
+		print_name_stop_color(file);
 		print_pointed_dir(file);
-	else if (g_flags[FLAG_P] && file->type == T_DIR)
+	}
+	else
+		print_name_stop_color(file);
+	if (g_flags[FLAG_P] && file->type == T_DIR)
 		ft_putchar('/');
 	ft_putchar('\n');
 }

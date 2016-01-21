@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 15:42:02 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 15:46:57 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/21 19:00:16 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void				print_block_size(t_data *data_lst)
 {
-	quad_t			sum;
+	quad_t			count;
 
-	sum = 0;
+	count = 0;
 	while (data_lst)
 	{
-		sum += data_lst->stat->st_blocks;
+		count += data_lst->stat->st_blocks;
 		data_lst = data_lst->next;
 	}
 	ft_putstr("total ");
-	ft_putlnbr(sum);
+	ft_putlnbr(count);
 	ft_putchar('\n');
 }
 
