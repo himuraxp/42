@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/13 12:42:42 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/25 11:22:38 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
 SRCPATH = .
 LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJNAME = $(SRCNAME:.c=.o)
-OBJPATH = obj/
+OBJPATH = ../obj/
 LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
 FLAGS	=  -Wall -Wextra -Werror
-INCLUDE	= -Iinclude/
+INCLUDE	= -Iinclude
 LIB		= -L. -lft
 
 all: $(NAME)
@@ -41,17 +41,9 @@ $(NAME): logo lib
 
 logo:
 		@echo "\n"
-		@echo "\033[31m       :::         :::::::::::  ::::::::: \033[0m"
-		@echo "\033[31m      :+:             :+:      :+:    :+: \033[0m"
-		@echo "\033[32m     +:+             +:+      +:+    +:+  \033[0m"
-		@echo "\033[32m    +#+             +#+      +#++:++#+    \033[0m"
-		@echo "\033[33m   +#+              +#+     +#+    +#+    \033[0m"
-		@echo "\033[33m  #+#             #+#      #+#    #+#     \033[0m"
-		@echo "\033[36m ##########  ###########  #########       \033[0m"
-		@echo "\033[36m                            Libft - ylarbi\033[0m"
-		@echo "\n"
+		@echo "                                     Libft"
 lib:
-		@gcc  $(INCLUDE) -c $(LBSRC)
+		@gcc $(INCLUDE) -c $(LBSRC)
 		@echo "\033[36m------------>          Compilation library\033[0m"
 		@mkdir $(OBJPATH) 2> /dev/null || true
 		@echo "\033[33m------------>            Create obj folder\033[0m"
