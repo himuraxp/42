@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 15:42:02 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 19:00:16 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/24 10:23:38 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int					*lst_max_properties_length(t_data *data_lst)
 	int				*max;
 	int				len;
 
-	max = (int*)malloc(sizeof(int) * 7);
+	if (!(max = (int*)malloc(sizeof(int) * 7)))
+		exit(EXIT_FAILURE);
 	bzero(max, sizeof(int) * 7);
 	while (data_lst)
 	{

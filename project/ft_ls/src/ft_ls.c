@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:18:55 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 18:56:30 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/24 12:36:05 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ int				main(int ac, char **av)
 {
 	t_data		*arg_lst;
 
-	g_flags = (char*)malloc(sizeof(char) * 17);
+	if (!(g_flags = (char*)malloc(sizeof(char) * 17)))
+		exit(EXIT_FAILURE);
 	bzero(g_flags, sizeof(char) * 17);
-	g_settings = (int*)malloc(sizeof(int) * 6);
+	if (!(g_settings = (int*)malloc(sizeof(int) * 6)))
+		exit(EXIT_FAILURE);
 	bzero(g_settings, sizeof(int) * 6);
 	get_shell_size();
 	arg_lst = NULL;

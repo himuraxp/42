@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 15:26:32 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 18:46:34 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/24 10:22:36 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void			print_columns_data_lst(t_data *lst)
 
 	if (!lst)
 		return ;
-	sizes = (int*)malloc(sizeof(int) * 2);
+	if (!(sizes = (int*)malloc(sizeof(int) * 2)))
+		exit(EXIT_FAILURE);
 	bzero(sizes, sizeof(int) * 2);
 	width = get_name_len(lst);
 	count = lst_count(lst);

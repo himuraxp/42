@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:25:20 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 18:33:54 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/24 12:52:10 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,4 +169,5 @@ void				print_name_stop_color(t_data *file);
 void				color_xusr_active(t_data *file);
 void				color_dir(t_data *file);
 void				color_link(t_data *file);
+void				color_error_fd(char op);
 #endif

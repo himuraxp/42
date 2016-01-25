@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 18:04:12 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 18:55:56 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/24 12:58:07 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ static int		is_opt(char *arg)
 
 static int		is_valid_flag(char c)
 {
-	if (c == 'r' || c == 'R' || c == 'l' || c == 'a' || c == 't' || c == '1'
-		|| c == 'd'	|| c == 'p'	|| c == 'U'	|| c == 'c'	|| c == 'u'	|| c == 'S'
-		|| c == 'A'	|| c == 'f'	|| c == 'T' || c == 'g'	|| c == 'C')
-		return (1);
-	return (0);
+	return  ((ft_strchr("rRlat1dpUcuSAfTgC", c) > 0 ? 1 : 0));
 }
 
 static void		parse_opt(char *opt)

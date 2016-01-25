@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 17:37:08 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 19:43:58 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/24 12:52:08 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,12 @@ void	color_link(t_data *file)
 {
 	if (file->type == T_LNK)
 		ft_putstr("\033[35m");
+}
+
+void	color_error_fd(char opt)
+{
+	ft_putstr_fd("\033[31m", 2);
+	ft_putstr_fd("ft_ls: illegal option -> ", 2);
+	ft_putchar_fd(opt, 2);
+	ft_putstr_fd("\033[0m\n", 2);
 }
