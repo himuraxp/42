@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 18:19:00 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 19:54:44 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/25 18:07:25 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void				print_data_lst(t_data *data_lst)
 	else if (g_flags[FLAG_CC])
 		print_columns_data_lst(data_lst);
 	else
-		print_columns_data_lst(data_lst);
-//		print_basic_data_lst(data_lst);
+//		print_columns_data_lst(data_lst);
+		print_basic_data_lst(data_lst);
 	lst_pseudo_free(data_lst);
 }
 

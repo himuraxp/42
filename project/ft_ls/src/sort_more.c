@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_at.c                                          :+:      :+:    :+:   */
+/*   sort_more.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/08 17:26:26 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/24 12:53:07 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/08 18:00:19 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/25 16:54:52 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_data			*lst_at(int i, t_data *lst)
+int					sort_by_atime(t_data *data1, t_data *data2)
 {
-	int			j;
+	if (data2->stat->st_atime == data1->stat->st_atime)
+		return (sort_by_d_name(data1, data2));
+	return (data2->stat->st_atime - data1->stat->st_atime);
+}
 
-	j = 0;
-	while (lst)
-	{
-		if (i == j)
-			return (lst);
-		j++;
-		lst = lst->next;
-	}
-	return (NULL);
+int					sort_by_size(t_data *data1, t_data *data2)
+{
+	return (data2->stat->st_size - data1->stat->st_size);
+}
+
+int					sort_f(void)
+{
+	return (1);
 }

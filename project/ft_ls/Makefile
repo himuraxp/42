@@ -6,17 +6,17 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/24 12:51:05 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/25 19:17:28 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft/libft.a
 SRCNAME	= 	init.c 			print.c 		print_file.c 	filter.c	 \
 			parse.c 		ft_ls.c 		error.c			tools.c		 \
-			more_list.c		list.c			dir.c			file.c		 \
-			data_lst.c 		sort.c			more_print.c 	list_at.c	 \
+			data_lst_more.c	data_lst_new.c	dir.c			file.c		 \
+			data_lst.c 		sort.c			print_dir.c 	data_lst_at.c\
 			multi_arg.c		permissions.c	recursif.c		columns.c	 \
-		  	more_sort.c		more_print_file.c				color.c
+		  	sort_more.c		print_file_more.c				color.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	./obj
