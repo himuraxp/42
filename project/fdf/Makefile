@@ -6,22 +6,26 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/20 11:45:45 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/26 17:25:49 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= fdf.a
+EXE		=	fdf
+NAME	=	fdf.a
+FLAGS	=	-Wall -Wextra -Werror
+
 SRCNAME =	main.c fdf.c get_next_line.c init.c color.c move.c parse.c draw.c \
 			point.c
-SRCPATH = src/
-SRC		= $(addprefix $(SRCPATH)/,$(SRCNAME))
-FLAGS	= -Wall -Wextra -Werror
-INCLUDE	= -Iinc
-LIB		= -Llibft/ -lft
-EXE		= fdf
-LIBFT	= -Clibft/
-MLX		= -L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
-MYMLX	= -L/minilibx/libmlx.a -I/minilibx -framework OpenGL -framework AppKit
+SRCPATH =	src/
+SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
+OBJ		=	./obj
+INCLUDE	=	-Iinc
+
+LIB		=	-Llibft/ -lft
+LIBFT	=	-Clibft/
+
+MLX		=	-L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
+MYMLX	=	-L/minilibx/ -I/minilibx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
@@ -31,19 +35,20 @@ $(NAME): logo minilibx
 		@echo "\033[32m------------>          Program compilation\033[0m"
 
 logo:
-		@echo "\n"
+		@echo "\033[2J"
+		@echo "\033[200A"
 		@echo "\033[31m       :::::::::: :::::::::  ::::::::::   \033[0m"
 		@echo "\033[31m      :+:        :+:    :+: :+:           \033[0m"
 		@echo "\033[32m     +:+        +:+    +:+ +:+            \033[0m"
 		@echo "\033[32m    :#::+::#   +#+    +:+ :#::+::#        \033[0m"
 		@echo "\033[33m   #+#        #+#    #+# #+#              \033[0m"
 		@echo "\033[33m  #+#        #+#    #+# #+#               \033[0m"
-		@echo "\033[36m ###        #########  ###                \033[0m"
-		@echo "\033[36m                              fdf - ylarbi\033[0m"
+		@echo "\033[36m ###        #########  ###          ylarbi\033[0m"
 		@echo "\n"
+		@echo "                                       fdf"
 clean: logo
 		@echo "\033[31m------------>          fdf  Suppression .o\033[0m"
-		@rm -rf $(OBJPATH)
+		@rm -rf $(OBJ)
 
 fclean: clean
 		@echo "\033[31m------------>      fdf Suppression program\033[0m"
