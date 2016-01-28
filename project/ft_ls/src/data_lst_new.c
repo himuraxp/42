@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:35:43 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/25 16:52:29 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:44:39 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_data			*lst_new_data(char *d_name, char *path)
 	t_data		*new;
 	t_stat		temp;
 
-	if(!((new = (t_data*)malloc(sizeof(t_data)))
+	if (!((new = (t_data*)malloc(sizeof(t_data)))
 		&& (new->stat = (t_stat*)malloc(sizeof(t_stat)))))
 		exit(EXIT_FAILURE);
 	result = lstat(path, new->stat);

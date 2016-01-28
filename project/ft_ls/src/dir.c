@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 15:47:48 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/24 10:28:24 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:54:16 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,13 @@ void				*dir_error(t_data *dir)
 	ft_putstr_fd("ft_ls: ", 2);
 	ft_putstr_fd(dir->d_name, 2);
 	ft_putstr_fd(": ", 2);
-	perror ("");
+	perror("");
 	g_settings[S_RETURN] = 1;
 	return (NULL);
+}
+
+void				print_flag_p(t_data *file)
+{
+	if (g_flags[FLAG_P] && file->type == T_DIR)
+		ft_putchar('/');
 }

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:25:20 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/28 14:50:35 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:44:03 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void				more_activate_flag(char flag);
 void				moar_activate_flag(char flag);
 
 void				print_flag_p(t_data *file);
+void				print_color_columns(t_data *file);
 void				print_name_stop_color(t_data *file);
 void				color_xusr_active(t_data *file);
 void				color_dir(t_data *file);

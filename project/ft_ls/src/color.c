@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 17:37:08 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/28 15:27:35 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:38:47 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,4 @@ void	color_error_fd(char opt)
 	ft_putchar_fd('-', 2);
 	ft_putchar_fd(opt, 2);
 	ft_putstr_fd("\033[0m\n", 2);
-}
-void	print_flag_p(t_data *file)
-{
-	if (g_flags[FLAG_P] && file->type == T_DIR)
-			ft_putchar('/');
 }

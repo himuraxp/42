@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:05:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/24 12:33:37 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:51:33 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int					is_dir(t_data *file)
 
 int					is_printable_dir(t_data *file)
 {
-	if (!is_hidden(file) || g_flags[FLAG_A]	|| is_tree_dir(file)
-		|| g_settings[S_CALL] == 1)
+	if (!is_hidden(file) || g_flags[FLAG_A] || is_tree_dir(file)
+			|| g_settings[S_CALL] == 1)
 		return (1);
 	return (0);
 }

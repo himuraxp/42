@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 16:18:55 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/25 17:25:11 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:52:16 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			get_shell_size(void)
 	struct winsize	w;
 
 	if ((ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) == -1))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	g_settings[S_WIN_COLS] = w.ws_col;
 	g_settings[S_WIN_ROWS] = w.ws_row;
 }
