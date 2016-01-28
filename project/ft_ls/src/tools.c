@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 18:33:21 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 18:36:00 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 12:05:18 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void				moar_activate_flag(char flag)
 	else if (flag == '1')
 	{
 		g_flags[FLAG_CC] = 0;
+		g_flags[FLAG_1] = 1;
 		g_flags[FLAG_L] = 0;
 	}
 }

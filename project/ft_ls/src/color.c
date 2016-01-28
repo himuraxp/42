@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 17:37:08 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/24 12:52:08 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:27:35 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,18 @@ void	color_link(t_data *file)
 
 void	color_error_fd(char opt)
 {
-	ft_putstr_fd("\033[31m", 2);
-	ft_putstr_fd("ft_ls: illegal option -> ", 2);
+	ft_putstr_fd("\033[1;31m", 2);
+	ft_putstr_fd("ft_ls: ", 2);
+	ft_putstr_fd("illegal option", 2);
+	ft_putstr_fd("\033[1;30m", 2);
+	ft_putstr_fd(" -->> ", 2);
+	ft_putstr_fd("\033[1;31m", 2);
+	ft_putchar_fd('-', 2);
 	ft_putchar_fd(opt, 2);
 	ft_putstr_fd("\033[0m\n", 2);
+}
+void	print_flag_p(t_data *file)
+{
+	if (g_flags[FLAG_P] && file->type == T_DIR)
+			ft_putchar('/');
 }

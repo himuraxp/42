@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 17:26:06 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/21 18:46:40 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 14:59:24 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void				print_basic_file(t_data *file)
 	color_xusr_active(file);
 	color_link(file);
 	print_name_stop_color(file);
-	if (g_flags[FLAG_P] && file->type == T_DIR)
-		ft_putchar('/');
+	print_flag_p(file);
 	ft_putchar('\n');
 }
 
@@ -47,8 +46,7 @@ void				print_detailled_file(t_data *file, int *width)
 	}
 	else
 		print_name_stop_color(file);
-	if (g_flags[FLAG_P] && file->type == T_DIR)
-		ft_putchar('/');
+	print_flag_p(file);
 	ft_putchar('\n');
 }
 

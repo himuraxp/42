@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/28 09:13:22 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/28 15:27:37 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,8 @@ all: $(NAME)
 $(NAME): logo
 		@make $(LIBFT)
 		@gcc $(FLAGS) $(INCLUDE) $(LIB) -o $(EXE) $(SRC)
+		@clear
 		@printf "\033[0;36m%-34s\033[1;30m <<--\t\033[1;36mCompiled program\033[0;0m\n" "$(EXE)"
-
-$(OBJ)/%.o: $(SRCPATH)%.c
-		@gcc $(FLAGS) $(INCLUDE) -o $@ -c $<\
-		&& printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;32m$@\033[0;0m\n" "$<" \
-		|| (printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;31m$@\033[0;0m\n" "$<" \
-		&& exit 1)
 
 logo:
 		@echo "\033[2J"
