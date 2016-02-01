@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:34:11 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/30 12:55:46 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/01 12:25:00 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_SH1_H
 
 # include "libft.h"
+# include "color.h"
 # include "get_next_line.h"
 # include <stdio.h>
 
