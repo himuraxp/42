@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 19:13:23 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/03 09:49:56 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/04 13:57:15 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_setenv(char **arg, char **env)
 
 void		get_unsetenv(char *name, char **env)
 {
-	char	**tab;
+	char	**tab_set;
 	int		len;
 	int		i;
 
@@ -52,8 +52,8 @@ void		get_unsetenv(char *name, char **env)
 		i = 0;
 		if (len != -1)
 		{
-			tab = env;
-			while (tab[i] != tab[len])
+			tab_set = env;
+			while (tab_set[i] != tab_set[len])
 				i++;
 			env[i] = ft_strdup("EMPTY");
 		}

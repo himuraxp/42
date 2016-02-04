@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 18:37:34 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/03 17:09:12 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/04 13:56:14 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int			ft_envlen(char *env)
 int			get_env_line(char *name, char **env)
 {
 	int		i;
-	char	**tab;
+	char	**tab_env;
 
-	tab = env;
+	tab_env = env;
 	i = -1;
-	while (tab[++i])
-		if ((ft_strncmp(name, tab[i], ft_envlen(tab[i]))) == 0)
+	while (tab_env[++i])
+		if ((ft_strncmp(name, tab_env[i], ft_envlen(tab_env[i]))) == 0)
 			return (i);
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:30:40 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/04 11:46:53 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/04 15:48:36 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,17 @@ char	**get_param(void)
 {
     char	**arg;
     char	*line;
-	char	tab;
+	char	tab_key;
     int		i;
 
-	if ((get_next_line(0, &line)) == 2)
-        ft_putstr("Salut");
+	get_next_line(0, &line);
 	if (line)
 	{
 		i = -1;
 		while (line[++i] != '\0')
 		{
-			tab = line[i];
-			if (tab == '\t')
+			tab_key = line[i];
+			if (tab_key == '\t')
 				line[i] = ' ';
 		}
 		arg = ft_strsplit(line, ' ');
@@ -67,7 +66,6 @@ int		main(int ac, char **av, char **env)
 	int			line;
     int         o_path;
 
-
     cmd = NULL;
     o_path = 0;
     if (ac == 2)
@@ -75,9 +73,9 @@ int		main(int ac, char **av, char **env)
             o_path = 1;
 	line = ft_envnbr(env);
 	g_env = malloc(sizeof(char *) * 2048);
-    g_path = malloc(sizeof(char) * 2048);
+    g_path = malloc(sizeof(char *) * 2048);
 	ft_envcpy(env, g_env);
-    while (1)
+	while (1)
 	{
         if (o_path == 1)
             prompt_path(g_path, g_env);

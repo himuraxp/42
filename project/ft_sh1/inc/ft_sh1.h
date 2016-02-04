@@ -6,21 +6,24 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:34:11 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/03 19:58:57 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/04 15:59:33 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SH1_H
 # define FT_SH1_H
 
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <dirent.h>
-# include <signal.h>
+# include <curses.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include <stdio.h>
+# include <signal.h>
 # include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <term.h>
+# include <termios.h>
+# include <termcap.h>
 # include "libft.h"
 # include "color.h"
 # include "get_next_line.h"
@@ -33,6 +36,7 @@ int     ft_envnbr(char **env);
 int		ft_envlen(char *env);
 int		get_env_line(char *name, char **env);
 int		get_access(char *arg);
+//int		get_select();
 
 char    *get_user(char **env);
 char	*get_path_prompt(char **env);
@@ -66,5 +70,10 @@ void	init_env(char **env);
 void	del_env(char **arg, char **env);
 //void	check_sign(void);
 //void	signal_handler(int sign);
-
+t_list	*get_lst_param(char **env);
+int		ft_select(t_list *lst, struct termios *term);
+int		my_unraw(struct termios *term);
+int		my_raw(struct termios *term);
+void		sig_handler(int signo);
+t_list	*get_lst_param(char **env);
 #endif

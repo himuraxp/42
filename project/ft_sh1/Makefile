@@ -6,13 +6,13 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/02/03 18:12:35 by ylarbi           ###   ########.fr        #
+#*   Updated: 2016/02/04 16:18:10 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft/libft.a
 SRCNAME	= 	ft_sh1.c get_cmd.c env.c process.c cd.c init.c env_opt.c access.c\
-			prompt.c
+			prompt.c select.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	obj/
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): logo
 		@make $(LIBFT)
-		@gcc $(FLAGS) $(INCLUDE) $(LIB) -o $(EXE) $(SRC)
+		@gcc $(FLAGS) $(INCLUDE) $(LIB) -lncurses -o $(EXE) $(SRC)
 		@clear
 		@printf "\033[0;36m%-34s\033[1;30m <<--\t\033[1;36mCompiled program\033[0;0m\n" "$(EXE)"
 

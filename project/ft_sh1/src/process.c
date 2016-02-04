@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 17:02:24 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/03 17:36:33 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/04 16:28:19 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,23 @@ void		get_exe(char **arg, char *cmd, char **env)
 
 void	process(char *cmd, char **arg, char **g_env)
 {
-	char	*n;
+	char			*n;
+//	t_list			*lst;
+//	struct termios	term;
 
 	n = NULL;
+
 	if (arg[0])
 	{
+//		tgetent(NULL, getenv("TERM"));
+//			my_raw(&term);
+//			signal(SIGINT, sig_handler);
+//			signal(SIGSTOP, sig_handler);
+//			signal(SIGKILL, sig_handler);
+//			lst = get_lst_param(g_env);
+//			ft_select(lst, &term);
+//			my_unraw(&term);
+
 		if ((ft_strncmp(arg[0], "exit", 4)) == 0)
 			exit(0);
 		if ((cmd = get_cmd(arg[0], g_env)) != NULL)
