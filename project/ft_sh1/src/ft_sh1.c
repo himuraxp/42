@@ -6,62 +6,89 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:30:40 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/01 13:34:58 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/04 11:46:53 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
 
-void    prompt(void)
-{
-    static int   start;
+char        **g_env;
+char        *g_path;
+static char *g_login;
 
-    if (start != 0)
-       ft_str_color("$> ", "cyan", "bold");
-    if (start == 0)
-    {
-        ft_str_color("\n$> ", "cyan", "bold");
-        start = 1;
-    }
+int     ft_envnbr(char **env)
+{
+    int i;
+
+    i = 0;
+    while (env[i])
+        i++;
+    return (i);
 }
 
-
-
-void     ft_sh1(void)
+void	ft_envcpy(char **src, char **dst)
 {
-    char    *line;
-    char    *arg;
-    int     len;
-    pid_t   father;
+	int		i;
 
-    father = fork();
-    while (father > 0)
-    {
-        prompt();
-        if (!(get_next_line(0, &line)))
-        {
-            ft_str_color("exit", "red", 0);
-            exit(0);
-        }
-        if (strcmp(line, "ls -l") == 0)
-        {
-
-            arg = ft_strnew(2);
-            len = ft_strlen(line);
-            ft_putnbr(len);
-            arg[0] = line[len - 2];
-            arg[1] = line[len - 1];
-            ft_putstr(arg);
-            execve("/bin/ls", &arg, NULL);
-        }
-        if (strcmp(line, "exit") == 0)
-            exit(0);
-//            get_cmd(line);
-    }
+	i = -1;
+	while (src[++i])
+		dst[i] = ft_strdup(src[i]);
+	dst[i] = NULL;
 }
 
-int     main(void)
+char	**get_param(void)
 {
-    ft_sh1();
-    return (0);
+    char	**arg;
+    char	*line;
+	char	tab;
+    int		i;
+
+	if ((get_next_line(0, &line)) == 2)
+        ft_putstr("Salut");
+	if (line)
+	{
+		i = -1;
+		while (line[++i] != '\0')
+		{
+			tab = line[i];
+			if (tab == '\t')
+				line[i] = ' ';
+		}
+		arg = ft_strsplit(line, ' ');
+		return (arg);
+	}
+	return (NULL);
+}
+
+int		main(int ac, char **av, char **env)
+{
+	char		**arg;
+    char		*cmd;
+	int			line;
+    int         o_path;
+
+
+    cmd = NULL;
+    o_path = 0;
+    if (ac == 2)
+        if (ft_strcmp(av[1], "-p") == 0)
+            o_path = 1;
+	line = ft_envnbr(env);
+	g_env = malloc(sizeof(char *) * 2048);
+    g_path = malloc(sizeof(char) * 2048);
+	ft_envcpy(env, g_env);
+    while (1)
+	{
+        if (o_path == 1)
+            prompt_path(g_path, g_env);
+		else
+        {
+            g_login = get_user(g_env);
+            prompt(g_login);
+        }
+        //check_sign();
+		arg = get_param();
+		process(cmd, arg, g_env);
+	}
+	return (0);
 }

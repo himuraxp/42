@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: HimuraXp <HimuraXp@student.42.fr>          +#+  +:+       +#+         #
+#    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/01/29 16:02:44 by HimuraXp         ###   ########.fr        #
+#    Updated: 2016/02/03 18:12:35 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft/libft.a
-SRCNAME	= 	ft_sh1.c
+SRCNAME	= 	ft_sh1.c get_cmd.c env.c process.c cd.c init.c env_opt.c access.c\
+			prompt.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	obj/
