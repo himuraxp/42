@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:34:11 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/04 15:59:33 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/19 12:38:32 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@
 # include "color.h"
 # include "get_next_line.h"
 
-extern char **g_env;
-static char *g_login;
-extern char *g_path;
+typedef struct      s_env
+{
+    char            **cpy;
+}                   t_env;
 
 int     ft_envnbr(char **env);
 int		ft_envlen(char *env);
@@ -41,14 +42,14 @@ int		get_access(char *arg);
 char    *get_user(char **env);
 char	*get_path_prompt(char **env);
 char	*get_env(char **env, char *path);
-char	**get_param(void);
+char	*get_param(char *line);
 char	*get_cmd(char *arg, char **g_env);
 char	*get_path(struct dirent *dirent, DIR *dir, char *arg, char *path);
 char	*get_cmd_path(char *arg, char **env);
 char	*exec_env(char **arg, char **g_env);
 char	*ft_pathjoin(char const *s1, char const *s2);
 
-void    prompt(char *login);
+void    prompt(char *login, char **cmd);
 void    prompt_path(char *path, char **env);
 void	process(char *cmd, char **arg, char **g_env);
 void    ft_envcpy(char **src, char **dst);

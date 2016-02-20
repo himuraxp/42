@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 14:03:26 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/20 12:11:09 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/28 15:34:08 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char				*ft_strsub(const char *s, unsigned int start, size_t len);
 char				*ft_strtrim(const char *s);
 char				*ft_strjoin(const char *s1, const char *s2);
 char				**ft_strsplit(const char *s, char c);
-char				**ft_split_whitespaces(char *str);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 

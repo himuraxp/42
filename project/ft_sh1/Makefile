@@ -6,13 +6,13 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/02/04 16:18:10 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/02/20 12:04:44 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft/libft.a
-SRCNAME	= 	ft_sh1.c get_cmd.c env.c process.c cd.c init.c env_opt.c access.c\
-			prompt.c select.c
+SRCNAME	= 	check_exec.c core.c env_list.c ft_cd.c ft_cd2.c ft_exit.c\
+			ft_set_env.c ft_unset_env.c main.c parse.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	obj/
