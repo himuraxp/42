@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:53:45 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/26 15:47:52 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/20 17:19:20 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
 # define WIDTH	1200
 # define HEIGHT	800
 # define ZOOM	10
+# define POS	1
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <sys/uio.h>
-#include <sys/types.h>
 #include <mlx.h>
 #include <fcntl.h>
 #include <math.h>
 #include <time.h>
 #include "libft.h"
 #include "get_next_line.h"
-#include "color.h"
 
 typedef struct	s_color
 {
@@ -37,28 +35,43 @@ typedef struct	s_color
 	int			b;
 }				t_color;
 
-typedef struct	s_data
+typedef struct	s_point
 {
-	int 		**map;
- 	void 		*img;
-	char		*addr;
-	int 		bpp;
-	int			size_line;
-	int 		endian;
-	int			x_map;
-	int			y_map;
-	void		*mlx;
-	void		*win;
-	int			width;
-	int			height;
-}				t_data;
+	int			x;
+	int			y;
+	int			z;
+}				t_point;
+
+typedef struct		s_node
+{
+	t_point			*pos;
+	struct s_node	*right;
+	struct s_node	*down;
+	struct s_point	*point;
+}					t_node;
+
+typedef struct		s_data
+{
+	t_node			*map;
+	int				xmap;
+	t_node			*count;
+	int				o;
+	int				i;
+	void			*mlx;
+	void			*win;
+	int				width;
+	int				height;
+}					t_data;
 
 int		ft_fdf(char *av);
-int		ft_strcount(char const *s, char c);
-void    error_param(char *str, int error);
-void	init(t_data *data, char *map);
-void    verif_valid(char *map);
-void    check_len(t_data *data, char* map);
-
+int		key_hook(int keycode, t_color *color);
+int		mouse_hook(int button, int x, int y);
+int		ft_color(t_color *color);
+int		get_next_map(t_data *data, char *map);
+void	init(t_data **data, char *map);
+void	ft_draw(t_data *data);
+void	set_down(t_data *data);
+t_node	*end(t_node *map);
+t_point	*new_point(float x, float y, float z);
 
 #endif

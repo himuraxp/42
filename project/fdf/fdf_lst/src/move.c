@@ -46,8 +46,10 @@ void		set_down(t_data *data)
 			x->down = y_down ? y_down : NULL;
 			x = x->right;
 			y_down = y_down ? y_down->right : NULL;
+			ft_putnbr(y->pos->x);
 		}
 		y = y->down;
+		ft_putchar('\n');
 	}
 	ft_putstr("set_down end\n");
 }

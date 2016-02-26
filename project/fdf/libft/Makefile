@@ -6,61 +6,65 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/21 15:55:06 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/01/27 17:14:57 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
-SRCNAME =	ft_lstdelone.c  ft_putchar_fd.c ft_strdup.c     ft_strnequ.c \
-			ft_lstiter.c    ft_putendl.c    ft_strequ.c     ft_strnew.c  \
-			ft_atoi.c       ft_lstmap.c     ft_putendl_fd.c ft_striter.c \
-			ft_strnstr.c    ft_strrchr.c    ft_isalnum.c    ft_memalloc.c\
-			ft_bzero.c      ft_lstnew.c     ft_putnbr.c     ft_striteri.c\
-			ft_putnbr_fd.c  ft_strjoin.c    ft_strsplit.c   ft_strstr.c  \
-			ft_isalpha.c    ft_memccpy.c    ft_putstr.c     ft_strlcat.c \
-			ft_isascii.c    ft_memchr.c     ft_putstr_fd.c  ft_strlen.c  \
-			ft_strsub.c     ft_toupper.c    ft_strtrim.c    ft_tolower.c \
-			ft_isdigit.c    ft_memcmp.c     ft_strcat.c     ft_strmap.c  \
-			ft_isprint.c    ft_memcpy.c     ft_strchr.c     ft_strmapi.c \
-			ft_iswhite.c    ft_memdel.c     ft_strclr.c     ft_strncat.c \
-			ft_itoa.c       ft_memmove.c    ft_strcmp.c     ft_strncmp.c \
-			ft_lstadd.c     ft_memset.c     ft_strcpy.c     ft_strncpy.c \
-			ft_lstdel.c     ft_putchar.c    ft_strdel.c     ft_strndup.c \
-			get_next_line.c ft_sizelen.c	ft_putlnbr.c	ft_intlen.c
-SRCPATH = .
-LBSRC	= $(addprefix $(SRCPATH)/,$(SRCNAME))
-OBJNAME = $(SRCNAME:.c=.o)
-OBJPATH = ../obj/
-LBOBJ	= $(addprefix $(OBJPATH)/,$(OBJNAME))
-FLAGS	=  -Wall -Wextra -Werror
-INCLUDE	= -I../inc
-LIB		= -L. -lft
 
-all: $(NAME)
+H_DIR	= ../inc
+C_DIR	= .
+O_DIR	= ../obj
 
-$(NAME): logo lib
+FLAGS	= -Wall -Wextra -Werror -O2
+LINKS	= -I$(H_DIR)
+DEBUG	= 0
 
+C_FILES	= $(shell find $(C_DIR) -type f -print | grep "\.c")
+C_DIRS	= $(shell find $(C_DIR) -type d -print)
+
+O_FILES	= $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
+O_DIRS	= $(C_DIRS:$(C_DIR)/%=$(O_DIR)/%)
+
+all: logo
+	@if [ "$(DEBUG)" -eq "1" ]; then \
+		make -j4 _debug $(NAME); else \
+		make -j4 $(NAME); fi
 logo:
-		@echo "\n"
-		@echo "                                     Libft"
-lib:
-		@gcc $(INCLUDE) -c $(LBSRC)
-		@echo "\033[36m------------>          Compilation library\033[0m"
-		@mkdir $(OBJPATH) 2> /dev/null || true
-		@echo "\033[33m------------>            Create obj folder\033[0m"
-		@mv $(OBJNAME) $(OBJPATH)
-		@echo "\033[35m------------>        Move .o to obj folder\033[0m"
-		@ar rc $(NAME) $(LBOBJ)
-		@echo "\033[36m------------>             Creation library\033[0m"
-		@ranlib $(NAME)
-		@echo "\033[36m------------>    Creation of library index\033[0m"
+	@printf "%-35slibft\n"
+
+mkdir:
+	@mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null\
+	&& printf "\033[0;34m%-34s \033[1;30m<<--\033[0;0m\033[1;34m\tObject folder create\033[0;0m\n" "$(O_DIR)"\
+	|| (printf "\033[0;32m%-34s \033[1;30m<<--\033[0;0m\033[1;33m\tObject folder create\033[0;0m\n" "$(O_DIR)"\
+		&& exit 1)
+
+$(NAME): $(O_FILES)
+	@ar rcs $@ $^ && printf "\033[0;33m" || printf "\031[0;31m"
+	@printf "%-34s \033[1;30m<<--\033[0;0m\033[1;33m\tLibrary create\033[0;0m\n" "$@"
+
+$(O_DIR)/%.o: $(C_DIR)/%.c mkdir
+	@gcc $(FLAGS) $(LINKS) -o $@ -c $< \
+	&& printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;32m$@\033[0;0m\n" "$<" \
+	|| (printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;31m$@\033[0;0m\n" "$<" \
+		&& exit 1)
+
+debug: _debug all
 
 clean: logo
-		@echo "\033[31m------------>               Suppression .o\033[0m"
-		@rm -rf $(LBOBJ)
+	@rm $(O_FILES) 2> /dev/null || echo "" > /dev/null
+	@printf "\033[0;31m%-34s\033[1;30m <<--\t\033[1;31mDelete folder\033[0;0m\n" "$(O_DIR)"
+	@rmdir $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null
+
 fclean: clean
-		@echo "\033[31m------------>          Suppression program\033[0m"
-		@rm -rf $(NAME) $(OBJPATH)
+	@rm $(NAME) 2> /dev/null || echo "" > /dev/null
+
 re: fclean all
 
-.PHONY: clean fclean re all logo lib
+rebug: fclean debug
+
+_debug:
+	$(eval FLAGS = -Wall -Wextra -g -D DEBUG_MODE)
+	$(eval DEBUG = 1)
+
+.PHONY: all debug clean fclean re rebug update _debug

@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/26 10:36:09 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/26 15:55:39 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/13 20:00:57 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/19 20:04:36 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		expose_hook(t_data *data)
+void	init(t_data **data, char *map)
 {
-	ft_draw(data);
-	return (0);
+	ft_putstr("init start\n");
+	if (!(*data = malloc(sizeof(t_data))))
+		exit(-1);
+	ft_putstr("init -> mlx_init\n");
+	(*data)->mlx = mlx_init();
+	if (!(*data)->mlx)
+		exit(EXIT_FAILURE);
+	(*data)->width = WIDTH;
+	(*data)->height = HEIGHT;
+	(*data)->win = mlx_new_window((*data)->mlx, WIDTH, HEIGHT, "FDF");
+	ft_putstr("init -> get_next_map\n");
+	get_next_map(*data, map);
+	ft_putstr("init -> set_down\n");
+	set_down(*data);
+	ft_putstr("init end\n");
 }
 
 int		key_hook(int keycode, t_color *color)
@@ -41,28 +54,4 @@ int     mouse_hook(int button, int x, int y)
 	ft_putnbr(y);
 	ft_putchar('\n');
     return (0);
-}
-
-int		ft_fdf(char *map)
-{
-	t_data	data;
-
-	init(&data, map);
-/*	mlx_key_hook(data.win, key_hook, data);
-	mlx_mouse_hook(data.win, mouse_hook, data);
-	mlx_expose_hook(data.win, expose_hook, data);
-	mlx_loop(data.mlx);*/
-	return (0);
-}
-
-int		main(int ac, char **av)
-{
-	if (ac < 2)
-	{
-		ft_str_color("Map not found", "red", "bold", 1);
-		return (0);
-	}
-	if (ac == 2)
-		ft_fdf(av[1]);
-	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/26 17:25:49 by ylarbi           ###   ########.fr       *#
+#    Updated: 2016/02/26 15:45:32 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ EXE		=	fdf
 NAME	=	fdf.a
 FLAGS	=	-Wall -Wextra -Werror
 
-SRCNAME =	main.c fdf.c get_next_line.c init.c color.c move.c parse.c draw.c \
-			point.c
+SRCNAME =	init.c fdf.c error.c verif.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	./obj
@@ -25,13 +24,13 @@ LIB		=	-Llibft/ -lft
 LIBFT	=	-Clibft/
 
 MLX		=	-L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
-MYMLX	=	-L/minilibx/ -I/minilibx -lmlx -framework OpenGL -framework AppKit
+MYMLX	=	-I/minilibx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
 $(NAME): logo minilibx
 		@make $(LIBFT)
-		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MLX) -o $(EXE) $(SRC)
+		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MYMLX) -o $(EXE) $(SRC)
 		@echo "\033[32m------------>          Program compilation\033[0m"
 
 logo:

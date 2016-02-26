@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 18:38:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/30 16:51:49 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/01/17 16:47:19 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static int		cut(char *str_chr, char *save)
 {
+	save[0] = 0;
 	if (!str_chr)
 		return (0);
 	*str_chr = '\0';
@@ -31,6 +32,7 @@ static char		*strjoin_free(char **line, char *buf)
 	tmp = *line;
 	*line = ft_strjoin(*line, buf);
 	free(tmp);
+	tmp = NULL;
 	return (*line);
 }
 
@@ -39,7 +41,7 @@ int				get_next_line(int const fd, char **line)
 	int				ret;
 	char			*str_chr;
 	char			buf[BUFF_SIZE + 1];
-	static char		save[2147483648][BUFF_SIZE];
+	static char		save[4096][BUFF_SIZE];
 
 	if (!line || fd < 0)
 		return (-1);
@@ -53,7 +55,7 @@ int				get_next_line(int const fd, char **line)
 		if (!(*line = strjoin_free(line, buf)))
 			return (-1);
 	}
-	if (cut(str_chr, save[fd]) == 1 || ret > 0)
+	if (cut(str_chr, save[fd]) == 1 || ft_strlen(*line) || ret > 0)
 		return (1);
 	return (ret == 0 ? 0 : -1);
 }

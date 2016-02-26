@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/03 19:46:49 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/03 19:54:05 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/02/26 14:55:18 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/02/26 15:51:53 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void    error_param(char *str, int error)
 {
-	del((*alst)->content, (*alst)->content_size);
-	free(*alst);
-	*alst = NULL;
+    ft_str_color(str, "red", "bold", 1);
+    exit(error);
 }

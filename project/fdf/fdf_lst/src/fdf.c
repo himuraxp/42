@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/03 19:46:49 by ylarbi            #+#    #+#             */
-/*   Updated: 2015/12/03 19:54:05 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/01/06 14:23:19 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/01/19 20:17:01 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+int		expose_hook(t_data *data)
 {
-	del((*alst)->content, (*alst)->content_size);
-	free(*alst);
-	*alst = NULL;
+	ft_draw(data);
+	return (0);
+}
+
+int		ft_fdf(char *map)
+{
+	t_data	*data;
+
+	init(&data, map);
+	mlx_key_hook(data->win, key_hook, data);
+	mlx_mouse_hook(data->win, mouse_hook, data);
+	mlx_expose_hook(data->win, expose_hook, data);
+	mlx_loop(data->mlx);
+	return (0);
 }
