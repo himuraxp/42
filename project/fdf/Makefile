@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/02/26 15:45:32 by ylarbi           ###   ########.fr        #
+#    Updated: 2016/02/26 20:04:53 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ EXE		=	fdf
 NAME	=	fdf.a
 FLAGS	=	-Wall -Wextra -Werror
 
-SRCNAME =	init.c fdf.c error.c verif.c
+SRCNAME =	init.c fdf.c error.c verif.c draw.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	./obj

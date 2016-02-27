@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 15:31:31 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/26 15:34:28 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/26 23:22:10 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_strcount(char const *s, char c)
 	{
         if ((!ft_isdigit(s[i]) && s[i] != '-' && s[i] != ' ')
             || (s[i] == '-' && !ft_isdigit(s[i + 1]))
-            || (i > 0 && s[i] == '-' && s[i - 1] == ' '))
+            || (i > 0 && s[i] == '-' && s[i - 1] != ' '))
             error_param("isdigit :'(", 1);
 		if (j == 0 && s[i] != c)
 		{
@@ -71,8 +71,8 @@ void    check_len(t_data *data, char* map)
     char    *line;
     int     result;
 
-    data->y_map = 0;
-    data->x_map = 0;
+    data->y = 0;
+    data->x = 0;
     ft_putstr("init -> check_len\n");
     if (!(fd = open(map, O_RDONLY)))
     {
@@ -82,12 +82,12 @@ void    check_len(t_data *data, char* map)
     while (get_next_line(fd, &line) == 1)
     {
         result = ft_strcount(line, ' ');
-        if (data->x_map < result)
-            data->x_map = result;
-        data->y_map++;
+        if (data->x < result)
+            data->x = result;
+        data->y++;
     }
     close(fd);
     free(line);
-    if (data->x_map == 0)
+    if (data->x == 0)
         error_param("Map invalide", 1);
 }
