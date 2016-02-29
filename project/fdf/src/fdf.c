@@ -6,13 +6,13 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 10:36:09 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/29 16:34:08 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/29 18:03:10 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void 	init_data(t_data *data)
+void	init_data(t_data *data)
 {
 	data->move_down = 0;
 	data->move_right = 0;
