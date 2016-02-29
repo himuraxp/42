@@ -6,13 +6,13 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 15:31:31 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/26 23:22:10 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/29 16:57:37 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_strcount(char const *s, char c)
+int		ft_strcount_word(char const *s, char c)
 {
 	int		i;
 	int		j;
@@ -47,7 +47,6 @@ void    verif_valid(char *map)
     int     ret;
 
     i = -1;
-    ft_putstr("init -> verif_valid\n");
     if (!(fd = open(map, O_RDONLY)))
     {
         error_param("Map non valide", 1);
@@ -73,7 +72,6 @@ void    check_len(t_data *data, char* map)
 
     data->y = 0;
     data->x = 0;
-    ft_putstr("init -> check_len\n");
     if (!(fd = open(map, O_RDONLY)))
     {
         error_param("fd -> check_len on ouvert !", 1);
@@ -81,7 +79,7 @@ void    check_len(t_data *data, char* map)
     }
     while (get_next_line(fd, &line) == 1)
     {
-        result = ft_strcount(line, ' ');
+        result = ft_strcount_word(line, ' ');
         if (data->x < result)
             data->x = result;
         data->y++;

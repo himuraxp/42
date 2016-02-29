@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 10:56:56 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/26 23:08:41 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/29 16:24:23 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@ void    insert_map(t_data *data, int fd, int y, int x)
         free(line);
     }
     y = -1;
-    /*while (++y < data->nb_p)
-    {
-                ft_putnbr(data->map[y][0]);
-                ft_putchar(' ');
-				if (y % data->x == 0)
-            		ft_putchar('\n');
-    }
-	ft_putchar('\n');*/
 }
 
 void get_next_map(t_data *data)
@@ -79,7 +71,6 @@ void get_next_map(t_data *data)
     result = 0;
     i = -1;
 	data->nb_p = data->y * data->x;
-    ft_putstr("init -> get_next_map\n");
     if (!(data->map = (int**)malloc(sizeof(int*) * data->nb_p)))
         return ;
     while (++i < data->nb_p)
@@ -98,7 +89,6 @@ void	init(t_data *data, char *map)
 	data->width = WIDTH;
 	data->height = HEIGHT;
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
-	ft_putstr("init -> get_next_map\n");
     verif_valid(map);
     check_len(data, map);
 	get_next_map(data);
