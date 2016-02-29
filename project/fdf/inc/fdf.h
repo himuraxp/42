@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/07 15:53:45 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/29 16:57:24 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/02/29 18:18:09 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,36 +73,36 @@ typedef struct	s_data
 	int 		pal;
 }				t_data;
 
-int		ft_fdf(char *av);
-int		ft_abs(int nb);
-int		ft_atoi_i(const char *str, int *i);
-int		expose_hook(t_data *data);
-int		key_hook(int keycode, t_data *d);
-int     mouse_hook(int button, int x, int y);
-int		ft_strcount_word(char const *s, char c);
-void 	move(int keycode, t_data *d);
-void 	get_next_map(t_data *data);
-void 	zoom(int keycode, t_data *data);
-void 	zoom2(int keycode, t_data *data);
-void	ft_draw(t_data *d);
-void    error_param(char *str, int error);
-void	init(t_data *data, char *map);
-void    verif_valid(char *map);
-void    create(t_data *d, int i, t_line	*l);
-void    down_trace(int i, t_data *d, t_line *l);
-void    right_trace(int i, t_data *d, t_line *l);
-void	line(t_line *l, int dx, int dy, t_data *d);
-void    check_len(t_data *data, char* map);
-void    insert_map(t_data *data, int fd, int y, int x);
-void    earth(int z, t_color *c);
-void    random_f(t_line *l, t_data *d, t_color *c, int i);
-void    random_e(t_line *l, t_data *d, t_color *c, int i);
-void    random_d(t_line *l, t_data *d, t_color *c, int i);
-void    random_c(t_line *l, t_data *d, t_color *c, int i);
-void 	color_black(t_color *c);
-void 	color_white(t_color *c);
-void 	put_pxl(t_data *d, t_line *l, t_color *c);
-double  max(double nb, double max);
+int			ft_fdf(char *av);
+int			ft_abs(int nb);
+int			ft_atoi_i(const char *str, int *i);
+int			expose_hook(t_data *data);
+int			key_hook(int keycode, t_data *d);
+int			mouse_hook(int button, int x, int y);
+int			ft_strcount_word(char const *s, char c);
+void		move(int keycode, t_data *d);
+void		get_next_map(t_data *data);
+void		zoom(int keycode, t_data *data);
+void		zoom2(int keycode, t_data *data);
+void		ft_draw(t_data *d);
+void		error_param(char *str, int error);
+void		init(t_data *data, char *map);
+void		verif_valid(char *map);
+void		create(t_data *d, int i, t_line	*l);
+void		down_trace(int i, t_data *d, t_line *l);
+void		right_trace(int i, t_data *d, t_line *l);
+void		line(t_line *l, int dx, int dy, t_data *d);
+void		check_len(t_data *data, char* map);
+void		insert_map(t_data *data, int fd, int y, int x);
+void		earth(int z, t_color *c);
+void		random_f(t_line *l, t_data *d, t_color *c, int i);
+void		random_e(t_line *l, t_data *d, t_color *c, int i);
+void		random_d(t_line *l, t_data *d, t_color *c, int i);
+void		random_c(t_line *l, t_data *d, t_color *c, int i);
+void		color_black(t_color *c);
+void		color_white(t_color *c);
+void		put_pxl(t_data *d, t_line *l, t_color *c);
+double		max(double nb, double max);
 
 t_color     *get_color(t_line *l, t_data *d, t_color *c, int i);
 
