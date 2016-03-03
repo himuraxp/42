@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/02/29 16:59:17 by ylarbi           ###   ########.fr        #
+#    Updated: 2016/03/03 15:08:06 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ all: $(NAME)
 
 $(NAME): logo minilibx
 		@make $(LIBFT)
-		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MYMLX) -o $(EXE) $(SRC)
+		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MLX) -o $(EXE) $(SRC)
 		@echo "\033[32m------------>          Program compilation\033[0m"
 
 logo:

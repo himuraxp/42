@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 10:56:56 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/29 18:05:59 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/03 13:57:39 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,23 @@ int		ft_atoi_i(const char *str, int *i)
 
 void	insert_map(t_data *data, int fd, int y, int x)
 {
-    char    *line;
-    int     gnl;
-    int     i;
+	char	*line;
+	int		gnl;
+	int		i;
 
 	gnl = 0;
 	while (++y < data->y)
 	{
 		if ((gnl = get_next_line(fd, &line)) == -1)
 			error_param("gnl -1 !", 1);
-			i = 0;
-			while (++x < data->x)
-			{
-				data->map[y * data->x + x][0] = ft_atoi_i(line, &i);
-				data->map[y * data->x + x][1] = x;
-				data->map[y * data->x + x][2] = y;
-			}
-			x = -1;
+		i = 0;
+		while (++x < data->x)
+		{
+			data->map[y * data->x + x][0] = ft_atoi_i(line, &i);
+			data->map[y * data->x + x][1] = x;
+			data->map[y * data->x + x][2] = y;
+		}
+		x = -1;
 		free(line);
 	}
 	y = -1;

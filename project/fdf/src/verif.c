@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 15:31:31 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/29 18:13:33 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/03 12:35:30 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int		ft_strcount_word(char const *s, char c)
 
 void	verif_valid(char *map)
 {
-    int		fd;
-    int		i;
-    char	buf[2];
-    int		ret;
+	int		fd;
+	int		i;
+	char	buf[2];
+	int		ret;
 
 	i = -1;
 	if (!(fd = open(map, O_RDONLY)))
@@ -64,11 +64,11 @@ void	verif_valid(char *map)
 	close(fd);
 }
 
-void	check_len(t_data *data, char* map)
+void	check_len(t_data *data, char *map)
 {
-    int		fd;
-    char	*line;
-    int		result;
+	int		fd;
+	char	*line;
+	int		result;
 
 	data->y = 0;
 	data->x = 0;

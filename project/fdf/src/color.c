@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 16:46:42 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/29 17:57:51 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/03 14:33:00 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,13 @@ void	earth(int z, t_color *c)
 		c->b = 255 - (z * 3.25);
 	}
 	else if (z >= 75)
-	{
-		c->r = 120;
-		c->g = 80;
-		c->b = 40;
-	}
+		color_rgb(c, 120, 80, 40);
 }
 
 void	random_c(t_line *l, t_data *d, t_color *c, int i)
 {
-    int		z;
-    double	range;
+	int		z;
+	double	range;
 
 	z = ft_abs(l->z1) > ft_abs(l->z2) ? ft_abs(l->z1) - ft_abs(l->z2)
 	: ft_abs(l->z2) - ft_abs(l->z1);
@@ -49,7 +45,7 @@ void	random_c(t_line *l, t_data *d, t_color *c, int i)
 		return (color_white(c));
 	range = i / (sqrt(d->zoom_x * d->zoom_x + z * z * d->zoom_z * d->zoom_z));
 	if (ft_abs(l->z1) < ft_abs(l->z2))
-    {
+	{
 		c->r = 200 * range + 20;
 		c->g = 200 * range + 20;
 		c->b = 200 * range + 20;
@@ -64,81 +60,51 @@ void	random_c(t_line *l, t_data *d, t_color *c, int i)
 
 void	random_d(t_line *l, t_data *d, t_color *c, int i)
 {
-    int		z;
-    double	range;
+	int		z;
+	double	range;
 
 	z = ft_abs(l->z1) > ft_abs(l->z2) ? ft_abs(l->z1) - ft_abs(l->z2)
 	: ft_abs(l->z2) - ft_abs(l->z1);
 	range = i / (sqrt(d->zoom_x * d->zoom_x + z * z * d->zoom_z * d->zoom_z));
 	if (l->z1 == l->z2 && l->z1 == 0)
-	{
-		c->r = 200 * range;
-		c->g = 0;
-		c->b = 0;
-		return ;
-	}
+		return (color_rgb(c, 200 * range, 0, 0));
 	if (l->z1 == l->z2 && l->z1 >= 0)
-	{
-		c->r = 200 * range;
-		c->g = 180 * range;
-		c->b = 0;
-		return ;
-	}
+		return (color_rgb(c, 200 * range, 180 * range, 0));
 	if (ft_abs(l->z1) < ft_abs(l->z2))
-	{
-		c->r = 150 * range + 50;
-		c->g = 150 * range;
-		c->b = 0;
-	}
+		color_rgb(c, 150 * range + 50, 150 * range, 0);
 	else
 	{
-		c->r = 200 - 100 * range;
+		color_rgb(c, 200 - 100 * range, 120 - 120 * range, 0);
 		if (c->r < 0)
 			c->r = 0;
-		c->g = 120 - 120 * range;
 		if (c->g < 0)
 			c->g = 0;
-		c->b = 0;
 	}
 }
 
 void	random_e(t_line *l, t_data *d, t_color *c, int i)
 {
-    int		z;
-    double	range;
+	int		z;
+	double	range;
 
-    z = ft_abs(l->z1) > ft_abs(l->z2) ? ft_abs(l->z1) - ft_abs(l->z2)
-    : ft_abs(l->z2) - ft_abs(l->z1);
-    range = i / (sqrt(d->zoom_x * d->zoom_x + z * z * d->zoom_z * d->zoom_z));
-    if (l->z1 == l->z2 && l->z1 == 0)
-	{
-		c->r = 200 * range;
-		c->g = 0;
-		c->b = 0;
-		return ;
-	}
+	z = ft_abs(l->z1) > ft_abs(l->z2) ? ft_abs(l->z1) - ft_abs(l->z2)
+	: ft_abs(l->z2) - ft_abs(l->z1);
+	range = i / (sqrt(d->zoom_x * d->zoom_x + z * z * d->zoom_z * d->zoom_z));
+	if (l->z1 == l->z2 && l->z1 == 0)
+		return (color_rgb(c, 200 * range, 0, 0));
 	if (l->z1 == l->z2 && l->z1 >= 0)
-	{
-		c->r = 200 * range;
-		c->g = 100 * range;
-		c->b = 150 * range;
-		return ;
-	}
+		return (color_rgb(c, 200 * range, 100 * range, 150 * range));
 	if (ft_abs(l->z1) < ft_abs(l->z2))
 	{
-		c->r = 150 * range + 50;
-		c->g = 50 * range;
-		c->b = 100 * range;
+		color_rgb(c, 150 * range + 50, 50 * range, 100 * range);
 	}
 	else
 	{
-		c->r = 200 - 100 * range;
+		color_rgb(c, 200 - 100 * range, 60 - 60 * range, 120 - 120 * range);
 		if (c->r < 0)
 			c->r = 0;
-		c->g = 60 - 60 * range;
 		if (c->g < 0)
 			c->g = 0;
-		c->b = 120 - 120 * range;
 		if (c->b < 0)
 			c->b = 0;
 	}
@@ -146,8 +112,8 @@ void	random_e(t_line *l, t_data *d, t_color *c, int i)
 
 void	random_f(t_line *l, t_data *d, t_color *c, int i)
 {
-    int		z;
-    double	range;
+	int		z;
+	double	range;
 
 	z = ft_abs(l->z1) > ft_abs(l->z2) ? ft_abs(l->z1) - ft_abs(l->z2)
 	: ft_abs(l->z2) - ft_abs(l->z1);

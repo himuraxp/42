@@ -6,17 +6,11 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 16:29:54 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/29 18:08:09 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/03 12:33:06 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int		expose_hook(t_data *data)
-{
-	ft_draw(data);
-	return (0);
-}
 
 void	move(int keycode, t_data *d)
 {
@@ -43,7 +37,7 @@ void	zoom(int keycode, t_data *data)
 		data->zoom_y -= 1;
 	}
 	data->start_x = (WIDTH - ((data->y + data->x + 1) * data->zoom_x)
-	+ data->y * data->zoom_x + data->y * data->zoom_x) / 2 ;
+	+ data->y * data->zoom_x + data->y * data->zoom_x) / 2;
 	data->start_y = (HEIGHT - (data->y + data->x) * data->zoom_y) / 2;
 }
 

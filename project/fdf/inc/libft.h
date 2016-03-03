@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 14:03:26 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/08 14:50:40 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/03 14:43:44 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ size_t				ft_strlen(const char *s);
 int					ft_iswhite(int c);
 char				*ft_strndup(char const *s, size_t n);
 int					ft_intlen(long long int value);
-void					ft_putlnbr(long long int n);
+void				ft_putlnbr(long long int n);
 size_t				ft_sizelen(const char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 16:38:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/29 18:11:18 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/03 13:55:35 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	line(t_line *l, int dx, int dy, t_data *d)
 {
-	int i;
-	int sx;
-	int sy;
-	int e2;
-	int err;
+	int		i;
+	int		sx;
+	int		sy;
+	int		e2;
 	t_color c;
 
 	i = 0;
@@ -26,18 +25,18 @@ void	line(t_line *l, int dx, int dy, t_data *d)
 	dy = ft_abs(l->y1 - l->y0);
 	sx = l->x0 < l->x1 ? 1 : -1;
 	sy = l->y0 < l->y1 ? 1 : -1;
-	err = (dx > dy ? dx : -dy) / 2;
+	c.err = (dx > dy ? dx : -dy) / 2;
 	while (1)
 	{
 		++i;
-		put_pxl(d,l, get_color(l, d, &c, i));
+		put_pxl(d, l, get_color(l, d, &c, i));
 		if (l->x0 == l->x1 && l->y0 == l->y1)
-			break;
-    	e2 = err;
-    	err = e2 > -dx ? err - dy : err;
-    	l->x0 = e2 > -dx ? l->x0 + sx : l->x0;
-    	err = e2 < dy ? err + dx : err;
-    	l->y0 = e2 < dy ? l->y0 + sy : l->y0;
+			break ;
+		e2 = c.err;
+		c.err = e2 > -dx ? c.err - dy : c.err;
+		l->x0 = e2 > -dx ? l->x0 + sx : l->x0;
+		c.err = e2 < dy ? c.err + dx : c.err;
+		l->y0 = e2 < dy ? l->y0 + sy : l->y0;
 	}
 }
 
@@ -68,12 +67,13 @@ void	down_trace(int i, t_data *d, t_line *l)
 		l->z1 = d->map[i][0];
 		l->z2 = d->map[i + d->x][0];
 		l->x1 = d->map[i + d->x][1] * d->zoom_x;
-		l->y1 = d->map[i + d->x][2] * d->zoom_y - d->map[i + d->x][0] * d->zoom_z;
+		l->y1 = d->map[i + d->x][2] * d->zoom_y - d->map[i + d->x][0]
+		* d->zoom_z;
 		line(l, 0, 0, d);
 	}
 }
 
-void	create(t_data *d, int i, t_line	*l)
+void	create(t_data *d, int i, t_line *l)
 {
 	while (++i < d->nb_p)
 	{
