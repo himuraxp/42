@@ -6,24 +6,26 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 15:08:50 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/20 12:17:27 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/04 18:12:29 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell1.h"
 
-t_lenv			*core(t_lenv *env, char *line)
+t_lenv			*core(t_lenv *env, char *line, char *name)
 {
+	int			i;
 	char		**param;
 
 	g_bool = 0;
+	i = 0;
 	param = ft_split_whitespaces(line);
 	if (param[0] && check_param(param[0]) == 0)
 		exec_core(env, param);
 	else if (param[0] && check_param(param[0]) == 1)
 		env = ft_parse(env, param);
 	if (g_bool != 2)
-		print_prompt();
+		print_prompt(name);
 	g_bool = 0;
 	return (env);
 }

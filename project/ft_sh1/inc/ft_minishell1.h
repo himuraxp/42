@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 10:11:24 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/02/20 20:01:19 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/04 17:22:58 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void				env_push_back(t_lenv **list, char *name, char *value);
 t_lenv				*create_list(char **tab);
 char				**list_to_char(t_lenv *list);
 t_lenv				*ft_env_relink(t_lenv *env, char *name);
-t_lenv				*core(t_lenv *env, char *line);
+t_lenv				*core(t_lenv *env, char *line, char *name);
 void				exec_core(t_lenv *env, char **param);
 char				**check_exec_param(t_lenv *env, char **param);
 char				*check_exec(char *str, t_lenv *env);
@@ -54,7 +54,6 @@ void				cd_home(t_lenv **env);
 void				cd_env(t_lenv **env, char *path);
 void				cd_env_old(t_lenv **env);
 void				ft_exit(char **param);
-void				print_prompt();
+void				print_prompt(char *name);
 int					g_bool;
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 19:18:18 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/03 14:32:26 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/03 18:14:08 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,13 @@ void	ft_draw(t_data *d)
 	d->addr = mlx_get_data_addr(d->img, &d->bpp, &d->s_line, &d->endian);
 	create(d, -1, &l);
 	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
-	mlx_string_put(d->mlx, d->win, 20, 30, 0xFFF, "Zoom = +/-");
-	mlx_string_put(d->mlx, d->win, 20, 60, 0xFFF, "Move = UP/DOWN/LEFT/RIGHT");
-	mlx_string_put(d->mlx, d->win, 20, 90, 0xFFF, "Altitude = PageUP/PageDOWN");
-	mlx_string_put(d->mlx, d->win, 20, 120, 0xFFF, "Color = 1/2/3/4/5");
+	mlx_string_put(d->mlx, d->win, 20, 30, 0xFFFFFFFF
+		, "Zoom = +/-");
+	mlx_string_put(d->mlx, d->win, 20, 60, 0xFFFFFFFF
+		, "Move = UP/DOWN/LEFT/RIGHT");
+	mlx_string_put(d->mlx, d->win, 20, 90, 0xFFFFFFFF
+		, "Altitude = PageUP/PageDOWN");
+	mlx_string_put(d->mlx, d->win, 20, 120, 0xFFFFFFFF
+		, "Color = 1/2/3/4/5");
 	mlx_destroy_image(d->mlx, d->img);
 }
