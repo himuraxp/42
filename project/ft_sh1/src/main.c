@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 13:43:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/04 17:47:28 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/10 13:56:14 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		print_prompt(char *name)
 {
 	ft_putstr(name);
-	ft_putstr(" $>> ");
+	ft_putstr(" $ ");
 }
 
 void		handler(void)
@@ -34,7 +34,7 @@ void		handler(void)
 	}
 }
 
-char	*get_user(t_lenv *env)
+char		*get_user(t_lenv *env)
 {
 	while (env)
 	{
