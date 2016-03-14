@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 15:08:50 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/10 14:30:15 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/14 17:59:25 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ t_lenv			*core(t_lenv *env, char *line, char *name)
 	else if (param[0] && check_param(param[0]) == 1)
 		env = ft_parse(env, param);
 	if (g_bool != 2)
+	{
+		name = get_user(env);
 		print_prompt(name);
+	}
 	g_bool = 0;
 	return (env);
 }

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 13:43:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/10 14:31:04 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/14 18:00:20 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void		print_prompt(char *name)
 {
+	ft_putstr("\033[36;1m");
 	ft_putstr(name);
-	ft_putstr(" $ ");
+	ft_putstr("\033[0m");
+	ft_putstr("\033[32m");
+	ft_putstr(" $> ");
+	ft_putstr("\033[0m");
 }
 
 void		handler(void)
@@ -38,7 +42,7 @@ char		*get_user(t_lenv *env)
 {
 	while (env)
 	{
-		if (ft_strcmp(env->name, "$USER") == 0)
+		if (ft_strcmp(env->name, "$PWD") == 0)
 			return (ft_strdup(env->value));
 		env = env->next;
 	}

@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/02/20 12:04:44 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/03/10 15:21:28 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): logo
 		@make $(LIBFT)
-		@gcc $(FLAGS) $(INCLUDE) $(LIB) -lncurses -o $(EXE) $(SRC)
+		@gcc $(FLAGS) $(INCLUDE) $(LIB) -o $(EXE) $(SRC)
 		@clear
 		@printf "\033[0;36m%-34s\033[1;30m <<--\t\033[1;36mCompiled program\033[0;0m\n" "$(EXE)"
 

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 10:11:24 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/10 14:31:25 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/14 17:05:33 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_lenv
 	struct s_lenv	*next;
 }					t_lenv;
 
+char				*get_user(t_lenv *env);
 void				env_push_back(t_lenv **list, char *name, char *value);
 t_lenv				*create_list(char **tab);
 char				**list_to_char(t_lenv *list);

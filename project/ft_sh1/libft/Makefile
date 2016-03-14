@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/01/27 17:14:57 by ylarbi           ###   ########.fr       *#
+#*   Updated: 2016/03/10 15:00:16 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ mkdir:
 	|| (printf "\033[0;32m%-34s \033[1;30m<<--\033[0;0m\033[1;33m\tObject folder create\033[0;0m\n" "$(O_DIR)"\
 		&& exit 1)
 
-$(NAME): $(O_FILES)
+$(NAME): $(O_FILES:.c=.o)
 	@ar rcs $@ $^ && printf "\033[0;33m" || printf "\031[0;31m"
 	@printf "%-34s \033[1;30m<<--\033[0;0m\033[1;33m\tLibrary create\033[0;0m\n" "$@"
 
