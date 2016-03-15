@@ -6,13 +6,13 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:16:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/15 17:58:10 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:07:45 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	initialize_mandel(t_env *e)
+void	init_mandel(t_env *e)
 {
 	e->x1 = -2.1;
 	e->x2 = 0.6;

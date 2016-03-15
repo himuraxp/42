@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:51:03 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/15 17:56:42 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/15 18:07:48 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 typedef struct	s_env
 {
 	char	*fractol;
+	int		im;
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
 	double	img_x;
 	double	img_y;
 	void	*mlx;
@@ -27,5 +32,6 @@ typedef struct	s_env
 }				t_env;
 
 void	init(t_env *e, char *str);
+void	init_mandel(t_env *e);
 
 #endif
