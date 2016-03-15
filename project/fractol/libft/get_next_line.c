@@ -6,11 +6,10 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 18:38:19 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/01/30 16:51:49 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/15 20:04:14 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "libft.h"
 
 static int		cut(char *str_chr, char *save)

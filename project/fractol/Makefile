@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#*   Updated: 2016/03/15 11:25:53 by ylarbi           ###   ########.fr       *#
+#    Updated: 2016/03/15 20:53:57 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ EXE		=	fractol
 NAME	=	fractol.a
 FLAGS	=	-Wall -Wextra -Werror
 
-SRCNAME =	
+SRCNAME =	main.c hook.c draw.c error.c mandelbrot.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	./obj
@@ -29,26 +29,28 @@ MYMLX	=	-I/minilibx -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 relink:
-		if [ -a $(OBJ)]
+		@if [ -a $(OBJ) ]; then\
+	 	printf "\033[0;31m%-34s\033[1;30m <<--\t\033[1;31mError Relink\033[0;0m\n" "$(OBJ)"; exit 1; fi
 
-$(NAME): logo minilibx
+
+$(NAME): logo relink minilibx
 		@make $(LIBFT)
-		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MLX) -o $(EXE) $(SRC)
+		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MYMLX) -o $(EXE) $(SRC)
 		@clear
 		@printf "\033[0;36m%-34s\033[1;30m <<--\t\033[1;36mCompiled program\033[0;0m\n" "$(EXE)"
 
 logo:
 		@echo "\033[2J"
 		@echo "\033[200A"
-		@echo "\033[31m                :::::::::: :::::::::  ::::::::::            \033[0m"
-		@echo "\033[31m               :+:        :+:    :+: :+:                    \033[0m"
-		@echo "\033[32m              +:+        +:+    +:+ +:+                     \033[0m"
-		@echo "\033[32m             :#::+::#   +#+    +:+ :#::+::#                 \033[0m"
-		@echo "\033[33m            #+#        #+#    #+# #+#                       \033[0m"
-		@echo "\033[33m           #+#        #+#    #+# #+#                        \033[0m"
-		@echo "\033[36m          ###        ########   ###                   ylarbi\033[0m"
+		@echo "\033[31m      :::::::::: :::::::::      :::      :::::::: ::::::::::: ::: ::::::::  :::  \033[0m"
+		@echo "\033[31m     :+:        :+:    :+:   :+: :+:   :+:    :+:    :+:     :+ :+:    :+: :+:   \033[0m"
+		@echo "\033[32m    +:+        +:+    +:+  +:+   +:+  +:+           +:+        +:+    +:+ +:+    \033[0m"
+		@echo "\033[32m   :#::+::#   +#++:++#:  +#++:++#++: +#+           +#+        +#+    +:+ +#+     \033[0m"
+		@echo "\033[33m  +#+        +#+    +#+ +#+     +#+ +#+           +#+        +#+    +#+ +#+      \033[0m"
+		@echo "\033[33m #+#        #+#    #+# #+#     #+# #+#    #+#    #+#        #+#    #+# #+#       \033[0m"
+		@echo "\033[36m###        ###    ### ###     ###  ########     ###         ########  ########## \033[0m"
 		@echo "\n"
-		@printf "%-37sfdf\n"
+		@printf "%-32sfractol\n"
 clean: logo
 		@printf "\033[0;31m%-34s\033[1;30m <<--\t\033[1;31mDelete folder\033[0;0m\n" "$(OBJ)"
 		@rm -rf $(OBJ) 2> /dev/null || echo "" > /dev/null

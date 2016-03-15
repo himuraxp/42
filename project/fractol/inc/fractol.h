@@ -6,32 +6,61 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:51:03 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/15 18:07:48 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/15 20:56:03 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "libft/libft.h"
-# include "minilibx/mlx.h"
+# include "libft.h"
+# include "mlx.h"
 # include <math.h>
 
 typedef struct	s_env
 {
-	char	*fractol;
-	int		im;
-	double	x1;
-	double	x2;
-	double	y1;
-	double	y2;
-	double	img_x;
-	double	img_y;
-	void	*mlx;
-	void	*win;
+	int			b;
+	int			g;
+	int			r;
+	int			x;
+	int			y;
+	int			im;
+	int			filter;
+	int			len;
+	int			bit;
+	int			end;
+	char		*fractol;
+	char		*img_addr;
+	double		x1;
+	double		x2;
+	double		y1;
+	double		y2;
+	double		img_x;
+	double		img_y;
+	double		c_r;
+	double		c_i;
+	double		v_r;
+	double		v_i;
+	double		z_r;
+	double		z_i;
+	void		*img;
+	void		*mlx;
+	void		*win;
 }				t_env;
 
-void	init(t_env *e, char *str);
-void	init_mandel(t_env *e);
+int				expose_hook(t_env *e);
+int				motion(int x, int y, t_env *e);
+int				mouse(int key, int x, int y, t_env *e);
+int				key(int key, t_env *e);
+int				mandelbrot(t_env *e);
+
+void			init(t_env *e, char *str);
+void			init_mandelbrot(t_env *e);
+void			ft_draw(t_env *e);
+void			ft_error(int error);
+void			display(t_env *e, int blue, int green, int red);
+void			display_mandelbrot(t_env *e);
+void			zoom(t_env *e, int x, int y, int key);
+void			move(t_env *e, int key);
 
 #endif
