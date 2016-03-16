@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:26:17 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 14:00:11 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/16 16:39:23 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,11 @@ void	fractol_next(t_env *e, int keycode)
 
 int		key(int key, t_env *e)
 {
-	ft_putstr("keycode = ");
-	ft_putnbr(key);
-	ft_putchar('\n');
 	if (key == 53)
 		exit(0);
 	e->iter += (key == 69) ? 1 : 0;
 	e->iter -= (key == 78 && e->iter > 1) ? 1 : 0;
-	if (key == 49)
+	if (key == 82)
 		e->filter = (e->filter == 0) ? 1 : 0;
 	if (key == 18)
 	{
@@ -60,9 +57,6 @@ void	zoom(t_env *e, int x, int y, int key)
 	double	zoom_x;
 	double	zoom_y;
 
-	ft_putstr("keycode = ");
-	ft_putnbr(key);
-	ft_putchar('\n');
 	zoom_x = (x * (e->x2 - e->x1) / e->img_x) + e->x1;
 	zoom_y = (y * (e->y2 - e->y1) / e->img_y) + e->y1;
 	if (key == 5 || key == 6)
@@ -83,10 +77,17 @@ void	zoom(t_env *e, int x, int y, int key)
 
 int		motion(int x, int y, t_env *e)
 {
-	if ((ft_linecmp(e->fractol, "julia") == 0) && e->filter == 1)
+	if ((ft_linecmp(e->fractol, "julia") == 0))
 	{
-		e->v_r = (double)(x - 400) / 500;
-		e->v_i = (double)(y - 300) / 500;
+		e->v_r = (double)(x - 110) / 1000;
+		e->v_i = (double)(y - 110) / 1000;
+		if (e->filter == 1)
+		{
+			if (x > 0 && x < e->img_x)
+				e->b = x * 255 / e->img_x;
+			if (y > 0 && y < e->img_y)
+				e->g = y * 255 / e->img_y;
+		}
 		ft_draw(e);
 		ft_draw_menu(e);
 	}
@@ -104,9 +105,6 @@ int		motion(int x, int y, t_env *e)
 
 int		mouse(int key, int x, int y, t_env *e)
 {
-	ft_putstr("keycode = ");
-	ft_putnbr(key);
-	ft_putchar('\n');
 	if (ft_linecmp(e->fractol, "carpet") == 0)
 	{
 		if (key == 5)

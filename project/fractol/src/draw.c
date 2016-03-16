@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:33:34 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 14:09:58 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/16 15:04:15 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	ft_draw(t_env *e)
 		&e->len, &e->end);
 	if (ft_linecmp(e->fractol, "mandelbrot") == 0)
 		display_mandelbrot(e);
-//	if (ft_linecmp(e->fractol, "julia") == 0)
-//		display_julia(e);
+	if (ft_linecmp(e->fractol, "julia") == 0)
+		display_julia(e);
 //	if (ft_linecmp(e->fractol, "carpet") == 0)
 //		display_carpet(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);

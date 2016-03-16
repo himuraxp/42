@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:51:03 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 14:01:57 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/16 16:39:32 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void			ft_draw_menu(t_env *e);
 void			ft_error(int error);
 void			display(t_env *e, int blue, int green, int red);
 void			display_mandelbrot(t_env *e);
+void			display_julia(t_env *e);
 void			zoom(t_env *e, int x, int y, int key);
 void			move(t_env *e, int key);
 void			color(t_env *e, int key);

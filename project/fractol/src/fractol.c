@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:16:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 14:30:09 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/16 16:45:53 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,30 @@ void	init_mandelbrot(t_env *e)
 	e->iter = 50;
 }
 
+void	init_julia(t_env *e)
+{
+	e->x1 = -1.5;
+	e->x2 = 1.2;
+	e->y1 = -1.2;
+	e->y2 = 1.2;
+	e->v_r = 0.285;
+	e->v_i = 0.01;
+	e->img_x = (e->x2 - e->x1) * 350;
+	e->img_y = (e->y2 - e->y1) * 350;
+	e->iter = 20;
+}
+
 void	init(t_env *e, char *str)
 {
+	ft_putstr("\033[1;30m-->\033[32;1mWelcome to FRACT'OL\033[1;30m<--\033[m");
 	e->fractol = str;
+	color(e, 20);
 	if (ft_linecmp(e->fractol, "mandelbrot") == 0 )
 		init_mandelbrot(e);
+	else if (ft_linecmp(e->fractol, "julia") == 0 )
+		init_julia(e);
 	else
 		ft_error(1);
-	color(e, 20);
 	e->filter = 0;
 }
 
@@ -44,9 +60,9 @@ int		main(int ac, char **av)
 		e.mlx = mlx_init();
 		e.win = mlx_new_window(e.mlx, e.img_x, e.img_y, "Fract'ol project");
 		mlx_expose_hook(e.win, expose_hook, &e);
-		mlx_hook(e.win, 6, (2L >> 0), &motion, &e);
-		mlx_hook(e.win, 4, (2L >> 0), &mouse, &e);
-		mlx_hook(e.win, 2, (2L >> 0), &key, &e);
+		mlx_hook(e.win, 6, (1L >> 0), &motion, &e);
+		mlx_hook(e.win, 4, (1L >> 0), &mouse, &e);
+		mlx_hook(e.win, 2, (1L >> 0), &key, &e);
 		mlx_loop(e.mlx);
 	}
 	else
