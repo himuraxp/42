@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:26:17 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/15 21:05:46 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/16 14:00:11 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int		key(int key, t_env *e)
 	ft_putchar('\n');
 	if (key == 53)
 		exit(0);
-	e->im += (key == 69) ? 1 : 0;
-	e->im -= (key == 78 && e->im > 1) ? 1 : 0;
+	e->iter += (key == 69) ? 1 : 0;
+	e->iter -= (key == 78 && e->iter > 1) ? 1 : 0;
 	if (key == 49)
 		e->filter = (e->filter == 0) ? 1 : 0;
 	if (key == 18)
@@ -42,15 +42,17 @@ int		key(int key, t_env *e)
 	}
 	if (key == 19)
 	{
-		e->b += (e->b < 251) ? 5 : 0;
-		e->g += (e->g < 251) ? 5 : 0;
-		e->r += (e->r < 251) ? 5 : 0;
+		e->b += (e->b < 254) ? 5 : 0;
+		e->g += (e->g < 254) ? 5 : 0;
+		e->r += (e->r < 254) ? 5 : 0;
 	}
+	color(e, key);
 	move(e, key);
 	if (key >= 83 && key <= 85)
 		fractol_next(e, key);
 	ft_draw(e);
-	return (0);
+	ft_draw_menu(e);
+	return (key);
 }
 
 void	zoom(t_env *e, int x, int y, int key)
@@ -86,6 +88,7 @@ int		motion(int x, int y, t_env *e)
 		e->v_r = (double)(x - 400) / 500;
 		e->v_i = (double)(y - 300) / 500;
 		ft_draw(e);
+		ft_draw_menu(e);
 	}
 	else if (e->filter == 1)
 	{
@@ -94,6 +97,7 @@ int		motion(int x, int y, t_env *e)
 		if (y > 0 && y < e->img_y)
 			e->g = y * 255 / e->img_y;
 		ft_draw(e);
+		ft_draw_menu(e);
 	}
 	return (0);
 }
@@ -105,13 +109,13 @@ int		mouse(int key, int x, int y, t_env *e)
 	ft_putchar('\n');
 	if (ft_linecmp(e->fractol, "carpet") == 0)
 	{
-		if (key == 5 || key == 6)
+		if (key == 5)
 		{
 			e->c_r *= 1.1;
 			e->z_r += (e->z_r - x) * 0.1;
 			e->z_i += (e->z_i - y) * 0.1;
 		}
-		if (key == 4 || key == 7)
+		if (key == 4)
 		{
 			e->c_r *= 0.9;
 			e->z_r -= (e->z_r - x) * 0.1;
@@ -121,5 +125,6 @@ int		mouse(int key, int x, int y, t_env *e)
 	else
 		zoom(e, x, y, key);
 	ft_draw(e);
+	ft_draw_menu(e);
 	return (0);
 }

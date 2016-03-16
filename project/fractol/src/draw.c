@@ -6,11 +6,30 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:33:34 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/15 21:11:34 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/16 14:09:58 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	color(t_env *e, int key)
+{
+	int n;
+
+	n = 25 / 100;
+	if (key == 20)
+	{
+		e->b = 255 * 10 + 210 * (1 - 10);
+		e->g = 40 * 10 + 21 * (1 - 10);
+		e->r = 182 * 10 + 60 * (1 - 10);
+	}
+	if (key == 21)
+	{
+		e->b = 51 * n + 0 * (1 - n);
+		e->g = 102 * n + 153 * (1 - n);
+		e->r = 255 * n + 255 * (1 - n);
+	}
+}
 
 void	display(t_env *e, int blue, int green, int red)
 {
@@ -47,6 +66,7 @@ void	move(t_env *e, int key)
 int		expose_hook(t_env *e)
 {
 	ft_draw(e);
+	ft_draw_menu(e);
 	return (0);
 }
 

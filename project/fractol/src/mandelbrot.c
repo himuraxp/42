@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:48:24 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/15 20:54:47 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/16 13:52:59 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void	display_mandelbrot(t_env *e)
 		while (++e->y < e->img_y)
 		{
 			i = mandelbrot(e);
-			while (i++ < e->im && e->z_r * e->z_r + e->z_i * e->z_i < 4)
+			while (i++ < e->iter && e->z_r * e->z_r + e->z_i * e->z_i < 4)
 			{
 				tmp = e->z_r;
 				e->z_r = (e->z_r * e->z_r) - (e->z_i * e->z_i) + e->c_r;
 				e->z_i = 2 * e->z_i * tmp + e->c_i;
 			}
-			if (i == e->im)
+			if (i == e->iter)
 				display(e, 0, 0, 0);
 			else
-				display(e, i * 255 / e->im - e->b - 255, i * 255 /
-						e->im - e->g - 255, i * 255 / e->im - e->r - 255);
+				display(e, i * 255 / e->iter - e->b - 255, i * 255 /
+						e->iter - e->g - 255, i * 255 / e->iter - e->r - 255);
 		}
 	}
 }

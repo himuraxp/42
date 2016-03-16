@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/03/15 20:53:57 by ylarbi           ###   ########.fr        #
+#    Updated: 2016/03/16 14:31:07 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ EXE		=	fractol
 NAME	=	fractol.a
 FLAGS	=	-Wall -Wextra -Werror
 
-SRCNAME =	main.c hook.c draw.c error.c mandelbrot.c
+SRCNAME =	fractol.c hook.c draw.c error.c mandelbrot.c menu.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	./obj
@@ -23,7 +23,7 @@ INCLUDE	=	-Iinc
 LIB		=	-Llibft/ -lft
 LIBFT	=	-Clibft/
 
-MLX		=	-L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
+MLX		=	-L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 MYMLX	=	-I/minilibx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
@@ -35,7 +35,7 @@ relink:
 
 $(NAME): logo relink minilibx
 		@make $(LIBFT)
-		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MYMLX) -o $(EXE) $(SRC)
+		@gcc $(FLAGS) $(INCLUDE) $(LIB) $(MLX) -o $(EXE) $(SRC)
 		@clear
 		@printf "\033[0;36m%-34s\033[1;30m <<--\t\033[1;36mCompiled program\033[0;0m\n" "$(EXE)"
 
