@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/03/16 15:07:31 by ylarbi           ###   ########.fr        #
+#    Updated: 2016/03/17 12:32:58 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ EXE		=	fractol
 NAME	=	fractol.a
 FLAGS	=	-Wall -Wextra -Werror
 
-SRCNAME =	fractol.c hook.c draw.c error.c mandelbrot.c menu.c julia.c
+SRCNAME =	fractol.c hook.c draw.c error.c mandelbrot.c menu.c julia.c carpet.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	./obj

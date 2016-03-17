@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:51:03 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/17 09:23:27 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:32:14 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_env
 	int			len;
 	int			bit;
 	int			end;
+	int			car_iter;
 	char		*fractol;
 	char		*img_addr;
 	double		x1;
@@ -43,6 +44,9 @@ typedef struct	s_env
 	double		v_i;
 	double		z_r;
 	double		z_i;
+	double		car_x;
+	double		car_y;
+	double		cote;
 	void		*img;
 	void		*mlx;
 	void		*win;
@@ -58,12 +62,15 @@ char			*arg_convert(char *av);
 
 void			init(t_env *e, char *str);
 void			init_mandelbrot(t_env *e);
+void			init_julia(t_env *e);
+void			init_carpet(t_env *e);
 void			ft_draw(t_env *e);
 void			ft_draw_menu(t_env *e);
 void			ft_error(int error);
 void			display(t_env *e, int blue, int green, int red);
 void			display_mandelbrot(t_env *e);
 void			display_julia(t_env *e);
+void			display_carpet(t_env *e);
 void			zoom(t_env *e, int x, int y, int key);
 void			move(t_env *e, int key);
 void			color(t_env *e, int key);

@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:16:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/17 09:23:34 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:15:09 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,45 @@ void	init_julia(t_env *e)
 	e->iter = 20;
 }
 
+void	init_carpet(t_env *e)
+{
+	e->x1 = 0;
+	e->x2 = 810;
+	e->y1 = 0;
+	e->y2 = 720;
+	e->img_x = e->x2 - e->x1;
+	e->img_y = e->y2 - e->y1;
+	e->c_r = e->img_x / 1.5;
+	e->z_r = (e->img_x - e->c_r) / 2;
+	e->z_i = (e->img_y - e->c_r) / 2;
+	e->iter = 20;
+}
+
 void	init(t_env *e, char *str)
 {
-	ft_putstr("\033[1;30m-->\033[32;1mWelcome to FRACT'OL\033[1;30m<--\033[m");
 	e->fractol = str;
 	color(e, 20);
 	if (ft_linecmp(e->fractol, "mandelbrot") == 0 )
+	{
 		init_mandelbrot(e);
+		ft_putstr("\033[1;30m-->\033[35;1m ");
+		ft_putstr(e->fractol);
+	}
 	else if (ft_linecmp(e->fractol, "julia") == 0 )
+	{
 		init_julia(e);
+		ft_putstr("\033[1;30m-->\033[35;1m ");
+		ft_putstr(e->fractol);
+	}
+	else if (ft_linecmp(e->fractol, "carpet") == 0 )
+	{
+		init_carpet(e);
+		ft_putstr("\033[1;30m-->\033[35;1m ");
+		ft_putstr(e->fractol);
+	}
 	else
 		ft_error(1);
+	ft_putstr("\033[m\n");
 	e->filter = 0;
 }
 
