@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:16:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 16:45:53 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/17 09:23:34 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		init(&e, av[1]);
+		init(&e, arg_convert(av[1]));
 		e.mlx = mlx_init();
 		e.win = mlx_new_window(e.mlx, e.img_x, e.img_y, "Fract'ol project");
 		mlx_expose_hook(e.win, expose_hook, &e);

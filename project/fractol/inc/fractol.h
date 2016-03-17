@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:51:03 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 16:39:32 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/17 09:23:27 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int				motion(int x, int y, t_env *e);
 int				mouse(int key, int x, int y, t_env *e);
 int				key(int key, t_env *e);
 int				mandelbrot(t_env *e);
+
+char			*arg_convert(char *av);
 
 void			init(t_env *e, char *str);
 void			init_mandelbrot(t_env *e);
