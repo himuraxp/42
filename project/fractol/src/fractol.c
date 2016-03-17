@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:16:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/17 13:41:26 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/17 14:41:27 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_mandelbrot(t_env *e)
 	e->y2 = 1.2;
 	e->img_x = (e->x2 - e->x1) * 350;
 	e->img_y = (e->y2 - e->y1) * 350;
-	e->iter = 50;
+	e->iter = 20;
 }
 
 void	init_julia(t_env *e)

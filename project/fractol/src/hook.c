@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:26:17 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 16:39:23 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/17 14:45:11 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		key(int key, t_env *e)
 {
 	if (key == 53)
 		exit(0);
-	e->iter += (key == 69) ? 1 : 0;
-	e->iter -= (key == 78 && e->iter > 1) ? 1 : 0;
+	e->iter += (key == 69) ? 20 : 0;
+	e->iter -= (key == 78 && e->iter > 20) ? 20 : 0;
 	if (key == 82)
 		e->filter = (e->filter == 0) ? 1 : 0;
 	if (key == 18)

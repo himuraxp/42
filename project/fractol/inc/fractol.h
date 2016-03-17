@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:51:03 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/17 12:32:14 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/17 14:40:29 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct	s_env
 	int			len;
 	int			bit;
 	int			end;
-	int			car_iter;
 	char		*fractol;
 	char		*img_addr;
 	double		x1;
@@ -44,13 +43,18 @@ typedef struct	s_env
 	double		v_i;
 	double		z_r;
 	double		z_i;
-	double		car_x;
-	double		car_y;
-	double		cote;
 	void		*img;
 	void		*mlx;
 	void		*win;
 }				t_env;
+
+typedef struct	s_carpet
+{
+	int			iter;
+	double		x;
+	double		y;
+	double		side;
+}				t_carpet;
 
 int				expose_hook(t_env *e);
 int				motion(int x, int y, t_env *e);
