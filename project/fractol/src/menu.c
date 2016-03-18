@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 11:52:25 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/16 16:37:03 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/18 10:48:57 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ void	ft_draw_menu(t_env *e)
 	mlx_string_put(e->mlx, e->win, 30, 150, 0xFFFFFFFF
 		, "Degrad Color = 1/2");
 	mlx_string_put(e->mlx, e->win, 30, 180, 0xFFFFFFFF
-		, "Active Motion Color = 0)");
+		, "Active Motion Color = 0");
 	mlx_string_put(e->mlx, e->win, 30, 210, 0xFFFFFFFF
-		, "Mandelbrot = num1");
+		, "Active Motion Julia = num.");
 	mlx_string_put(e->mlx, e->win, 30, 240, 0xFFFFFFFF
-		, "Julia = num2");
+		, "Mandelbrot = num1");
 	mlx_string_put(e->mlx, e->win, 30, 270, 0xFFFFFFFF
-		, "Carpet = num3");
+		, "Julia = num2");
 	mlx_string_put(e->mlx, e->win, 30, 300, 0xFFFFFFFF
+		, "Carpet = num3");
+	mlx_string_put(e->mlx, e->win, 30, 330, 0xFFFFFFFF
 		, "Exit = Echap");
 }

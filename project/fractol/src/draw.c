@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:33:34 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/17 12:29:37 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/18 11:14:41 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ void	color(t_env *e, int key)
 
 void	display(t_env *e, int blue, int green, int red)
 {
-	e->img_addr[e->y * e->len + e->x * e->bit / 8] = blue;
-	e->img_addr[e->y * e->len + e->x * e->bit / 8 + 1] = green;
-	e->img_addr[e->y * e->len + e->x * e->bit / 8 + 2] = red;
+	int pos;
+
+	pos = e->y * e->len + e->x * e->oct;
+	e->img_addr[pos] = blue;
+	e->img_addr[pos + 1] = green;
+	e->img_addr[pos + 2] = red;
 }
 
 void	move(t_env *e, int key)
@@ -73,10 +76,13 @@ int		expose_hook(t_env *e)
 void	ft_draw(t_env *e)
 {
 	if (e->img)
-		mlx_destroy_image(e->mlx, e->img);
-	e->img = mlx_new_image(e->mlx, e->img_x, e->img_y);
-	e->img_addr = mlx_get_data_addr(e->img, &e->bit,
-		&e->len, &e->end);
+		mlx_clear_window(e->mlx, e->win);
+	if (!(e->img = mlx_new_image(e->mlx, e->img_x, e->img_y)))
+		exit(0);
+	if (!(e->img_addr = mlx_get_data_addr(e->img, &e->bit,
+		&e->len, &e->end)))
+		exit(0);
+	e->oct = e->bit / 8;
 	if (ft_linecmp(e->fractol, "mandelbrot") == 0)
 		display_mandelbrot(e);
 	if (ft_linecmp(e->fractol, "julia") == 0)

@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/03/17 12:32:58 by ylarbi           ###   ########.fr        #
+#    Updated: 2016/03/18 10:16:19 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCLUDE	=	-Iinc
 LIB		=	-Llibft/ -lft
 LIBFT	=	-Clibft/
 
-MLX		=	-L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
+MLX		=	-L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
 MYMLX	=	-I/minilibx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
@@ -48,9 +48,9 @@ logo:
 		@echo "\033[32m   :#::+::#   +#++:++#:  +#++:++#++: +#+           +#+        +#+    +:+ +#+     \033[0m"
 		@echo "\033[33m  +#+        +#+    +#+ +#+     +#+ +#+           +#+        +#+    +#+ +#+      \033[0m"
 		@echo "\033[33m #+#        #+#    #+# #+#     #+# #+#    #+#    #+#        #+#    #+# #+#       \033[0m"
-		@echo "\033[36m###        ###    ### ###     ###  ########     ###         ########  ########## \033[0m"
+		@echo "\033[36m###        ###    ### ###     ###  ########     ###         ########  ####ylarbi \033[0m"
 		@echo "\n"
-		@printf "%-32sfractol\n"
+		@printf "%-35sfractol\n"
 clean: logo
 		@printf "\033[0;31m%-34s\033[1;30m <<--\t\033[1;31mDelete folder\033[0;0m\n" "$(OBJ)"
 		@rm -rf $(OBJ) 2> /dev/null || echo "" > /dev/null

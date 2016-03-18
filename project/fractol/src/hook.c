@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:26:17 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/17 14:45:11 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/18 10:43:53 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,14 @@ int		key(int key, t_env *e)
 		exit(0);
 	e->iter += (key == 69) ? 20 : 0;
 	e->iter -= (key == 78 && e->iter > 20) ? 20 : 0;
+	if (key == 65)
+		e->bloc = (e->bloc == 0) ? 1 : 0;
 	if (key == 82)
 		e->filter = (e->filter == 0) ? 1 : 0;
 	if (key == 18)
-	{
-		e->b -= (e->b > 4) ? 5 : 0;
-		e->g -= (e->g > 4) ? 5 : 0;
-		e->r -= (e->r > 4) ? 5 : 0;
-	}
+		color_dark(e);
 	if (key == 19)
-	{
-		e->b += (e->b < 254) ? 5 : 0;
-		e->g += (e->g < 254) ? 5 : 0;
-		e->r += (e->r < 254) ? 5 : 0;
-	}
+		color_light(e);
 	color(e, key);
 	move(e, key);
 	if (key >= 83 && key <= 85)
@@ -77,7 +71,7 @@ void	zoom(t_env *e, int x, int y, int key)
 
 int		motion(int x, int y, t_env *e)
 {
-	if ((ft_linecmp(e->fractol, "julia") == 0))
+	if ((ft_linecmp(e->fractol, "julia") == 0) && (e->bloc == 0))
 	{
 		e->v_r = (double)(x - 110) / 1000;
 		e->v_i = (double)(y - 110) / 1000;

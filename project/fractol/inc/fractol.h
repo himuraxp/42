@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 15:51:03 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/17 14:40:29 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/18 10:44:49 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct	s_env
 	int			len;
 	int			bit;
 	int			end;
+	int			oct;
+	int			bloc;
 	char		*fractol;
 	char		*img_addr;
 	double		x1;
@@ -78,5 +80,7 @@ void			display_carpet(t_env *e);
 void			zoom(t_env *e, int x, int y, int key);
 void			move(t_env *e, int key);
 void			color(t_env *e, int key);
+void			color_dark(t_env *e);
+void			color_light(t_env *e);
 
 #endif
