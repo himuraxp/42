@@ -5,7 +5,7 @@ export ZSH=/Users/HimuraXp/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="muse"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -118,18 +118,31 @@ bindkey -s "^[OX" "="
 #bindkey -s "^[OP" ":set paste"
 #bindkey -s "^[OP" ":set nopaste"
 
-# Alias
-# Dossier
+###	--> Alias
+##	Ecole 42
+#	Dossier de projet
 alias libft='cd ~/Documents/my42/project/libft/'
 alias fillit='cd ~/Documents/my42/project/fillit/'
-alias ftls='cd ~/Documents/my42/project/ft_ls/'
+alias ft_ls='cd ~/Documents/my42/project/ft_ls/'
 alias gnl='cd ~/Documents/my42/project/gnl/'
 alias fdf='cd ~/Documents/my42/project/fdf/'
-alias my42='cd ~/Documents/my42/'
+alias ft_sh1='cd ~/Documents/my42/project/ft_sh1/'
+alias fractol='cd ~/Documents/my42/project/fractol/'
+alias ft_select='cd ~/Documents/my42/project/ft_select/'
+#	Dossier diverses
 alias working='cd ~/Documents/my42/working/'
+alias my42='cd ~/Documents/my42/'
 alias check='cd ~/Documents/check/'
 alias tools='cd ~/Documents/tools/'
 alias config='cd ~/Documents/config/'
-# Tools
+#	Tools
 alias norme='~/Documents/tools/Norme-C/./norme'
 alias compil='gcc -Wall -Werror -Wextra'
+#	Fonction 42 dev
+alias ml='myls -al'
+alias mlr='myls -Rl'
+
+##	LuxePc
+alias luxepc='ssh himuraxp@51.254.121.162 -p5050'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
