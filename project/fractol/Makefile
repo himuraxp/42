@@ -6,7 +6,7 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/03/18 10:16:19 by ylarbi           ###   ########.fr        #
+#*   Updated: 2016/03/20 17:56:14 by ylarbi           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCLUDE	=	-Iinc
 LIB		=	-Llibft/ -lft
 LIBFT	=	-Clibft/
 
-MLX		=	-L/usr/lib/ -I/usr/include -lmlx -framework OpenGL -framework AppKit
+MLX		=	-L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 MYMLX	=	-I/minilibx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)

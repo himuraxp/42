@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 18:26:17 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/18 10:43:53 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/22 14:05:57 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	fractol_next(t_env *e, int keycode)
 
 int		key(int key, t_env *e)
 {
+	ft_putnbr(key);
+	ft_putchar('\n');
 	if (key == 53)
 		exit(0);
-	e->iter += (key == 69) ? 20 : 0;
-	e->iter -= (key == 78 && e->iter > 20) ? 20 : 0;
-	if (key == 65)
+	e->iter += (key == 69 || key == 12) ? 20 : 0;
+	e->iter -= ((key == 78 || key == 13)&& e->iter > 20) ? 20 : 0;
+	if (key == 65 || key == 14)
 		e->bloc = (e->bloc == 0) ? 1 : 0;
 	if (key == 82)
 		e->filter = (e->filter == 0) ? 1 : 0;
