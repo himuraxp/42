@@ -6,7 +6,7 @@
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 12:14:49 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/23 19:18:36 by ylarbi           ###   ########.fr       */
+/*   Updated: 2016/03/24 13:02:28 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,35 @@ static int     clean_screen(void)
 		return (-1);
 	else
 	{
-		result = xtgetstr("cm", &area);
-		tputs(tgoto(result, pos_x, pos_y), 1, tputs_putchar);
+		tputs(result, 0, tputs_putchar);
 	}
 	return (0);
 }
 
-static int     voir_touche(void)
+static int     show_key(void)
 {
-	char	buffer[3];
+	char	buf[3];
+	int		len;
 
+	len = 0;
 	while (1)
 	{
-		read(0, buffer, 3);
-		if (buffer[0] == 27)
-		printf("C'est une fleche !\n");
-		else if (buffer[0] == 4)
+		read(0, buf, 3);
+		printf("%d %d %d\n", buf[0], buf[1], buf[2]);
+		if (buf[0] == 27 && buf[1] == 91 && buf[2] == 68)
+			message("-> fleche gauche");
+		else if (buf[0] == 27 && buf[1] == 91 && buf[2] == 67)
+			message("-> fleche droite");
+		else if (buf[0] == 27 && buf[1] == 91 && buf[2] == 65)
+			message("-> fleche haut");
+		else if (buf[0] == 27 && buf[1] == 91 && buf[2] == 66)
+			message("-> fleche bas");
+		else if (buf[0] == 4)
 		{
 			printf("Ctlr+d, on quitte !\n");
 			return (0);
 		}
-		else if (buffer[0] == 2)
+		else if (buf[0] == 2)
 		{
 			clean_screen();
 		}
@@ -67,7 +75,6 @@ static int     voir_touche(void)
 int main(int ac, char **av, char **env)
 {
 	char			*name_term;
-
 	struct termios	term;
 
 	(void)ac;
@@ -87,6 +94,6 @@ int main(int ac, char **av, char **env)
 	// On applique les changements :
 	if (tcsetattr(0, TCSADRAIN, &term) == -1)
 		return (-1);
-	voir_touche();
+	show_key();
 		return (0);
 }

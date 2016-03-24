@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/23 18:53:48 by ylarbi            #+#    #+#             */
-/*   Updated: 2016/03/24 12:39:47 by ylarbi           ###   ########.fr       */
+/*   Created: 2016/03/24 12:11:58 by ylarbi            #+#    #+#             */
+/*   Updated: 2016/03/24 14:18:40 by ylarbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define  FT_SELECT_H
+#include "ft_select.h"
 
-# include <stdio.h>
-# include <curses.h>
-# include <termios.h>
-# include <unistd.h>
-# include <term.h>
-# include "libft.h"
+void	message(char *str)
+{
+	int		i;
+	int		len;
+	char	*buf;
 
-int		tputs_putchar(int c);
-void	message(char *str);
-
-#endif
+	i = 0;
+	buf = NULL;
+	len = ft_strlen(str);
+	if (str[i] == '-' && str[i + 1] == '>')
+	{
+		buf = ft_strnew(len);
+		ft_strcat(buf, "\033[30;1m->\033[35m");
+		i = 2;
+		ft_strcat(buf, &str[i]);
+		len += 12;
+		buf[len + 1] = '\0';
+		ft_putendl(buf);
+		ft_putstr("\033[0m");
+	}
+	free(buf);
+}

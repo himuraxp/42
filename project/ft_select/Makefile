@@ -6,12 +6,12 @@
 #    By: ylarbi <ylarbi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 14:26:00 by ylarbi            #+#    #+#              #
-#    Updated: 2016/03/23 18:57:56 by ylarbi           ###   ########.fr        #
+#    Updated: 2016/03/24 12:46:00 by ylarbi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft/libft.a
-SRCNAME	= 	main.c tools.c
+SRCNAME	= 	main.c tools.c ft_error.c
 SRCPATH =	src/
 SRC		=	$(addprefix $(SRCPATH)/,$(SRCNAME))
 OBJ		=	obj/
