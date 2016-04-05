@@ -1,10 +1,9 @@
 <?php
-	function ft_split($input)
-	{
-		$input = preg_replace('/\s+/', ' ', $input);
-		$input = trim($input);
-		$tab = explode(' ', $input);
-		sort($tab, SORT_STRING);
-		return ($tab);
-	}
+function ft_split($str)
+{
+	$tab = explode(' ', $str);
+	$tab = array_filter($tab, 'strlen');
+	sort($tab);
+	return $tab;
+}
 ?>

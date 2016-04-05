@@ -1,22 +1,23 @@
 #!/usr/bin/php
 <?php
-		while (1)
-		{
-			echo "Entrez un nombre: ";
-			$fd = fopen("php://stdin", 'r');
-			$buffer = fgets($fd);
-			$buffer = substr($buffer, 0, -1);
-			if ($buffer == NULL)
-				break ;
-			if (is_numeric($buffer))
-			{
-				if ($buffer % 2 == 0)
-					echo "Le chiffre $buffer est Pair\n";
-				else
-					echo "Le chiffre $buffer est Impair\n";
-			}
-			else
-				echo "'$buffer' n'est pas un chiffre\n";
-		}
-		fclose($fd);
+while (42)
+{
+	echo "Entrez un nombre: ";
+	$fd = fopen("php://stdin", 'r');
+	$buf = fgets($fd);
+	$buf = substr($buf, 0, -1);
+
+	if ($buf == NULL)
+		break;
+	if (is_numeric($buf))
+	{
+		if ($buf % 2 == 0)
+			echo "Le chiffre ".$buf." est Pair"."\n";
+		else
+			echo "Le chiffre ".$buf." est Impair"."\n";
+	}
+	else
+		echo "'$buf' n'est pas un chiffre\n";
+}
+fclose($fd);
 ?>
