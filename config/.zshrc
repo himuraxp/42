@@ -129,20 +129,23 @@ alias fdf='cd ~/Documents/my42/project/fdf/'
 alias ft_sh1='cd ~/Documents/my42/project/ft_sh1/'
 alias fractol='cd ~/Documents/my42/project/fractol/'
 alias ft_select='cd ~/Documents/my42/project/ft_select/'
+alias piscine_php='cd ~/Documents/my42/piscine_php/'
 #	Dossier diverses
 alias working='cd ~/Documents/my42/working/'
 alias my42='cd ~/Documents/my42/'
 alias check='cd ~/Documents/check/'
 alias tools='cd ~/Documents/tools/'
-alias config='cd ~/Documents/config/'
+alias config='cd ~/Documents/my42/config/'
 #	Tools
 alias norme='~/Documents/tools/Norme-C/./norme'
 alias compil='gcc -Wall -Werror -Wextra'
+alias cpconfig='cp ~/.zshrc ~/.vimrc ~/Documents/my42/config/ && source .zshrc'
 #	Fonction 42 dev
 alias ml='myls -al'
 alias mlr='myls -Rl'
 
 ##	LuxePc
 alias luxepc='ssh himuraxp@51.254.121.162 -p5050'
+
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

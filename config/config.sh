@@ -1,2 +1,2 @@
 #/bin/sh
-mv zshrc .zshrc && mv vimrc .vimrc && cp .*rc ~/
+cp .*rc ~/ && source ~/.zshrc

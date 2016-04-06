@@ -45,13 +45,28 @@ let g:airline_theme='badwolf'
 set laststatus=2
 
 " autopair configuration
+"" C
 inoremap ( ()<left>
 inoremap { {}<left>
 inoremap < <><left>
 inoremap [ []<left>
-"inoremap " ""<left>
-"inoremap ' ''<left>
 inoremap ;	<End>;
+"" HTML
+inoremap <ht <html><CR><CR></html><Up><Tab>
+inoremap <he <head><CR><CR></head><Up><Tab><Tab>
+inoremap <bo <body><CR><CR></body><Up><Tab><Tab>
+inoremap <ti <title></title><left><left><left><left><left><left><left><left>
+inoremap <im <img id="" src=""><left><left>
+inoremap <h1 <h1></h1><left><left><left><left><left>
+inoremap <h2 <h2></h2><left><left><left><left><left>
+inoremap <h3 <h3></h4><left><left><left><left><left>
+inoremap <di <div id="" class=""><CR><CR></div><Up><Tab><Tab><Tab>
+
+inoremap <p <p></p><left><left><left><left>
+inoremap <hr <a href=""></a><left><left><left><left><left><left>
+"" PHP
+inoremap <? <?php<CR><CR>?><Up><Tab>
+
 
 " auto condition configuration
 ""inoremap while while <CR>{<CR>}<left><CR><Up><Tab><Up><Up><End>()<Left>
