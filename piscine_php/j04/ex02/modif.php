@@ -7,31 +7,28 @@ if ($_POST['submit'] === "OK")
 		$oldpw = hash("whirlpool", $_POST['oldpw']);
 		$newpw = hash("whirlpool", $_POST['newpw']);
 		$login = $_POST['login'];
-		if (file_exists($path) == true)
+		$pw_list = file_get_contents($path);
+		$array = unserialize($pw_list);
+		$i = -1;
+		foreach ($array as $value)
 		{
-			$i = -1;
-			$pw_list = file_get_contents($path);
-			$pw_list = unserialize($pw_list);
-			foreach ($pw_list as $key => $value)
+			$i++;
+			if ($value[0] === $login)
 			{
-				$i++;
-				if ($login === $key)
+				if ($oldpw !== $value[1] || $oldpw === $newpw)
+					exit("ERROR (En plus le mot de passe est incorrect !!!)\n");
+				else
 				{
-					if ($oldpw !== $value)
-						echo "ERROR (En plus le mot de passe est incorrect !!!)\n";
-					else
-					{
-						$pw_list[$login] = $newpw;
-						$pw_list = serialize($pw_list);
-						file_put_contents($path, $pw_list);
-						echo "OK\n";
-					}
+					$array[$i][1] = $newpw;
+					$pw_list = serialize($array);
+					file_put_contents($path, $pw_list);
+					echo "OK\n";
 				}
 			}
 		}
 	}
 	else
-		echo "ERROR (Vérifier que l'ensemble des données sont renseignées)\n";
+	echo "ERROR (Vérifier que l'ensemble des données sont renseignées)\n";
 }
 else
 echo "ERROR\n";

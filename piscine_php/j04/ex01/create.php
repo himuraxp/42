@@ -10,31 +10,22 @@ if ($_POST['submit'] === "OK")
 		{
 			$pw_list = file_get_contents($path);
 			$pw_list = unserialize($pw_list);
-			foreach ($pw_list as $key => $value)
+			foreach ($pw_list as $value)
 			{
-				if ($login === $key)
+				if ($login === $value[0])
 				{
-					echo "ERROR (Ce login est deja enregisté !)\n";
-					if ($passwd !== $value)
-						echo "ERROR (En plus le mot de passe est incorrect !!!)\n";
-				}
-				else
-				{
-					$auth = array($_POST['login'] => $passwd);
-					$serial = serialize($auth);
-					file_put_contents("$path", $serial, FILE_APPEND | LOCK_EX);
-					echo "OK\n";
+					exit("ERROR (Ce login est deja enregisté !)\n");
+					if ($passwd !== $value['passwd'])
+						exit("ERROR (En plus le mot de passe est incorrect !!!)\n");
 				}
 			}
 		}
 		else
-		{
 			mkdir("../private/");
-			$auth = array($_POST['login'] => $passwd);
-			$serial = serialize($auth);
-			file_put_contents("$path", $serial, FILE_APPEND | LOCK_EX);
-			echo "OK\n";
-		}
+ 		$pw_list[] = array($_POST['login'], $passwd);
+		$serial = serialize($pw_list);
+		file_put_contents("$path", $serial);
+		echo "OK\n";
 	}
 	else
 		echo "ERROR (Vérifier que l'ensemble des données sont renseignées)\n";
