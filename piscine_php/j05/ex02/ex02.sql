@@ -145,10 +145,10 @@ DROP TABLE IF EXISTS `ft_table`;
 CREATE TABLE `ft_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(8) NOT NULL DEFAULT 'toto',
-  `groupe` enum('staff','groupe','other') NOT NULL,
+  `groupe` enum('staff','student','other') NOT NULL,
   `date_de_creation` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,6 +157,7 @@ CREATE TABLE `ft_table` (
 
 LOCK TABLES `ft_table` WRITE;
 /*!40000 ALTER TABLE `ft_table` DISABLE KEYS */;
+INSERT INTO `ft_table` VALUES (1,'loki','staff','2013-05-01'),(2,'scadoux','student','2014-01-01'),(3,'chap','staff','2011-04-27'),(4,'bambou','staff','2014-03-01'),(5,'fantomet','staff','2010-04-03');
 /*!40000 ALTER TABLE `ft_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-11 14:55:32
+-- Dump completed on 2016-04-11 15:03:53
