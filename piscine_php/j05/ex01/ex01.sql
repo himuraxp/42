@@ -145,7 +145,7 @@ DROP TABLE IF EXISTS `ft_table`;
 CREATE TABLE `ft_table` (
   `id` int(11) NOT NULL,
   `login` varchar(8) NOT NULL,
-  `groupe` varchar(7) NOT NULL,
+  `groupe` enum('staff','student','other') NOT NULL,
   `date_de_creation` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -381,4 +381,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-11 13:42:30
+-- Dump completed on 2016-04-11 13:52:42
