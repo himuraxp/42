@@ -1,13 +1,14 @@
 <?php
 session_start();
 $msgs = [];
-if ($_SESSION['loggued_on_user'] && $_SESSION['loggued_on_user'] !== "")
+if ($_SESSION['loggued_on_user'] && $_SESSION['loggued_on_user'] != "")
 {
 ?>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html">
 		<meta charset="UTF-8">
+		<script langage="javascript">top.frames['chat'].location = 'chat.php';</script>
 		<style>
 			body {background: grey;}
 			.form-signin {
@@ -85,15 +86,10 @@ if ($_SESSION['loggued_on_user'] && $_SESSION['loggued_on_user'] !== "")
 		</style>
 	</head>
 	<body>
-		<script langage="javascript">top.frames['chat'].location = 'chat.php';</script>
-		<div class="form-signin">
-			<h1>42 Chat</h1>
-			<form method="POST" action="speak.php">
+			<form method="post" action="login.php">
 				<p><i>Message</i><input type="text" name="msg" value="" />
-				<p><input class="button" type="submit" name="submit" value="ENVOYER"></p>
+				<input class="button" type="submit" name="submit" value="ENVOYER"></p>
 			</form>
-			<a href="logout.php" class="button">Déconnection</a>
-		</div>
 	</body>
 </html>
 
@@ -112,6 +108,7 @@ if ($_SESSION['loggued_on_user'] && $_SESSION['loggued_on_user'] !== "")
       }
       $msg = array('login' => $_SESSION['loggued_on_user'], 'time' => time(), 'msg' => $_POST['msg']);
       $msgs[] = $msg;
+	  print_r($msgs);
       file_put_contents('../private/chat', serialize($msgs));
       if (isset($fd))
       {

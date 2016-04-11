@@ -1,0 +1,60 @@
+#menu {
+  position: absolute;
+	margin: auto;
+	margin-top: -0.8vw;
+}
+#menu a {
+	display:block;
+	color: #fff;
+	font-size: 1vw;
+	text-decoration:none;
+	text-align: center;
+	
+}
+#menu select {
+margin-left: 1vw;
+	width: 70%;
+	font-size: 1vw;
+}
+#menu > li,
+#menu > li li {
+	position: relative;
+	display:inline-block;
+	width: 15vw;
+	padding-top:1vw;
+	padding-bottom: 1vw;
+	border-top-left-radius: 2vw;
+	border-bottom-right-radius: 2vw;
+	box-shadow: 1px 1px 2px #333;
+	background: rgba(157,213,58,1) ;
+	background: -moz-linear-gradient(-45deg, rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
+	background: -webkit-linear-gradient(-45deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+	background: linear-gradient(135deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+}
+#menu > li li { background: transparent none; }
+#menu > li li a { color: #444; }
+#menu > li li:hover { background:#eee; }
+}
+#menu > li:first-child {
+	border-right: 0;
+	border-left: 1px solid #aaa;
+	border-radius: 0 8px 8px 0 ;
+}
+#menu ul {
+	position: absolute;
+	top: 3.8vw;
+	width: 13vw;
+	left: 0;
+	max-height:0em;
+	box-shadow: 1px 1px 2px #333;
+	margin: 0; padding: 0;
+	background-color: #ddd;
+	background-image: linear-gradient(#fff,#ddd);
+	overflow: hidden;
+	transition: 1s max-height 0.3s;
+	border-bottom-left-radius: 2vw;
+	border-bottom-right-radius: 2vw;
+}
+#menu > li:hover ul {
+	max-height: 13em;
+}

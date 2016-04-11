@@ -18,6 +18,7 @@ if ($_SESSION['submit'] === "OK")
 			foreach ($listpw as $value)
 			{
 				if ($login === $value[0])
+				{
 					exit("ERROR\n");
 					if ($passwd !== $value['passwd'])
 						exit("ERROR\n");
@@ -25,7 +26,7 @@ if ($_SESSION['submit'] === "OK")
 			}
 		}
 		else
-		mkdir("../private/");
+			mkdir("../private/");
  		$listpw[] = array($_POST['login'], $passwd);
 		$serial = serialize($listpw);
 		file_put_contents("$path", $serial);
