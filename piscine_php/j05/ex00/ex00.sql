@@ -1,2 +1,2 @@
-
-CREATE DATABASE IF NOT EXISTS `db_ylarbi`;
+Terminal close -- exit!
+EXISTS `db_ylarbi`;

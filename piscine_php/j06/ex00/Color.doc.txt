@@ -1,0 +1,29 @@
+/********************* Class Color *********************/
+
+Hexa:
+exemple: new Color( array( 'rgb' => 12345 ));
+
+RGB:
+exemple: new Color( array( 'red' => 255, 'green' => 255, 'blue' => 255 ));
+
+/******************** Methode Color ********************/
+
+Add color:
+exemple: add( $instance );
+méthode add permettant d’additionner les composantes
+de l’instance courante aux composantes d’une instance passée en paramètre. La
+couleur résultat est une nouvelle instance
+
+Sub color:
+exemple: sub( $instance );
+méthode sub permettant de soustraire les composantes
+d’une instance passée en paramètre aux composantes de l’instance courante. La
+couleur résultat est une nouvelle instance.
+
+Mult color:  
+exemple: mult( $f );
+méthode mult permettant de multiplier les composantes
+de l’instance courante par un facteur passé en paramètre. La couleur résultat
+est une nouvelle instance.
+
+/************************ Color ************************/
