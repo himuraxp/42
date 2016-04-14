@@ -3,8 +3,14 @@
 	<head>
 		<title>Veuillez souffler dans le ballon</title>
 		<script>
-			var round = document.getElementById('round');
-			round.getAttribute('class');
+		var round = (function () {
+					var num = 200;
+					var elem = document.getElementsByClassName('round');
+					return function () {
+						num += 10;
+						elem.style.width = num + 'px';
+					}
+				})();
 		</script>
 		<style>
 			.round {
@@ -17,6 +23,6 @@
 		</style>
 	</head>
 	<body>
-		<div id="round" class="round"></div>
+		<div onclick="round(); return false;" id="round" class="round"></div>
 	</body>
 </html>
