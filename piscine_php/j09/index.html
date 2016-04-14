@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Javascript</title>
+		<script src="http://code.jquery.com/jquery-1.9.0rc1.js"></script>
+	</head>
+	<body>
+		<span id="my_span">Try me!</span>
+		<script>
+			$(document).ready(function() {
+				$('#my_span').click(function() {
+					$.get('test.php?test=ok', function(data, status) {
+						alert("Data: " + data + "\nStatus: " + status);
+					})
+				});
+			});
+		</script>
+	</body>
+</html>
