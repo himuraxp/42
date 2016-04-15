@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calculette</title>
+		<meta charset="utf-8">
+		<style>
+			.container { text-align: center;}
+			.calc { font-size: 20px; }
+		</style>
+		<script>
+			setInterval("alert('Please, use me...')", 30000);
+			var result = 0;
+			function action() {
+				var left = document.getElementById('left').value;
+				var right = document.getElementById('right').value;
+				if (left == "" || right == "") { alert('Error :('); return; }
+				var left = Number(document.getElementById('left').value);
+				if (left < 0 || isNaN(left)) { alert('Error :('); return; }
+
+				var right = Number(document.getElementById('right').value);
+				if (right < 0 || isNaN(right)) { alert('Error :('); return; }
+
+				var op = document.getElementById('op').value;
+				if ((op == "%" || op == "/") && right == 0) { console.log('It’s over 9000!'); alert('It’s over 9000!'); return; }
+
+				if (op == "+")
+					result = left + right;
+				else if (op == "-")
+					result = left - right;
+				else if (op == "*")
+					result = left * right;
+				else if (op == "/")
+					result = left / right;
+				else if (op == "%")
+					result = left % right;
+				console.log(result);
+				alert(result);
+			}
+			function time() {
+				alert('It’s over 9000!');
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<input type="text" id="left" class="calc" value="0"></input>
+			<select type="text" id="op">
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+				<option value="%">%</option>
+			</select>
+			<input type="text" id="right" class="calc" value="0"></input>
+			<input type="submit" value="Try me!" id="button" onclick="action()"></input>
+		</div>
+	</body>
+</html>

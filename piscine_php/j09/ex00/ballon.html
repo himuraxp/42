@@ -2,18 +2,8 @@
 <html>
 	<head>
 		<title>Veuillez souffler dans le ballon</title>
-		<script>
-		var round = (function () {
-					var num = 200;
-					var elem = document.getElementsByClassName('round');
-					return function () {
-						num += 10;
-						elem.style.width = num + 'px';
-					}
-				})();
-		</script>
 		<style>
-			.round {
+			#round {
 				margin: auto;
 				background: red;
 				border-radius: 50%;
@@ -21,8 +11,47 @@
 				height: 200px;
 			}
 		</style>
+		<script>
+			var num = 200;
+			var color = Array('red', 'green', 'blue');
+			var i = 1;
+			function action()
+			{
+				if (num <= 410)
+				{
+					var round = document.getElementById('round');
+					num += 10;
+					round.style.width = num + 'px';
+					round.style.height = num + 'px';
+					round.style.background = color[i];
+					if (i <= 1)
+						i += 1;
+					else
+						i = 0;
+				}
+				else {
+					num = 190;
+				}
+			}
+			function down()
+			{
+				if (num > 200)
+				{
+					var round = document.getElementById('round');
+					num -= 5;
+					round.style.width = num + 'px';
+					round.style.height = num + 'px';
+					round.style.background = color[i];
+					if (i > 0)
+						i -= 1;
+					else
+						i = 2;
+				}
+
+			}
+		</script>
 	</head>
 	<body>
-		<div onclick="round(); return false;" id="round" class="round"></div>
+		<div onclick="action()" onmouseout="down()" id="round"></div>
 	</body>
 </html>
