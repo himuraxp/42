@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Veuillez souffler dans le ballon</title>
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<style>
+			#round {
+				margin: auto;
+				background: red;
+				border-radius: 50%;
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+		<script>
+		$(document).ready(function(){
+			var color = Array('red', 'green', 'blue');
+			var i = 1;
+			$('#round').click(function(){
+				var hauteur = $(this).height() + 10;
+				var largeur = $(this).width() + 10;
+				if (hauteur > 420)
+				{
+					hauteur = 200;
+					largeur = 200;
+				}
+				$(this).css('height',hauteur);
+				$(this).css('width',largeur);
+				i++;
+				if (i == 3)
+					i = 0;
+				$(this).css('background-color',color[i]);
+			});
+			$('#round').mouseout(function(){
+				var hauteur = $(this).height() - 5;
+				var largeur = $(this).width() - 5;
+				if (hauteur < 200)
+				{
+					hauteur = 200;
+					largeur = 200;
+				}
+				$(this).css('height',hauteur);
+				$(this).css('width',largeur);
+				if (hauteur > 200)
+				{
+					i--;
+					if ($(this).css('backgroundColor') == 'rgb(255, 0, 0)')
+						i--;
+					if (i < 0)
+						i = 3 + i;
+					$(this).css('background-color',color[i]);
+				}
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<div id="round"></div>
+	</body>
+</html>

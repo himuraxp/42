@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>todo</title>
+		<meta charset="utf-8">
+		<style>
+			body { background: #333;}
+			.container {
+				margin: auto;
+				margin-top: 50px;
+				display: block;
+				text-align: center;
+				width: 300px;
+			}
+			.create_note {
+				position: fixed;
+				display: block;
+				width: 300px;
+				top: 10px;
+				font-size: 20px;
+				background: rgb(157,213,58);
+				background: -moz-linear-gradient(-45deg, rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
+				background: -webkit-linear-gradient(-45deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+				background: linear-gradient(135deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+				border-radius: 3px;
+				border-color: rgb(157,213,58);
+				color: white;
+				margin-bottom: 10px;
+				box-shadow: 1px 1px 3px grey;
+			}
+			.note {
+				background: rgb(226,226,226);
+				background: -moz-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+				background: -webkit-linear-gradient(-45deg, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);
+				background: linear-gradient(135deg, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);
+				font-size: 18px;
+				padding: 5px;
+				border-radius: 3px;
+				border: 1px;
+				border-color: rgb(235,233,249);
+				box-shadow: 1px 1px 3px grey;
+				margin-bottom: 5px;
+			}
+		</style>
+		<script type="text/javascript" src="todo.js"></script>
+	</head>
+	<body onload='init()'>
+		<div id="ft_list" class="container">
+			<input type="button" class="create_note" onclick="new_str()" value="Ajouter une note" submit="ok">
+		</div>
+	</body>
+</html>

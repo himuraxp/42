@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CaLc</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	</head>
+	<style>
+		.container {
+			margin-left:auto;
+			margin-right:auto;
+			padding: 20px;
+			width: 304px;
+			border-radius: 3px;
+			border-color: rgb(157,213,58);
+			background: rgb(226,226,226);
+			background: -moz-linear-gradient(-45deg, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+			background: -webkit-linear-gradient(-45deg, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);
+			background: linear-gradient(135deg, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);
+			box-shadow: 1px 1px 3px grey;
+		}
+		.button {
+			margin-top: 20px;
+			width: 300px;
+			top: 10px;
+			font-size: 20px;
+			background: rgb(157,213,58);
+			background: -moz-linear-gradient(-45deg, rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
+			background: -webkit-linear-gradient(-45deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+			background: linear-gradient(135deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+			border-radius: 3px;
+			border-color: rgb(157,213,58);
+			color: white;
+			box-shadow: 1px 1px 3px grey;
+		}
+		.title {
+			width: 100%;
+			height: 60px;
+			margin-bottom: 20px;
+			border-radius: 3px;
+			background: rgb(157,213,58);
+			background: -moz-linear-gradient(-45deg, rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
+			background: -webkit-linear-gradient(-45deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+			background: linear-gradient(135deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+			box-shadow: 1px 1px 3px grey;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<div class="title"></div>
+			<input type="text" value="" id="left" placeholder="Entrez un chiffre">
+			<select id="operator">
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+				<option value="%">%</option>
+			</select>
+			<input type="text" value="" id="right" placeholder="Entrez un chiffre">
+			<input class="button" type="submit" id="submit" value="Try me!">
+		</div>
+		<script>
+			$('#submit').click(function(){
+				var left = $('#left').val();
+				var right = $('#right').val();
+				var operator = $('#operator').val();
+				if (left == "" || right == "") { alert('Error :('); return; }
+				if (left < 0 || isNaN(left)) { alert('Error :('); return; }
+				if (right < 0 || isNaN(right)) { alert('Error :('); return; }
+				if (right == 0 && (operator == '/' || operator == '%'))
+				{
+					alert('It\'s over 9000!');
+					console.log('It\'s over 9000!');
+					return;
+				}
+				if (operator == '+')
+					var result = parseInt(right) + parseInt(left);
+				else if (operator == '-')
+					var result = left - right;
+				else if (operator == '*')
+					var result = right * left;
+				else if (operator == '/')
+					var result = right / left;
+				else if (operator == '%')
+					var result = right % left;
+				else
+				{
+					alert('Tu as modifier mes opérateurs ??');
+					return;
+				}
+					alert(result);
+				console.log(result);
+			});
+			function use()
+			{
+				alert('Please,use me...');
+				setTimeout(use,30000);
+			}
+			setTimeout(function(){use()}, 30000);
+		</script>
+	</body>
+</html>

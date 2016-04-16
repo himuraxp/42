@@ -23,6 +23,7 @@ function add_one(str)
 
 function del_str(id)
 {
+
 	var ft_list = document.getElementById('ft_list')
 	var del = document.getElementById(id);
 
