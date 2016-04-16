@@ -4,6 +4,7 @@
 		<title>todo</title>
 		<meta charset="utf-8">
 		<style>
+			body { background: #333;}
 			.container {
 				margin: auto;
 				margin-top: 50px;
@@ -43,9 +44,9 @@
 		</style>
 		<script type="text/javascript" src="todo.js"></script>
 	</head>
-	<body>
+	<body onload='init()'>
 		<div id="ft_list" class="container">
-			<input type="button" class="create_note" onclick="ft_list()" value="Ajouter une note" submit="ok">
+			<input type="button" class="create_note" onclick="new_str()" value="Ajouter une note" submit="ok">
 		</div>
 	</body>
 </html>
