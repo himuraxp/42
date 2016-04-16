@@ -4,10 +4,10 @@ function new_str()
 	var ft_list = document.getElementById('ft_list')
 	var str = prompt('What\'s the new To do ?');
 	if (str !== "" && str != null)
-		add_one(str);
+		add_note(str);
 }
 
-function add_one(str)
+function add_note(str)
 {
 	var div = document.createElement('div');
 	var text = document.createTextNode(str);
@@ -65,7 +65,7 @@ function init()
 		{
 			var text = all[x].split('=')[1];
 
-			add_one(text);
+			add_note(text);
 		}
 	}
 }
