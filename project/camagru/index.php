@@ -9,7 +9,7 @@ header('content-type: text/html');
 		<link rel="stylesheet" href="css/body.css">
 		<link rel="stylesheet" href="css/footer.css">
 		<link rel="stylesheet" href="css/keyframes.css">
-		<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script type="text/javascript" src="js/javascript.js" media="javascript"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -37,7 +37,9 @@ header('content-type: text/html');
 			<div id="box" class="box">
 				<h1 id="title" class="title">Shoot me</h1>
 				<div id="box-cam" class="box-cam">
+					<img src="/img/ab.jpg" />
 				</div>
+				<div class="save"></div>
 			</div>
 			<div id="galerie" class="galerie">
 				<div id="picture" class="picture">
