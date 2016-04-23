@@ -1,0 +1,44 @@
+/* Body left Camera */
+.box {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 2vw;
+	padding: 10px 0 10px 0;
+	background: #ccc;
+	width: 60vw;
+	box-shadow: 5px 3px 5px #222;
+	border-radius: 5px;
+}
+.title {
+	margin: 0;
+	font-size: 3em;
+}
+.box-cam {
+	background: #333;
+	width: 70%;
+
+}
+
+/* Body right slide */
+.galerie {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-top: 2vw;
+	padding: 10px 0 10px 0;
+	background: #ccc;
+	width: 30vw;
+	height: 40vw;
+	overflow-y: auto;
+	box-shadow: 5px 3px 5px #222;
+	border-radius: 5px;
+}
+.picture {
+	display: block;
+	background-color: #333;
+	margin-bottom: 10px;
+	width: 13vw;
+	height: 8vw;
+	box-shadow: 2px 1px 5px #222;
+	border-radius: 5px;
+}

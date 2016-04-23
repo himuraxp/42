@@ -1,0 +1,58 @@
+/* Navigation menu */
+.nav {
+	display: flex;
+	justify-content: space-between;
+	width: auto;
+	background-color: #ccc;
+	min-height: 5vw;
+	box-shadow: 0 3px 5px #222;
+}
+.nav-bloc {
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	width: 10em;
+}
+.nav-bloc:hover {
+	animation-name: menu_off;
+	animation-duration: 1s;
+}
+.link:hover {
+	animation-name: text_on;
+	animation-duration: 1s;
+}
+
+/* Left */
+.nav-left {
+	display: inline-block;
+	margin: 0;
+	width: 63%;
+}
+
+/* Right */
+.nav-right {
+	display: inline-block;
+	background: #333;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	width: 38%;
+}
+.nav-right .nav-bloc:hover {
+	text-align: center;
+	width: 100%;
+	animation-name: menu_on;
+	animation-duration: 1s;
+}
+.right {
+	display: block;
+	width: 100%;
+}
+.link-right {
+	display: block;
+	color: #eee;
+}
+.link-right:hover {
+	animation-name: text_off;
+	animation-duration: 1s;
+}

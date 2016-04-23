@@ -1,0 +1,23 @@
+@keyframes menu_on {
+	0% { background: #333; }
+	50% { background: #ccc; }
+	100% { background: #333; }
+}
+
+@keyframes menu_off {
+	0% { background: #ccc; }
+	50% { background: #333; }
+	100% { background: #ccc; }
+}
+
+@keyframes text_on {
+	0% { color: #333; }
+	50% { color: #ccc; }
+	100% { color: #333; }
+}
+
+@keyframes text_off {
+	0% { color: #ccc; }
+	50% { color: #333; }
+	100% { color: #ccc; }
+}
