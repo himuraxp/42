@@ -129,6 +129,7 @@ alias fdf='cd ~/Documents/my42/project/fdf/'
 alias ft_sh1='cd ~/Documents/my42/project/ft_sh1/'
 alias fractol='cd ~/Documents/my42/project/fractol/'
 alias ft_select='cd ~/Documents/my42/project/ft_select/'
+alias camagru='cd ~/Documents/my42/project/camagru/'
 alias piscine_php='cd ~/Documents/my42/piscine_php/'
 #	Dossier diverses
 alias working='cd ~/Documents/my42/working/'

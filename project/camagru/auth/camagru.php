@@ -12,14 +12,14 @@ if ($_POST['login'] && $_POST['passwd'])
 <html>
 	<head>
 		<title>*******CAMAGRU*******</title>
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/header.css">
-		<link rel="stylesheet" href="css/body.css">
-		<link rel="stylesheet" href="css/footer.css">
-		<link rel="stylesheet" href="css/keyframes.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/header.css">
+		<link rel="stylesheet" href="../css/body.css">
+		<link rel="stylesheet" href="../css/footer.css">
+		<link rel="stylesheet" href="../css/keyframes.css">
 		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script type="text/javascript" src="js/javascript.js" media="javascript"></script>
+		<script type="text/javascript" src="../js/javascript.js" media="javascript"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -32,7 +32,7 @@ if ($_POST['login'] && $_POST['passwd'])
 					<p><b><a href="/" class="link" alt="Galerie">Galerie</a></b></p>
 				</li>
 				<li class="nav-bloc button">
-					<p><b><a href="modif.html" class="link-right" alt="Mon compte">Mon compte</a></b></p>
+					<p><b><a href="/auth/modif.html" class="link-right" alt="Mon compte">Mon compte</a></b></p>
 				</li>
 				<li class="nav-bloc button" id="out" >
 					<p><a id="logout" href="/" class="link fa fa-sign-out" aria-hidden="true" alt="logout"></a></p>

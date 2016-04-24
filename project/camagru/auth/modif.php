@@ -1,61 +1,40 @@
 <?php
-	session_start();
-	
-	function ft_split($str, $av)
+header('Location: ../index.html');
+$_SESSION['login'] = $_POST['login'];
+$_SESSION['newpw'] = $_POST['newpw'];
+$_SESSION['oldpw'] = $_POST['oldpw'];
+$_SESSION['submit'] = $_POST['submit'];
+$path = "../private/passwd";
+if ($_SESSION['submit'] === "OK")
+{
+	if (($_SESSION['login'] != NULL) && ($_SESSION['newpw'] != NULL) && ($_SESSION['oldpw'] != NULL))
 	{
-		$ary = explode($av, $str);
-		$output = array();
-		$i = 0;
-		$j = 0;
-		while (isset($ary[$i]))
+		$oldpw = hash("whirlpool", $_SESSION['oldpw']);
+		$newpw = hash("whirlpool", $_SESSION['newpw']);
+		$login = $_SESSION['login'];
+		$listpw = file_get_contents($path);
+		$db = unserialize($listpw);
+		$i = -1;
+		foreach ($db as $value)
 		{
-			if ($ary[$i] != "")
-			{
-				$output[$j] = $ary[$i];
-				$j++;
-			}
 			$i++;
-		}
-		sort($output);
-		return $output;
-	}
-	
-	$i = 0;
-	foreach($_POST as $key => $value)
-	{
-		if (($key == "login" && $value != "") || ($key == "oldpw" && $value != "") || ($key == "newpw" && $value != ""))
-			$i++;
-	}
-	$account_list = array();
-	$is_set = false;
-	if (file_exists("../data") == false)
-	{
-		mkdir("../data", 0777, true);
-	}
-	$file = file_get_contents("../data/user");
-	if ($file != "")
-	{
-		$account_list = unserialize($file);
-		$key_tmp = 0;
-		foreach($account_list as $key => $value)
-		{
-			$key_tmp = $key;
-			$tmp_passwd = hash("whirlpool", hash("whirlpool", "salutlavache").$_POST["oldpw"]);
-			if ($value["login"] == $_POST["login"] && $value["passwd"] == $tmp_passwd)
+			if ($value[0] === $login)
 			{
-				$hash_tmp = hash("whirlpool", "salutlavache");
-				$account_list[$key_tmp]["passwd"] = hash("whirlpool", $hash_tmp.$_POST["newpw"]);
-				file_put_contents("../data/user", serialize($account_list));
-				$is_set = true;
+				if ($oldpw !== $value[1] || $oldpw === $newpw)
+					exit("ERROR (En plus le mot de passe est incorrect !!!)\n");
+				else
+				{
+					$db[$i][1] = $newpw;
+					$listpw = serialize($db);
+					file_put_contents($path, $listpw);
+					echo "OK\n";
+				}
 			}
 		}
-	}
-	if ($i == 3 && $is_set == true)
-	{
-		echo "OK";
 	}
 	else
-	{
-		echo "ERROR";
-	}
+	echo "ERROR (Vérifier que l'ensemble des données sont renseignées)\n";
+}
+else
+echo "ERROR\n";
 ?>
