@@ -3,19 +3,24 @@
 	display: flex;
 	justify-content: space-between;
 	width: auto;
-	background-color: #ccc;
+	background: rgb(252,234,187);
+	background: -moz-linear-gradient(-45deg, rgba(252,234,187,1) 0%, rgba(251,223,147,1) 100%);
+	background: -webkit-linear-gradient(-45deg, rgba(252,234,187,1) 0%, rgba(251,223,147,1) 100%);
+	background: linear-gradient(135deg, rgba(252,234,187,1) 0%, rgba(251,223,147,1) 100%);
+	border:2px solid rgb(252,234,187);
 	min-height: 5vw;
-	box-shadow: 0 3px 5px #222;
+	box-shadow: 0 3px 5px #ccc;
+}
+.logo {
+	margin-left: 2vw;
+	margin-right: 2vw;
+	color: white;
 }
 .nav-bloc {
 	display: inline-block;
 	text-decoration: none;
 	text-align: center;
 	width: 10em;
-}
-.nav-bloc:hover {
-	animation-name: menu_off;
-	animation-duration: 1s;
 }
 .link:hover {
 	animation-name: text_on;
@@ -26,31 +31,24 @@
 .nav-left {
 	display: inline-block;
 	margin: 0;
-	width: 63%;
+	width: 100%;
 }
 
 /* Right */
 .nav-right {
 	display: inline-block;
-	background: #333;
 	margin: 0;
 	padding: 0;
 	text-align: center;
 	width: 38%;
 }
-.nav-right .nav-bloc:hover {
-	text-align: center;
-	width: 100%;
-	animation-name: menu_on;
-	animation-duration: 1s;
-}
+
 .right {
-	display: block;
 	width: 100%;
 }
 .link-right {
 	display: block;
-	color: #eee;
+	color: #fff;
 }
 .link-right:hover {
 	animation-name: text_off;
