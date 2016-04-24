@@ -1,5 +1,5 @@
 <?php
-header('Location: index.html');
+header('Location: camagru.php');
 $_SESSION['login'] = $_POST['login'];
 $_SESSION['newpw'] = $_POST['newpw'];
 $_SESSION['oldpw'] = $_POST['oldpw'];
