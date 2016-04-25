@@ -1,21 +1,23 @@
 <?php
 function auth($login, $passwd)
 {
-	$path = "../private/passwd";
+	$link = mysql_connect("localhost", "root", "Eiko0962!")
+		or die("Impossible de se connecter : " . mysql_error());
+	mysql_select_db("camagru");
+	$result = mysql_query("SELECT Mail, Password, active FROM users WHERE mail == $login");
+
 	if ($login && $passwd)
 	{
-		$listpw = file_get_contents($path);
-		$listpw = unserialize($listpw);
-		foreach ($listpw as $value)
+		if ($result[1] === hash("whirlpool", $passwd))
 		{
-			if ($login === $value[0])
-			{
-				if ($passwd !== hash("whirlpool", $value[1]))
-					return true;
-				else
-					return false;
-			}
+			if ($result[2] === true)
+				return true;
+			else
+				return false;
+				// faire une page pour redemander l envoi de mail de confirmation
 		}
+		else
+			return false;
 	}
 	else
 		return false;

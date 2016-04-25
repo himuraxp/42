@@ -35,6 +35,14 @@
 	background: #ff2c2c;
 	box-shadow: 2px 2px 4px #555;
 }
+.upload {
+	color: #333;
+	text-shadow: 3px 3px 5px #ccc;
+}
+.upload:hover {
+	color: red;
+	text-shadow: 2px 2px 4px #555;
+}
 .box-cam {
 
 	width: 70%;
@@ -42,8 +50,8 @@
 }
 .image-cam {
 	border-radius: 5px;
-	border:2px solid rgb(252,234,187);
-	box-shadow: 3px 3px 5px #ccc;
+	border:4px solid rgb(128,193,22);
+	box-shadow: 3px 3px 5px #999;
 	width: 100%;
 }
 

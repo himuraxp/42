@@ -1,14 +1,3 @@
-<?php
-require('auth.php');
-session_start();
-if ($_POST['login'] && $_POST['passwd'])
-{
-	$_SESSION['login'] = $_POST['login'];
-	$_SESSION['passwd'] = $_POST['passwd'];
-	if (auth($_SESSION['login'], $_SESSION['passwd']))
-	{
-		$_SESSION['loggued_on_user'] = $_SESSION['login'];
-?>
 <html>
 	<head>
 		<title>*******CAMAGRU*******</title>
@@ -17,10 +6,12 @@ if ($_POST['login'] && $_POST['passwd'])
 		<link rel="stylesheet" href="../css/body.css">
 		<link rel="stylesheet" href="../css/footer.css">
 		<link rel="stylesheet" href="../css/keyframes.css">
+		<link rel="stylesheet" href="../css/filter.css">
 		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/javascript.js" media="javascript"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<script type="text/javascript" src="../js/camera.js"></script>
 	</head>
 	<body>
 		<div id="nav" class="nav">
@@ -40,39 +31,3 @@ if ($_POST['login'] && $_POST['passwd'])
 			</ul>
 			<div class="logo"><a href="camagru.php"><h1>camagru</h1></a></div>
 		</div>
-		<div id="container" class="container">
-			<div id="box" class="box">
-				<div class="box-menu">
-					<h1 id="title" class="title">Shoot me</h1>
-					<div class="save"></div>
-				</div>
-				<div id="box-cam" class="box-cam">
-					<img src="/img/ab.jpg" class="image-cam"/>
-				</div>
-			</div>
-			<div id="galerie" class="galerie">
-				<h1 id="title" class="title">Ma galerie</h1>
-				<div id="picture" class="picture">
-				</div>
-				<div id="picture" class="picture">
-				</div>
-				<div id="picture" class="picture">
-				</div>
-			</div>
-		</div>
-		<div id="footer" class="footer">
-			<div class="logo"><h1>camagru @ ylarbi 42 school</h1></div>
-		</div>
-	</body>
-</html>
-<?php
-	}
-	else
-	{
-		$_SESSION['loggued_on_user'] = '';
-		exit("ERREUR\n");
-	}
-}
-else
-	exit("ERROR\n");
-?>

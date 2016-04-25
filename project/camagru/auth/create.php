@@ -1,40 +1,36 @@
 <?php
-header('Location: ../index.html');
 session_start();
-$_SESSION['login'] = $_POST['login'];
-$_SESSION['passwd'] = $_POST['passwd'];
-$_SESSION['submit'] = $_POST['submit'];
-$path = "../private/passwd";
-if ($_SESSION['submit'] === "OK")
+if ($_POST['submit'] === "OK")
 {
-	if (($_SESSION['login'] != NULL) && ($_SESSION['passwd'] != NULL))
+	if (($_POST['mail'] != NULL) && ($_POST['passwd'] != NULL))
 	{
-		$passwd = hash("whirlpool", $_SESSION['passwd']);
-		$login = $_POST['login'];
-		if (file_exists($path) == true)
-		{
-			$listpw = file_get_contents($path);
-			$listpw = unserialize($listpw);
-			foreach ($listpw as $value)
-			{
-				if ($login === $value[0])
-				{
-					exit("ERROR\n");
-					if ($passwd !== $value['passwd'])
-						exit("ERROR\n");
-				}
-			}
+		$passwd = hash("whirlpool", $_POST['passwd']);
+		$login = $_POST['mail'];
+		$link = new  mysqli("localhost", "camagru", "camagru", "camagru");
+		if ($link->connect_error) {
+		    die("Connection failed: " . $link->connect_error);
 		}
-		else
-			mkdir("../private/");
- 		$listpw[] = array($_POST['login'], $passwd);
-		$serial = serialize($listpw);
-		file_put_contents("$path", $serial);
-		echo "OK\n";
+
+		// $result = mysqli_query("SELECT Mail FROM users WHERE mail == $login");
+		// if ($login === $result[0])
+		// 	exit("ERROR\n");
+		// $test = "INSERT INTO users (LastName, FirstName, Mail, Password, active) VALUES ($_POST['lastname'], $_POST['firstname'], $login, $passwd, 'true')";
+		// mysqli_query($link, "INSERT INTO users (LastName, FirstName, Mail, Password, active) VALUES ($_POST['lastname'], $_POST['firstname'], $login, $passwd, 'true')");
+		// mysqli_close($link);
+		$_SESSION['current_user'] = $login;
+		// header('Location: ../main/camagru.php');
+		exit(0);
 	}
 	else
-		exit("ERROR\n");
+	{
+		header('Location: ../index.html');
+		exit(0);
+	}
 }
 else
-	exit("ERROR\n");
+{
+	header('Location: ../index.html');
+	exit(0);
+}
+
 ?>
