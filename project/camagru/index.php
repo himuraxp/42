@@ -5,7 +5,6 @@ function loadClass($file){
 }
 spl_autoload_register("loadClass");
 ?>
-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html">

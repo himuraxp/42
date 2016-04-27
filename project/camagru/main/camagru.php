@@ -1,23 +1,35 @@
 <?php
-require('../auth/auth.php');
 session_start();
-if ($_SESSION['current_user'] || ($_POST['login'] && $_POST['passwd']))
+function loadClass($name){
+	require("../class/".$name.".php");
+}
+spl_autoload_register("loadClass");
+require("../auth/auth.php");
+if (isset($_SESSION['id']) !== '')
 {
-	$_SESSION['login'] = $_POST['login'];
-	$_SESSION['passwd'] = $_POST['passwd'];
-	if ($_SESSION['current_user'] || auth($_SESSION['login'], $_SESSION['passwd']))
+	if (isset($_POST['submit']) && $_POST['submit'] === "connection")
 	{
-		$_SESSION['current_user'] = $_SESSION['login'];
-		include('header.html');
-		include('body.php');
-		include('footer.html');
+		if ($_POST['login'] && $_POST['passwd'])
+		{
+			$_SESSION['login'] = $_POST['login'];
+			$_SESSION['passwd'] = $_POST['passwd'];
+			if (auth($_SESSION['login'], $_SESSION['passwd']) == true)
+			{
+				$_SESSION['id'] = $_SESSION['login'];
+				include('header.html');
+				include('body.php');
+				include('footer.html');
+			}
+			else
+			{
+				$_SESSION['id'] = '';
+				exit(0);
+			}
+		}
+		else
+			exit("<div class='message'>Wrong Password<br>");
 	}
 	else
-	{
-		$_SESSION['current_user'] = '';
-		exit("ERREUR\n");
-	}
+		exit("<div class='message'>ERROR Connection\n");
 }
-else
-	exit("ERROR\n");
 ?>

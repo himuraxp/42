@@ -1,25 +1,24 @@
 <?php
+session_start();
+require ("database.php");
 function auth($login, $passwd)
 {
-	$link = mysql_connect("localhost", "root", "Eiko0962!")
-		or die("Impossible de se connecter : " . mysql_error());
-	mysql_select_db("camagru");
-	$result = mysql_query("SELECT Mail, Password, active FROM users WHERE mail == $login");
-
-	if ($login && $passwd)
+	if($db = new PDO('mysql:host=localhost;dbname=camagru', 'root', 'root', array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION)))
 	{
-		if ($result[1] === hash("whirlpool", $passwd))
-		{
-			if ($result[2] === true)
-				return true;
-			else
-				return false;
-				// faire une page pour redemander l envoi de mail de confirmation
-		}
-		else
-			return false;
+		$query = $db->prepare("SET NAMES 'utf8'");
+		$query->execute();
 	}
-	else
-		return false;
+	$query = $db->prepare('SELECT ID, Password FROM users WHERE (Login COLLATE utf8_general_ci = :login && active = 1)');
+	$query->bindValue(":login", $login);
+	$query->execute();
+	$data = $query->fetch(PDO::FETCH_ASSOC);
+	if (isset($data['ID']) && password_verify($passwd, $data['Password'])){
+		echo "<div class='message'>Identification validée</div>";
+		return (true);
+	}
+	else {
+		echo "<div class='message'>Identifiants erronés <a href='../index.php'>Cliquez ici pour vous loger !</a></div>";
+		return (false);
+	}
 }
 ?>

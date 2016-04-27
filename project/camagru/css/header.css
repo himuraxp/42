@@ -1,6 +1,7 @@
 /* Navigation menu */
 .nav {
 	display: flex;
+	padding-top: 10px;
 	justify-content: space-between;
 	width: auto;
 	background: rgb(252,234,187);

@@ -74,7 +74,7 @@ if (!isset($_SESSION['id']))
 										<h1>Bienvenue sur Camagru</h1>
 										<p>Compte créé sur l'adresse ".$mail." , avec le login ".$login.".</p>
 										<p>Pour finaliser votre inscription, cliquez sur le lien ci dessous.</p>
-										<p><a href=\"create.php?submit=validation&login=".$login."&clef=".$clef."\">Valider l'inscription</a></p>
+										<p><a href=\"http://localhost:8888/auth/create.php?submit=validation&login=".$login."&clef=".$clef."\">Valider l'inscription</a></p>
 									</body>
 								</html>";
 						echo "text = ".$text."<br>";
@@ -127,6 +127,7 @@ if (!isset($_SESSION['id']))
 					$query->bindValue(':clef', $_GET['clef']);
 					$query->execute();
 					$message = array("Votre compte a été activé avec succès", "ok");
+					header('Location: ../main/camagru.php');
 				}
 				else if (isset($data['active']) && $data['active'] === '2')
 				$message = array("Votre compte a été suspendu, pour plus d'informations veuillez contacter l'administrateur du site", "error");

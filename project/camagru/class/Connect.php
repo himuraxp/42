@@ -21,7 +21,7 @@ class Connect{
         $query->bindValue(":login", $this->getLogin());
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
-        if (isset($data['id']) && password_verify($this->getPass(), $data['password'])){
+        if (isset($data['ID']) && password_verify($this->getPass(), $data['Password'])){
             $this->setMessage("Identification validée", "ok");
             return (true);
         }

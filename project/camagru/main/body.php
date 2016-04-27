@@ -7,7 +7,9 @@
 			<div class="fa fa-upload upload" style="font-size: 10vw"></div>
 		</div>
 		<div id="box-cam" class="box-cam">
-			<video class="image-cam"></video>
+			<div class="image-cam">
+				<video class="webcam"></video>
+			</div>
 		</div>
 	</div>
 	<div id="galerie" class="galerie">
