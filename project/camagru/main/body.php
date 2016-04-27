@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div id="galerie" class="galerie">
-		<h1 id="title" class="title">Ma galerie</h1>
+		<h1 id="title" class="title-galerie">Ma galerie</h1>
 		<div id="picture" class="picture">
 		</div>
 	</div>

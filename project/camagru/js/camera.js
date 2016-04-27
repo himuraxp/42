@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
              // Autoplay
             video.play();
-        }
+	        }
 
         // Display an error
         function onErrorCallback(e) {
@@ -52,15 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Add event listener for our Button (to switch video filters)
-    document.querySelector('button').addEventListener('click', function() {
-        video.className = '';
-        var effect = filters[iFilter++ % filters.length]; // Loop through the filters.
-        if (effect) {
-            video.classList.add(effect);
 
-            document.querySelector('.container h3').innerHTML = 'Current filter is: ' + effect;
-        }
-    }, false);
 
 }, false);

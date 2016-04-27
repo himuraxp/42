@@ -22,7 +22,7 @@ function auth($login, $passwd)
 	<?php
 		include('head.html');
 	?>
-		<div class='message-error'>Identifiants erronés</div>
+		<div class='message-error'>Identifiants erronés ou compte non activé</div>
 		<body>
 			<div class="form-signin">
 				<div class="header-log">

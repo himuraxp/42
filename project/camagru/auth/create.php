@@ -70,24 +70,25 @@ spl_autoload_register("loadClass");
 						$email = new Email($tab);
 						$email->sendEmail();
 						// Le message que l'on affiche pour dire qu'on a envoyé un e-mail à l'utilisateur. (affiché en vert).
-
-						echo "<div class='message'>
+						echo "<html>";
+						include('../main/head.html');
+						echo "<div class='message'><br>
 								<p>Pour finaliser votre inscription, cliquez sur le lien ci dessous.</p>
 								<p><a href=\"http://localhost:8888/auth/create.php?submit=validation&login=".$login."&clef=".$clef."\">Valider l'inscription</a></p>
 							</div>";
 						exit(0);
 					}
 					else
-					$message = array("Ce login ou cette adresse e-mail est déjà enregistré", "error");
+					echo "<div class='message-error'>L'adresse: ".$mail." est déjà enregistré</div>";
 				}
 				else
-				$message = array("Le login n'est pas valide", "error");
+				echo "<div class='message-error'>".$login." n'est pas valide</div>";
 			}
 			else
-			$message = array("L'adresses mail n'est pas valide", "error");
+			echo "<div class='message-error'>L'adresses mail ".$mail."n'est pas valide</div>";
 		}
 		else
-		$message = array("Le mot de passe n'est pas valide", "error");
+		echo "<div class='message-error'>Le mot de passe n'est pas valide</div>";
 	}
 	/*
 	En dessous sera le code de validation de l'inscription
@@ -117,30 +118,27 @@ spl_autoload_register("loadClass");
 						header('Location: ../index.php');
 				}
 				else if (isset($data['active']) && $data['active'] === '2')
-				$message = array("Votre compte a été suspendu, pour plus d'informations veuillez contacter l'administrateur du site", "error");
+				echo "<div class='message-error'>Votre compte a été suspendu, pour plus d'informations veuillez contacter l'administrateur du site</div>";
 				else
-				$message = array("Votre compte est déjà actif", "ok");
+				echo "<div class='message'>Votre compte est déjà actif</div>";
 			}
 			else
-			$message = array("Un erreur c'est produite, veuillez contacter l'administrateur du site.", "error");
+			echo "<div class='message-error'>Un erreur c'est produite, veuillez contacter l'administrateur du site.</div>";
 		}
 		else
-		$message = array("Un erreur c'est produite, veuillez contacter l'administrateur du site.", "error");
+		echo "<div class='message-error'>Un erreur c'est produite, veuillez contacter l'administrateur du site.</div>";
 	}
 	else
 	{
 ?>
 	<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html">
-		<meta charset="UTF-8">
-		<title>*******CAMAGRU*******</title>
-		<link rel="stylesheet" href="../css/style.css">
-	</head>
+	<?php
+		include('../main/head.html');
+	?>
 	<body>
 		<div class="form-signin">
 			<div class="header-log">
-				<p><strong>Enregistrement</strong></p>
+				<p>Enregistrement</p>
 			</div>
 			<form action="create.php" method="post">
 				<p><i>Login</i><input type="text" name="login"/></p>
