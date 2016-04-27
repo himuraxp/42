@@ -4,8 +4,8 @@ function loadClass($name){
 	require("../class/".$name.".php");
 }
 spl_autoload_register("loadClass");
-if (!isset($_SESSION['id']))
-{
+// if (!isset($_SESSION['id']))
+// {
 	include("database.php");
 // 	// Si on valide le formulaire
 	if (isset($_POST['submit']) && $_POST['submit'] === "inscription")
@@ -22,31 +22,25 @@ if (!isset($_SESSION['id']))
 		$pass_pattern = $data['pass_pattern'];
 		// On vérifie que les deux mots de passes soient identiques
 		if ($pass === $pass_verif && $pass != "") {
-			echo "pass ok<br>";
 			// On vérifie que les deux mail soient identiques
 			if ($mail === $mail_verif && filter_var($mail, FILTER_VALIDATE_EMAIL)){
-				echo "mail ok<br>";
 				// On vérifié que le login est valide
 				$tab = ['admin', 'adm', 'administrateur', 'administrator'];
 				if ($login && !(in_array(strtolower($pass), $tab))){
-					echo "login != pass ok<br>";
 					$query = $db->prepare('SELECT * FROM users WHERE (Login COLLATE utf8_general_ci = :login || Mail COLLATE utf8_general_ci = :mail)');
 					$query->bindValue(":login", $login);
 					$query->bindValue(":mail", $mail);
 					$query->execute();
 					$data = $query->fetch(PDO::FETCH_ASSOC);
-					echo "data ok<br>";
 					/*
 					Si il n'y a pas déjà un utilisateur ayant le même login ou la même adresse e-mail
 					On enregistre un nouveau compte utilisateur avec le rôle user en base de données
 					*/
 					if (!(isset($data['ID']))){
-						echo "data id ok<br>\n";
 						$pass = password_hash($pass, PASSWORD_DEFAULT);
 						$clef = hash("whirlpool", (microtime()*42));
 						$dir = $login;
 						$dir = "../img/".$dir;
-						echo "pass = ( ".$pass." )<br>clef = ( ".$clef." )<br>dir = ( ".$dir." )<br>";
 						while (is_dir($dir)){
 							$dir = $login;
 							$dir = "../img/".$dir;
@@ -54,19 +48,12 @@ if (!isset($_SESSION['id']))
 
 						mkdir($dir);
 						$query = $db->prepare('INSERT INTO users (Login, Mail, Password, active, clef, role, id_icon, date_inscription, images_dir) VALUES (:login, :mail, :pass, 0, :clef, "user", 1, NOW(), :dir)');
-						echo "mkdir ok<br>";
 						$query->bindValue(":login", $login);
-						echo $login." ok<br>";
 						$query->bindValue(":mail", $mail);
-						echo $mail." ok<br>";
 						$query->bindValue(":pass", $pass);
-						echo $pass." ok<br>";
 						$query->bindValue(":clef", $clef);
-						echo $clef." ok<br>";
 						$query->bindValue(":dir", $dir);
-						echo $dir." ok<br>";
 						$query->execute();
-						echo "query->execute ok<br>";
 						// Ici nous envoyons un e-mail à l'utilisateur afin qu'il puisse valider son compte
 						$text = "<html>
 									<head><meta charset=\"utf-8\"></head>
@@ -77,17 +64,17 @@ if (!isset($_SESSION['id']))
 										<p><a href=\"http://localhost:8888/auth/create.php?submit=validation&login=".$login."&clef=".$clef."\">Valider l'inscription</a></p>
 									</body>
 								</html>";
-						echo "text = ".$text."<br>";
 						$subject = "Camagru - Inscription";
 						$headers = "From : register@camagru42.fr"."\r\n"."Reply-To: noreply@camagru42.fr";
 						$tab = array("email" => $mail, "message" => $text, "subject" => $subject, "headers" => $headers);
 						$email = new Email($tab);
 						$email->sendEmail();
-						echo "suject = ".$subject."<br>headers = ".$hedears."<br>";
 						// Le message que l'on affiche pour dire qu'on a envoyé un e-mail à l'utilisateur. (affiché en vert).
 
-						$message = array("Bienvenue sur Camagru ! Pour valider votre inscription un mail vous a été envoyé a l'adresse suivante : ".$mail."", "ok");
-						header('Location: ../main/camagru.php');
+						echo "<div class='message'>
+								<p>Pour finaliser votre inscription, cliquez sur le lien ci dessous.</p>
+								<p><a href=\"http://localhost:8888/auth/create.php?submit=validation&login=".$login."&clef=".$clef."\">Valider l'inscription</a></p>
+							</div>";
 						exit(0);
 					}
 					else
@@ -127,7 +114,7 @@ if (!isset($_SESSION['id']))
 					$query->bindValue(':clef', $_GET['clef']);
 					$query->execute();
 					$message = array("Votre compte a été activé avec succès", "ok");
-					header('Location: ../main/camagru.php');
+						header('Location: ../index.php');
 				}
 				else if (isset($data['active']) && $data['active'] === '2')
 				$message = array("Votre compte a été suspendu, pour plus d'informations veuillez contacter l'administrateur du site", "error");
@@ -168,7 +155,5 @@ if (!isset($_SESSION['id']))
 	</html>
 <?php
 	}
-}
-else
-    header('Location: ../index.php');
+// }
 ?>

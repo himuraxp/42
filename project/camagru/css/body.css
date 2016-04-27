@@ -13,6 +13,20 @@
 	animation-name: message;
 	animation-duration: 3s;
 }
+.message-error{
+	display: block;
+	margin-top: -36px;
+	text-align: center;
+	font-size: 16px;
+	padding: 10px;
+	font-family: 'Lobster', cursive;
+	background: rgb(169,3,41); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	color: white;
+	animation-name: message;
+	animation-duration: 3s;
+}
 .box {
 	display: flex;
 	flex-wrap: wrap;
@@ -54,7 +68,7 @@
 	text-shadow: 3px 3px 5px #ccc;
 }
 .upload:hover {
-	color: red;
+	color: rgba(157,213,58,1);
 	text-shadow: 2px 2px 4px #555;
 }
 .box-cam {

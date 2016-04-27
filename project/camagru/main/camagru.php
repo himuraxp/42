@@ -1,4 +1,6 @@
+<html>
 <?php
+include('head.html');
 session_start();
 function loadClass($name){
 	require("../class/".$name.".php");
@@ -27,9 +29,10 @@ if (isset($_SESSION['id']) !== '')
 			}
 		}
 		else
-			exit("<div class='message'>Wrong Password<br>");
+			exit("<div class='message-error'>Mot de passe erroné</div>");
 	}
 	else
-		exit("<div class='message'>ERROR Connection\n");
+		exit("<div class='message-error'>L'accés a cette page doit passer par identifiaction</div>");
 }
 ?>
+</html>

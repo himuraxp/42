@@ -17,7 +17,27 @@ function auth($login, $passwd)
 		return (true);
 	}
 	else {
-		echo "<div class='message'>Identifiants erronés <a href='../index.php'>Cliquez ici pour vous loger !</a></div>";
+?>
+	<html>
+	<?php
+		include('head.html');
+	?>
+		<div class='message-error'>Identifiants erronés</div>
+		<body>
+			<div class="form-signin">
+				<div class="header-log">
+					<p>Camagru</p>
+				</div>
+				<form action="/main/camagru.php" method="post">
+					<p><i>Identifiant</i><input type="text" name="login"/></p>
+					<p><i>Mot de passe</i><input type="password" name="passwd"/></p>
+					<p><input class="button" type="submit" name="submit" value="connection"></p>
+				</form>
+				<a href="../auth/create.php" class="button login" name="submit" value="inscription">Créer mon compte</a>
+			</div>
+		</body>
+	</html>
+<?php
 		return (false);
 	}
 }
