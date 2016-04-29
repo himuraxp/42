@@ -55,7 +55,7 @@ spl_autoload_register("loadClass");
 						$query->bindValue(":dir", $dir);
 						$query->execute();
 						// Ici nous envoyons un e-mail à l'utilisateur afin qu'il puisse valider son compte
-						$text = "<html>
+						$text = "<!DOCTYPE html><html>
 									<head><meta charset=\"utf-8\"></head>
 									<body>
 										<h1>Bienvenue sur Camagru</h1>

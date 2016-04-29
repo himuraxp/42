@@ -8,7 +8,7 @@
 		</div>
 		<div id="box-cam" class="box-cam">
 			<div class="image-cam">
-				<video class="webcam"></video>
+				<video id="stream" class="webcam"></video>
 			</div>
 		</div>
 	</div>

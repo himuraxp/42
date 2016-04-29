@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Global variables
     var video = document.querySelector('video');
+	var canvas = document.querySelector('#canvas');
+	var startbutton  = document.querySelector('#show_saved_img');
     var audio, audioType;
+	width = 320,
+	height = 0;
 
     // Custom video filters
     var iFilter = 0;
@@ -52,6 +56,21 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+	function takepicture() {
+		canvas.width = width;
+		canvas.height = height;
+		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+		var dataURL = canvas.toDataURL('image/png');
+		showElement("pics_title", "inline-block");
+		showElement("pics_comment", "inline-block");
+		showElement("container-published", "block");
+		showElement("edit-menu", "inline-block");
+	}
+
+	startbutton.addEventListener('click', function(ev){
+		takepicture();
+		ev.preventDefault();
+	}, false);
 
 
 }, false);

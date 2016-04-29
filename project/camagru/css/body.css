@@ -174,3 +174,13 @@
 	-o-transform: rotate(-6deg);
 	transform: rotate(-6deg);
 }
+.pics-lib {
+	display: block;
+	box-shadow: 0 3px 5px #333;
+	border-radius: 5px;
+	-webkit-transform: rotate(6deg);
+	-moz-transform: rotate(6deg);
+	-ms-transform: rotate(6deg);
+	-o-transform: rotate(6deg);
+	transform: rotate(6deg);
+}
