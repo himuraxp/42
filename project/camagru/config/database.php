@@ -1,12 +1,12 @@
 <?php
-try
-{
-	$DB_USER = 'root';
-	$DB_PASSWORD = 'root';
-	$DB_DSN = new PDO('mysql:host=localhost;dbname=gamagru;charset=utf8', $DB_USER, $DB_PASSWORD);
-}
-catch (Exception $e)
-{
-	die('Erreur : ' . $e->getMessage());
-}
+$DB_DSN = 'mysql:host=localhost:8889';
+$DB_USER = 'root';
+$DB_PASSWORD = 'root';
+$DB_NAME = 'camagru2';
+$DB_TABLE = array(
+	'users' => 'users',
+	'pictures' => 'pictures',
+	'comments' => 'comments',
+	'likes' => 'likes'
+);
 ?>

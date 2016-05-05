@@ -1,0 +1,66 @@
+@media screen and (max-width: 1200px) {
+	.title-galerie {
+		font-size: 2em;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.container {
+		display: block;
+	}
+	.box {
+		width: 95vw;
+	}
+	.box-menu {
+		width: auto;
+	}
+	.box-min {
+		width: 100%;
+	}
+	.galerie {
+		width: 95vw;
+		max-height: none;
+	}
+	.picture-cam {
+		display: inline-block;
+	}
+	.webcam {
+		border-radius: 5px;
+		height: 49.9vw;
+	}
+	.title-galerie {
+		width: 68%;
+		font-size: 2.5em;
+		margin-bottom: 50px;
+		-webkit-transform: rotate(0);
+		-moz-transform: rotate(0);
+		-ms-transform: rotate(0);
+		-o-transform: rotate(0);
+		transform: rotate(0);
+	}
+	.picture {
+		width: 100%;
+		height: 50vw;
+	}
+	.pics-lib {
+		width: auto;
+		height: 50vw;
+	}
+	.del-button {
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+	.picture-gal {
+		width: 78%;
+		height: 56vw;
+	}
+	.pics-gal {
+		width: auto;
+		height: 56vw;
+	}
+	.comments-autor {
+		width: auto;
+	}
+	.auteur {
+		width: 100%;
+	}
+}

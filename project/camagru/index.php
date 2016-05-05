@@ -1,28 +1,82 @@
 <?php
+include 'config/database.php';
 session_start();
-function loadClass($file){
-	require("class/".$file.".php");
+if (!isset($_SESSION['login'])){
+	header('Location: /client/views/signin.php');
+	exit;
 }
-spl_autoload_register("loadClass");
+else{
+	include('client/views/header.php');
+	include('client/views/nav.php');
 ?>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html">
-		<meta charset="UTF-8">
-		<title>*******CAMAGRU*******</title>
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
-		<div class="form-signin">
-			<div class="header-log">
-				<p><strong>Camagru</strong></p>
+<div id="container" class="container">
+	<div id="box" class="box">
+		<div class="box-menu">
+			<div class="stricky">
+				<div id="picture" class="picture-cam">
+					<img class="clipart" src="/client/images/42-logo.png" onclick="add('42-logo');"/>
+				</div>
+				<div id="picture" class="picture-cam">
+					<img class="clipart" src="/client/images/punisher.png" onclick="add('punisher');"/>
+				</div>
+				<div id="picture" class="picture-cam">
+					<img class="clipart" src="/client/images/fire2.png" onclick="add('fire2');"/>
+				</div>
+				<div id="picture" class="picture-cam">
+					<img class="clipart" src="/client/images/glace.png" onclick="add('glace');"/>
+				</div>
+				<div id="picture" class="picture-cam">
+					<img class="clipart" src="/client/images/poney.png" onclick="add('poney');"/>
+				</div>
+				<div id="picture" class="picture-cam">
+					<img class="clipart" src="/client/images/hair.png" onclick="add('hair');"/>
+				</div>
 			</div>
-			<form action="/main/camagru.php" method="post">
-				<p><i>Identifiant</i><input type="text" name="login"/></p>
-				<p><i>Mot de passe</i><input type="password" name="passwd"/></p>
-				<p><input class="button" type="submit" name="submit" value="connection"></p>
-			</form>
-			<a href="/auth/create.php" class="button login" name="submit" value="inscription">Créer mon compte</a>
 		</div>
-	</body>
-</html>
+		<div id="box-cam" class="box-cam">
+			<div class="image-cam">
+				<img src="" class="tricky" id="clipart"/>
+				<video id="video" class="webcam" autoplay></video>
+			</div>
+			<form action="/server/recpicture.php" name="uploadphoto" method="post" style="display:inline-table;" enctype="multipart/form-data">
+				<div class="option">
+					<h1 class="notice">Position du filtre
+						<p class="notice-text">Indiquer la position avant de cliquer sur un filtre</p>
+						<select name="coner" id="coner">
+							<option value="tl">Top Left</option>
+							<option value="tr">Top Right</option>
+							<option value="bl">Bottom Left</option>
+							<option value="br">Bottom Right</option>
+							<option value="top" disabled>Top</option>
+						</select>
+					</h1>
+					<h1 class="notice">Pas de webcam ?
+						<p class="notice-text">Importer une photo</p>
+						<input name="upload" type="file" accept="image/jpeg"></input>
+						<canvas hidden id="canvas"></canvas>
+					</h1>
+				</div>
+				<div class="action">
+					<h1 id="title" class="notice">Shoot me <input class="save" disabled id="startbutton"></h1>
+					<div style="display:none;">
+						<input name="image" id="name" hidden/>
+						<input name="login" value="<?php echo $_SESSION['login']?>" hidden/>
+						<input name="clip"  id="clipprep" hidden/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="galerie" class="galerie">
+		<h1 id="title" class="title-galerie">Ma galerie<br>
+			<form name="restorephoto" action="/server/supppicture.php" method="post">
+				<div style="display:none;">
+					<input name="restore" value="1" hidden/>
+				</div>
+				<button type="submit" class="deleteButton">Restore pictures</button>
+			</form>
+		</h1>
+		<?php include('server/picture.php'); ?>
+	</div>
+</div>
+<?php include('client/views/footer.php'); } ?>
