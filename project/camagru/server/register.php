@@ -22,29 +22,69 @@ if (!isset($_SESSION['login'])){
 		exit;
 	}
 	else{
-		$login	= htmlspecialchars($_POST['login']);
-		$mdp	= htmlspecialchars(hash('whirlpool', $_POST['password']));
-		$email =  htmlspecialchars($_POST['email']);
-		$headers = 'From: Admin<admin@camagru.42.fr>' . "\r\n" .
-			'Reply-To: <admin@camagru.42.fr>' . "\r\n" .
-			'X-Mailer: PHP/' . phpversion();
-		$salt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		$str = "";
-		for ($i=0; $i <= strlen($salt)/2; $i++){
-			$str .= $salt[rand() % strlen($salt)];
+		if (ctype_alnum($_POST['login'])) {
+			$login	= htmlspecialchars($_POST['login']);
+			if ($_POST['password'] === $_POST['confpassword']) {
+				$mdp	= htmlspecialchars(hash('whirlpool', $_POST['password']));
+				$email =  htmlspecialchars($_POST['email']);
+
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+				$headers .= 'From: Admin<admin@camagru42.paris>' . "\r\n" .
+				$headers .= 'Reply-To: <admin@camagru42.paris>' . "\r\n" .
+				$headers .= 'X-Mailer: PHP/' . phpversion();
+				$salt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+				$str = "";
+				for ($i=0; $i <= strlen($salt)/2; $i++){
+					$str .= $salt[rand() % strlen($salt)];
+				}
+				$hash = htmlspecialchars(hash('md5', $str.$email));
+				$link = "http://localhost:8888/server/register.php?confirm=".$hash;
+				$msg = " Cliquez sur le lien pour activer votre compte : ".$link. "\r\n Votre code : ".$hash;
+				$msg = '
+						<html>
+							<head>
+								<title>Confirmation de compte Camagru42</title>
+							</head>
+							<body>
+						<a href="'.$link.'">Cliquez sur ce lien pour activer votre compte</a>
+						<p>Copier ce code pour l\'activer</p>
+						</body>
+						</html>
+							';
+				mail($email, "Activez votre comtpe", $msg, $headers);
+				$stmt = $pdo->prepare("INSERT INTO ".$DB_TABLE['users']."(login, email, mdp, confirm)  VALUES(:login, :email, :mdp, '$hash')");
+				$stmt->bindValue(':login', $login);
+				$stmt->bindValue(':email', $email);
+				$stmt->bindValue(':mdp', $mdp);
+				$stmt->execute();
+			}
+			else {
+				header("Content-Type: text/html");
+			?>
+				<div class="message-error-static">
+					<p class="message-text">
+						<strong class="message-type"> ATTENTION : </strong>Les deux mots de passe ne correspondent pas !
+					</p>
+				</div>
+			<?php
+				include '../client/views/signup.php';
+			}
 		}
-		$hash = htmlspecialchars(hash('md5', $str.$email));
-		$link = "http://localhost:8888/server/register.php?confirm=".$hash;
-		$msg = "Cliquez sur le lien pour activer votre compte : ".$link. " Votre code : ".$hash;
-		mail($email, "Activez votre comtpe", $msg, $headers);
-		$stmt = $pdo->prepare("INSERT INTO ".$DB_TABLE['users']."(login, email, mdp, confirm)  VALUES(:login, :email, :mdp, '$hash')");
-		$stmt->bindValue(':login', $login);
-		$stmt->bindValue(':email', $email);
-		$stmt->bindValue(':mdp', $mdp);
-		$stmt->execute();
+		else {
+			header("Content-Type: text/html");
+		?>
+			<div class="message-error-static">
+				<p class="message-text">
+					<strong class="message-type"> ATTENTION : </strong>Les chiffres et les lettres sont les seuls charactères accepté dans le champs identifiant !
+				</p>
+			</div>
+		<?php
+			include '../client/views/signup.php';
+		}
 	}
 	$pdo = NULL;
 }
-header('Location: /client/views/confirmed.php');
+header('Location: /');
 exit;
 ?>
