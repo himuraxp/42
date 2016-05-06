@@ -382,6 +382,7 @@
 .clipart {
 	max-width: 13vw;
 	max-height: 9.6vw;
+	border-radius: 5px;
 	-webkit-transform: rotate(6deg);
 	-moz-transform: rotate(6deg);
 	-ms-transform: rotate(6deg);

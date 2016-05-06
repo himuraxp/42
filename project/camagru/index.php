@@ -43,7 +43,7 @@ else{
 				<div class="option">
 					<h1 class="notice">Position du filtre
 						<p class="notice-text">Indiquer la position avant de cliquer sur un filtre</p>
-						<select name="coner" id="coner">
+						<select name="coner" id="coner" class="button-rev">
 							<option value="tl">Top Left</option>
 							<option value="tr">Top Right</option>
 							<option value="bl">Bottom Left</option>
@@ -53,7 +53,7 @@ else{
 					</h1>
 					<h1 class="notice">Pas de webcam ?
 						<p class="notice-text">Importer une photo</p>
-						<input name="upload" type="file" accept="image/jpeg" onchange="loadFile(event);"></input>
+						<input class="button-rev" name="upload" type="file" accept="image/jpeg" onchange="loadFile(event);"></input>
 						<canvas hidden id="canvas"></canvas>
 
 					</h1>
