@@ -13,14 +13,16 @@ if (isset($_SESSION['login'])){
 		die($msg);
 	}
 	$login	= htmlspecialchars($_POST['login']);
-	$target_dir = $_SERVER['DOCUMENT_ROOT'];
+	$target_dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
 	$target_file = $target_dir.basename($_FILES["upload"]["name"]);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 	$check = getimagesize($_FILES["upload"]["tmp_name"]);
 	if($check !== false) {
 		if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)) {
-			$dst = imagecreatefromjpeg($target_file);
+			$src = imagecreatefromjpeg($target_file);
+			$dst = imagecreatetruecolor(800, 600);
+			imagecopyresized($dst, $src, 0, 0, 0, 0, imagesx($dst), imagesy($dst), imagesx($src), imagesy($src));
 		}
 	}
 	else {
@@ -43,7 +45,7 @@ if (isset($_SESSION['login'])){
 			imagecopy($dst, $image, 0, imagesy($dst)-imagesy($image), 0, 0, imagesx($image), imagesy($image));
 		}
 		else if ($_POST['coner'] == 'tl'){
-			imagecopy($dst, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+			imagecopy($dst, $image, 0, 0, 0, 0, imagesx($image), imagesx($image));
 		}
 		else{
 			imagecopy($dst, $image, imagesx($dst)-imagesx($image), 0, 0, 0, imagesx($image), imagesy($image));
@@ -65,6 +67,8 @@ if (isset($_SESSION['login'])){
 	imagedstroy($image);
 	imagedstroy($dst);
 	$pdo = NULL;
+
+
 }
 exit;
 ?>

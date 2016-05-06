@@ -35,3 +35,9 @@ var add = function(name){
 		document.getElementById('clipart').style.margin = "-3% 0 0 2%";
 	}
 };
+var loadFile = function(event) {
+  var output = document.getElementById('upload-js');
+  document.getElementById('upload-js').style.width = "100%";
+  document.getElementById('upload-js').style.height = "31.5vw";
+  output.src = URL.createObjectURL(event.target.files[0]);
+};

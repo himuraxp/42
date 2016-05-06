@@ -6,11 +6,6 @@ if (!isset($_SESSION['login'])){
 	exit;
 }
 else{
-	include('header.php');
-	include('nav.php');
-?>
-<div class="box-full" style="">
-<?php
 	try{
 		$DB_DSNNAME = $DB_DSN.";dbname=".$DB_NAME;
 		$pdo = new PDO($DB_DSNNAME , $DB_USER, $DB_PASSWORD);
@@ -19,11 +14,37 @@ else{
 		$msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
 		die($msg);
 	}
+	include('header.php');
+	include('nav.php');
+	$pagin = "SELECT COUNT(id) as nbPics FROM ".$DB_TABLE['pictures']." WHERE deleted=0";
+	$data = $pdo->query($pagin)->fetch();
+	$nbPics = $data['nbPics'];
+	$perPage = 6;
+	$nbPage = ceil($nbPics/$perPage);
+	if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $nbPage)
+		$curPage = $_GET['p'];
+	else
+		$curPage = 1;
+?>
+	<div class="pagin">
+<?php
+	for ($i = 1; $i <= $nbPage; $i++) {
+		if ($i == $curPage)
+			echo '<div class="button-off pagin"> '.$i.' </div>';
+		else
+			echo '<a class="button pagin" href="galerie.php?p='.$i.'"> '.$i.' </a>';
+	}
+?>
+</div>
+<div class="box-full" style="">
+<?php
+
+
 	$q = $pdo->prepare("SELECT refphotoid FROM ".$DB_TABLE['likes']." WHERE LOGIN=:login;");
 	$q->bindvalue(':login', $_SESSION['login']);
 	$qq = $q->execute();
 	$liketab = $q->fetchAll();
-	$querry = "SELECT link,id,createur,creation,deleted FROM ".$DB_TABLE['pictures']." WHERE deleted=0 ORDER BY creation DESC;";
+	$querry = "SELECT link,id,createur,creation,deleted FROM ".$DB_TABLE['pictures']." WHERE deleted=0 ORDER BY creation DESC LIMIT ".(($curPage-1)*$perPage).",$perPage";
 	$arr = $pdo->query($querry)->fetchAll();
 	if (isset($arr)){
 		$max = sizeof($arr);

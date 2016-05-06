@@ -35,6 +35,7 @@ else{
 		</div>
 		<div id="box-cam" class="box-cam">
 			<div class="image-cam">
+				<img src="" class="tricky" id="upload-js"/>
 				<img src="" class="tricky" id="clipart"/>
 				<video id="video" class="webcam" autoplay></video>
 			</div>
@@ -52,8 +53,9 @@ else{
 					</h1>
 					<h1 class="notice">Pas de webcam ?
 						<p class="notice-text">Importer une photo</p>
-						<input name="upload" type="file" accept="image/jpeg"></input>
+						<input name="upload" type="file" accept="image/jpeg" onchange="loadFile(event);"></input>
 						<canvas hidden id="canvas"></canvas>
+
 					</h1>
 				</div>
 				<div class="action">

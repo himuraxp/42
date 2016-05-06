@@ -29,6 +29,15 @@ a {
 	text-decoration: none;
 	color: #fff;
 }
+.pagin {
+	display: flex;
+	justify-content: center;
+	font-family: 'Lobster', cursive;
+	font-size: 2em;
+	padding: 10px 30px;
+	margin-top: 1vw;
+	margin-left: 1vw;
+}
 .info {
 	background: rgb(169,3,41); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%); /* FF3.6-15 */
@@ -85,6 +94,17 @@ a {
 	background: -moz-linear-gradient(-45deg, rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
 	background: -webkit-linear-gradient(-45deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
 	background: linear-gradient(135deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+	border-color: #809164;
+	box-shadow: 2px 2px 4px #333;
+	font-weight: bolder;
+	font-size: 18px;
+	transition-duration: 0.4s;
+}
+.button-off {
+	color: white;
+	background: rgb(169,3,41); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%); /* Chrome10-25,Safari5.1-6 */
 	border-color: #809164;
 	box-shadow: 2px 2px 4px #333;
 	font-weight: bolder;
