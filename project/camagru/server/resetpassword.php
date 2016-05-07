@@ -20,7 +20,7 @@ if (!isset($_SESSION['login'])){
 		$stmt->bindValue(':salt', $salt);
 		$stmt->execute();
 		$stmt = $pdo->prepare("select login from ".$DB_TABLE['users']." where reset=:salt");
-		$stmt->bindValue(':salt', $salt);	
+		$stmt->bindValue(':salt', $salt);
 		$stmt->execute();
 		$array =$stmt->fetch();
 		$_SESSION['login']=$array['login'];
@@ -30,22 +30,23 @@ if (!isset($_SESSION['login'])){
 	}
 	else{
 		$email = htmlspecialchars($_POST['email']);
-		$headers = 'From: Admin<admin@camagru.42.fr>' . "\r\n" .
-			'Reply-To: <admin@camagru.42.fr>' . "\r\n" .
-			'X-Mailer: PHP/' . phpversion();
-
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers .= 'From: Admin<admin@camagru42.paris>' . "\r\n";
+		$headers .= 'Reply-To: <admin@camagru42.paris>' . "\r\n";
+		$headers .= 'X-Mailer: PHP/' . phpversion();
 		$salt = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		$stryolo = "";
+		$str = "";
 		for ($i=0; $i <= strlen($salt)/2; $i++){
-			$stryolo .= $salt[rand() % strlen($salt)];
+			$str .= $salt[rand() % strlen($salt)];
 		}
-		$yolohash = htmlspecialchars(hash('md5', $stryolo.$email));
-		$link = "http://localhost:8000/client/views/resetpassword.php?reset=".$yolohash;
-		$msg = "Please click on the below link to reset your password : \n" . $link;
+		$hash = htmlspecialchars(hash('md5', $str.$email));
+		$link = "https://localhost:8888/client/views/resetpassword.php?reset=".$hash;
+		$msg = '<html><head><title>Reinitialisation mot de passe Camagru42</title></head><body><a href="'.$link.'">Cliquez sur ce lien pour reinitialiser votre mot de passe Camagru42.</a></body></html>';
 
 		mail($email, "Reset Password", $msg, $headers);
 
-		$stmt = $pdo->prepare("UPDATE ".$DB_TABLE['users']." SET reset='$yolohash' where email=:email");
+		$stmt = $pdo->prepare("UPDATE ".$DB_TABLE['users']." SET reset='$hash' where email=:email");
 		$stmt->bindValue(':email', $email);
 		$stmt->execute();
 	}

@@ -1,9 +1,9 @@
 .message-text {
-	font-size: 1.4em;
+
 }
 .message-type {
 	font-family: 'Lobster', cursive;
-	font-size: 1.5em;
+
 }
 .message-error-static {
 	display: block;
@@ -20,4 +20,40 @@
 	-moz-animation:    message-error-static 5s;
 	-o-animation:      message-error-static 5s;
 	animation:         message-error-static 5s;
+}
+.message-valid-static {
+	display: block;
+	width: 100%;
+	margin-top: -5vw;
+	text-align: center;
+	padding: 5px;
+	color: white;
+	background: rgba(157,213,58,1) ;
+	background: -moz-linear-gradient(-45deg, rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
+	background: -webkit-linear-gradient(-45deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+	background: linear-gradient(135deg, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+	-webkit-animation: message-error-static 5s;
+	-moz-animation:    message-error-static 5s;
+	-o-animation:      message-error-static 5s;
+	animation:         message-error-static 5s;
+}
+
+@media screen and (max-device-width: 768px)
+{
+
+	.message-type {
+		font-size: 1em;
+	}
+	.message-error-static {
+		margin-top: -30vw;
+	}
+	.message-valid-static {
+		margin-top: -30vw;
+	}
+	@keyframes message-error-static {
+		0% { margin-top: -30vw; }
+		25% { margin-top: 0; }
+		75% { margin-top: 0; }
+		100% { margin-top: -30vw; }
+	}
 }
