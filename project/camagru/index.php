@@ -56,16 +56,16 @@ else{
 						<div class="fa fa-upload">
 							<input name="upload" type="file" accept="image/jpeg" onchange="loadFile(event);"></input>
 						</div>
-						<canvas hidden id="canvas"></canvas>
+						<canvas hidden id="canvas" style="display:none;"></canvas>
 
 					</h1>
 				</div>
 				<div class="action">
 					<h1 id="title" class="notice">Shoot me <input class="save" disabled id="startbutton"></h1>
 					<div style="display:none;">
-						<input name="image" id="name" hidden/>
-						<input name="login" value="<?php echo $_SESSION['login']?>" hidden/>
-						<input name="clip"  id="clipprep" hidden/>
+						<input name="image" id="name" hidden style="display:none;"/>
+						<input name="login" value="<?php echo $_SESSION['login']?>" hidden style="display:none;"/>
+						<input name="clip"  id="clipprep" hidden style="display:none;"/>
 					</div>
 				</div>
 			</form>

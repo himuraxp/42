@@ -74,14 +74,15 @@ else{
 				</div>
 			</p>
 		</div>
+
 <?php
 	}
 ?>
 <?php if (isset($_SESSION['login'])){ ?>
 		<form action="/server/comment.php" method="post" class="formcomment">
 			<div style="display:none;">
-				<input hidden name="id" value="<?php echo $arr[$i]['id'];?>"/>
-				<input hidden name="login" value="<?php echo $_SESSION['login'];?>"/>
+				<input hidden name="id" value="<?php echo $arr[$i]['id'];?>" style="display:none;/>
+				<input hidden name="login" value="<?php echo $_SESSION['login'];?> style="display:none;"/>
 			</div>
 			<textarea name="comment" class="commentzone" placeholder="lache ton commentaire..."></textarea>
 			<button type="submit" class="send-button">Envoyer</button>
@@ -95,15 +96,18 @@ if (isset($liketab)){
 			$flag = 1;
 		}
 	}
-	if ($flag == 1){?>
+	if ($flag == 1){
+		?>
 			<form action="/server/unlike.php" method="post" class="love">
 				<div style="display:none;">
-					<input hidden name="id" value="<?php echo $arr[$i]['id'];?>"/>
-					<input hidden name="login" value="<?php echo $_SESSION['login'];?>"/>
+					<input hidden name="id" value="<?php echo $arr[$i]['id'];?>" style="display:none;"/>
+					<input hidden name="login" value="<?php echo $_SESSION['login'];?>" style="display:none;"/>
 				</div>
 				<button type="submit" class="love fa fa-thumbs-down"></button>
 			</form>
-<?php 	}
+			</div>
+<?php
+	}
 	else {?>
 			<form action="/server/like.php" method="post" class="love">
 				<div style="display:none;">
@@ -112,9 +116,11 @@ if (isset($liketab)){
 				</div>
 				<button type="submit" class="love fa fa-thumbs-up"></button>
 			</form>
+			</div>
 <?php 	}
 }
-if (!isset($liketab)){?>
+if (!isset($liketab)){
+	?>
 			<form action="/server/like.php" method="post" class="love">
 				<div style="display:none;">
 					<input hidden name="id" value="<?php echo $arr[$i]['id'];?>"/>
@@ -122,8 +128,8 @@ if (!isset($liketab)){?>
 				</div>
 				<button type="submit" class="love fa fa-thumbs-up"></button>
 			</form>
+			</div>
 <?php }} ?>
-		</div>
 	</div>
 
 <?php }}

@@ -41,7 +41,7 @@ if (!isset($_SESSION['login'])){
 			$str .= $salt[rand() % strlen($salt)];
 		}
 		$hash = htmlspecialchars(hash('md5', $str.$email));
-		$link = "https://localhost:8888/client/views/resetpassword.php?reset=".$hash;
+		$link = "http://localhost:8888/client/views/resetpassword.php?reset=".$hash;
 		$msg = '<html><head><title>Reinitialisation mot de passe Camagru42</title></head><body><a href="'.$link.'">Cliquez sur ce lien pour reinitialiser votre mot de passe Camagru42.</a></body></html>';
 
 		mail($email, "Reset Password", $msg, $headers);

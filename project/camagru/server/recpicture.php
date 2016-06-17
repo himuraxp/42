@@ -15,22 +15,38 @@ if (isset($_SESSION['login'])){
 	$login	= htmlspecialchars($_POST['login']);
 	$target_dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
 	$target_file = $target_dir.basename($_FILES["upload"]["name"]);
-	$uploadOk = 1;
-	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-	$check = getimagesize($_FILES["upload"]["tmp_name"]);
-	if($check !== false) {
-		if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)) {
-			$src = imagecreatefromjpeg($target_file);
-			$dst = imagecreatetruecolor(800, 600);
-			imagecopyresized($dst, $src, 0, 0, 0, 0, imagesx($dst), imagesy($dst), imagesx($src), imagesy($src));
+	$check_post = getimagesize($_POST["image"]);
+	if (strstr($_FILES['upload']['type'], "jpeg")) {
+		$check_file = getimagesize($_FILES["upload"]["tmp_name"]);
+		if($check_file !== false) {
+			if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file)) {
+				$src = imagecreatefromjpeg($target_file);
+				$w_src = imagesx($src);
+				$h_src = imagesy($src);
+				$dst = imagecreatetruecolor($w_src, $h_src);
+				$w_dst = imagesx($dst);
+				$h_dst = imagesy($dst);
+				imagecopyresized($dst, $src, 0, 0, 0, 0, $w_src, $h_src, $w_dst, $h_dst);
+			}
+		}
+		else {
+			header("Content-Type: text/html");
+			include '../index.php';
+			exit();
 		}
 	}
-	else {
+	else if ($check_post !== false){
 		$img = $_POST['image'];
+		unlink($_POST['image']);
 		$img = str_replace('data:image/jpeg;base64,', '', $img);
 		$img = str_replace(' ', '+', $img);
 		$dstim = base64_decode($img);
 		$dst = imagecreatefromstring($dstim);
+	}
+	else {
+		header("Content-Type: text/html");
+		include '../index.php';
+		exit();
 	}
 	$image = imagecreatefrompng("../client/images/".$_POST['clip'].".png");
 
@@ -67,8 +83,7 @@ if (isset($_SESSION['login'])){
 	imagedstroy($image);
 	imagedstroy($dst);
 	$pdo = NULL;
-
-
 }
+
 exit;
 ?>
