@@ -1,3 +1,8 @@
+@media screen and (min-width: 1400px) {
+	.selec {
+		font-size: 1em;
+	}
+}
 @media screen and (max-width: 1200px) {
 	.title-galerie {
 		font-size: 2em;
@@ -7,8 +12,14 @@
 	.container {
 		display: block;
 	}
+	.footer {
+		position: inherit;
+		height: 10vw;
+	}
 	.box {
-		width: 95vw;
+		width: 100%;
+		border-left: 0;
+		border-right: 0;
 	}
 	.box-menu {
 		width: auto;
@@ -17,7 +28,9 @@
 		width: 100%;
 	}
 	.galerie {
-		width: 95vw;
+		width: 100%;
+		border-left: 0;
+		border-right: 0;
 		max-height: none;
 	}
 	.picture-cam {
@@ -99,5 +112,52 @@
 		justify-content: center;
 		flex-direction: column;
 		height: 10vh;
+	}
+
+}
+@media screen and (max-width: 768px)
+{
+	p {
+		font-size: 7vw;
+	}
+	a {
+		font-size: 5vw;
+	}
+	input {
+		font-size: 1em;
+	}
+	.selec {
+		font-size: 0.5em;
+	}
+	.form-signin {
+		background: rgb(254,252,234);
+		background: -moz-linear-gradient(top, rgba(254,252,234,1) 0%, rgba(239,224,127,1) 100%);
+		background: -webkit-linear-gradient(top, rgba(254,252,234,1) 0%,rgba(239,224,127,1) 100%);
+		background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(239,224,127,1) 100%);
+		display: block;
+		border: 2px solid rgba(109,0,25,1);
+		box-shadow: 1px 1px 1px  rgb(169,3,41);
+		width: 100%;
+		height: 100%;
+		margin: auto;
+	}
+	.header-log {
+		border-radius: 0;
+		padding: 4vw;
+	}
+	.link-sign {
+		font-size: 3em;
+	}
+	.login {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		height: 10vh;
+	}
+
+}
+@media screen and (max-width: 500px) {
+	.selec {
+		font-size: 0.3em;
 	}
 }

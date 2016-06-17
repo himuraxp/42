@@ -29,8 +29,8 @@ if(!isset($_SESSION['login'])){
 		<p><i><label for="confpassword">Confirmation</label></i><input id="repeatpass" type="password" name="confpassword" placeholder="retappez le nouveau mot de passe" onkeyup="verifpass();" required></p>
 		<p><input class="button" type="submit" name="submit" value="Login" id="SignupButton" disabled></p>
 	</form>
-	<a href="/" class="button login" name="submit">Revenir à l'accueil</a>
-	<a href="/client/views/signup.php" class="button login" name="submit" value="inscription">Créer mon compte</a>
+	<p class="link-sign"><a href="/" class="button login" name="submit">Revenir à l'accueil</a></p>
+	<p class="link-sign"><a href="/client/views/signup.php" class="button login" name="submit" value="inscription">Créer mon compte</a></p>
 </div>
 <script type="text/javascript" src="../scripts/verifypass.js">
 
@@ -47,12 +47,12 @@ if(!isset($_SESSION['login'])){
 		<form name="reset" action="/server/resetpassword.php" method="post" accept-charset="utf-8">
 			<div class="input">
 				<p><i><label for="email">Email</label></i></p>
-				<input name="email" type="email" placeholder="email" required autofocus>
+				<p><input name="email" type="email" placeholder="email" required autofocus></p>
 			</div>
 			<p><input class="button" type="Submit" class="FormButton" value="Valider"></button></p>
 		</form>
-		<a href="/" class="button login" name="submit">Revenir à l'accueil</a>
-		<a href="/client/views/signup.php" class="button login" name="submit" value="inscription">Créer mon compte</a>
+		<p class="link-sign"><a href="/" class="button login" name="submit">Revenir à l'accueil</a></p>
+		<p class="link-sign"><a href="/client/views/signup.php" class="button login" name="submit" value="inscription">Créer mon compte</a></p>
 	</div>
 <?php
 	}

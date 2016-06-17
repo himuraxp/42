@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="/client/css/keyframes.css" media="all"/>
 		<link rel="stylesheet" type="text/css" href="/client/css/responsive.css" media="all"/>
 		<link rel="stylesheet" type="text/css" href="/client/css/message.css" media="all"/>
+		<link rel="icon" type="image/png" href="/client/images/favicon.png" />
 		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	</head>

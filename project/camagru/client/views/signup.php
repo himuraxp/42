@@ -26,8 +26,11 @@ if (!isset($_SESSION['login'])){
 			<i><label for="confpassword">Vérification mot de passe</label></i>
 			<input id="repeatpass" type="password" name="confpassword" placeholder="confirmation" required>
 		</p>
-		<p><input type="submit" value="Login" id="SignupButton" enable  class="button"></p>
+		<p><input type="submit" value="Enregistrer" id="SignupButton" enable  class="button"></p>
 	</form>
+	<p class="link-sign"><a href="/client/views/signin.php" class="button login" name="submit" value="inscription">J'ai deja un compte</a></p>
+	<p class="link-sign"><a href="/client/views/resetpassword.php" class="button login">Reinitialiser mon mot de passe</a></p>
+	<p class="link-sign"><a href="/client/views/confirmed.php" class="button login">Enter le code d'activation code</a></p>
 </div>
 <?php
 }

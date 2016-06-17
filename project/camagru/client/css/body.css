@@ -268,7 +268,7 @@
 	transform: rotate(-6deg);
 }
 .picture {
-	display: block;
+	display: flex;
 	background: rgb(244,195,46);
 	background: -moz-linear-gradient(-45deg, rgba(244,195,46,1) 0%, rgba(237,144,23,1) 100%);
 	background: -webkit-linear-gradient(-45deg, rgba(244,195,46,1) 0%,rgba(237,144,23,1) 100%);
@@ -310,8 +310,6 @@
 .pics-lib {
 	display: block;
 	width: 13vw;
-	height: 9.6vw;
-	box-shadow: 0 3px 5px #333;
 	border-radius: 5px;
 	-webkit-transform: rotate(6deg);
 	-moz-transform: rotate(6deg);
@@ -322,8 +320,6 @@
 .pics-gal {
 	display: block;
 	width: 26vw;
-	height: 19.6vw;
-	box-shadow: 0 3px 5px #333;
 	border-radius: 5px;
 	-webkit-transform: rotate(6deg);
 	-moz-transform: rotate(6deg);

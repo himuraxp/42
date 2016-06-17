@@ -29,6 +29,30 @@ a {
 	text-decoration: none;
 	color: #fff;
 }
+.fa {
+	display: block;
+	font-size: 3em !important;
+	transition-duration: 0.4s;
+}
+div.fa input {
+	position: relative;
+    top: -1em;
+    right: 0;
+    margin: 0;
+    padding: 0;
+	width: 1em !important;
+	height: 1em !important;
+    cursor: pointer;
+	opacity: 0;
+    filter: alpha(opacity=0);
+}
+.fa:hover {
+	color:  rgba(248,181,0,1) ;
+	transition-duration: 0.4s;
+}
+.selec {
+	font-size: 0.5em;
+}
 .link-sign {
 	margin: 0;
 }
@@ -60,7 +84,7 @@ a {
 	display: flex;
 	justify-content: space-around;
 	align-content: stretch;
-	width: 100%;
+
 }
 .form-signin {
 	background: rgb(254,252,234);
@@ -120,6 +144,13 @@ a {
 	border-color: #BFD49F;
 	color: #717D5F;
 	transition-duration: 0.4s;
+}
+div.button-rev input {
+	display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
 }
 .button-rev {
 	color: white;
