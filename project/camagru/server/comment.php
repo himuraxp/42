@@ -12,7 +12,7 @@ if (isset($_SESSION['login'])){
 		die($msg);
 	}
 	$comment	= htmlspecialchars($_POST['comment']);
-	$login		= htmlspecialchars($_POST['login']);
+	$login		= htmlspecialchars($_SESSION['login']);
 	$id			= htmlspecialchars($_POST['id']);
 	if ($comment != '')
 	{

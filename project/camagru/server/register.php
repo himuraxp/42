@@ -71,8 +71,8 @@ if (!isset($_SESSION['login'])){
 					$str .= $salt[rand() % strlen($salt)];
 				}
 				$hash = htmlspecialchars(hash('md5', $str.$email));
-				$link = "http://localhost:8888/server/register.php?confirm=".$hash;
-				$msg = '<html><head><title>Confirmation de compte Camagru42</title></head><body><a href="'.$link.'">Cliquez sur ce lien pour activer votre compte.</a><p>Ou copier le code " <strong>'.$hash.'</strong> " pour confirmer votre enregistrement avec le bouton " Enregistrer le code d\'activation " sur <a href="http://localhost:8888/">Camagru42</a></p></body></html>';
+				$link = "http://localhost:8080/server/register.php?confirm=".$hash;
+				$msg = '<html><head><title>Confirmation de compte Camagru42</title></head><body><a href="'.$link.'">Cliquez sur ce lien pour activer votre compte.</a><p>Ou copier le code " <strong>'.$hash.'</strong> " pour confirmer votre enregistrement avec le bouton " Enregistrer le code d\'activation " sur <a href="http://localhost:8080/">Camagru42</a></p></body></html>';
 				mail($email, "Activez votre comtpe", $msg, $headers);
 				$stmt = $pdo->prepare("INSERT INTO ".$DB_TABLE['users']."(login, email, mdp, confirm)  VALUES(:login, :email, :mdp, '$hash')");
 				$stmt->bindValue(':login', $login);

@@ -12,10 +12,14 @@ if (!isset($_SESSION['login'])){
 			<p>
 				<i><label for="confirm">Code</label></i>
 				<input name="confirm" placeholder="coller ici" required autofocus>
-			<p><input type="submit" class="button"></input><p>
+			<p>
+				<input type="submit" class="button"></input>
+			<p>
 		</form>
 	</div>
-	<p class="link-sign"><a href="/client/views/signin.php" class="button login" name="submit" value="inscription">Me connecter</a></p>
+	<p class="link-sign">
+		<a href="/client/views/signin.php" class="button login" name="submit" value="inscription">Me connecter</a>
+	</p>
 </div>
 <?php
 }

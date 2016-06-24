@@ -318,6 +318,7 @@
 .pics-gal {
 	display: block;
 	width: 26vw;
+	max-height: 19.5vw;
 	border-radius: 5px;
 	-webkit-transform: rotate(6deg);
 	-moz-transform: rotate(6deg);
@@ -326,10 +327,10 @@
 	transform: rotate(6deg);
 }
 .love {
-    background: none;
+	background: none;
 	color: rgba(109,0,25,1);
-    font-size: 3em;
-    border: none;
+	font-size: 3em;
+	border: none;
 }
 .send-button {
 	width: 100%;
@@ -419,8 +420,12 @@
 	margin: 0 0 5px 0;
 	padding: 0;
 	font-size: 1.8em;
-    border: 2px solid rgba(182,224,38,1);
-    border-radius: 5px;
+	border: 2px solid rgba(182,224,38,1);
+	border-radius: 5px;
+}
+.active-comments {
+	background: rgba(182,224,38,1);
+	border: 2px solid rgba(237,144,23,1);
 }
 .comments-autor {
 	display: inline-block;

@@ -12,7 +12,7 @@ if (isset($_SESSION['login'])){
 		$msg = 'ERREUR PDO dans '.$e->getFile().' L '.$e->getLine().' : '.$e->getMessage();
 		die($msg);
 	}
-	$login	= htmlspecialchars($_POST['login']);
+	$login	= htmlspecialchars($_SESSION['login']);
 	$target_dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
 	$target_file = $target_dir.basename($_FILES["upload"]["name"]);
 	$check_post = getimagesize($_POST["image"]);

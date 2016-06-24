@@ -39,5 +39,7 @@ else {
 			<?php } ?>
 			</ul>
 		</nav>
-		<div class="logo"><a href="/"><h1>camagru</h1></a></div>
+		<div class="logo">
+			<a href="/"><h1>camagru</h1></a>
+		</div>
 	</header>

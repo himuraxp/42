@@ -62,9 +62,8 @@ else{
 				</div>
 				<div class="action">
 					<h1 id="title" class="notice">Shoot me <input class="save" disabled id="startbutton"></h1>
-					<div style="display:none;">
+					<div>
 						<input name="image" id="name" hidden style="display:none;"/>
-						<input name="login" value="<?php echo $_SESSION['login']?>" hidden style="display:none;"/>
 						<input name="clip"  id="clipprep" hidden style="display:none;"/>
 					</div>
 				</div>
@@ -74,8 +73,8 @@ else{
 	<div id="galerie" class="galerie">
 		<h1 id="title" class="title-galerie">Ma galerie<br>
 			<form name="restorephoto" action="/server/supppicture.php" method="post">
-				<div style="display:none;">
-					<input name="restore" value="1" hidden/>
+				<div>
+					<input name="restore" value="1" hidden style="display:none;"/>
 				</div>
 				<button type="submit" class="deleteButton">Restore pictures</button>
 			</form>

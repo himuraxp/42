@@ -11,7 +11,7 @@ if (isset($_POST['login'])){
 		$msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
 		die($msg);
 	}
-	$login	= htmlspecialchars($_POST['login']);
+	$login	= htmlspecialchars($_SESSION['login']);
 	$stmt = $pdo->prepare("DELETE FROM ".$DB_TABLE['likes']." WHERE refphotoid=:photoid && LOGIN=:login;");
 	$stmt->bindvalue(':photoid', $_POST['id']);
 	$stmt->bindvalue(':login', $login, PDO::PARAM_STR);

@@ -11,7 +11,7 @@ if (isset($_POST['login'])){
 		$msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
 		die($msg);
 	}
-	$login	= htmlspecialchars($_POST['login']);
+	$login	= htmlspecialchars($_SESSION['login']);
 	$stmt = $pdo->prepare("INSERT INTO ".$DB_TABLE['likes']."(refphotoid, LOGIN) values(:photoid,:login);");
 	$stmt->bindvalue(':photoid', $_POST['id']);
 	$stmt->bindvalue(':login', $login, PDO::PARAM_STR);

@@ -63,8 +63,11 @@ else{
 	$querry = "SELECT comment, auteur FROM ".$DB_TABLE['comments']." where photonum=".$arr[$i]['id'].";";
 	$array = $pdo->query($querry)->fetchAll();
 	for ($j = 0; $j < sizeof($array); $j++){
-?>
+		if ($array[$j]['auteur'] === $_SESSION['login']){ ?>
+		<div class="active-comments comments">
+<?php 	} else { ?>
 		<div class="comments">
+<?php 	} ?>
 			<p>
 				<div class="comments-autor">
 					<?php echo $array[$j]['auteur'];?>
@@ -80,9 +83,8 @@ else{
 ?>
 <?php if (isset($_SESSION['login'])){ ?>
 		<form action="/server/comment.php" method="post" class="formcomment">
-			<div style="display:none;">
-				<input hidden name="id" value="<?php echo $arr[$i]['id'];?>" style="display:none;/>
-				<input hidden name="login" value="<?php echo $_SESSION['login'];?> style="display:none;"/>
+			<div>
+				<input hidden name="id" value="<?php echo $arr[$i]['id'];?>" style="display:none;"/>
 			</div>
 			<textarea name="comment" class="commentzone" placeholder="lache ton commentaire..."></textarea>
 			<button type="submit" class="send-button">Envoyer</button>
@@ -105,30 +107,30 @@ if (isset($liketab)){
 				</div>
 				<button type="submit" class="love fa fa-thumbs-down"></button>
 			</form>
-			</div>
+		</div>
 <?php
 	}
 	else {?>
 			<form action="/server/like.php" method="post" class="love">
-				<div style="display:none;">
-					<input hidden name="id" value="<?php echo $arr[$i]['id'];?>"/>
-					<input hidden name="login" value="<?php echo $_SESSION['login'];?>"/>
+				<div>
+					<input hidden name="id" value="<?php echo $arr[$i]['id'];?>"  style="display:none;"/>
+					<input hidden name="login" value="<?php echo $_SESSION['login'];?>"  style="display:none;"/>
 				</div>
 				<button type="submit" class="love fa fa-thumbs-up"></button>
 			</form>
-			</div>
+		</div>
 <?php 	}
 }
 if (!isset($liketab)){
 	?>
 			<form action="/server/like.php" method="post" class="love">
-				<div style="display:none;">
-					<input hidden name="id" value="<?php echo $arr[$i]['id'];?>"/>
-					<input hidden name="login" value="<?php echo $_SESSION['login'];?>"/>
+				<div>
+					<input hidden name="id" value="<?php echo $arr[$i]['id'];?>" style="display:none;"/>
+					<input hidden name="login" value="<?php echo $_SESSION['login'];?>" style="display:none;"/>
 				</div>
 				<button type="submit" class="love fa fa-thumbs-up"></button>
 			</form>
-			</div>
+		</div>
 <?php }} ?>
 	</div>
 

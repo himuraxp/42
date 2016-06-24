@@ -15,7 +15,9 @@
 ?>
 
 <form name="deletphoto" action="/server/supppicture.php" method="post">
-	<input style="display:none;" name="photoid" value="<?php echo $arr[$i]['id']; ?>" hidden/>
+	<div>
+		<input name="photoid" value="<?php echo $arr[$i]['id']; ?>" hidden style="display:none;"/>
+	</div>
 	<div id="picture" class="picture">
 		<img class="pics-lib" src="<?php echo $arr[$i]['link'];?>"/>
 	</div>
