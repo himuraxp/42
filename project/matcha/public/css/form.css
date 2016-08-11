@@ -1,0 +1,33 @@
+/* Formulaire */
+.form {
+	display: block;
+	margin: auto;
+	margin-top: 200px;
+	border-radius: 5px;
+	border: 1px solid #d6d4d4;
+	width: 350px;
+	box-shadow: 0 0 10px #efa7a7;
+	background: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+}
+.form-title {
+	font-family: 'Pacifico', cursive;
+	text-shadow: 0 0 10px #efa7a7;
+	font-size: 4em;
+	margin-top: -1em;
+}
+.field {
+	margin-bottom: 20px;
+}
+.insert {
+	width: 80%;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 1.5em;
+
+}
+.icon-text {
+	display: inline-flex;
+	padding: 10px;
+    font-size: x-large;
+}

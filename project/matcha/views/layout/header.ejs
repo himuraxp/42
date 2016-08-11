@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Matcha le site de rencontre</title>
+	<link rel="stylesheet" href="/assets/css/master.css" charset="utf-8">
+	<link rel="stylesheet" href="/assets/css/form.css" charset="utf-8">
+	<link rel="stylesheet" href="/assets/css/connexion.css" charset="utf-8">
+	<link rel="stylesheet" href="/assets/css/hover.css" charset="utf-8">
+	<link rel="stylesheet" href="/assets/css/nav.css" charset="utf-8">
+	<link rel="stylesheet" href="/assets/css/font-awesome.css" charset="utf-8">
+	<link href='https://fonts.googleapis.com/css?family=Pacifico|Arimo:400italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="container">
+		<% if (locals.flash && locals.flash.error) { %>
+		<div class="error message">
+			<%= flash.error %>
+		</div>
+		<% } else if (locals.flash && locals.flash.success) { %>
+			<div class="success message">
+				<%= flash.success %>
+			</div>
+		<% } %>
+		<div class="head">
+			<a href="/home"><i class="fa fa-heart-o logo" aria-hidden="true" style="font-size:5em;"></i></a>
+			<a href="/logout"><i class="fa fa-sign-out logo" aria-hidden="true" style="font-size:5em;"></i></a>
+		</div>

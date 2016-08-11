@@ -1,0 +1,92 @@
+html { background: url('images/background-matcha.jpg'); }
+body {
+	font-family: 'Arimo', sans-serif;
+	color: rgb(95, 86, 86);
+}
+h1 h2 h3 h4 h5 h6 {
+	font-family: 'Pacifico', cursive;
+}
+footer {
+	position: fixed;
+	bottom: 0px;
+}
+label {
+	display: block;
+	font-size: 1.5em;
+}
+a {
+	text-decoration: none;
+	color: rgb(95, 86, 86);
+}
+button {
+	font-size: 2em;
+	width: 200px;
+	color: rgb(95, 86, 86);
+	background: whitesmoke;
+	border-radius: 5px;
+	border: 2px solid rgb(175, 148, 148, 0.3);
+}
+#mainselection select {
+   border: 0;
+   background: transparent;
+   font-size: 20px;
+   font-weight: bold;
+}
+.no-margin-top { margin-top: 0!important; }
+
+.container {
+	display: block;
+	width: 100%;
+}
+.box {
+	display: block;
+	text-align: center;
+}
+
+.logo {
+	height: 80px;
+	width: 80px;
+	padding: 10px;
+	transition: 0.3s;
+}
+.logo:hover {
+	background-color: #efa7a7;
+	transition: 0.3s;
+	border-radius: 50%;
+}
+.message {
+	display: block;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	margin-top: -200px;
+	height: 60px;
+	left: 0;
+	font-size: x-large;
+	color: whitesmoke;
+	padding: 40px 20px 0px 20px;
+	text-align: center;
+	box-shadow: 0 1px 10px;
+	width: 100%;
+	animation-name: notifications;
+	animation-duration: 6s;
+}
+
+.error {
+	display: block;
+	width: 100%;
+	background: #cc0000;
+}
+
+.success {
+	display: block;
+	width: 100%;
+	background: green;
+}
+
+@keyframes notifications {
+	0%   {margin-top: -200px;}
+    25%  {margin-top: 0px;}
+    75%  {margin-top: 0px;}
+    100% {margin-top: -200px;}
+}

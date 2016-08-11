@@ -1,0 +1,65 @@
+<% include ../../layout/header %>
+<% include ../../layout/nav %>
+<% include ../../layout/picture %>
+<div class="box">
+
+	<div class="form">
+		<h1 class="form-title">Modifier</h1>
+
+		        <form ref='uploadForm'
+		            id='uploadForm'
+		            action='http://localhost:8080/profil/upload'
+		            method='post'
+		            encType="multipart/form-data">
+		                <input type="file" name="sampleFile" />
+		                <input type='submit' value='Upload!' />
+		        </form>
+
+		<form action="/profil/editer" method="post">
+			<div class="field">
+				<label for="pseudo">Nom d'utilisateur</label>
+				<input type="text" name="pseudo" id="pseudo" class="insert" value="<%= user.pseudo %>"></input>
+			</div>
+			<div class="field">
+				<label for="first_name">Prenom</label>
+				<input type="text" name="first_name" id="first_name" class="insert" value="<%= user.first_name %>"></input>
+			</div>
+			<div class="field">
+				<label for="last_name">Nom</label>
+				<input type="text" name="last_name" id="last_name" class="insert" value="<%= user.last_name %>"></input>
+			</div>
+			<div class="field">
+				<label for="email">eMail</label>
+				<input type="email" name="email" id="email" class="insert" value="<%= user.email %>"></input>
+			</div>
+			<div class="field">
+				<label for="bday">Date de naissance</label>
+				<input type="date" name="bday" id="bday" class="insert" value="<%= bday %>"></input>
+			</div>
+			<div class="field" id="mainselection">
+				<label for="sex">Sexe</label>
+				<select name="sex">
+					<% if (user.sex === 'Femme') { %>
+					<option value="Homme">Homme</option>
+					<option value="Femme" selected>Femme</option>
+					<% } else { %>
+					<option value="Homme">Homme</option>
+					<option value="Femme">Femme</option>
+					<% } %>
+				</select>
+			</div>
+			<div class="field">
+				<label for="password">Mot de passe</label>
+				<input type="password" name="password" id="password" class="insert"></input>
+			</div>
+			<button type="submit" name="create" class="hvr-bounce-to-right"><i class="fa fa-check" aria-hidden="true"></i></button>
+		</form>
+	</div>
+	<div class="form no-margin-top">
+		<form action="/profil" method="get">
+			<button name="profil" class="hvr-bounce-to-right icon-text"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Annuler</button>
+		</form>
+	</div>
+
+</div>
+<% include ../../layout/footer %>

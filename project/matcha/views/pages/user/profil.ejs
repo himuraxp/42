@@ -1,0 +1,23 @@
+<% include ../../layout/header %>
+<% include ../../layout/nav %>
+<div class="box">
+
+	<div class="form">
+		<h1 class="form-title">Mon profil</h1>
+		<div class="content">
+			<div class="metadata">
+				<div class="date">
+					<%= user.name %>
+				</div>
+			</div>
+			<div class="text"><%= user.email %></div>
+		</div>
+	</div>
+	<div class="form no-margin-top">
+		<form action="/profil/editer" method="get">
+			<button name="editer" class="hvr-bounce-to-right icon-text"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editer</button>
+		</form>
+	</div>
+
+</div>
+<% include ../../layout/footer %>
