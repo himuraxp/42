@@ -5,14 +5,14 @@
 
 	<div class="form">
 		<h1 class="form-title">Modifier</h1>
-
+			<label for="sampleFile">Ajouter une photo au format .jpg</label>
 		        <form ref='uploadForm'
 		            id='uploadForm'
 		            action='http://localhost:8080/profil/upload'
 		            method='post'
 		            encType="multipart/form-data">
 		                <input type="file" name="sampleFile" />
-		                <input type='submit' value='Upload!' />
+		                <input type='submit' value='Envoyer' />
 		        </form>
 
 		<form action="/profil/editer" method="post">
@@ -45,6 +45,18 @@
 					<% } else { %>
 					<option value="Homme">Homme</option>
 					<option value="Femme">Femme</option>
+					<% } %>
+				</select>
+			</div>
+			<div class="field" id="mainselection">
+				<label for="like_sex">Tu aimes les</label>
+				<select name="like_sex">
+					<% if (user.like_sex === 'Femmes') { %>
+					<option value="Hommes">Hommes</option>
+					<option value="Femmes" selected>Femmes</option>
+					<% } else { %>
+					<option value="Hommes">Hommes</option>
+					<option value="Femmes">Femmes</option>
 					<% } %>
 				</select>
 			</div>

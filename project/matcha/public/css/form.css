@@ -10,6 +10,9 @@
 	background: rgba(255, 255, 255, 0.5);
 	padding: 20px;
 }
+.form-height {
+	height: 660px;
+}
 .form-title {
 	font-family: 'Pacifico', cursive;
 	text-shadow: 0 0 10px #efa7a7;
@@ -29,5 +32,21 @@
 .icon-text {
 	display: inline-flex;
 	padding: 10px;
-    font-size: x-large;
+	font-size: x-large;
+}
+.form-galerie {
+	width: 900px;
+}
+.alert {
+	display: block;
+	color: Crimson;
+	font-size: 1.5em;
+	border: 1px solid #d6d4d4;
+	box-shadow: 0 0 10px #efa7a7;
+	background: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+	margin-top: 20px;
+}
+#uploadForm {
+	padding: 10px;
 }

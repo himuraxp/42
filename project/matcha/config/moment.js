@@ -34,7 +34,7 @@ moment.locale('fr', {
     M : "un mois",
     MM : "%d mois",
     y : "une année",
-    yy : "%d années"
+    yy : "%d ans"
   },
   ordinalParse : /\d{1,2}(er|ème)/,
   ordinal : function (number) {

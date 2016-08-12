@@ -42,7 +42,10 @@ button {
 	display: block;
 	text-align: center;
 }
-
+.flex-box {
+	display: flex;
+	text-align: center;
+}
 .logo {
 	height: 80px;
 	width: 80px;

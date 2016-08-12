@@ -6,6 +6,7 @@ let cookieParser= require('cookie-parser')
 let moment		= require('./config/moment')
 var fileUpload	= require('express-fileupload')
 var fs 			= require('fs')
+// var Promise		= require('promise')
 let app			= express()
 
 // Template
@@ -67,9 +68,20 @@ app.post('/', (req, res) => {
 
 app.get('/home', (req, res) => {
 	let User = require('./models/users')
-	User.find(get_cookies(req)['uid'], function (user) {
-		if (get_cookies(req)['uid']) {
-			res.render('pages/index', {user: user})
+	let Picture = require('./models/picture')
+	id = get_cookies(req)['uid']
+	path = "./public/upload/" + id
+	User.find(id, function (user) {
+		if (id) {
+			fs.access(path, fs.F_OK, function(err) {
+				if (!err) {
+					res.render('pages/index', {user: user})
+				} else {
+					Picture.init(id)
+					fs.mkdirSync('./public/upload/' + id)
+					res.render('pages/index', {user: user})
+				}
+			})
 		} else {
 			res.render('layout/index')
 		}
@@ -78,26 +90,75 @@ app.get('/home', (req, res) => {
 
 app.get('/profil', (req, res) => {
 	let User = require('./models/users')
-	User.find(get_cookies(req)['uid'], function (user) {
-		if (get_cookies(req)['uid']) {
-			res.render('pages/user/profil', {user: user})
+	let Picture = require('./models/picture')
+	id = get_cookies(req)['uid']
+	User.find(id, function (user) {
+		if (user.birthday !== "0000-00-00") {
+			let date = new Date(user.birthday).toISOString().replace(/T/, ' ').split(' ')
+			date = date[0]
+			date = date.split('-')
+			to_i_jj = parseInt(date[2])
+			jj = to_i_jj + 1
+			jj.toString()
+			mm = date[1]
+			aa = date[0]
+			bday = jj + '-' + mm + '-' + aa
 		} else {
-			res.render('layout/index')
+			bday = null
 		}
+		Picture.find(id, function (picture) {
+			if (id) {
+				res.render('pages/user/profil', {user: user, picture: picture})
+			} else {
+				res.render('layout/index')
+			}
+		})
 	})
+})
+app.post('/profil/delete', (req, res) => {
+	let Picture = require('./models/picture')
+	id = get_cookies(req)['uid']
+		Picture.find(id, function (picture) {
+			if (req.body.picture == 'url_pic_1') {
+				filePath = picture.url_pic_1
+			} else if (req.body.picture == 'url_pic_2') {
+				filePath = picture.url_pic_2
+			} else if (req.body.picture == 'url_pic_3') {
+				filePath = picture.url_pic_3
+			} else if (req.body.picture == 'url_pic_4') {
+				filePath = picture.url_pic_4
+			} else if (req.body.picture == 'url_pic_5') {
+				filePath = picture.url_pic_5
+			}
+			fileTemp = filePath.split('/')
+			fileName = fileTemp[4]
+			path = "./public/upload/" + id + "/" + fileName
+			Picture.delete(id, req.body.picture, function (err) {
+				if (err) throw err
+			})
+			fs.unlinkSync(path, function(err) {
+				if (err) throw err
+				console.log("File deleted: " + path)
+			})
+			res.redirect('/profil')
+		})
 })
 app.get('/profil/editer', (req, res) => {
 	let User = require('./models/users')
 	User.find(get_cookies(req)['uid'], function (user) {
-		let date = new Date(user.birthday).toISOString().replace(/T/, ' ').split(' ')
-		date = date[0]
-		date = date.split('-')
-		to_i_jj = parseInt(date[2])
-		jj = to_i_jj + 1
-		jj.toString()
-		mm = date[1]
-		aa = date[0]
-		bday = aa + '-' + mm + '-' + jj
+		if (user.birthday !== "0000-00-00") {
+			let date = new Date(user.birthday).toISOString().replace(/T/, ' ').split(' ')
+			date = date[0]
+			date = date.split('-')
+			to_i_jj = parseInt(date[2])
+			jj = to_i_jj + 1
+			jj.toString()
+			mm = date[1]
+			aa = date[0]
+			bday = aa + '-' + mm + '-' + jj
+		} else {
+			bday = 0
+		}
 		if (get_cookies(req)['uid']) {
 			res.render('pages/user/editer', {user: user})
 		} else {
@@ -163,12 +224,22 @@ app.post('/profil/editer', (req, res) => {
 				}
 			})
 		}
+		if (req.body.like_sex !== undefined && req.body.like_sex !== '' && req.body.like_sex !== user.like_sex) {
+			let new_type = req.body.like_sex
+			User.update_account(user.id, new_type, 'like_sex', function (err) {
+				if (err === 'error') {
+					req.flash('error', "Erreur pendant la sauvegarde Homme ou Femme !")
+					res.redirect('/profil/editer')
+				}
+			})
+		}
 		req.flash('success', "Félicitation tes informations ont bien étaient enregistées !")
 		res.redirect('/profil')
 	})
 
 })
 app.post('/profil/upload', function(req, res) {
+	let Picture = require('./models/picture')
 	let sampleFile
 	if (!req.files) {
 		res.send('No files were uploaded.')
@@ -176,36 +247,12 @@ app.post('/profil/upload', function(req, res) {
 	}
 	id = get_cookies(req)['uid'].toString()
 	path = "./public/upload/" + id
-	sampleFile = req.files.sampleFile;
+	sampleFile = req.files.sampleFile
+	tempFile = path + "/" + sampleFile.name
 	fs.access(path, fs.F_OK, function(err) {
 		if (!err) {
-			i = 0
-			stop = 0
-			while (i < 5 && stop == 0) {
-				console.log("i = " + i + "\n")
-				console.log("stop = " + stop + "\n")
-				file = "./public/upload/" + id + "/" + i + "_matcha.jpg"
-				fs.stat(file, function(err, stat, stop) {
-					if (err == null) {
-						console.log('File exists')
-					} else if (!stat) {
-						stop = 1
-						console.log('else stat')
-					} else if (err.code == 'ENOENT') {
-						res.writeContinue()
-					} else {
-						console.log('Some other error: ', err.code)
-
-					}
-					console.log(stat)
-					console.log('AFTER stat' + stop)
-				})
-				i += 1
-			}
-			console.log("After while stop = "+ stop +"\n")
-			if (stop == 1) {
-				console.log("Start sample\n")
-				sampleFile.mv(file, function(err) {
+			if (tempFile) {
+				sampleFile.mv(tempFile, function(err) {
 					if (err) {
 						req.flash('error', "Ta photo n'a bien était enregisté !")
 						res.redirect('/profil/editer')
@@ -221,17 +268,23 @@ app.post('/profil/upload', function(req, res) {
 			}
 		} else {
 			fs.mkdirSync('./public/upload/' + id)
-			sampleFile.mv('./public/upload/' + id + '/0_matcha.jpg', function(err) {
+			sampleFile.mv(tempFile, function(err) {
 				if (err) {
 					res.status(500).send(err)
 					req.flash('error', "Ta photo n'a bien était enregisté !")
 					res.redirect('/profil/editer')
 				}
-				else {
-					req.flash('success', "Félicitation ta photo a bien était enregisté !")
-					res.redirect('/profil')
-				}
 			})
+		}
+	})
+	file = "/assets/upload/" + id + "/" + sampleFile.name
+	Picture.update(id, file, function (err) {
+		if (err) {
+			req.flash('error', "Erreur pendant la sauvegarde de l'url !")
+			res.redirect('/profil/editer')
+		} else {
+			req.flash('success', "Félicitation ta photo a bien était enregisté !")
+			res.redirect('/profil')
 		}
 	})
 })
@@ -239,12 +292,29 @@ app.post('/profil/upload', function(req, res) {
 
 app.get('/coffee', (req, res) => {
 	let User = require('./models/users')
-	User.find(get_cookies(req)['uid'], function (user) {
-		if (get_cookies(req)['uid']) {
-			res.render('pages/coffee', {user: user})
+	let Picture = require('./models/picture')
+	id = get_cookies(req)['uid']
+	User.find(id, function (user) {
+		if (user.birthday !== "0000-00-00") {
+			let date = new Date(user.birthday).toISOString().replace(/T/, ' ').split(' ')
+			date = date[0]
+			date = date.split('-')
+			to_i_jj = parseInt(date[2])
+			jj = to_i_jj + 1
+			jj.toString()
+			mm = date[1]
+			aa = date[0]
+			bday = jj + '-' + mm + '-' + aa
 		} else {
-			res.render('layout/index')
+			bday = null
 		}
+		Picture.find(id, function (picture) {
+			if (id) {
+				res.render('pages/coffee', {user: user, picture: picture})
+			} else {
+				res.render('layout/index')
+			}
+		})
 	})
 })
 

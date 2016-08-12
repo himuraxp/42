@@ -35,8 +35,16 @@ class User {
 		return this.row.sex
 	}
 
+	get like_sex () {
+		return this.row.like_sex
+	}
+
 	get birthday () {
 		return this.row.birthday
+	}
+
+	get bday () {
+		return moment(this.row.birthday)
 	}
 
 	get created_at () {

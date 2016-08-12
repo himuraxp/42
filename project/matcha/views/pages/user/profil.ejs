@@ -1,23 +1,126 @@
 <% include ../../layout/header %>
 <% include ../../layout/nav %>
-<div class="box">
-
-	<div class="form">
+<div class="flex-box">
+	<div class="form form-height">
 		<h1 class="form-title">Mon profil</h1>
 		<div class="content">
-			<div class="metadata">
-				<div class="date">
-					<%= user.name %>
-				</div>
+			<% if (picture.url_pic_1) { %>
+			<div class="avatar">
+				<img src="<%= picture.url_pic_1 %>" alt="avatar" />
 			</div>
-			<div class="text"><%= user.email %></div>
+			<% } else {%>
+				<div class="avatar">
+					<i class="fa fa-user-secret default-pic" aria-hidden="true"></i>
+				</div>
+			<% } %>
+			<div class="text">
+				Si j'ai tout bon tu t'appels <strong><%= user.name %></strong>,
+			</div>
+			<div class="text">
+				ton email est <strong><%= user.email %></strong> si l'on veux te contacter.</div>
+			<% if (!user.sex || !user.birthday || !user.pseudo) { %>
+				<div class="alert">
+					L'ensemble de tes informations doivent être remplies. Tu peux le faire dès maintenant en cliquant sur Editer
+					<i class="fa fa-arrow-down" aria-hidden="true"></i>
+				</div>
+			<% } else { %>
+				<div class="text">
+					Il me semble que tu préfères que l'on te surmon <strong><%= user.pseudo %></strong>.
+				</div>
+				<% if (user.sex === "Homme") { %>
+					<div class="text">Tu es un <strong><%= user.sex %></strong>,
+				<% } else { %>
+					<div class="text">Tu es une <strong><%= user.sex %></strong>,
+				<% } %>
+ 					tu es née le <strong><%= bday %>.</strong>
+				</div>
+				<% if (user.like_sex === "Homme") { %>
+					<div class="text">Et tu aimes les <strong><%= user.like_sex %></strong>.</div>
+				<% } else { %>
+					<div class="text">Et tu aimes les <strong><%= user.like_sex %></strong>.</div>
+				<% } %>
+			<% } %>
+			</div>
+				<form action="/profil/editer" method="get" style="padding:20px;">
+					<button name="editer" class="hvr-bounce-to-right icon-text"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editer</button>
+				</form>
+		</div>
+
+		<div class="form form-height form-galerie">
+			<h1 class="form-title">Mon Book</h1>
+			<div class="galerie">
+				<% if (picture.url_pic_1) { %>
+					<div class="box">
+						<form action="/profil/delete" method="post">
+							<div class="avatar avatar-galerie">
+								<img src="<%= picture.url_pic_1 %>" alt="avatar" />
+								<div class="position-button">
+									<button name="picture" value="url_pic_1" class="hvr-bounce-to-right icon-text">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_2) { %>
+					<div class="box">
+						<form action="/profil/delete" method="post">
+							<div class="avatar avatar-galerie">
+								<img src="<%= picture.url_pic_2 %>" alt="avatar" />
+								<div class="position-button">
+									<button name="picture" value="url_pic_2" class="hvr-bounce-to-right icon-text">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_3) { %>
+					<div class="box">
+						<form action="/profil/delete" method="post">
+							<div class="avatar avatar-galerie">
+								<img src="<%= picture.url_pic_3 %>" alt="avatar" />
+								<div class="position-button">
+									<button name="picture" value="url_pic_3" class="hvr-bounce-to-right icon-text">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_4) { %>
+					<div class="box">
+						<form action="/profil/delete" method="post">
+							<div class="avatar avatar-galerie">
+								<img src="<%= picture.url_pic_4 %>" alt="avatar" />
+								<div class="position-button">
+									<button name="picture" value="url_pic_4" class="hvr-bounce-to-right icon-text">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_5) { %>
+					<div class="box">
+						<form action="/profil/delete" method="post">
+							<div class="avatar avatar-galerie">
+								<img src="<%= picture.url_pic_5 %>" alt="avatar" />
+								<div class="position-button">
+									<button name="picture" value="url_pic_5" class="hvr-bounce-to-right icon-text">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				<% } %>
+			</div>
 		</div>
 	</div>
-	<div class="form no-margin-top">
-		<form action="/profil/editer" method="get">
-			<button name="editer" class="hvr-bounce-to-right icon-text"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editer</button>
-		</form>
-	</div>
-
 </div>
 <% include ../../layout/footer %>

@@ -1,0 +1,50 @@
+<% if (user.sex && user.birthday && user.pseudo  && user.first_name && user.sex && user.like_sex) { %>
+<div class="flex-box">
+	<div class="form form-height">
+		<h1 class="form-title"><%= user.pseudo %></h1>
+		<div class="content">
+			<% if (picture.url_pic_1) { %>
+			<div class="avatar">
+				<img src="<%= picture.url_pic_1 %>" alt="avatar" />
+			</div>
+			<% } else {%>
+				<div class="avatar">
+					<i class="fa fa-user-secret default-pic" aria-hidden="true"></i>
+				</div>
+			<% } %>
+			<div class="text">
+				Prenom: <strong><%= user.first_name %></strong>
+			</div>
+			<div class="text">
+				eMail: <strong><%= user.email %></strong>
+			</div>
+			<% if (!user.sex || !user.birthday || !user.pseudo) { %>
+				<div class="alert">
+					L'ensemble de tes informations doivent être remplies. Tu peux le faire dès maintenant en cliquant sur Editer
+					<i class="fa fa-arrow-down" aria-hidden="true"></i>
+				</div>
+			<% } else { %>
+				<div class="text">
+					Il me semblerait qu'il préfères être appelé <strong><%= user.pseudo %></strong>.
+				</div>
+				<% if (user.sex === "Homme") { %>
+					<div class="text">C'est un <strong><%= user.sex %></strong>,
+				<% } else { %>
+					<div class="text">C'est une <strong><%= user.sex %></strong>,
+				<% } %>
+ 					il est née <strong><%= user.bday.fromNow() %>, </strong>
+				<% if (user.like_sex === "Homme") { %>
+					et apparemment il aime les <strong><%= user.like_sex %></strong>.
+				<% } else { %>
+					et apparemment il aime les <strong><%= user.like_sex %></strong>.
+				<% } %>
+				</div>
+			<% } %>
+			</div>
+			<form action="/coffee/like/:id" method="post" style="padding:20px;">
+				<button name="editer" value="<%= user.like_sex %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-heart" aria-hidden="true"></i> </button>
+			</form>
+		</div>
+	</div>
+</div>
+<% } %>
