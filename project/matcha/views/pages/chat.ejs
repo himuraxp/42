@@ -1,0 +1,47 @@
+<% include ../layout/header %>
+<% include ../layout/nav %>
+<div class="flex-box">
+	<div class="col-empty-left">
+	</div>
+	<div class="icon-chat">
+	<% users.forEach(function(user) { %>
+		<% likes.forEach(function (like){ %>
+			<% if (like.like_you === user.id && like.you_like == id) {%>
+				<% likes.forEach(function (for_id_like){ %>
+					<% if (for_id_like.like_you == id && for_id_like.you_like === user.id) {%>
+						<%- include('user/user_chat', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } %>
+				<% }) %>
+			<% } %>
+		<% }) %>
+	<% }) %>
+</div>
+</div>
+<div class="chat form form-galerie">
+	<h1 class="form-title" style="text-align:center;">Le Chat</h1>
+	<div id="users">
+	</div>
+	<div id="messages" style="max-height:800px;overflow-x:auto;">
+		<div class="message" id="msgtpl" style="display:none;">
+			<img class="chat-img" src="{{{user.avatar}}}">
+			<div class="info">
+				<p><strong>{{user.username}}</strong></p>
+				<span class="date">{{h}}:{{m}}</span>
+			</div>
+			<p class="chat-text">{{message}}</p>
+		</div>
+	</div>
+	<form action="" class="chat-submit" id="form">
+		<input type="text" id="message" class="text"/>
+		<button type="submit" id="send" value="Envoyer mon message !" class="hvr-bounce-to-right"><i class="fa fa-check" aria-hidden="true"></i></button>
+	</form>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="/socketio/js/mustache.js"></script>
+	<script src="http://localhost:1337/socket.io/socket.io.js"></script>
+	<script src="/socketio/js/client.js"></script>
+	<script>
+		startTchat(<%= user.id %>, "<%= user.token %>")
+	</script>
+</div>
+
+<% include ../layout/footer %>

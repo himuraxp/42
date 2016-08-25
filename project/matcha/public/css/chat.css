@@ -1,0 +1,69 @@
+.icon-chat {
+	display: inline-flex;
+	margin-bottom: 50px;
+	position: fixed;
+	z-index: 10;
+	left: 200px;
+}
+.chat-text {
+	text-align: right;
+	width: 100%;
+}
+.chat-img {
+	width: 50px;
+	height: 50px;
+	margin: 20px;
+	padding: 0;
+}
+
+.chat-avatar {
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 0 10px #efa7a7;
+}
+#chat {
+	z-index: 10;
+	width: auto;
+	background: none;
+	border: none;
+
+}
+.chat-avatar img {
+	width: 70px;
+	height: 70px;
+	padding: 0;
+}
+.message {
+	display: flex;
+	padding-right: 20px;
+	background-color: rgba(245,245,245,0.8);
+}
+.sep {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.chat-submit {
+	display: block;
+	text-align: center;
+	margin: auto;
+	border-radius: 5px;
+	border: 1px solid #d6d4d4;
+	box-shadow: 0 0 10px #efa7a7;
+	background: rgba(255, 255, 255, 0.5);
+	padding: 20px;
+}
+.chat-submit input {
+	width: 100%;
+	font-size: 2em;
+	margin-bottom: 20px;
+}
+.col-left {
+	display: inline-block;
+}
+.col-left button {
+	width: 120px;
+}
+
+.col-empty-left {
+	display: inline-block;
+	width: 200px;
+}

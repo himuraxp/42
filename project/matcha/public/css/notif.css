@@ -1,0 +1,31 @@
+.notifications-wrap {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+.notifications {
+	position: relative;
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	width: 100%;
+	font-size: 1em;
+	background-color: white;
+	border-radius: 0;
+}
+.notification {
+	cursor: pointer;
+	position: relative;
+}
+.notif-left {
+	position: absolute;
+	height: 100%;
+	width: 30%;
+	padding: 0 10px;
+	top:0;
+	left:0;
+}
+.notif-right {
+	margin-left: 100px;
+}

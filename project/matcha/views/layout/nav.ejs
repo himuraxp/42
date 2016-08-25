@@ -5,4 +5,12 @@
 	<div class="nav-block">
 		<a href="/coffee"><i class="fa fa-coffee logo" aria-hidden="true"></i></a>
 	</div>
+	<form class="nav-block" action="/chat" method="post">
+		<button name="chat" id="chat" value="000" class="none-button"><i class="fa fa-comments-o logo" aria-hidden="true"></i> </button>
+	</form>
+	<form class="nav-block" action="/geo" method="post">
+	    <input type="hidden" name="latitude" value=""/>
+	    <input type="hidden" name="longitude" value=""/>
+	    <button type="submit" class="none-button"><i class="fa fa-map-marker logo" aria-hidden="true"></i></button>
+	</form>
 </nav>

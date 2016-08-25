@@ -3,7 +3,7 @@
 <% include ../../layout/picture %>
 <div class="box">
 
-	<div class="form">
+	<div class="form form-edit">
 		<h1 class="form-title">Modifier</h1>
 			<label for="sampleFile">Ajouter une photo au format .jpg</label>
 		        <form ref='uploadForm'
@@ -14,51 +14,74 @@
 		                <input type="file" name="sampleFile" />
 		                <input type='submit' value='Envoyer' />
 		        </form>
-
 		<form action="/profil/editer" method="post">
-			<div class="field">
-				<label for="pseudo">Nom d'utilisateur</label>
-				<input type="text" name="pseudo" id="pseudo" class="insert" value="<%= user.pseudo %>"></input>
+			<div class="col-right">
+				<div class="field">
+					<label for="pseudo">Nom d'utilisateur</label>
+					<input type="text" name="pseudo" id="pseudo" class="insert" value="<%= user.pseudo %>"></input>
+				</div>
+				<div class="field">
+					<label for="first_name">Prenom</label>
+					<input type="text" name="first_name" id="first_name" class="insert" value="<%= user.first_name %>"></input>
+				</div>
+				<div class="field">
+					<label for="last_name">Nom</label>
+					<input type="text" name="last_name" id="last_name" class="insert" value="<%= user.last_name %>"></input>
+				</div>
+				<div class="field">
+					<label for="email">eMail</label>
+					<input type="email" name="email" id="email" class="insert" value="<%= user.email %>"></input>
+				</div>
+				<div class="field">
+					<label for="bday">Date de naissance</label>
+					<input type="date" name="bday" id="bday" class="insert" value="<%= bday %>"></input>
+				</div>
+				<div class="field" id="mainselection">
+					<label for="sex">Sexe</label>
+					<select name="sex">
+						<% if (user.sex === 'Femme') { %>
+						<option value="Homme">Homme</option>
+						<option value="Femme" selected>Femme</option>
+						<% } else { %>
+						<option value="Homme">Homme</option>
+						<option value="Femme">Femme</option>
+						<% } %>
+					</select>
+				</div>
+				<div class="field" id="mainselection">
+					<label for="like_sex">Tu aimes les</label>
+					<select name="like_sex">
+						<% if (user.like_sex === 'Femmes') { %>
+						<option value="Homme">Hommes</option>
+						<option value="Femme" selected>Femmes</option>
+						<% } else { %>
+						<option value="Homme">Hommes</option>
+						<option value="Femme">Femmes</option>
+						<% } %>
+					</select>
+				</div>
 			</div>
-			<div class="field">
-				<label for="first_name">Prenom</label>
-				<input type="text" name="first_name" id="first_name" class="insert" value="<%= user.first_name %>"></input>
-			</div>
-			<div class="field">
-				<label for="last_name">Nom</label>
-				<input type="text" name="last_name" id="last_name" class="insert" value="<%= user.last_name %>"></input>
-			</div>
-			<div class="field">
-				<label for="email">eMail</label>
-				<input type="email" name="email" id="email" class="insert" value="<%= user.email %>"></input>
-			</div>
-			<div class="field">
-				<label for="bday">Date de naissance</label>
-				<input type="date" name="bday" id="bday" class="insert" value="<%= bday %>"></input>
-			</div>
-			<div class="field" id="mainselection">
-				<label for="sex">Sexe</label>
-				<select name="sex">
-					<% if (user.sex === 'Femme') { %>
-					<option value="Homme">Homme</option>
-					<option value="Femme" selected>Femme</option>
-					<% } else { %>
-					<option value="Homme">Homme</option>
-					<option value="Femme">Femme</option>
-					<% } %>
-				</select>
-			</div>
-			<div class="field" id="mainselection">
-				<label for="like_sex">Tu aimes les</label>
-				<select name="like_sex">
-					<% if (user.like_sex === 'Femmes') { %>
-					<option value="Hommes">Hommes</option>
-					<option value="Femmes" selected>Femmes</option>
-					<% } else { %>
-					<option value="Hommes">Hommes</option>
-					<option value="Femmes">Femmes</option>
-					<% } %>
-				</select>
+			<div class="col-right">
+				<h1><i class="fa fa-transgender-alt" aria-hidden="true"></i></h1>
+				<p>
+					Es-tu du style ?
+				</p>
+				<div class="field check">
+					<label for="sport">Sport</label>
+					<input type="checkbox" name="sport" id="sport" class="insert" value=""></input>
+				</div>
+				<div class="field check">
+					<label for="geek">Geek</label>
+					<input type="checkbox" name="geek" id="geek" class="insert" value=""></input>
+				</div>
+				<div class="field check">
+					<label for="bio">Bio</label>
+					<input type="checkbox" name="bio" id="bio" class="insert" value=""></input>
+				</div>
+				<div class="field check">
+					<label for="barbu">Barbu</label>
+					<input type="checkbox" name="barbu" id="barbu" class="insert" value=""></input>
+				</div>
 			</div>
 			<div class="field">
 				<label for="password">Mot de passe</label>

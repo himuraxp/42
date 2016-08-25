@@ -3,6 +3,7 @@
 	display: block;
 	margin: auto;
 	margin-top: 200px;
+
 	border-radius: 5px;
 	border: 1px solid #d6d4d4;
 	width: 350px;
@@ -11,7 +12,19 @@
 	padding: 20px;
 }
 .form-height {
-	height: 660px;
+
+}
+.form-coffee {
+	margin-top: 50px;
+}
+.form-geo {
+	width: 30%;
+}
+.form-filter {
+	margin-top: -50px;
+}
+.form-edit {
+	width: 470px;
 }
 .form-title {
 	font-family: 'Pacifico', cursive;
@@ -21,6 +34,9 @@
 }
 .field {
 	margin-bottom: 20px;
+}
+.check {
+
 }
 .insert {
 	width: 80%;
@@ -35,12 +51,16 @@
 	font-size: x-large;
 }
 .form-galerie {
-	width: 900px;
+	width: 80%;
+}
+.col-right {
+	display: inline-table;
+	width: 45%;
 }
 .alert {
 	display: block;
 	color: Crimson;
-	font-size: 1.5em;
+	font-size: 1.1em;
 	border: 1px solid #d6d4d4;
 	box-shadow: 0 0 10px #efa7a7;
 	background: rgba(255, 255, 255, 0.5);

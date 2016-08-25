@@ -1,6 +1,6 @@
 <% include ../layout/header %>
 <% include ../layout/nav %>
-<div class="box">
+<div class="flex-box">
 
 	<div class="form">
 		<h1 class="form-title">Le Café</h1>
@@ -14,8 +14,80 @@
 			</div>
 		</div>
 	</div>
-	<div class="flex-box">
-		<% include ./user/user_coffee %>
+	<div class="form">
+		<h1 class="form-title">Filtre</h1>
+		<div class="form-filter">
+			<a href="/coffee" class="hvr-bounce-in">Normal</a></br>
+			<a href="/coffee/all" class="hvr-bounce-in">Tous les membres</a></br>
+			<a href="/coffee/sport" class="hvr-bounce-in">Sportif</a></br>
+			<a href="/coffee/geek" class="hvr-bounce-in">Geek</a></br>
+			<a href="/coffee/bio" class="hvr-bounce-in">Bio</a></br>
+			<a href="/coffee/barbu" class="hvr-bounce-in">Barbu</a></br>
+			<a href="/coffee/populaire" class="hvr-bounce-in">Populaire</a></br>
+		</div>
 	</div>
 </div>
+
+<div class="flex-box flex-content">
+	<% if (me === "all") { %>
+		<% if (tag === "populaire") { %>
+			<% users.forEach(function(user) { %>
+				<% if (user.likes >= 5) { %>
+					<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+				<% } %>
+			<% }) %>
+		<% } else {%>
+			<% users.forEach(function(user) { %>
+				<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+			<% }) %>
+		<% } %>
+	<% } else if (tag === "sport"){ %>
+		<% users.forEach(function(user) { %>
+			<% tags.forEach(function(t) { %>
+				<% if (t.user_id === user.id) { %>
+					<% if (t.sport === 1) { %>
+						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } %>
+				<% } %>
+			<% }) %>
+		<% }) %>
+	<% } else if (tag === "geek"){ %>
+		<% users.forEach(function(user) { %>
+			<% tags.forEach(function(t) { %>
+				<% if (t.user_id === user.id) { %>
+					<% if (t.geek === 1) { %>
+						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } %>
+				<% } %>
+			<% }) %>
+		<% }) %>
+	<% } else if (tag === "bio"){ %>
+		<% users.forEach(function(user) { %>
+			<% tags.forEach(function(t) { %>
+				<% if (t.user_id === user.id) { %>
+					<% if (t.bio === 1) { %>
+						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } %>
+				<% } %>
+			<% }) %>
+		<% }) %>
+	<% } else if (tag === "barbu"){ %>
+		<% users.forEach(function(user) { %>
+			<% tags.forEach(function(t) { %>
+				<% if (t.user_id === user.id) { %>
+					<% if (t.barbu === 1) { %>
+						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } %>
+				<% } %>
+			<% }) %>
+		<% }) %>
+	<% } else { %>
+		<% users.forEach(function(user) { %>
+			<% if (me.like_sex === user.sex && me.sex === user.like_sex) { %>
+				<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+			<% } %>
+		<% }) %>
+	<% } %>
+</div>
+
 <% include ../layout/footer %>

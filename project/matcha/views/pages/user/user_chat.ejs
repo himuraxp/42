@@ -1,0 +1,19 @@
+<% if (user.sex && user.birthday && user.pseudo  && user.first_name && user.sex && user.like_sex && (id != user.id)) { %>
+
+		<form action="/chat" method="post">
+			<button name="chat" id="chat" value="<%= user.id %>" class="hvr-bounce-to-right">
+				<% picture.forEach(function (pic){ %>
+					<% if (pic.url_pic_1 && pic.user_id === user.id) { %>
+						<div class="chat-avatar">
+							<img src="<%= pic.url_pic_1 %>" alt="avatar" />
+						</div>
+					<% } else if (pic.user_id === user.id) {%>
+						<div class="chat-avatar">
+							<i class="fa fa-user-secret default-pic" aria-hidden="true"></i>
+						</div>
+					<% } %>
+				<% }) %>
+			</button>
+		</form>
+
+<% } %>

@@ -26,6 +26,14 @@ button {
 	border-radius: 5px;
 	border: 2px solid rgb(175, 148, 148, 0.3);
 }
+#map { height: 800px; width: 100%;}
+.none-button {
+	font-size: 1em;
+	width: 80px;
+	height: 80px;
+    background: none;
+    border: none;
+}
 #mainselection select {
    border: 0;
    background: transparent;
@@ -45,6 +53,12 @@ button {
 .flex-box {
 	display: flex;
 	text-align: center;
+	max-width: 100%;
+	overflow-y: auto;
+	padding-bottom: 20px;
+}
+.flex-content {
+	flex-wrap: wrap;
 }
 .logo {
 	height: 80px;
@@ -57,7 +71,7 @@ button {
 	transition: 0.3s;
 	border-radius: 50%;
 }
-.message {
+.notif-message {
 	display: block;
 	position: fixed;
 	z-index: 10;

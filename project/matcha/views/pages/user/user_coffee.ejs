@@ -1,50 +1,60 @@
-<% if (user.sex && user.birthday && user.pseudo  && user.first_name && user.sex && user.like_sex) { %>
-<div class="flex-box">
-	<div class="form form-height">
-		<h1 class="form-title"><%= user.pseudo %></h1>
-		<div class="content">
-			<% if (picture.url_pic_1) { %>
-			<div class="avatar">
-				<img src="<%= picture.url_pic_1 %>" alt="avatar" />
-			</div>
-			<% } else {%>
+<% if (user.sex && user.birthday && user.pseudo  && user.first_name && user.sex && user.like_sex && (id != user.id)) { %>
+<div class="form form-height form-coffee">
+	<h1 class="form-title"><%= user.pseudo %></h1>
+	<div class="content">
+			<% picture.forEach(function (pic){ %>
+				<% if (pic.url_pic_1 && pic.user_id === user.id) { %>
 				<div class="avatar">
-					<i class="fa fa-user-secret default-pic" aria-hidden="true"></i>
+				<a href="/coffee/<%= user.id %>" class="hvr-bounce-out"><img src="<%= pic.url_pic_1 %>" alt="avatar" /></a>
 				</div>
-			<% } %>
-			<div class="text">
-				Prenom: <strong><%= user.first_name %></strong>
-			</div>
-			<div class="text">
-				eMail: <strong><%= user.email %></strong>
-			</div>
-			<% if (!user.sex || !user.birthday || !user.pseudo) { %>
-				<div class="alert">
-					L'ensemble de tes informations doivent être remplies. Tu peux le faire dès maintenant en cliquant sur Editer
-					<i class="fa fa-arrow-down" aria-hidden="true"></i>
-				</div>
-			<% } else { %>
-				<div class="text">
-					Il me semblerait qu'il préfères être appelé <strong><%= user.pseudo %></strong>.
-				</div>
-				<% if (user.sex === "Homme") { %>
-					<div class="text">C'est un <strong><%= user.sex %></strong>,
-				<% } else { %>
-					<div class="text">C'est une <strong><%= user.sex %></strong>,
+				<% } else if (pic.user_id === user.id) {%>
+					<div class="avatar">
+						<i class="fa fa-user-secret default-pic" aria-hidden="true"></i>
+					</div>
 				<% } %>
- 					il est née <strong><%= user.bday.fromNow() %>, </strong>
-				<% if (user.like_sex === "Homme") { %>
-					et apparemment il aime les <strong><%= user.like_sex %></strong>.
-				<% } else { %>
-					et apparemment il aime les <strong><%= user.like_sex %></strong>.
-				<% } %>
-				</div>
-			<% } %>
-			</div>
-			<form action="/coffee/like/:id" method="post" style="padding:20px;">
-				<button name="editer" value="<%= user.like_sex %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-heart" aria-hidden="true"></i> </button>
-			</form>
+			<% }) %>
+
+		<div class="text">
+			<strong><%= user.first_name %></strong>
 		</div>
+		<% if (!user.sex || !user.birthday || !user.pseudo) { %>
+			<div class="alert">
+				L'ensemble de tes informations doivent être remplies. Tu peux le faire dès maintenant en cliquant sur Editer
+				<i class="fa fa-arrow-down" aria-hidden="true"></i>
+			</div>
+		<% } else { %>
+			<div class="text">
+				Il semblerait que ce membre préfère être appelé <strong><%= user.pseudo %></strong>.
+			</div>
+			<% if (user.sex === "Homme") { %>
+				<div class="text">C'est un <strong><%= user.sex %></strong>,
+			<% } else { %>
+				<div class="text">C'est une <strong><%= user.sex %></strong>,
+			<% } %>
+					née <strong><%= user.bday.fromNow() %>, </strong>
+			<% if (user.like_sex === "Homme") { %>
+				et préfére rencontrer un <strong><%= user.like_sex %></strong>.
+			<% } else { %>
+				et préfére rencontrer une <strong><%= user.like_sex %></strong>.
+			<% } %>
+			</div>
+		<% } %>
+		</div>
+		<% var OK = 0 %>
+
+			<% likes.forEach(function (like){ %>
+				<% if (like.like_you === user.id && like.you_like == id) { %>
+					<form action="/coffee/unlike/<%= user.id %>" method="post" style="padding:20px;">
+						<button name="unlike" id="unlike" value="<%= user.id %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-heart" aria-hidden="true"></i> </button>
+					</form>
+				<% OK = 1 } %>
+
+			<% }) %>
+			<% if (OK == 0) { %>
+				<form action="/coffee/like/<%= user.id %>" method="post" style="padding:20px;">
+					<button name="like" id="like" value="<%= user.id %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-heart-o" aria-hidden="true"></i> </button>
+				</form>
+			<% } %>
+
 	</div>
-</div>
 <% } %>

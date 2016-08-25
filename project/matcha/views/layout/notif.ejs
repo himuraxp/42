@@ -1,0 +1,22 @@
+<div id="notif-time" class="notifications-wrap">
+<% notifs.forEach(function (notif) { %>
+<% if (user.id === notif.user_id && notif.active == 1) { %>
+	<form action="/notif/<%= notif.id %>" method="post">
+		<button name="notif" id="notif" value="<%= notif.id %>" class="notifications">
+
+				<div class="notification">
+					<div class="notif-left">
+						<i class="fa fa-heart" aria-hidden="true" style="font-size:4em;"></i>
+					</div>
+					<div class="notif-right">
+						<h2><%= user.id %></h2>
+						<p><%= notif.content %></p>
+					</div>
+				</div>
+
+		</button>
+	</form>
+<% } %>
+<% }) %>
+</div>
+</div>

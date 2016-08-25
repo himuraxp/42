@@ -1,8 +1,20 @@
 <% include ../../layout/header %>
 <% include ../../layout/nav %>
-<div class="flex-box">
+<% if (!uid) {%>
+<div class="flex-box flex-content">
 	<div class="form form-height">
 		<h1 class="form-title">Mon profil</h1>
+		<% if (user.likes) { %>
+		<div class="like">
+			Tu as <%= user.likes %> <i class="fa fa-heart default-pic" aria-hidden="true" style="font-size: 1em!important;
+			margin-top: -30px!important;
+		    margin-bottom: -20px!important;"></i>
+		</div>
+		<% } else { %>
+		<div class="like">
+			Personne n'a encore liké ton profil !
+		</div>
+		<% } %>
 		<div class="content">
 			<% if (picture.url_pic_1) { %>
 			<div class="avatar">
@@ -35,9 +47,9 @@
  					tu es née le <strong><%= bday %>.</strong>
 				</div>
 				<% if (user.like_sex === "Homme") { %>
-					<div class="text">Et tu aimes les <strong><%= user.like_sex %></strong>.</div>
+					<div class="text">Et tu préféres rencontrer un <strong><%= user.like_sex %></strong>.</div>
 				<% } else { %>
-					<div class="text">Et tu aimes les <strong><%= user.like_sex %></strong>.</div>
+					<div class="text">Et tu préféres rencontrer une <strong><%= user.like_sex %></strong>.</div>
 				<% } %>
 			<% } %>
 			</div>
@@ -45,7 +57,21 @@
 					<button name="editer" class="hvr-bounce-to-right icon-text"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editer</button>
 				</form>
 		</div>
-
+		<div class="form form-height" style="max-height:700px;">
+			<h1 class="form-title">Biopic</h1>
+			<% if (user.story) { %>
+			<div class="text" style="max-height:520px;overflow-x:auto;">
+				<%= user.story %>
+			</div>
+			<% } else {%>
+				<div class="avatar">
+					<strong class="alert">Tu n'as pas encore redigé ta description !</strong>
+				</div>
+			<% } %>
+			<form action="/profil/biopic" method="get" style="padding:20px;">
+				<button name="editer" class="hvr-bounce-to-right icon-text"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modifier</button>
+			</form>
+		</div>
 		<div class="form form-height form-galerie">
 			<h1 class="form-title">Mon Book</h1>
 			<div class="galerie">
@@ -123,4 +149,113 @@
 		</div>
 	</div>
 </div>
+<% } else { %>
+<div class="flex-box  flex-content">
+	<div class="form form-height">
+		<h1 class="form-title"><%= user.pseudo %></h1>
+		<% if (user.likes) { %>
+		<div class="like">
+			Ce profil a <%= user.likes %> <i class="fa fa-heart default-pic" aria-hidden="true" style="font-size: 1em!important; margin-top: -30px!important; margin-bottom: -20px!important;"></i>
+		</div>
+		<% } else { %>
+		<div class="like">
+			Personne n'a encore liké ce profil !
+		</div>
+		<% } %>
+		<div class="content">
+			<% if (picture.url_pic_1) { %>
+			<div class="avatar">
+				<img src="<%= picture.url_pic_1 %>" alt="avatar" />
+			</div>
+			<% } else {%>
+				<div class="avatar">
+					<i class="fa fa-user-secret default-pic" aria-hidden="true"></i>
+				</div>
+			<% } %>
+			<div class="text">
+				Nom: <strong><%= user.name %></strong>,
+			</div>
+			<% if (!user.sex || !user.birthday || !user.pseudo) { %>
+				<div class="alert">
+					L'utilisateur n'as pas encore remplie toute les informations liés à son compte
+					<i class="fa fa-arrow-down" aria-hidden="true"></i>
+				</div>
+			<% } else { %>
+				<div class="text">
+					Née <strong><%= user.bday.fromNow() %>.</strong>
+				</div>
+				<div class="text">
+					<strong><%= user.sex %></strong>
+				</div>
+				<div class="text">qui tu aimes les <strong><%= user.like_sex %></strong>.</div>
+			<% } %>
+			</div>
+			<% var OK = 0 %>
+			<% likes.forEach(function (like){ %>
+				<% if (like.like_you === user.id && like.you_like == uid) { %>
+					<form action="/coffee/unlike/<%= user.id %>" method="post" style="padding:20px;">
+						<button name="unlike" id="unlike" value="<%= user.id %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-heart" aria-hidden="true"></i> </button>
+					</form>
+				<% OK = 1 } %>
+			<% }) %>
+			<% if (OK == 0) { %>
+				<form action="/coffee/like/<%= user.id %>" method="post" style="padding:20px;">
+					<button name="like" id="like" value="<%= user.id %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-heart-o" aria-hidden="true"></i> </button>
+				</form>
+			<% } %>
+		</div>
+		<% if (user.story) { %>
+		<div class="form form-height" style="max-height:700px;">
+			<h1 class="form-title">Biopic</h1>
+			<div class="text" style="max-height:520px;overflow-x:auto;">
+				<%= user.story %>
+			</div>
+		</div>
+		<% } %>
+		<div class="form form-geo">
+			<%- include('geo_id', {user:user}) %>
+		</div>
+		<div class="form form-height form-galerie">
+			<h1 class="form-title">Son Book</h1>
+			<div class="galerie">
+				<% if (picture.url_pic_1) { %>
+					<div class="box">
+						<div class="avatar avatar-galerie">
+							<img src="<%= picture.url_pic_1 %>" alt="avatar" />
+						</div>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_2) { %>
+					<div class="box">
+						<div class="avatar avatar-galerie">
+							<img src="<%= picture.url_pic_2 %>" alt="avatar" />
+						</div>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_3) { %>
+					<div class="box">
+						<div class="avatar avatar-galerie">
+							<img src="<%= picture.url_pic_3 %>" alt="avatar" />
+						</div>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_4) { %>
+					<div class="box">
+						<div class="avatar avatar-galerie">
+							<img src="<%= picture.url_pic_4 %>" alt="avatar" />
+						</div>
+					</div>
+				<% } %>
+				<% if (picture.url_pic_5) { %>
+					<div class="box">
+						<div class="avatar avatar-galerie">
+							<img src="<%= picture.url_pic_5 %>" alt="avatar" />
+						</div>
+					</div>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</div>
+<% } %>
 <% include ../../layout/footer %>
