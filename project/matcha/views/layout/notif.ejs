@@ -6,11 +6,16 @@
 
 				<div class="notification">
 					<div class="notif-left">
-						<i class="fa fa-heart" aria-hidden="true" style="font-size:4em;"></i>
+						<i class="fa fa-heart" aria-hidden="true" style="font-size:1.5em;"></i>
 					</div>
 					<div class="notif-right">
-						<h2><%= user.id %></h2>
-						<p><%= notif.content %></p>
+						<% users.forEach(function (u) { %>
+							<% if (u.id === notif.like_you) { %>
+								<p>
+									<%= notif.content %> <strong><%= u.pseudo %></strong>
+								</p>
+							<% } %>
+						<% }) %>
 					</div>
 				</div>
 

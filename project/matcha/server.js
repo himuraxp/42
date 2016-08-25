@@ -74,12 +74,14 @@ app.get('/notif', (req, res) => {
 	let Notification = require('./models/notification')
 	id = get_cookies(req)['uid']
 	Notification.find_by_id(id, (notifs) => {
-		User.find(id, function (user) {
-			if (id) {
-				res.render('layout/notif', {user: user, notifs: notifs})
-			} else {
-				res.render('layout/notif', {user: user, notifs: notifs})
-			}
+		User.all((users) => {
+			User.find(id, function (user) {
+				if (id) {
+					res.render('layout/notif', {users:users, user: user, notifs: notifs})
+				} else {
+					res.render('layout/notif', {users:users, user: user, notifs: notifs})
+				}
+			})
 		})
 	})
 })
@@ -89,12 +91,14 @@ app.post('/notif/:id', (req, res) => {
 	id = get_cookies(req)['uid']
 	Notification.false_notif(req.body.notif, (err) => {
 		Notification.find_by_id(id, (notifs) => {
-			User.find(id, function (user) {
-				if (id) {
-					res.redirect(req.headers.referer)
-				} else {
-					res.redirect(req.headers.referer)
-				}
+			User.all((users) => {
+				User.find(id, function (user) {
+					if (id) {
+						res.redirect(req.headers.referer)
+					} else {
+						res.redirect(req.headers.referer)
+					}
+				})
 			})
 		})
 	})
@@ -694,7 +698,7 @@ app.post('/coffee/unlike/:id', (req, res) => {
 	id = get_cookies(req)['uid']
 	if (req.body.unlike.match(/[0-9]/)) {
 		Like.delete(id, req.body.unlike, function (err) {
-			Notification.create(req.body.unlike, "Vous avez eu unlike de ", id, function (err) {
+			Notification.create(req.body.unlike, "Tu n'es plus liké par ", id, function (err) {
 				User.unlike(req.params.id, function (user) {
 					if (err === 'error') {
 						req.flash('error', "Tu ne peux pas unlike ce membre !")
@@ -718,7 +722,7 @@ app.post('/coffee/like/:id', (req, res) => {
 	id = get_cookies(req)['uid']
 	if (req.body.like.match(/[0-9]/)) {
 		Like.create(id, req.body.like, function (err) {
-			Notification.create(req.body.like, "Vous avez eu un like de ", id, function (err) {
+			Notification.create(req.body.like, "Tu as eu un like de ", id, function (err) {
 				User.like(req.params.id, function (user) {
 					if (err === 'error') {
 						req.flash('error', "Tu ne peux pas Liker ce membre !")
