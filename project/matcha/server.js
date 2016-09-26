@@ -183,30 +183,48 @@ app.get('/home', (req, res) => {
 
 app.get('/profil', (req, res) => {
 	let User = require('./models/users')
+	let View = require('./models/views')
+	let Like = require('./models/like')
 	let Picture = require('./models/picture')
 	id = get_cookies(req)['uid']
 	uid = ""
 	likes = ""
-	User.find(id, function (user) {
-		if (user.birthday !== "0000-00-00") {
-			let date = new Date(user.birthday).toISOString().replace(/T/, ' ').split(' ')
-			date = date[0]
-			date = date.split('-')
-			to_i_jj = parseInt(date[2])
-			jj = to_i_jj + 1
-			jj.toString()
-			mm = date[1]
-			aa = date[0]
-			bday = jj + '-' + mm + '-' + aa
-		} else {
-			bday = null
-		}
-		Picture.find(id, function (picture) {
-			if (id) {
-				res.render('pages/user/profil', {user: user, picture: picture, uid: uid, likes: likes})
+	my_views= {}
+	User.all((users) => {
+		User.find(id, function (user) {
+			if (user.birthday !== "0000-00-00") {
+				let date = new Date(user.birthday).toISOString().replace(/T/, ' ').split(' ')
+				date = date[0]
+				date = date.split('-')
+				to_i_jj = parseInt(date[2])
+				jj = to_i_jj + 1
+				jj.toString()
+				mm = date[1]
+				aa = date[0]
+				bday = jj + '-' + mm + '-' + aa
 			} else {
-				res.render('layout/index')
+				bday = null
 			}
+			View.all((views) => {
+				Picture.all((pictures) => {
+					Like.all((likes) => {
+						Picture.find(id, function (picture) {
+							if (id) {
+								res.render('pages/user/profil', {
+									users: users,
+									user: user,
+									pictures: pictures,
+									picture: picture,
+									uid: uid,
+									likes: likes,
+									views: views})
+							} else {
+								res.render('layout/index')
+							}
+						})
+					})
+				})
+			})
 		})
 	})
 })
@@ -361,6 +379,15 @@ app.post('/profil/editer', (req, res) => {
 			User.update_account(user.id, new_type, 'like_sex', function (err) {
 				if (err === 'error') {
 					req.flash('error', "Erreur pendant la sauvegarde Homme ou Femme !")
+					res.redirect('/profil/editer')
+				}
+			})
+		}
+		if (req.body.locate !== undefined && req.body.locate !== '' && req.body.locate !== user.locate) {
+			let new_type = req.body.locate
+			User.update_account(user.id, new_type, 'locate', function (err) {
+				if (err === 'error') {
+					req.flash('error', "Erreur pendant la modification de localisation !")
 					res.redirect('/profil/editer')
 				}
 			})
@@ -662,6 +689,7 @@ app.get('/coffee/barbu', (req, res) => {
 })
 app.get('/coffee/:id', (req, res) => {
 	let User = require('./models/users')
+	let View = require('./models/views')
 	let Picture = require('./models/picture')
 	let Like = require('./models/like')
 	id = req.params.id
@@ -680,13 +708,17 @@ app.get('/coffee/:id', (req, res) => {
 		} else {
 			bday = null
 		}
-		Picture.find(id, function (picture) {
-			Like.all(function (likes) {
-				if (id) {
-					res.render('pages/user/profil', {user: user, picture: picture, uid: uid, likes: likes})
-				} else {
-					res.render('layout/index')
-				}
+		View.new(uid, id, (err) => {
+			User.upscore(id, (err) => {
+				Picture.find(id, function (picture) {
+					Like.all(function (likes) {
+						if (id) {
+							res.render('pages/user/profil', {user: user, picture: picture, uid: uid, likes: likes})
+						} else {
+							res.render('layout/index')
+						}
+					})
+				})
 			})
 		})
 	})

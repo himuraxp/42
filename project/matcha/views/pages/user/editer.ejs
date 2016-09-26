@@ -51,12 +51,18 @@
 				<div class="field" id="mainselection">
 					<label for="like_sex">Tu aimes les</label>
 					<select name="like_sex">
-						<% if (user.like_sex === 'Femmes') { %>
-						<option value="Homme">Hommes</option>
+						<% if (user.like_sex === 'Femme') { %>
+						<option value="Bisexuel">Bisexuel</option>
 						<option value="Femme" selected>Femmes</option>
-						<% } else { %>
 						<option value="Homme">Hommes</option>
-						<option value="Femme">Femmes</option>
+						<% } else if (user.like_sex === 'Homme') { %>
+							<option value="Bisexuel">Bisexuel</option>
+							<option value="Femme">Femmes</option>
+							<option value="Homme" selected>Hommes</option>
+						<% } else { %>
+							<option value="Bisexuel">Bisexuel</option>
+							<option value="Femme">Femmes</option>
+							<option value="Homme">Hommes</option>
 						<% } %>
 					</select>
 				</div>
@@ -81,6 +87,18 @@
 				<div class="field check">
 					<label for="barbu">Barbu</label>
 					<input type="checkbox" name="barbu" id="barbu" class="insert" value=""></input>
+				</div>
+				<div class="field" id="locate">
+					<label for="locate">Me localiser</label>
+					<select name="locate">
+						<% if (user.locate === "oui") { %>
+						<option value="oui" selected>oui</option>
+						<option value="non">non</option>
+						<% } else { %>
+							<option value="non" selected>non</option>
+							<option value="oui">oui</option>
+						<% } %>
+					</select>
 				</div>
 			</div>
 			<div class="field">

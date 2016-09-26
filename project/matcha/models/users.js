@@ -67,6 +67,14 @@ class User {
 		return this.row.lon
 	}
 
+	get score () {
+		return this.row.score
+	}
+
+	get locate () {
+		return this.row.locate
+	}
+
 	get created_at () {
 		return moment(this.row.created_at)
 	}
@@ -195,6 +203,41 @@ class User {
 		})
 	}
 
+	static upscore (id, cb) {
+		let query = 'UPDATE users SET score = ? WHERE id = ?'
+		let score = 0
+		User.find(id, function (user) {
+			id = user.id
+			if (user.score) {
+				score = user.score + 1
+			} else {
+				score = 1
+			}
+			connection.query(query, [score, user.id], (err, result) => {
+				if (err) throw err
+				cb(result)
+			})
+		})
+	}
+
+	static locate (id, cb) {
+		let query = 'UPDATE users SET locate = ? WHERE id = ?'
+		let locate = 0
+		User.find(id, function (user) {
+			id = user.id
+			if (user.locate) {
+				locate = 0
+			} else {
+				locate = 1
+			}
+			connection.query(query, [locate, user.id], (err, result) => {
+				if (err) throw err
+				cb(result)
+			})
+		})
+	}
+
+
 	static unlike (id, cb) {
 		let query = 'UPDATE users SET likes = ? WHERE id = ?'
 		let likes = 0
@@ -217,8 +260,17 @@ class User {
 		let user_type = undefined
 		user_type = new_type
 		if (type === 'sex') {
-			if (user_type !== 'Homme' && user_type !== 'Femme') {
-				user_type = 'Homme'
+			if (user_type !== 'Homme' && user_type !== 'Femme' && user_type !== 'Bisexuel') {
+				user_type = 'Bisexuel'
+			}
+		}
+		if (type === 'locate') {
+			if (user_type.match("oui")) {
+				user_type = "oui"
+			} else if (user_type.match("non")) {
+				user_type = "non"
+			} else {
+				user_type = "oui"
 			}
 		}
 		if (user_type && user_type !== "error") {
