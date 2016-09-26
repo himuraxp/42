@@ -15,3 +15,23 @@ nav {
 	padding: 0;
 	margin-right: 20px;
 }
+.nav-filter {
+	display: flex;
+	width: 100%;
+	position: fixed;
+	top: 100px;
+	left: 0;
+	z-index: 1;
+	background-color: rgba(255,255,255, 0.8);
+}
+
+.nav-filter .form-title {
+	margin: 0 0 0 10px;
+	font-size: 2em;
+}
+
+@media screen and (max-width: 1150px) {
+	.nav-filter {
+		flex-wrap:wrap;
+	}
+}

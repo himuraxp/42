@@ -14,7 +14,25 @@
 			t4 = t2 * t3; t5 = t1 + t4;
 			rad_dist = Math.atan(-t5/Math.sqrt(-t5 * t5 +1)) + 2 * Math.atan(1);
 			return (rad_dist * 3437.74677 * 1.1508) * 1.6093470878864446; }
+
+
 	</script>
+	<form class="" action="/coffee" method="post">
+	<div class="nav-filter">
+		<h1 class="form-title" style="margin:10px;">Filtre</h1>
+			<p style="margin:10px;">Age-min</p>
+			<input style="margin:10px;" type="text" id="age-min" placeholder="18"></input>
+			<p style="margin:10px;">Age-max</p>
+			<input style="margin:10px;" type="text" id="age-max" placeholder="70"></input>
+			<p style="margin:10px;">Tag</p>
+			<input style="margin:10px;" type="text" name="tag" value="#" placeholder="#"></input>
+			<p style="margin:10px;">Popularité-min</p>
+			<input style="margin:10px;" type="text" id="pop-min" placeholder="0"></input>
+			<p style="margin:10px;">Popularité-max</p>
+			<input style="margin:10px;" type="text" id="pop-max" placeholder="5000"></input>
+			<button name="search" class="hvr-bounce-to-right icon-text"><i class="fa fa-search" aria-hidden="true"></i>GO</button>
+	</div>
+	</form>
 	<div class="form form-screen">
 		<h1 class="form-title">Le Café</h1>
 		<div class="content">

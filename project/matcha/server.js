@@ -555,6 +555,27 @@ app.get('/coffee', (req, res) => {
 		})
 	})
 })
+app.post('/coffee', (req, res) => {
+	let User = require('./models/users')
+	let Picture = require('./models/picture')
+	let Like = require('./models/like')
+	id = get_cookies(req)['uid']
+	tag = ""
+	tags = ""
+	User.all(function (users) {
+		User.find(id, function (me) {
+			Picture.all(function (picture) {
+				Like.all(function (likes) {
+					if (id) {
+						res.render('pages/coffee', {users: users, picture:picture, likes:likes, id:id, me: me, tag: tag, tags: tags})
+					} else {
+						res.render('layout/index')
+					}
+				})
+			})
+		})
+	})
+})
 app.get('/coffee/all', (req, res) => {
 	let User = require('./models/users')
 	let Picture = require('./models/picture')
