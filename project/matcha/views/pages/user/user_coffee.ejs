@@ -1,6 +1,16 @@
 <% if (user.sex && user.birthday && user.pseudo  && user.first_name && user.sex && user.like_sex && (id != user.id)) { %>
 <div class="form form-height form-coffee">
-	<h1 class="form-title"><%= user.pseudo %></h1>
+	<h1 class="form-title">
+		<%= user.pseudo %>
+		<% if (user.connected !== null && user.connected === "on") { %>
+			<div class="connected"></div></h1>
+		<% } else { %>
+			<div class="disconnected"></div></h1>
+			<p style="margin-top:-40px;">
+				deconnecté <%= user.last_connect %>
+			</p>
+		<% } %>
+
 	<div class="content">
 			<% picture.forEach(function (pic){ %>
 				<% if (pic.url_pic_1 && pic.user_id === user.id) { %>
@@ -9,7 +19,7 @@
 				</div>
 				<% } else if (pic.user_id === user.id) {%>
 					<div class="avatar">
-						<i class="fa fa-user-secret default-pic" aria-hidden="true"></i>
+						<a href="/coffee/<%= user.id %>" class="hvr-bounce-out"><i class="fa fa-user-secret default-pic" aria-hidden="true"></i></a>
 					</div>
 				<% } %>
 			<% }) %>

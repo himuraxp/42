@@ -36,7 +36,16 @@ var get_cookies = function(request) {
 	});
 	return cookies;
 };
+var del_line = function(element) {
+	if (element === '') {
+		element.delete
+		console.log("Nan");
+	} else {
+		console.log(element);
+		return element
 
+	}
+};
 // Route
 app.get('/', (req, res) => {
 	if (req.headers.cookie) {
@@ -59,9 +68,11 @@ app.post('/', (req, res) => {
 			let sha256 = require('sha256')
 			let new_hash = sha256(req.body.password)
 			if (user && new_hash === user.password) {
-				req.flash('success', "Connexion réussi !")
-				res.cookie('uid', user.id)
-				res.redirect('/home')
+				Signin.connected(user.id, (err) => {
+					req.flash('success', "Connexion réussi !")
+					res.cookie('uid', user.id)
+					res.redirect('/home')
+				})
 			} else {
 				req.flash('error', "Email ou mot de passe invalide !")
 				res.redirect('/')
@@ -555,18 +566,43 @@ app.get('/coffee', (req, res) => {
 		})
 	})
 })
-app.post('/coffee', (req, res) => {
+app.get('/coffee/filter', (req, res) => {
 	let User = require('./models/users')
 	let Picture = require('./models/picture')
 	let Like = require('./models/like')
 	id = get_cookies(req)['uid']
+	me = "all"
 	tag = ""
 	tags = ""
-	User.all(function (users) {
+	let valid_agemin = false
+	let valid_agemax = false
+	let valid_popmin = false
+	let valid_popmax = false
+	let valid_tag = false
+	let agemin = get_cookies(req)['agemin']
+	let agemax = get_cookies(req)['agemax']
+	let tag_c = get_cookies(req)['tag']
+	let tag_array = []
+	let popmin = get_cookies(req)['popmin']
+	let popmax = get_cookies(req)['popmax']
+	if (tag_c) {
+		if (tag_c[0] === "#") {
+			tag_array = tag_c.split("#")
+		} else {
+			tag_array = null
+		}
+	} else {
+		tag_array = null
+	}
+	console.log(tag_c)
+	User.filter(tag_c, agemin, agemax, popmin, popmax, function (users) {
 		User.find(id, function (me) {
 			Picture.all(function (picture) {
 				Like.all(function (likes) {
-					if (id) {
+					if (users === "error") {
+						console.log(users);
+						res.redirect('/coffee')
+					} else if (id) {
 						res.render('pages/coffee', {users: users, picture:picture, likes:likes, id:id, me: me, tag: tag, tags: tags})
 					} else {
 						res.render('layout/index')
@@ -575,6 +611,108 @@ app.post('/coffee', (req, res) => {
 			})
 		})
 	})
+})
+app.post('/coffee', (req, res) => {
+	let User = require('./models/users')
+	let valid_agemin = false
+	let valid_agemax = false
+	let valid_popmin = false
+	let valid_popmax = false
+	let valid_tag = false
+	let agemin = req.body.agemin
+	let agemax = req.body.agemax
+	let tag = req.body.tag
+	let tag_array = []
+	let popmin = req.body.popmin
+	let popmax = req.body.popmax
+	id = get_cookies(req)['uid']
+	if (req.body.agemin !== undefined || req.body.agemin !== '') {
+		if (agemin >= 18 && agemin <= 70) {
+			valid_agemin = true
+		}
+	}
+	if (req.body.agemax !== undefined || req.body.agemax !== '') {
+		if (valid_agemin === true && agemax >= 18 && agemax <= 70) {
+			valid_agemax = true
+		}
+	}
+	if (req.body.tag !== undefined || req.body.tag !== '') {
+		if (tag[0] === "#") {
+			// tag_array = tag.split("#")
+			valid_tag = true
+		}
+	}
+	if (req.body.popmin !== undefined || req.body.popmin !== '') {
+		if (popmin >= 0 && popmin <= 4999) {
+			valid_popmin = true
+		}
+	}
+	if (req.body.popmax !== undefined || req.body.popmax !== '') {
+		if (valid_popmin === true && popmax >= 1 && popmax <= 5000) {
+			valid_popmax = true
+		}
+	}
+	if (valid_tag === true) {
+		if (valid_agemax === true) {
+			if (valid_popmax === true) {
+				res.cookie('agemin', agemin)
+				res.cookie('agemax', agemax)
+				res.cookie('popmin', popmin)
+				res.cookie('popmax', popmax)
+				res.cookie('tag', tag)
+				res.redirect('/coffee/filter')
+			} else {
+				res.cookie('agemin', agemin)
+				res.cookie('agemax', agemax)
+				res.cookie('popmin', null)
+				res.cookie('popmax', null)
+				res.cookie('tag', tag)
+				res.redirect('/coffee/filter')
+			}
+		} else if (valid_popmax === true) {
+			res.cookie('agemin', null)
+			res.cookie('agemax', null)
+			res.cookie('popmin', popmin)
+			res.cookie('popmax', popmax)
+			res.cookie('tag', tag)
+			res.redirect('/coffee/filter')
+		} else {
+			res.cookie('agemin', null)
+			res.cookie('agemax', null)
+			res.cookie('popmin', null)
+			res.cookie('popmax', null)
+			res.cookie('tag', tag)
+			res.redirect('/coffee/filter')
+		}
+	} else {
+		if (valid_agemax === true) {
+			if (valid_popmax === true) {
+				res.cookie('agemin', agemin)
+				res.cookie('agemax', agemax)
+				res.cookie('popmin', popmin)
+				res.cookie('popmax', popmax)
+				res.cookie('tag', null)
+				res.redirect('/coffee/filter')
+			} else {
+				res.cookie('agemin', agemin)
+				res.cookie('agemax', agemax)
+				res.cookie('popmin', null)
+				res.cookie('popmax', null)
+				res.cookie('tag', null)
+				res.redirect('/coffee/filter')
+			}
+		} else if (valid_popmax === true) {
+			res.cookie('agemin', null)
+			res.cookie('agemax', null)
+			res.cookie('popmin', popmin)
+			res.cookie('popmax', popmax)
+			res.cookie('tag', null)
+			res.redirect('/coffee/filter')
+		} else {
+			req.flash('error', "Aucun filtre actif")
+			res.redirect('/coffee')
+		}
+	}
 })
 app.get('/coffee/all', (req, res) => {
 	let User = require('./models/users')
@@ -792,11 +930,35 @@ app.post('/coffee/like/:id', (req, res) => {
 		res.redirect('/coffee')
 	}
 })
+app.post('/coffee/report/:id', (req, res) => {
+	let User = require('./models/users')
+	let Notification = require('./models/notification')
+	id = get_cookies(req)['uid']
+	if (req.body.ban.match(/[0-9]/)) {
+		Notification.create(req.body.ban, "Tu as était report par ", id, function (err) {
+			User.ban(req.params.id, function (user) {
+				if (err === 'error') {
+					req.flash('error', "Tu ne peux pas ban ce membre !")
+					res.redirect(req.headers.referer)
+				} else {
+					req.flash('success', "Félicitation ton report a était pris en compte. Une notification a était envoyé à ce membre !")
+					res.redirect(req.headers.referer)
+				}
+			})
+		})
+	} else {
+		req.flash('error', "Tu ne peux pas ban ce membre !")
+		res.redirect('/coffee')
+	}
+})
 
 app.get('/logout', (req, res) => {
-	res.cookie('uid', '')
-	res.cookie('connect.sid', '')
-	res.redirect('/')
+	let Signin = require('./models/signin')
+	Signin.disconnect(get_cookies(req)['uid'], (err) => {
+		res.cookie('uid', '')
+		res.cookie('connect.sid', '')
+		res.redirect('/')
+	})
 })
 
 app.get('/message', (req, res) => {

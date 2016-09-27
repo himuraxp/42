@@ -19,17 +19,17 @@
 	</script>
 	<form class="" action="/coffee" method="post">
 	<div class="nav-filter">
-		<h1 class="form-title" style="margin:10px;">Filtre</h1>
-			<p style="margin:10px;">Age-min</p>
-			<input style="margin:10px;" type="text" id="age-min" placeholder="18"></input>
-			<p style="margin:10px;">Age-max</p>
-			<input style="margin:10px;" type="text" id="age-max" placeholder="70"></input>
-			<p style="margin:10px;">Tag</p>
-			<input style="margin:10px;" type="text" name="tag" value="#" placeholder="#"></input>
-			<p style="margin:10px;">Popularité-min</p>
-			<input style="margin:10px;" type="text" id="pop-min" placeholder="0"></input>
-			<p style="margin:10px;">Popularité-max</p>
-			<input style="margin:10px;" type="text" id="pop-max" placeholder="5000"></input>
+		<h1 class="form-title" class="p-filter">Filtre</h1>
+			<p class="p-filter">Age-min</p>
+			<input class="p-filter" type="text" name="agemin" placeholder="18"></input>
+			<p class="p-filter">Age-max</p>
+			<input class="p-filter" type="text" name="agemax" placeholder="70"></input>
+			<p class="p-filter">Tag</p>
+			<input class="p-filter" type="text" name="tag" placeholder="#all"></input>
+			<p class="p-filter">Popularité-min</p>
+			<input class="p-filter" type="text" name="popmin" placeholder="1"></input>
+			<p class="p-filter">Popularité-max</p>
+			<input class="p-filter" type="text" name="popmax" placeholder="5000"></input>
 			<button name="search" class="hvr-bounce-to-right icon-text"><i class="fa fa-search" aria-hidden="true"></i>GO</button>
 	</div>
 	</form>
@@ -60,66 +60,82 @@
 </div>
 
 <div class="flex-box flex-content">
-	<% if (me === "all") { %>
-		<% if (tag === "populaire") { %>
+	<% if (users) { %>
+		<% if (me === "all") { %>
+			<% if (tag === "populaire") { %>
+				<% users.forEach(function(user) { %>
+					<% if (!user.ban || user.ban < 5) { %>
+						<% if (user.score >= 5) { %>
+							<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+						<% } %>
+					<% } %>
+				<% }) %>
+			<% } else {%>
+				<% users.forEach(function(user) { %>
+					<% if (!user.ban || user.ban < 5) { %>
+						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } %>
+				<% }) %>
+			<% } %>
+		<% } else if (tag === "sport"){ %>
 			<% users.forEach(function(user) { %>
-				<% if (user.score >= 5) { %>
-					<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+				<% if (!user.ban || user.ban < 5) { %>
+					<% tags.forEach(function(t) { %>
+						<% if (t.user_id === user.id) { %>
+							<% if (t.sport === 1) { %>
+								<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+							<% } %>
+						<% } %>
+					<% }) %>
 				<% } %>
 			<% }) %>
-		<% } else {%>
+		<% } else if (tag === "geek"){ %>
 			<% users.forEach(function(user) { %>
-				<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+				<% if (!user.ban || user.ban < 5) { %>
+					<% tags.forEach(function(t) { %>
+						<% if (t.user_id === user.id) { %>
+							<% if (t.geek === 1) { %>
+								<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+							<% } %>
+						<% } %>
+					<% }) %>
+				<% } %>
+			<% }) %>
+		<% } else if (tag === "bio"){ %>
+			<% users.forEach(function(user) { %>
+				<% if (!user.ban || user.ban < 5) { %>
+					<% tags.forEach(function(t) { %>
+						<% if (t.user_id === user.id) { %>
+							<% if (t.bio === 1) { %>
+								<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+							<% } %>
+						<% } %>
+					<% }) %>
+				<% } %>
+			<% }) %>
+		<% } else if (tag === "barbu"){ %>
+			<% users.forEach(function(user) { %>
+				<% if (!user.ban || user.ban < 5) { %>
+					<% tags.forEach(function(t) { %>
+						<% if (t.user_id === user.id) { %>
+							<% if (t.barbu === 1) { %>
+								<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+							<% } %>
+						<% } %>
+					<% }) %>
+				<% } %>
+			<% }) %>
+		<% } else { %>
+			<% users.forEach(function(user) { %>
+				<% if (!user.ban || user.ban < 5) { %>
+					<% if (me.like_sex === "Bisexuel" && (me.sex === user.like_sex || user.like_sex === "Bisexuel")) { %>
+						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } else if (me.like_sex === user.sex && me.sex === user.like_sex) { %>
+						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
+					<% } %>
+				<% } %>
 			<% }) %>
 		<% } %>
-	<% } else if (tag === "sport"){ %>
-		<% users.forEach(function(user) { %>
-			<% tags.forEach(function(t) { %>
-				<% if (t.user_id === user.id) { %>
-					<% if (t.sport === 1) { %>
-						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
-					<% } %>
-				<% } %>
-			<% }) %>
-		<% }) %>
-	<% } else if (tag === "geek"){ %>
-		<% users.forEach(function(user) { %>
-			<% tags.forEach(function(t) { %>
-				<% if (t.user_id === user.id) { %>
-					<% if (t.geek === 1) { %>
-						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
-					<% } %>
-				<% } %>
-			<% }) %>
-		<% }) %>
-	<% } else if (tag === "bio"){ %>
-		<% users.forEach(function(user) { %>
-			<% tags.forEach(function(t) { %>
-				<% if (t.user_id === user.id) { %>
-					<% if (t.bio === 1) { %>
-						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
-					<% } %>
-				<% } %>
-			<% }) %>
-		<% }) %>
-	<% } else if (tag === "barbu"){ %>
-		<% users.forEach(function(user) { %>
-			<% tags.forEach(function(t) { %>
-				<% if (t.user_id === user.id) { %>
-					<% if (t.barbu === 1) { %>
-						<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
-					<% } %>
-				<% } %>
-			<% }) %>
-		<% }) %>
-	<% } else { %>
-		<% users.forEach(function(user) { %>
-			<% if (me.like_sex === "Bisexuel" && (me.sex === user.like_sex || user.like_sex === "Bisexuel")) { %>
-				<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
-			<% } else if (me.like_sex === user.sex && me.sex === user.like_sex) { %>
-				<%- include('user/user_coffee', {user:user, picture:picture, likes:likes, id:id}) %>
-			<% } %>
-		<% }) %>
 	<% } %>
 </div>
 

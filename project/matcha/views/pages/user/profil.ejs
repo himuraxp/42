@@ -223,7 +223,17 @@
 <% } else { %>
 <div class="flex-box  flex-content">
 	<div class="form form-height">
-		<h1 class="form-title"><%= user.pseudo %></h1>
+		<h1 class="form-title">
+			<%= user.pseudo %>
+			<% if (user.connected !== null && user.connected === "on") { %>
+				<div class="connected"></div></h1>
+			<% } else { %>
+				<div class="disconnected"></div></h1>
+				<p style="margin-top:-40px;">
+					deconnecté <%= user.last_connect %>
+				</p>
+			<% } %>
+
 		<% if (user.score) { %>
 		<div class="like">
 			A <%= user.score %> points de popularité
@@ -274,6 +284,9 @@
 					<button name="like" id="like" value="<%= user.id %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-heart-o" aria-hidden="true"></i> </button>
 				</form>
 			<% } %>
+			<form action="/coffee/report/<%= user.id %>" method="post" style="padding:20px;">
+				<button name="ban" id="ban" value="<%= user.id %>" class="hvr-bounce-to-right icon-text"><i class="fa fa-ban" aria-hidden="true"></i> </button>
+			</form>
 		</div>
 		<% if (user.story) { %>
 		<div class="form form-height" style="max-height:700px;">

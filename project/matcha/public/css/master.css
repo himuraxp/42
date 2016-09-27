@@ -27,6 +27,24 @@ button {
 	border: 2px solid rgb(175, 148, 148, 0.3);
 }
 #map { height: 800px; width: 100%;}
+.connected {
+	display: inline-block;
+	background-color: #48c70a;
+	border-radius: 50%;
+	border: 1px solid rgba(51,51,51,0.4);
+	box-shadow: 1px 1px 1px rgba(51,51,51,0.8);
+	width: 30px;
+	height: 30px;
+}
+.disconnected {
+	display: inline-block;
+	background-color: #cf0412;
+	border-radius: 50%;
+	border: 1px solid rgba(51,51,51,0.4);
+	box-shadow: 1px 1px 1px rgba(51,51,51,0.8);
+	width: 30px;
+	height: 30px;
+}
 .none-button {
 	font-size: 1em;
 	width: 80px;
