@@ -1,0 +1,59 @@
+<% if(typeof(error) !== 'undefined' && error == "badlog"){ %>
+    <div class="errorLogin messageTop">
+        Vous vous êtes trompé dans votre identifiant de connexion ou votre mot de passe !!
+    </div>
+<% }else if(typeof(error) !== 'undefined' && error == "notActive"){ %>
+    <div class="errorLogin messageTop">
+        Vous n'avez pas encore activé votre compte via le mail envoyé !!
+    </div>
+<% }else if(typeof badmail  != "undefined" && badmail == "pseudo"){ %>
+  <div class="errorLogin messageTop">
+    Aucun compte avec ce pseudo !!
+  </div>
+<% } %>
+<div class="central">
+	<h1 class="title">Sign in</h1>
+	<div class="register">
+		<form class="login" action="/login" method="post">
+		    <div>
+		        <label class="register-min-title">Pseudo:</label>
+		        <input class="form-control" type="text" name="pseudo"/>
+		    </div>
+		    <div>
+		        <label class="register-min-title">Password:</label>
+		        <input class="form-control" type="password" name="password"/>
+		    </div>
+		    <div>
+		        <button class="btn-hp hvr-bounce-to-bottom" type="submit">Log In</button>
+		    </div>
+		</form>
+		<br>
+		<div>
+		  <a class="btn btn-block btn-social btn-facebook" href="/user/facebook">
+		     <span class="fa fa-facebook"></span> Sign in with Facebook
+		  </a>
+		  <a class="btn btn-block btn-social btn-twitter" href="/user/twitter">
+		     <span class="fa fa-twitter"></span> Sign in with Twitter
+		  </a>
+		  <a class="btn btn-block btn-social btn-google" href="/auth/authenticate">
+		     <span class="fa fa-google"></span> Sign in with Google Plus
+		  </a>
+		  <a class="btn btn-block btn-social btn-42" href="/user/auth_42">
+		     <span class=""></span> Sign in with 42
+		  </a>
+		</div>
+		<% if(typeof forget  != "undefined" && forget == "forget"){ %>
+		<div class="errorLogin">
+		  Aucun compte avec ce mail !!
+		</div>
+		<% } %>
+		<div class="forget">
+		    <h4 class="title"><i>Vous avez oublié votre mot de passe ?</i></h4>
+		    <form class="" action="/forget" method="post">
+		        <label class="register-min-title">Renseignez votre mail : </label>
+		        <input class="form-control" type="text" name="email"/>
+		        <button class="btn-hp hvr-bounce-to-bottom" type="submit">Forget Password</button>
+		    </form>
+		</div>
+	</div>
+</div>

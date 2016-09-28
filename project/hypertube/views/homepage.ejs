@@ -1,0 +1,82 @@
+  <div class="central">
+      <h1 class="title">Bonjour <%= req.session.me ? req.session.me : ''%>, bienvenue sur Hypertube !</h1>
+      <% if(typeof created != 'undefined' && created == "created"){ %>
+        <div class="created">
+          Ton compte a bien été créé !!
+        </div>
+      <% }else if(req.session.actived && req.session.actived == "actived"){ %>
+        <div class="created">
+          Ton compte est activé et tu peux te connecter avec tes identifiants !!
+        </div>
+      <% req.session.actived = "";
+        } %>
+      <div class="connection">
+        <% if(!req.session.etat || req.session.etat == "déconnecté"){ %>
+        <div class="sign">
+          <div class="register">
+            <% if(req.session.match && req.session.match[0] == "email"){ %>
+              <div class="errorSignup messageTop">
+                Un compte avec ce mail : <%= req.session.match[1]%> existe déjà, veuillez en choisir un autre !!
+              </div>
+              <%  req.session.match = "";%>
+            <% }else if(req.session.match && req.session.match[0] == "pseudo"){ %>
+              <div class="errorSignup messageTop">
+                Ce pseudo : <%= req.session.match[2]%> est déjà utilisé !!
+              </div>
+              <%  req.session.match = "";%>
+            <% } else if(req.session.errSignup && req.session.errSignup == "signupIncomplete"){ %>
+              <div class="errorSignup messageTop">
+                  Veuillez renseigner tout les champs !!
+              </div>
+            <% req.session.errSignup = ""; %>
+            <%  } else if(req.session.errSignup && req.session.errSignup == "badFormatPwd"){ %>
+              <div class="errorSignup messageTop">
+                  Le format du mot de passe n'est pas bon !!
+              </div>
+            <% req.session.errSignup = ""; %>
+            <%  } else if(req.session.errSignup && req.session.errSignup == "badFormatMail"){ %>
+              <div class="errorSignup messageTop">
+                  Le format du mail n'est pas bon !!
+              </div>
+            <% req.session.errSignup = ""; %>
+            <% }%>
+            <form class="" action="register" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                  <label class="register-min-title">Email address</label>
+                  <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title">First Name</label>
+                  <input type="text" class="form-control" name="firstName" placeholder="Enter First Name">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title">Last Name</label>
+                  <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title">Pseudo</label>
+                  <input type="text" class="form-control" name="pseudo" placeholder="Enter Pseudo">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title">Password (Longueur de 8 caracteres, au moins 1 lettre Minuscule, au moins 1 lettre Majuscule et 1 chiffre)</label>
+                  <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title">language select</label>
+                  <select class="form-control" name="languageSelect">
+                    <option value="English">English</option>
+                    <option value="Français">Français</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="register-min-title">Profile photo</label>
+                  <input type="file" name="userPhoto"/>
+                </div>
+                <button type="submit" class="btn-hp hvr-bounce-to-bottom">Register</button>
+            </form>
+          </div>
+        </div>
+        <% } %>
+      </div>
+  </div>

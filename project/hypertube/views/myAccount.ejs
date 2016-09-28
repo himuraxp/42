@@ -1,0 +1,72 @@
+<div class="central">
+	<h1 class="title">Sign in</h1>
+	<% if(req.session.match && req.session.match[0] == "email"){ %>
+	<div class="errorSignup messageTop">
+	Un compte avec ce mail : <%= req.session.match[1]%> existe déjà, veuillez en choisir un autre !!
+	</div>
+	<%  req.session.match = "";%>
+	<% }else if(req.session.match && req.session.match[0] == "pseudo"){ %>
+	<div class="errorSignup messageTop">
+	Ce pseudo : <%= req.session.match[2]%> est déjà utilisé !!
+	</div>
+	<%  req.session.match = "";%>
+	<% } else if(req.session.errSignup && req.session.errSignup == "signupIncomplete"){ %>
+	<div class="errorSignup messageTop">
+	Veuillez renseigner tout les champs !!
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "updated"){ %>
+	<div class="created messageTop">
+	Les modifications ont été réussies !!
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "badFormatMail"){ %>
+	<div class="errorSignup messageTop">
+	Le format du mail n'est pas bon !!
+	</div>
+	<% req.session.errSignup = ""; %>
+	<% }%>
+	</div>
+
+	<form class="register" action="/Users/modify" enctype="multipart/form-data" method="post">
+	    <% if(!req.session.user.facebookId.match(/facebookId-/) && !req.session.user.twitterId.match(/twitterId-/) && !req.session.user.googleId.match(/googleId-/) &&!req.session.user.googleId.match(/ id_42-/)){ %>
+	    <div class="form-group">
+	      <label class="register-min-title" >Email address</label>
+	      <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Enter email" value="<%= req.session.user.email%>">
+	      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+	    </div>
+	    <% }%>
+	    <div class="form-group">
+	      <label class="register-min-title">First Name</label>
+	      <input type="text" class="form-control" name="firstName" placeholder="Enter First Name" value="<%= req.session.user.firstName%>">
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title">Last Name</label>
+	      <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name" value="<%= req.session.user.lastName%>">
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title">Pseudo</label>
+	      <input type="text" class="form-control" name="pseudo" placeholder="Enter Pseudo" value="<%= req.session.user.pseudo%>">
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title">language select</label>
+	      <select class="form-control" name="languageSelect">
+	        <% if(req.session.user.language == "English"){%>
+	            <option value="English" >English</option>
+	            <option value="Français">Français</option>
+	        <% }else{%>
+	            <option value="English">English</option>
+	            <option value="Français" selected="selected">Français</option>
+	        <% }%>
+	      </select>
+	    </div>
+	    <div class="form-group">
+	      <label class="register-min-title">Profile photo</label>
+		  <div class="">
+		  	<img src="<%= !req.session.user.photo ? "/images/H.jpg" : req.session.user.photo%>" alt="Mountain View" style="width:100px;height:100px;margin-bottom:10px;border-radius:4px;"/>
+		  </div>
+
+	      <input class="btn-hp hvr-bounce-to-bottom" type="file" name="userPhoto"/>
+	    </div>
+	    <button type="submit" class="btn-hp hvr-bounce-to-bottom">Save modifications</button>
+	</form>

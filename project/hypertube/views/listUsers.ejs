@@ -1,0 +1,18 @@
+<div class="central">
+	<h1 class="title">Liste des membres</h1>
+	<% listUsers.forEach(function(user){ %>
+		<div class="register">
+			<h1 class="title"><%= user.pseudo %></h1>
+			<ul class="list-inline">
+				<li>
+					<p class="register-min-title">
+						<%= user.firstName%> <%= user.lastName%>
+					</p>
+					<div class="">
+						<img src="<%= !user.photo ? "/images/H.jpg" : user.photo%>" alt="Mountain View" style="width:200px;height:200px;border-radius:4px;"/>
+					</div>
+				</li>
+			</ul>
+		</div>
+	<% }); %>
+</div>

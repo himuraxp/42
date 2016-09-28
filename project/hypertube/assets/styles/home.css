@@ -1,0 +1,166 @@
+h1, h2, h3, h4, h5, p, a, i, b, input{
+	font-family: 'Baloo Bhai', cursive;
+}
+a {
+	font-family: 'Baloo Bhai', cursive;
+	color: whitesmoke!important;
+	text-decoration: none;
+}
+body{
+	background-color: #e6efc2!important;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABNJREFUeNpiYECA/3CCAV0UIMAANfEC/mOKn1cAAAAASUVORK5CYII=),url('../images/videoMarketingHeader.jpg') fixed;
+	background-size: auto, auto, cover;
+	background-repeat: repeat, no-repeat;
+}
+.hvr-bounce-to-bottom:before {
+	background: rgba(57,174,168,0.8)!important;
+}
+.hvr-bounce-to-bottom:hover {
+	color: rgba(91,81,80,0.8)!important;
+}
+.central{
+	margin: 0 20% 0 20%;
+	padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+}
+
+.navbar-block{
+	background-color: rgba(91,81,80,0.8)!important;
+	box-shadow: 0 3px 0 rgba(164,212,170,1);
+}
+.nav-logo {
+	transition: 0.5s;
+}
+.nav-logo:hover, .nav-logo:focus {
+	color: rgba(164,212,170,1)!important;
+	transition: 0.5s;
+}
+.nav>li>a {
+
+	transition: 0.5s;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+	background-color: rgba(164,212,170,1)!important;
+	color: #5b5150!important;
+	transition: 0.5s;
+}
+
+.title{
+	font-family: 'Baloo Bhai', cursive;
+	padding: 20px;
+	color: whitesmoke;
+	text-align: center;
+}
+
+.connection{
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+}
+
+.sign{
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+.btn-42 {
+	background-color: #333;
+	background-image: url(https://projects.intra.42.fr/assets/42_logo-7dfc9110a5319a308863b96bda33cea995046d1731cebb735e41b16255106c12.svg)!important;
+	background-size: 20px;
+	background-position: 5px;
+	background-repeat: no-repeat;
+}
+.btn-42:hover {
+	background-color: #555;
+}
+
+.connect{
+	margin: auto;
+}
+
+.disconnect{
+	margin: auto;
+}
+.btn-hp {
+	margin: auto;
+	width: 100%;
+	padding: 10px;
+	border-radius: 4px;
+	color: whitesmoke;
+	text-shadow: 1px 1px 0 rgb(91,81,80);
+	background-color: rgba(164,212,170,0.8);
+	font-size: 1.5em;
+	font-family: 'Baloo Bhai', cursive;
+	border: 3px solid rgba(91,81,80,0.8);
+	box-shadow: 0 0 4px #e6efc2;
+}
+.register{
+	margin: auto;
+	max-width: 500px;
+	padding: 20px;
+	border-radius: 4px;
+	background-color: rgba(91,81,80,0.8);
+	box-shadow: 0 0 4px #e6efc2;
+}
+.register-min-title {
+	display: inline-block;
+	font-family: 'Baloo Bhai', cursive;
+	color: whitesmoke!important;
+	text-shadow: 1px 1px 3px #5b5150;
+}
+
+.login{
+	margin-top: 5%;
+}
+
+.login2{
+	width: 250px;
+}
+
+.forget{
+	margin-top: 5%;
+}
+.messageTop {
+	top: 70px;
+    left: 10px;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    position: fixed;
+	margin-left: -100%;
+    margin-top: 0!important;
+	animation-name: message;
+	animation-duration: 6s;
+}
+.errorLogin{
+	margin-top: 5%;
+	background-color: rgb(231,158,158);
+	color: #e40000;
+	border: 1px solid;
+	border-radius: 4px;
+	padding: 5px;
+	text-align: center;
+	font-style: italic;
+	text-shadow: 0 0 2px #fff;
+	box-shadow: 0 0 2px #333;
+	font-weight: bold;
+}
+
+.created{
+	text-align: center;
+	margin-top: 5%;
+	background-color: green;
+	color: white;
+}
+
+.errorSignup{
+	text-align: center;
+	background-color: red;
+}
+
+@keyframes message {
+	0% {margin-left: -100%;}
+	10% {margin-left: 0;}
+	90% {margin-left: 0;}
+	100% {margin-left: -100%;}
+}
