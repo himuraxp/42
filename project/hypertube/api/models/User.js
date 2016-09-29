@@ -29,11 +29,11 @@ module.exports = {
         required: true,
         unique: true
       },
-  		firstName:{
-  			type:"string",
-  			required:true,
-		    minLength: 2
-  		},
+  	  firstName:{
+  	     type:"string",
+  		 required:true,
+		 minLength: 2
+  	  },
       lastName:{
         type:"string",
         required:true,
@@ -71,6 +71,10 @@ module.exports = {
       codeActive:{
         type:"string",
         minLength: 2
+      },
+      admin:{
+        type:"integer",
+        defaultsTo: '0'
       },
   },
 

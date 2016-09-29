@@ -50,6 +50,11 @@ module.exports.routes = {
     action: 'modify',
   },
 
+  '/Gestion':{
+      controller : 'AdminController',
+      action : 'listUsers',
+  },
+
   '/Users/activedAccount/:email&:codeActive' :{
     controller : 'UserController',
     action : 'activedAccount',

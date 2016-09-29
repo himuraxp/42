@@ -19,11 +19,15 @@
           <div class="navbar-header">
             <a class="nav-logo navbar-brand" href="/">Hypertube</a>
           </div>
-          <% if(req.session.etat || req.session.etat == "connecté"){ %>
+          <% if(!req.session.etat || req.session.etat == "connecté"){ %>
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="/Users">Users</a></li>
-            <li><a href="#">Séries</a></li>
+            <% if(!req.session.user.admin) { %>
+                <li><a href="/Users">Users</a></li>
+                <li><a href="#">Séries</a></li>
+            <% } else { %>
+                <li><a href="/Gestion">Gestion utilisateurs</a></li>
+            <% } %>
           </ul>
             <form class="navbar-form navbar-left" action="/movie/searchMovie" role="search">
               <div class="form-group">
@@ -97,7 +101,7 @@
     -->
 
     <!--SCRIPTS-->
-    <script src="/js/dependencies/sails.io.js"></script>
+    
     <!--SCRIPTS END-->
   </body>
 </html>

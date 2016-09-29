@@ -1,0 +1,24 @@
+<div class="central">
+	<h1 class="title">Gestion Utilisateurs</h1>
+	<div class="register">
+        <% listUsers.forEach(function(user){ %>
+			<ul class="list-inline">
+                <li class="register-min-title" style-"display:block;">Google ID: <%= user.googleId %></li>
+                <li class="register-min-title" style-"display:block;">Facebook ID: <%= user.facebookId %></li>
+                <li class="register-min-title" style-"display:block;">Twitter ID: <%= user.twitterId %></li>
+                <li class="register-min-title" style-"display:block;">42 ID: <%= user.id_42 %></li>
+				<li class="register-min-title" style-"display:block;">FirstName: <%= user.firstName %></li>
+                <li class="register-min-title" style-"display:block;">LastName:  <%= user.lastName %></li>
+                <li class="register-min-title" style-"display:block;">Email:  <%= user.email %></li>
+                <li class="register-min-title" style-"display:block;">Pseudo:  <%= user.pseudo %></li>
+                <li class="register-min-title" style-"display:block;">Language:  <%= user.language %></li>
+                <li class="register-min-title" style-"display:block;">Active:  <%= user.active %></li>
+                <li class="register-min-title" style-"display:block;">codeActive:  <%= user.codeActive %></li>
+                <li class="register-min-title" style-"display:block;">Admin:  <%= user.admin %></li>
+					<div class="">
+						<img src="<%= !user.photo ? "/images/H.jpg" : user.photo%>" alt="Mountain View" style="width:200px;height:200px;border-radius:4px;"/>
+					</div>
+			</ul>
+    	<% }); %>
+    </div>
+</div>
