@@ -1,11 +1,11 @@
+<h1 class="title">Bonjour <%= req.session.me ? req.session.me : ''%>, bienvenue sur Hypertube !</h1>
   <div class="central">
-      <h1 class="title">Bonjour <%= req.session.me ? req.session.me : ''%>, bienvenue sur Hypertube !</h1>
       <% if(typeof created != 'undefined' && created == "created"){ %>
-        <div class="created">
+        <div class="created messageTop">
           Ton compte a bien été créé !!
         </div>
       <% }else if(req.session.actived && req.session.actived == "actived"){ %>
-        <div class="created">
+        <div class="created messageTop">
           Ton compte est activé et tu peux te connecter avec tes identifiants !!
         </div>
       <% req.session.actived = "";

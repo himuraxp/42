@@ -1,5 +1,5 @@
+<h1 class="title">Sign in</h1>
 <div class="central">
-	<h1 class="title">Sign in</h1>
 	<% if(req.session.match && req.session.match[0] == "email"){ %>
 	<div class="errorSignup messageTop">
 	Un compte avec ce mail : <%= req.session.match[1]%> existe déjà, veuillez en choisir un autre !!

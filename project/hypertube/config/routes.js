@@ -55,6 +55,21 @@ module.exports.routes = {
       action : 'listUsers',
   },
 
+  'GET /Gestion?page=:page':{
+  	controller : 'AdminController',
+  	action : 'listUsers',
+  },
+
+  'GET /Gestion?page=:page?OK=update':{
+  	controller : 'AdminController',
+  	action : 'listUsers',
+  },
+
+  'POST /Gestion/update':{
+      controller : 'AdminController',
+      action : 'adminUpdateUser',
+  },
+
   '/Users/activedAccount/:email&:codeActive' :{
     controller : 'UserController',
     action : 'activedAccount',

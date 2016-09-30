@@ -1,24 +1,96 @@
-<div class="central">
-	<h1 class="title">Gestion Utilisateurs</h1>
-	<div class="register">
-        <% listUsers.forEach(function(user){ %>
-			<ul class="list-inline">
-                <li class="register-min-title" style-"display:block;">Google ID: <%= user.googleId %></li>
-                <li class="register-min-title" style-"display:block;">Facebook ID: <%= user.facebookId %></li>
-                <li class="register-min-title" style-"display:block;">Twitter ID: <%= user.twitterId %></li>
-                <li class="register-min-title" style-"display:block;">42 ID: <%= user.id_42 %></li>
-				<li class="register-min-title" style-"display:block;">FirstName: <%= user.firstName %></li>
-                <li class="register-min-title" style-"display:block;">LastName:  <%= user.lastName %></li>
-                <li class="register-min-title" style-"display:block;">Email:  <%= user.email %></li>
-                <li class="register-min-title" style-"display:block;">Pseudo:  <%= user.pseudo %></li>
-                <li class="register-min-title" style-"display:block;">Language:  <%= user.language %></li>
-                <li class="register-min-title" style-"display:block;">Active:  <%= user.active %></li>
-                <li class="register-min-title" style-"display:block;">codeActive:  <%= user.codeActive %></li>
-                <li class="register-min-title" style-"display:block;">Admin:  <%= user.admin %></li>
-					<div class="">
-						<img src="<%= !user.photo ? "/images/H.jpg" : user.photo%>" alt="Mountain View" style="width:200px;height:200px;border-radius:4px;"/>
+<% var count = 0 %>
+<h1 class="title">Gestion Utilisateurs</h1>
+<div id="block-gestion" class="block-gestion">
+	<% if(req.session.match && req.session.match[0] == "email"){ %>
+	<div class="errorSignup messageTop">
+	Un compte avec ce mail : <%= req.session.match[1]%> existe déjà, veuillez en choisir un autre !!
+	</div>
+	<%  req.session.match = ""; %>
+	<% }else if(req.session.match && req.session.match[0] == "pseudo"){ %>
+	<div class="errorSignup messageTop">
+	Ce pseudo : <%= req.session.match[2]%> est déjà utilisé !!
+	</div>
+	<%  req.session.match = ""; %>
+	<% } else if(req.session.errSignup && req.session.errSignup == "signupIncomplete"){ %>
+	<div class="errorSignup messageTop">
+	Veuillez renseigner tout les champs !!
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "updated"){ %>
+	<div class="created messageTop">
+	Les modifications ont été réussies !!
+	</div>
+	<% req.session.errSignup = ""; %>
+	<%  } else if(req.session.errSignup && req.session.errSignup == "badFormatMail"){ %>
+	<div class="errorSignup messageTop">
+	Le format du mail n'est pas bon !!
+	</div>
+	<% req.session.errSignup = ""; %>
+	<% } %>
+	<% if(update === 1) { %>
+	<div class="created messageTop">
+		Update success !
+	</div>
+	<% } %>
+<div class="block-table">
+	<table>
+		<tr>
+			<td class="title-table">Picture</td>
+			<td class="title-table">FirstName</td>
+			<td class="title-table">LastName</td>
+			<td class="title-table">Email</td>
+			<td class="title-table">Pseudo</td>
+			<td class="title-table">Active</td>
+			<td class="title-table">codeActive</td>
+			<td class="title-table">Admin</td>
+			<td class="title-table">Google ID</td>
+			<td class="title-table">Facebook ID</td>
+			<td class="title-table">Twitter ID</td>
+			<td class="title-table">42 ID</td>
+			<td class="title-table">Language</td>
+		</tr>
+		<% listUsers.forEach(function(user, j){ %>
+			<% count = j %>
+			<tr>
+				<td>
+					<div class="block-img">
+						<img src="<%= !user.photo ? "/images/H.jpg" : user.photo%>" alt="Picture <%= user.pseudo %>"/>
 					</div>
-			</ul>
-    	<% }); %>
-    </div>
+				</td>
+				<form action="/Gestion/update" enctype="multipart/form-data" method="post">
+					<td><input id="firstName" name="firstName" type="text" value="<%= user.firstName %>"></td>
+					<td><input id="lastName" name="lastName" type="text" value="<%= user.lastName %>"></td>
+					<td><input id="email" name="email" type="text" value="<%= user.email %>"></td>
+					<td><input id="pseudo" name="pseudo" type="text" value="<%= user.pseudo %>"></td>
+					<td><input id="active" name="active" type="text" value="<%= user.active %>"></td>
+					<td><input id="codeActive" name="codeActive" type="text" value="<%= user.codeActive %>"></td>
+					<td><input id="admin" name="admin" type="text" value="<%= user.admin %>"></td>
+					<td><input id="googleId" name="googleId" type="text" value="<%= user.googleId %>"></td>
+					<td><input id="facebookId" name="facebookId" type="text" value="<%= user.facebookId %>"></td>
+					<td><input id="twitterId" name="twitterId" type="text" value="<%= user.twitterId %>"></td>
+					<td><input id="id_42" name="id_42" type="text" value="<%= user.id_42 %>"></td>
+					<td><input id="language" name="language" type="text" value="<%= user.language %>"></td>
+					<td><button type="submit" class="btn-hp hvr-bounce-to-bottom" style="padding:8px;">Modify</button></td>
+				</form>
+			</tr>
+		<% }) %>
+	</table>
 </div>
+</div>
+<div class="pagination-block">
+	<form id="form-pagination" action="/Gestion?page=" enctype="multipart/form-data" method="get">
+		<% if(page > 1) { %>
+			<button id="last" class="pagination-button" type="submit"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></button>
+		<% } else { %>
+			<button class="pagination-button" style="color:rgba(0,0,0,0);"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></button>
+		<% } %>
+		<input id="pagination" type="text" name="page" value="<%= page %>" class="pagination">
+		<button id="GO" type="submit" hidden="hidden">GO</button>
+		<% if(count === 9) { %>
+			<button id="next" class="pagination-button" type="submit"><i class="fa fa-chevron-circle-right pagination-button" aria-hidden="true"></i></button>
+		<% } else { %>
+			<button class="pagination-button" style="color:rgba(0,0,0,0);"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
+		<% } %>
+	</form>
+</div>
+<script src="/js/pagination.js"></script>
