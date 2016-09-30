@@ -137,7 +137,7 @@ module.exports = {
 		var regexpMaj = /[A-Z]/g;
 		var regexpMin = /[a-z]/g;
 		var regexpNum = /[0-9]/gi;
-		var regexpMail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+		var regexpMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
 		if (!req.param('firstName') || !req.param('lastName') || !mail ||
 		!req.param('pseudo') || !req.param('languageSelect'))
 		{
