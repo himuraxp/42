@@ -31,10 +31,15 @@
 	<div class="created messageTop">
 		Update success !
 	</div>
+	<% } else if(update === 2) { %>
+	<div class="errorSignup messageTop">
+		Update failed !
+	</div>
 	<% } %>
 <div class="block-table">
 	<table>
 		<tr>
+			<td class="title-table">Save</td>
 			<td class="title-table">Picture</td>
 			<td class="title-table">FirstName</td>
 			<td class="title-table">LastName</td>
@@ -43,34 +48,62 @@
 			<td class="title-table">Active</td>
 			<td class="title-table">codeActive</td>
 			<td class="title-table">Admin</td>
-			<td class="title-table">Google ID</td>
-			<td class="title-table">Facebook ID</td>
-			<td class="title-table">Twitter ID</td>
-			<td class="title-table">42 ID</td>
 			<td class="title-table">Language</td>
 		</tr>
 		<% listUsers.forEach(function(user, j){ %>
 			<% count = j %>
 			<tr>
-				<td>
-					<div class="block-img">
-						<img src="<%= !user.photo ? "/images/H.jpg" : user.photo%>" alt="Picture <%= user.pseudo %>"/>
-					</div>
-				</td>
 				<form action="/Gestion/update" enctype="multipart/form-data" method="post">
+					<td><button type="submit" name="action" value="update" class="btn-hp hvr-bounce-to-bottom" style="padding:8px;outline:none;">Modify</button></td>
+					<td>
+						<div class="block-img hover-pic">
+							<button type="submit" name="action" value="delete_pic" style="background:none;border:none;padding:0px;outline:none;"><img src="<%= !user.photo ? "/images/H.jpg" : user.photo %>" alt="Picture <%= user.pseudo %>"/></button>
+						</div>
+					</td>
 					<td><input id="firstName" name="firstName" type="text" value="<%= user.firstName %>"></td>
 					<td><input id="lastName" name="lastName" type="text" value="<%= user.lastName %>"></td>
 					<td><input id="email" name="email" type="text" value="<%= user.email %>"></td>
 					<td><input id="pseudo" name="pseudo" type="text" value="<%= user.pseudo %>"></td>
-					<td><input id="active" name="active" type="text" value="<%= user.active %>"></td>
+					<td>
+						<div style="text-align:center;font-size:1.5em;">
+							<% if(user.active) { %>
+								<button type="submit" name="action" value="desactive" class="btn-hp hvr-bounce-to-bottom" style="padding:0px;outline:none;"><i class="fa fa-check" style="color:#00e400;text-shadow:1px 1px 1px #333;" aria-hidden="true"></i></button>
+							<% } else { %>
+								<button type="submit" name="action" value="active" class="btn-hp hvr-bounce-to-bottom" style="padding:0px;outline:none;"><i class="fa fa-ban" style="color:red;text-shadow:1px 1px 1px #333;" aria-hidden="true"></i></button>
+
+							<% } %>
+						</div>
+					</td>
 					<td><input id="codeActive" name="codeActive" type="text" value="<%= user.codeActive %>"></td>
-					<td><input id="admin" name="admin" type="text" value="<%= user.admin %>"></td>
-					<td><input id="googleId" name="googleId" type="text" value="<%= user.googleId %>"></td>
-					<td><input id="facebookId" name="facebookId" type="text" value="<%= user.facebookId %>"></td>
-					<td><input id="twitterId" name="twitterId" type="text" value="<%= user.twitterId %>"></td>
-					<td><input id="id_42" name="id_42" type="text" value="<%= user.id_42 %>"></td>
-					<td><input id="language" name="language" type="text" value="<%= user.language %>"></td>
-					<td><button type="submit" class="btn-hp hvr-bounce-to-bottom" style="padding:8px;">Modify</button></td>
+					<td>
+						<select class="btn-hp" name="permit" style="outline:none;font-size:1em;height:100%;">
+							<% if(user.admin === 0) { %>
+								<option value="member" selected>Member</option>
+								<option value="admin">Admin</option>
+							<% } else if(user.admin === 1) { %>
+								<option value="member">Member</option>
+								<option value="admin" selected>Admin</option>
+							<% } else { %>
+								<option value="member">Member</option>
+								<option value="admin">Admin</option>
+							<% } %>
+						</select>
+					</td>
+					<td>
+						<select class="btn-hp" name="language" style="outline:none;font-size:1em;height:100%;">
+							<% if(user.language === "Français") { %>
+								<option value="English">English</option>
+								<option value="Français" selected>Français</option>
+							<% } else if(user.language === "English") { %>
+								<option value="English" selected>English</option>
+								<option value="Français">Français</option>
+							<% } else { %>
+								<option value="English">English</option>
+								<option value="Français">Français</option>
+							<% } %>
+						</select>
+					</td>
+					<td hidden="hidden"><input id="id_user" name="id_user" type="text" value="<%= user.id %>" ></td>
 				</form>
 			</tr>
 		<% }) %>

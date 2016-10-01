@@ -13,7 +13,8 @@ body{
 	background-repeat: repeat, no-repeat;
 }
 table, th, td {
-	border: 1px solid #ddd;
+	border: solid rgba(57,174,168,0.8);
+	border-width: 4px;
 	text-align: left;
 }
 th, td {
@@ -35,4 +36,8 @@ td input:focus {
 	background-color: rgba(85,124,129,0.8);
 	color: whitesmoke;
 	transition: 0.5s;
+}
+button, input, select, textarea {
+	line-height: initial;
+	outline: none;
 }

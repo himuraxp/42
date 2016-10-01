@@ -104,5 +104,4 @@ module.exports.routes = {
     controller: 'MovieController',
     action : 'searchMovie',
   }
-
 };
