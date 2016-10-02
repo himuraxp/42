@@ -9,10 +9,17 @@ module.exports = {
 	listUsers: function(req, res) {
 		var page = 1;
 		var update = 0;
+		var msg = "";
 		var error_msg = [
 			"Format email incorrect !",
 			"Format firstName incorrect !",
-			"Le firstName ne peut possèder plus de 35 charactères"
+			"Le firstName ne peut possèder plus de 35 charactères",
+			"Format lastName incorrect !",
+			"Le lastName ne peut possèder plus de 35 charactères",
+			"Format pseudo incorrect !",
+			"Le pseudo ne peut possèder plus de 35 charactères",
+			"Permission incorrect !",
+			"Language incorrect !"
 		];
 		if (req.url.match("page=")) {
 			url = req.url.split("page=")
@@ -24,6 +31,30 @@ module.exports = {
 				url = url[1].split("\?OFF=update")
 				url[1] = url[0]
 				update = 2
+				check_msg = url[1].split("-")
+				console.log(check_msg);
+				console.log(url[1]);
+
+				msg = check_msg[1]
+				if (msg === "email") {
+					msg = error_msg[0]
+				} else if (msg === "firstName0") {
+					msg = error_msg[1]
+				} else if (msg === "firstName1") {
+					msg = error_msg[2]
+				} else if (msg === "lastName0") {
+					msg = error_msg[3]
+				} else if (msg === "lastName1") {
+					msg = error_msg[4]
+				} else if (msg === "peudo0") {
+					msg = error_msg[5]
+				} else if (msg === "pseudo1") {
+					msg = error_msg[6]
+				} else if (msg === "permit") {
+					msg = error_msg[7]
+				} else if (msg === "language") {
+					msg = error_msg[8]
+				}
 			}
 			if (url[1]) {
 				if (Number(url[1])) {
@@ -31,13 +62,13 @@ module.exports = {
 					User.find().paginate({page: page, limit: 10}).exec(function(err, found){
 						if (err)
 							return res.serverError(err);
-						return res.view('gestionUsers', {listUsers: found, page: page, update: update});
+						return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg});
 					});
 				} else {
 					User.find().paginate({page: page, limit: 10}).exec(function(err, found){
 						if (err)
 							return res.serverError(err);
-						return res.view('gestionUsers', {listUsers: found, page: page, update: update});
+						return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg});
 					});
 				}
 			}
@@ -50,7 +81,7 @@ module.exports = {
 			User.find().paginate({page: page, limit: 10}).exec(function(err, found){
 				if (err)
 					return res.serverError(err);
-				return res.view('gestionUsers', {listUsers: found, page: page, update: update});
+				return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg});
 			});
 		}
 	},
@@ -145,34 +176,34 @@ module.exports = {
 									if (backURL.match("OK=update")) {
 										parseUrl = backURL.split("\?");
 										if (parseUrl[1] && parseUrl[1] === "OK=update") {
-											parseUrl[1] = "OFF=update"
+											parseUrl[1] = "OFF=update-lastName0"
 											newUrl = parseUrl[0] + "?" + parseUrl[1]
 										} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-											parseUrl[2] = "OFF=update"
+											parseUrl[2] = "OFF=update-lastName0"
 											newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 										} else {
 											newUrl = backURL
 										}
 										return res.redirect(newUrl)
 									} else {
-										return res.redirect(backURL + "?OFF=update")
+										return res.redirect(backURL + "?OFF=update-lastName0")
 									}
 								}
 							} else {
 								if (backURL.match("OK=update")) {
 									parseUrl = backURL.split("\?");
 									if (parseUrl[1] && parseUrl[1] === "OK=update") {
-										parseUrl[1] = "OFF=update"
+										parseUrl[1] = "OFF=update-lastName1"
 										newUrl = parseUrl[0] + "?" + parseUrl[1]
 									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-										parseUrl[2] = "OFF=update"
+										parseUrl[2] = "OFF=update-lastName1"
 										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 									} else {
 										newUrl = backURL
 									}
 									return res.redirect(newUrl)
 								} else {
-									return res.redirect(backURL + "?OFF=update")
+									return res.redirect(backURL + "?OFF=update-lastName1")
 								}
 							}
 						}
@@ -186,34 +217,34 @@ module.exports = {
 									if (backURL.match("OK=update")) {
 										parseUrl = backURL.split("\?");
 										if (parseUrl[1] && parseUrl[1] === "OK=update") {
-											parseUrl[1] = "OFF=update"
+											parseUrl[1] = "OFF=update-pseudo0"
 											newUrl = parseUrl[0] + "?" + parseUrl[1]
 										} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-											parseUrl[2] = "OFF=update"
+											parseUrl[2] = "OFF=update-pseudo0"
 											newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 										} else {
 											newUrl = backURL
 										}
 										return res.redirect(newUrl)
 									} else {
-										return res.redirect(backURL + "?OFF=update")
+										return res.redirect(backURL + "?OFF=update-pseudo0")
 									}
 								}
 							} else {
 								if (backURL.match("OK=update")) {
 									parseUrl = backURL.split("\?");
 									if (parseUrl[1] && parseUrl[1] === "OK=update") {
-										parseUrl[1] = "OFF=update"
+										parseUrl[1] = "OFF=update-pseudo1"
 										newUrl = parseUrl[0] + "?" + parseUrl[1]
 									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-										parseUrl[2] = "OFF=update"
+										parseUrl[2] = "OFF=update-pseudo1"
 										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 									} else {
 										newUrl = backURL
 									}
 									return res.redirect(newUrl)
 								} else {
-									return res.redirect(backURL + "?OFF=update")
+									return res.redirect(backURL + "?OFF=update-pseudo1")
 								}
 							}
 						}
@@ -231,17 +262,17 @@ module.exports = {
 								if (backURL.match("OK=update")) {
 									parseUrl = backURL.split("\?");
 									if (parseUrl[1] && parseUrl[1] === "OK=update") {
-										parseUrl[1] = "OFF=update"
+										parseUrl[1] = "OFF=update-permit"
 										newUrl = parseUrl[0] + "?" + parseUrl[1]
 									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-										parseUrl[2] = "OFF=update"
+										parseUrl[2] = "OFF=update-permit"
 										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 									} else {
 										newUrl = backURL
 									}
 									return res.redirect(newUrl)
 								} else {
-									return res.redirect(backURL + "?OFF=update")
+									return res.redirect(backURL + "?OFF=update-permit")
 								}
 							}
 						}
@@ -252,17 +283,17 @@ module.exports = {
 								if (backURL.match("OK=update")) {
 									parseUrl = backURL.split("\?");
 									if (parseUrl[1] && parseUrl[1] === "OK=update") {
-										parseUrl[1] = "OFF=update"
+										parseUrl[1] = "OFF=update-language"
 										newUrl = parseUrl[0] + "?" + parseUrl[1]
 									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-										parseUrl[2] = "OFF=update"
+										parseUrl[2] = "OFF=update-language"
 										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 									} else {
 										newUrl = backURL
 									}
 									return res.redirect(newUrl)
 								} else {
-									return res.redirect(backURL + "?OFF=update")
+									return res.redirect(backURL + "?OFF=update-language")
 								}
 							}
 						}
