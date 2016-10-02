@@ -9,6 +9,11 @@ module.exports = {
 	listUsers: function(req, res) {
 		var page = 1;
 		var update = 0;
+		var error_msg = [
+			"Format email incorrect !",
+			"Format firstName incorrect !",
+			"Le firstName ne peut possèder plus de 35 charactères"
+		];
 		if (req.url.match("page=")) {
 			url = req.url.split("page=")
 			if (url[1].match("OK=update")) {
@@ -67,7 +72,28 @@ module.exports = {
 					var permit = 0
 					if (req.param("permit") === "admin")
 						permit = 1
-					if (req.param("firstName") !== temp.firstName || req.param("lastName") !== temp.lastName || req.param("pseudo") !== temp.pseudo || req.param("codeActive") !== temp.codeActive || permit !== temp.admin || req.param("language") !== temp.language) {
+					if (req.param("email") !== temp.email || req.param("firstName") !== temp.firstName || req.param("lastName") !== temp.lastName || req.param("pseudo") !== temp.pseudo || req.param("codeActive") !== temp.codeActive || permit !== temp.admin || req.param("language") !== temp.language) {
+						if (req.param("email") !== "" && req.param("email") !== undefined) {
+							if (req.param("email").match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/)) {
+								temp.email = req.param("email")
+							} else {
+								if (backURL.match("OK=update")) {
+									parseUrl = backURL.split("\?");
+									if (parseUrl[1] && parseUrl[1] === "OK=update") {
+										parseUrl[1] = "OFF=update-email"
+										newUrl = parseUrl[0] + "?" + parseUrl[1]
+									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
+										parseUrl[2] = "OFF=update-email"
+										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
+									} else {
+										newUrl = backURL
+									}
+									return res.redirect(newUrl)
+								} else {
+									return res.redirect(backURL + "?OFF=update-email")
+								}
+							}
+						}
 						if (req.param("firstName") !== "" && req.param("firstName") !== undefined) {
 							count = req.param("firstName").length
 							if (count > 1 && count < 35) {
@@ -78,34 +104,34 @@ module.exports = {
 									if (backURL.match("OK=update")) {
 										parseUrl = backURL.split("\?");
 										if (parseUrl[1] && parseUrl[1] === "OK=update") {
-											parseUrl[1] = "OFF=update"
+											parseUrl[1] = "OFF=update-firstName0"
 											newUrl = parseUrl[0] + "?" + parseUrl[1]
 										} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-											parseUrl[2] = "OFF=update"
+											parseUrl[2] = "OFF=update-firstName0"
 											newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 										} else {
 											newUrl = backURL
 										}
 										return res.redirect(newUrl)
 									} else {
-										return res.redirect(backURL + "?OFF=update")
+										return res.redirect(backURL + "?OFF=update-firstName0")
 									}
 								}
 							} else {
 								if (backURL.match("OK=update")) {
 									parseUrl = backURL.split("\?");
 									if (parseUrl[1] && parseUrl[1] === "OK=update") {
-										parseUrl[1] = "OFF=update"
+										parseUrl[1] = "OFF=update-firstName1"
 										newUrl = parseUrl[0] + "?" + parseUrl[1]
 									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
-										parseUrl[2] = "OFF=update"
+										parseUrl[2] = "OFF=update-firstName1"
 										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
 									} else {
 										newUrl = backURL
 									}
 									return res.redirect(newUrl)
 								} else {
-									return res.redirect(backURL + "?OFF=update")
+									return res.redirect(backURL + "?OFF=update-firstName1")
 								}
 							}
 						}
@@ -152,7 +178,7 @@ module.exports = {
 						}
 						if (req.param("pseudo") !== "" && req.param("pseudo") !== undefined) {
 							count = req.param("pseudo").length
-							if (count > 1 && count < 16) {
+							if (count > 1 && count < 36) {
 								var check = req.param("pseudo").match(/[A-z0-9\- éèàç]/g).length
 								if (check === count) {
 									temp.pseudo = req.param("pseudo")
