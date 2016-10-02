@@ -52,6 +52,7 @@ module.exports = {
 				} else if (msg === "language") {
 					msg = error_msg[8]
 				}
+
 			}
 			if (url[1]) {
 				if (Number(url[1])) {
@@ -107,10 +108,24 @@ module.exports = {
 	adminUpdateUser: function(req, res) {
 		User.find({ id: req.param("id_user") }).exec(function(err, user){
 			var temp = user.pop();
-			var backURL=req.header('Referer') || '/';
+			var newUrl = "";
+			var backURL = req.header('Referer') || '/';
 			if (err) {
 				return res.serverError(err);
 			} else {
+				if (backURL.match("OFF=update") || backURL.match("OK=update")) {
+					parseUrl = backURL.split("\?");
+					if (parseUrl[1] && (parseUrl[1].match("OFF=update") || parseUrl[1].match("OK=update"))) {
+						newUrl = parseUrl[0]
+					} else if (parseUrl[2] && (parseUrl[2].match("OFF=update") || parseUrl[1].match("OK=update"))) {
+						newUrl = parseUrl[0] + "?" + parseUrl[1]
+					} else {
+						newUrl = backURL
+					}
+				}
+				if (newUrl !== "") {
+					backURL = newUrl
+				}
 				if (req.param("action") === "active") {
 					temp.active = 1
 				} else if (req.param("action") === "desactive") {
@@ -122,7 +137,7 @@ module.exports = {
 					if (req.param("permit") === "admin")
 						permit = 1
 					if (req.param("email") !== temp.email || req.param("firstName") !== temp.firstName || req.param("lastName") !== temp.lastName || req.param("pseudo") !== temp.pseudo || req.param("codeActive") !== temp.codeActive || permit !== temp.admin || req.param("language") !== temp.language) {
-						if (req.param("email") !== "" && req.param("email") !== undefined) {
+						if (req.param("email") !== "" && req.param("email") !== undefined && req.param("email") !== temp.email) {
 							if (req.param("email").match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/)) {
 								temp.email = req.param("email")
 							} else {
@@ -143,7 +158,7 @@ module.exports = {
 								}
 							}
 						}
-						if (req.param("firstName") !== "" && req.param("firstName") !== undefined) {
+						if (req.param("firstName") !== "" && req.param("firstName") !== undefined  && req.param("firstName") !== temp.firstName) {
 							count = req.param("firstName").length
 							if (count > 1 && count < 35) {
 								var check = req.param("firstName").match(/[A-z\- éèàç]/g).length
@@ -184,7 +199,7 @@ module.exports = {
 								}
 							}
 						}
-						if (req.param("lastName") !== "" && req.param("lastName") !== undefined) {
+						if (req.param("lastName") !== "" && req.param("lastName") !== undefined && req.param("lastName") !== temp.lastName) {
 							count = req.param("lastName").length
 							if (count > 1 && count < 35) {
 								var check = req.param("lastName").match(/[A-z\- éèàç]/g).length
@@ -225,7 +240,7 @@ module.exports = {
 								}
 							}
 						}
-						if (req.param("pseudo") !== "" && req.param("pseudo") !== undefined) {
+						if (req.param("pseudo") !== "" && req.param("pseudo") !== undefined && req.param("pseudo") !== temp.pseudo) {
 							count = req.param("pseudo").length
 							if (count > 1 && count < 36) {
 								var check = req.param("pseudo").match(/[A-z0-9\- éèàç]/g).length
@@ -266,7 +281,7 @@ module.exports = {
 								}
 							}
 						}
-						if (req.param("codeActive") !== "" && req.param("codeActive") !== undefined) {
+						if (req.param("codeActive") !== "" && req.param("codeActive") !== undefined && req.param("codeActive") !== temp.codeActive) {
 							temp.codeActive = req.param("codeActive")
 						} else {
 							temp.codeActive = null
