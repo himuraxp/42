@@ -32,9 +32,6 @@ module.exports = {
 				url[1] = url[0]
 				update = 2
 				check_msg = url[1].split("-")
-				console.log(check_msg);
-				console.log(url[1]);
-
 				msg = check_msg[1]
 				if (msg === "email") {
 					msg = error_msg[0]
@@ -76,6 +73,27 @@ module.exports = {
 			if (req.url.match("OK=update")) {
 				update = 1
 			} else if (req.url.match("OFF=update")) {
+				check_msg = req.url.split("-")
+				msg = check_msg[1]
+				if (msg === "email") {
+					msg = error_msg[0]
+				} else if (msg === "firstName0") {
+					msg = error_msg[1]
+				} else if (msg === "firstName1") {
+					msg = error_msg[2]
+				} else if (msg === "lastName0") {
+					msg = error_msg[3]
+				} else if (msg === "lastName1") {
+					msg = error_msg[4]
+				} else if (msg === "peudo0") {
+					msg = error_msg[5]
+				} else if (msg === "pseudo1") {
+					msg = error_msg[6]
+				} else if (msg === "permit") {
+					msg = error_msg[7]
+				} else if (msg === "language") {
+					msg = error_msg[8]
+				}
 				update = 2
 			}
 			User.find().paginate({page: page, limit: 10}).exec(function(err, found){
