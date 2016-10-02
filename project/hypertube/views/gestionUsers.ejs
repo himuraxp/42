@@ -57,7 +57,7 @@
 					<td><button type="submit" name="action" value="update" class="btn-hp hvr-bounce-to-bottom" style="padding:8px;outline:none;">Modify</button></td>
 					<td>
 						<div class="block-img hover-pic">
-							<button type="submit" name="action" value="delete_pic" style="background:none;border:none;padding:0px;outline:none;"><img src="<%= !user.photo ? "/images/H.jpg" : user.photo %>" alt="Picture <%= user.pseudo %>"/></button>
+							<button type="submit" name="action" value="delete_pic" style="background:none;border:none;padding:0px;outline:none;"><img src="<%= !user.photo ? "/images/pic_default.jpg" : user.photo %>" alt="Picture <%= user.pseudo %>"/></button>
 						</div>
 					</td>
 					<td><input id="firstName" name="firstName" type="text" value="<%= user.firstName %>"></td>
