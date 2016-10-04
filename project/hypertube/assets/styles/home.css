@@ -7,6 +7,7 @@
 .central{
 	margin: 0 20% 0 20%;
 	display: flex;
+	flex-wrap: wrap;
 }
 .central-gestion {
 	margin: 0;
@@ -33,9 +34,15 @@
 	transition: 0.5s;
 }
 
-.title{
+.title-header{
 	font-family: 'Baloo Bhai', cursive;
 	padding-top: 50px;
+	color: whitesmoke;
+	text-align: center;
+}
+
+.title{
+	font-family: 'Baloo Bhai', cursive;
 	color: whitesmoke;
 	text-align: center;
 }
@@ -83,7 +90,8 @@
 }
 .register{
 	margin: auto;
-	max-width: 500px;
+	margin-top: 15px;
+	max-width: 280px;
 	padding: 20px;
 	border-radius: 4px;
 	background-color: rgba(91,81,80,0.8);
@@ -120,8 +128,8 @@
 }
 .errorLogin{
 	margin-top: 5%;
-	background-color: rgb(231,158,158);
-	color: #e40000;
+	background-color: rgba(231,158,158,0.9);
+	color: #600000;
 	border: 3px solid;
 	border-radius: 4px;
 	padding: 5px;
@@ -129,35 +137,32 @@
 	font-style: italic;
 	text-shadow: 0 0 2px #fff;
 	box-shadow: 0 0 2px #333;
-	font-weight: bold;
 }
 
 .created{
 	margin-top: 5%;
-	background-color: rgb(158,231,158);
-	color: #21700d;
-	border: 3px solid;
+	background-color: rgba(158,231,158,0.9);
+	color: #0b3500;
+	border: 2px solid;
 	border-radius: 4px;
 	padding: 5px;
 	text-align: center;
 	font-style: italic;
 	text-shadow: 0 0 2px #fff;
 	box-shadow: 0 0 2px #333;
-	font-weight: bold;
 }
 
 .errorSignup{
 	margin-top: 5%;
-	background-color: rgb(231,158,158);
-	color: #e40000;
-	border: 3px solid;
+	background-color: rgba(231,158,158,0.9);
+	color: #600000;
+	border: 2px solid;
 	border-radius: 4px;
 	padding: 5px;
 	text-align: center;
 	font-style: italic;
 	text-shadow: 0 0 2px #fff;
 	box-shadow: 0 0 2px #333;
-	font-weight: bold;
 }
 .hover-pic {
 	transition: 0.5s;

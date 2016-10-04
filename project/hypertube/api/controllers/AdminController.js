@@ -10,16 +10,20 @@ module.exports = {
 		var page = 1;
 		var update = 0;
 		var msg = "";
+		var me = req.session.user;
+		var query = User.find();
 		var error_msg = [
 			"Format email incorrect !",
 			"Format firstName incorrect !",
-			"Le firstName ne peut possèder plus de 35 charactères",
+			"Le firstName peut possèder: 2 à 35 charactères",
 			"Format lastName incorrect !",
-			"Le lastName ne peut possèder plus de 35 charactères",
+			"Le lastName peut possèder: 2 à 35 charactères",
 			"Format pseudo incorrect !",
-			"Le pseudo ne peut possèder plus de 35 charactères",
+			"Le pseudo peut possèder: 2 à 35 charactères",
 			"Permission incorrect !",
-			"Language incorrect !"
+			"Language incorrect !",
+			"Vous devez avoir une photo pour pouvoir la supprimer",
+			"Le codeActive doit possèder au minimum 2 charactères"
 		];
 		if (req.url.match("page=")) {
 			url = req.url.split("page=")
@@ -51,6 +55,10 @@ module.exports = {
 					msg = error_msg[7]
 				} else if (msg === "language") {
 					msg = error_msg[8]
+				} else if (msg === "pic") {
+					msg = error_msg[9]
+				} else if (msg === "codeActive0") {
+					msg = error_msg[10]
 				}
 
 			}
@@ -94,19 +102,34 @@ module.exports = {
 					msg = error_msg[7]
 				} else if (msg === "language") {
 					msg = error_msg[8]
+				} else if (msg === "pic") {
+					msg = error_msg[9]
+				} else if (msg === "codeActive0") {
+					msg = error_msg[10]
 				}
 				update = 2
 			}
-			User.find().paginate({page: page, limit: 10}).exec(function(err, found){
-				if (err)
-					return res.serverError(err);
-				return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg});
-			});
+			if (me.admin === 2) {
+				query.where({'admin': [1,0]}).paginate({page: page, limit: 10}).exec(function(err, found){
+					if (err)
+						return res.serverError(err);
+					return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg, me: me});
+				});
+			} else if (me.admin === 1) {
+				query.where({'admin': 0}).paginate({page: page, limit: 10}).exec(function(err, found){
+					if (err)
+						return res.serverError(err);
+					return res.view('gestionUsers', {listUsers: found, page: page, update: update, msg: msg, me: me});
+				});
+			} else {
+				return res.redirect('/');
+			}
 		}
 	},
 
 	adminUpdateUser: function(req, res) {
 		User.find({ id: req.param("id_user") }).exec(function(err, user){
+			const fs = require('fs');
 			var temp = user.pop();
 			var newUrl = "";
 			var backURL = req.header('Referer') || '/';
@@ -131,7 +154,35 @@ module.exports = {
 				} else if (req.param("action") === "desactive") {
 					temp.active = 0
 				} else if (req.param("action") === "delete_pic") {
-					temp.photo = null
+					if (temp.photo && temp.photo !== "") {
+						var tmp_dir = temp.photo
+						fs.unlink('./assets' + tmp_dir, (err) => {
+							if (err) {
+								console.log("error = " + err);
+							} else {
+								temp.photo = "";
+								temp.save(function(err) {
+									if (err) throw err;
+								});
+							}
+						});
+					} else {
+						if (backURL.match("OK=update")) {
+							parseUrl = backURL.split("\?");
+							if (parseUrl[1] && parseUrl[1] === "OK=update") {
+								parseUrl[1] = "OFF=update-pic"
+								newUrl = parseUrl[0] + "?" + parseUrl[1]
+							} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
+								parseUrl[2] = "OFF=update-pic"
+								newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
+							} else {
+								newUrl = backURL
+							}
+							return res.redirect(newUrl)
+						} else {
+							return res.redirect(backURL + "?OFF=update-pic")
+						}
+					}
 				} else {
 					var permit = 0
 					if (req.param("permit") === "admin")
@@ -282,9 +333,25 @@ module.exports = {
 							}
 						}
 						if (req.param("codeActive") !== "" && req.param("codeActive") !== undefined && req.param("codeActive") !== temp.codeActive) {
-							temp.codeActive = req.param("codeActive")
-						} else {
-							temp.codeActive = null
+							if (req.param("codeActive").length > 1) {
+								temp.codeActive = req.param("codeActive")
+							} else {
+								if (backURL.match("OK=update")) {
+									parseUrl = backURL.split("\?");
+									if (parseUrl[1] && parseUrl[1] === "OK=update") {
+										parseUrl[1] = "OFF=update-codeActive0"
+										newUrl = parseUrl[0] + "?" + parseUrl[1]
+									} else if (parseUrl[2] && parseUrl[2] === "OK=update") {
+										parseUrl[2] = "OFF=update-codeActive0"
+										newUrl = parseUrl[0] + "?" + parseUrl[1] + "?" + parseUrl[2]
+									} else {
+										newUrl = backURL
+									}
+									return res.redirect(newUrl)
+								} else {
+									return res.redirect(backURL + "?OFF=update-codeActive0")
+								}
+							}
 						}
 						if (req.param("permit") !== "" && req.param("permit") !== undefined) {
 							if (req.param("permit") === "member") {

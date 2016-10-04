@@ -1,4 +1,4 @@
-<h1 class="title">Sign in</h1>
+<h1 class="title-header">Sign in</h1>
 <div class="central">
 	<% if(req.session.match && req.session.match[0] == "email"){ %>
 	<div class="errorSignup messageTop">
@@ -28,7 +28,7 @@
 	<% }%>
 	</div>
 
-	<form class="register" action="/Users/modify" enctype="multipart/form-data" method="post">
+	<form class="block-register" action="/Users/modify" enctype="multipart/form-data" method="post">
 	    <% if(!req.session.user.facebookId.match(/facebookId-/) && !req.session.user.twitterId.match(/twitterId-/) && !req.session.user.googleId.match(/googleId-/) &&!req.session.user.googleId.match(/ id_42-/)){ %>
 	    <div class="form-group">
 	      <label class="register-min-title" >Email address</label>

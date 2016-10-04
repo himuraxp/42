@@ -1,4 +1,4 @@
-<h1 class="title">Bonjour <%= req.session.me ? req.session.me : ''%>, bienvenue sur Hypertube !</h1>
+<h1 class="title-header">Bonjour <%= req.session.me ? req.session.me : ''%>, bienvenue sur Hypertube !</h1>
   <div class="central">
       <% if(typeof created != 'undefined' && created == "created"){ %>
         <div class="created messageTop">
@@ -13,7 +13,7 @@
       <div class="connection">
         <% if(!req.session.etat || req.session.etat == "déconnecté"){ %>
         <div class="sign">
-          <div class="register">
+          <div class="block-register">
             <% if(req.session.match && req.session.match[0] == "email"){ %>
               <div class="errorSignup messageTop">
                 Un compte avec ce mail : <%= req.session.match[1]%> existe déjà, veuillez en choisir un autre !!

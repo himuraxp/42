@@ -19,3 +19,12 @@
 	padding-bottom: 20px;
 	overflow-x: auto;
 }
+.block-register{
+	margin: auto;
+	margin-top: 15px;
+	max-width: 500px;
+	padding: 20px;
+	border-radius: 4px;
+	background-color: rgba(91,81,80,0.8);
+	box-shadow: 0 0 4px #e6efc2;
+}
