@@ -48,11 +48,13 @@ module.exports.policies = {
 	// before letting any users feed our rabbits
 	// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+
 	'*':
 	// 'passport',
-	"authenticated",
+	["authenticated","isAuthorized"],
 
 	UserController: {
+		"createApi": true,
 		"createUser": true,
 		"activedAccount" : true,
 		"forget": true,

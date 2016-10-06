@@ -21,6 +21,7 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "~0.1.6",
+    "jsonwebtoken": "^7.1.9",
     "orm": "^3.1.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
