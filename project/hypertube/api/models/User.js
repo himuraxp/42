@@ -76,40 +76,44 @@ module.exports = {
         type:"integer",
         defaultsTo: '0'
       },
-
-      encryptedPassword: {
-        type: 'string'
-      },
-    // We don't wan't to send back encrypted password either
-    toJSON: function () {
-      var obj = this.toObject();
-      delete obj.encryptedPassword;
-      return obj;
-    }
+	  encryptedPassword: {
+			type: 'string'
+		},
+		token: {
+			type: 'string'
+		},
+		// We don't wan't to send back encrypted password either
+		toJSON: function () {
+			var obj = this.toObject();
+			delete obj.encryptedPassword;
+			return obj;
+		}
   },
 
   beforeCreate: function(user, cb) {
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(user.password, salt, function(err, hash) {
-        if(err) {
-          console.log(err);
-          cb(err);
-        } else {
-          user.password = hash;
-          // console.log(hash);
-          cb(null, user);
-        }
+      bcrypt.genSalt(10, function(err, salt) {
+          bcrypt.hash(user.password, salt, function(err, hash) {
+            if(err) {
+                console.log(err);
+                cb(err);
+            } else {
+                user.password = hash;
+                // console.log(hash);
+                cb(null, user);
+            }
+          });
       });
-    });
   },
+
   comparePassword : function (password, user, cb) {
-    bcrypt.compare(password, user.encryptedPassword, function (err, match) {
-      if(err) cb(err);
-      if(match) {
-        cb(null, true);
-      } else {
-        cb(err);
-      }
-    })
+	  bcrypt.compare(password, user.encryptedPassword, function (err, match) {
+
+		  if(err) cb(err);
+		  if(match) {
+			  cb(null, true);
+		  } else {
+			  cb(err);
+		  }
+	  })
   }
 };

@@ -1,9 +1,9 @@
 $(document).ready( function() {
-	$('#button-gestion').click(goGestion);
+	$('#button-myAc').click(goMe);
 
-	function goGestion(e){
-		io.socket.off("gestion");
-		var listeUsers = jQuery.get('/Gestion', function(data) {
+	function goMe(e){
+		io.socket.off("me");
+		var listeUsers = jQuery.get('/Users/me', function(data) {
 			//process text file line by line
 			var parse = data.split("<start>");
 			parse = parse[1].split("<end>");
@@ -11,7 +11,7 @@ $(document).ready( function() {
 			$('#central').html(result);
 		});
 
-		io.socket.on('gestion', function(data){
+		io.socket.on('me', function(data){
 			$('#central').append(listUsers);
 		})
 	}

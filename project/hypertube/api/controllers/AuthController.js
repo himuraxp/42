@@ -1,33 +1,7 @@
 var passport = require('passport');
 
 module.exports = {
-	index: function (req, res) {
-		var email = req.param('email');
-		var password = req.param('password');
-		if (!email || !password) {
-			return res.json(401, {err: 'email and password required'});
-		}
-		User.findOne({email: email}, function (err, user) {
-			if (!user) {
-				return res.json(401, {err: 'invalid email or password'});
-			}
 
-			User.comparePassword(password, user, function (err, valid) {
-				if (err) {
-					return res.json(403, {err: 'forbidden'});
-				}
-
-				if (!valid) {
-					return res.json(401, {err: 'invalid email or password'});
-				} else {
-					res.json({
-						user: user,
-						token: jwToken.issue({id : user.id })
-					});
-				}
-			});
-		})
-	},
 	login: function(req, res) {
 		res.view('../views/login');
 	},
@@ -55,13 +29,93 @@ module.exports = {
 								req.session.etat = "connecté";
 								req.session.user = user;
 								req.session.me = req.param('pseudo');
-								return res.view('../views/homepage');
+								return res.redirect('/');
 							});
 						}) (req, res);
 					}
 				});
 			}
 		});
+	},
+
+	postAuth: function(req, res) {
+		User.find({pseudo: req.param('pseudo')}).exec(function(err, found){
+			if (err) {
+				console.log("Error find pseudo login"+err);
+				return res.send(err);
+			} else if(found == ""){
+				return res.view('login', {badmail: "pseudo"});
+			} else {
+				found.forEach(function(result){
+					if (result.active != "1")
+					return res.view('../views/login', {error: "notActive"});
+					else {
+						passport.authenticate('local', function(err, user, info) {
+							if( (err)||(!user) ) {
+								return res.view('../views/login', {error: "badlog"});
+							}
+							req.logIn(user, function(err) {
+								if(err) res.send(err);
+								return res.json(200, user.token);
+							});
+						}) (req, res);
+					}
+				});
+			}
+		});
+	},
+
+	restAuth: function(req, res) {
+		if (req.headers && req.headers.authorization) {
+			var token;
+			if (req.headers && req.headers.authorization) {
+				var parts = req.headers.authorization.split(' ');
+				if (parts.length == 2) {
+					var scheme = parts[0],
+					credentials = parts[1];
+					if (/^Bearer$/i.test(scheme)) {
+						token = credentials;
+					}
+				} else {
+					return res.json(401, {err: 'Format is Authorization: Bearer [token]'});
+				}
+			} else if (req.param('token')) {
+				token = req.param('token');
+				// We delete the token from param to not mess with blueprints
+				delete req.query.token;
+			} else {
+				return res.json(401, {err: 'No Authorization header was found'});
+			}
+
+			jwToken.verify(token, function (err, token) {
+				if (err) return res.json(401, {err: 'Invalid Token!'});
+				req.token = token; // This is the decrypted token or the payload you provided
+				console.log(token);
+				return res.json(200, {success: 'Token Verified'});
+			});
+		} else {
+			if (req.session.user) {
+				User.find({token : req.session.user.token}).exec(function(err, users){
+					if (err){
+						return res.json(401, "Error: " + err);
+					}
+					else if(users == ""){
+						return res.json(401, "Error: pseudo not found");
+					}
+					else {
+						users.forEach(function(user){
+							if (user.active !== 1)
+							return res.json(401, "Error: account not actived");
+							else {
+								return res.json(200, user.token);
+							}
+						});
+					}
+				});
+			} else {
+				res.view('apiauth');
+			}
+		}
 	},
 
 	logout: function(req, res) {
@@ -107,31 +161,8 @@ module.exports = {
 				}
 			});
 		})(req,res);
-	},
+	}
 
-	// authRest: function(req,res){
-	// 	auth.authenticateUser(function(pseudo, password, callback) {
-	// 		User.findOne({ pseudo: pseudo }, function(err, user) {
-	// 			if (err) {
-	// 				return callback(err);
-	// 			}
-	// 			if (! user) {
-	// 				return callback(null, false, 'User does not exists');
-	// 			}
-	// 			if (hash(password) !== user.password) {
-	// 				return callback(null, false, 'Invalid password');
-	// 			}
-	// 			req.session.etat = "connecté";
-	// 			req.session.user = user;
-	// 			req.session.me = pseudo;
-	// 			// The username and password should be given here
-	// 			callback(null, {
-	// 				pseudo: pseudo,
-	// 				password: user.password
-	// 			});
-	// 		});
-	// 	})(req,res);
-	// }
 };
 
 module.exports.blueprints = {

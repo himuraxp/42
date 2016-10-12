@@ -1,3 +1,5 @@
+<start>
+<% if(req.session.etat === "connecté" && req.session.user.active === 1) { %>
 <h1 class="title-header">Liste des membres</h1>
 <div class="central" style="padding-top:0;">
 	<% listUsers.forEach(function(user){ %>
@@ -16,3 +18,16 @@
 		</div>
 	<% }); %>
 </div>
+<% } else { %>
+	<a href="/login"><button class="btn-hp hvr-bounce-to-bottom">Me connecter</button></a>
+	<h1 class="title-header">Il vous faut être connecté et avec un actif pour accéder à cette page !</h1>
+	<script type="text/javascript">
+	$(document).ready( function() {
+		function clearNav() {
+			$(".navi").remove();
+		}
+		clearNav();
+	})
+	</script>
+<% } %>
+<end>

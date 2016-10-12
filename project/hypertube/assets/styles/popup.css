@@ -1,0 +1,71 @@
+.popup {
+  position:fixed;
+  clear:both;
+  z-index: 50;
+  width:80%;
+  max-width:600px;
+  min-height:200px;
+  background-color:black;
+  border: 3px solid rgba(164,212,170,1);
+  border-bottom:4px solid rgba(231,158,158,0.9);
+  box-shadow: 0 0 8px #e6efc2;
+  border-radius: 5px;
+  margin-top:60px;
+  left: 50px;
+  top: 20px;
+  color:white;
+  padding:5px;
+  /*display:none;*/
+}
+.percentDl {
+  position:absolute;
+  top:40px;
+ text-align:center;
+ width:100%;
+}
+.player{
+  position:relative;
+  text-align:center;
+}
+.reduct, .close {
+  float:right;
+  margin-right:10px;
+  color:#ccc;
+  background-color:black;
+  border:none;
+}
+.close {
+  float:right;
+  margin-right:10px;
+  color:#ccc;
+  background-color:black;
+  border:none;
+}
+#popbot {
+  width:100%;
+  position:fixed;
+  bottom:0;
+}
+#typ1{
+  display:none;
+}
+.littleBar {
+  width:150px;
+  height:30px;
+  padding:5px;
+  padding-bottom: 10px;
+  border:2px solid rgba(231,158,158,0.9);
+  margin: 0 0 5px 5px;
+  border-radius: 4px;
+  background-color: rgba(51,51,51,0.9);
+  color:white;
+  float:left;
+  box-shadow: 1px 1px 2px #333;
+  transition: 0.5s;
+}
+
+.littleBar:hover {
+	color: #333;
+	background-color: rgba(164,212,170,0.9);
+	transition: 0.5s;
+}

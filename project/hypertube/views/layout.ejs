@@ -4,13 +4,16 @@
 	<title><%=typeof title == 'undefined' ? 'Hypertube' : title%></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta charset="utf-8">
-	<link rel="icon" href="http://www.tuxxin.com/wp-content/uploads/2014/01/streaming-video-icon.jpg">
+	<link rel="icon" href="/images/logo_video.png">
 	<link rel="stylesheet" href="/styles/master.css" type="text/css">
 	<link rel="stylesheet" href="/styles/responsive.css" media="screen" type="text/css">
 	<link rel="stylesheet" href="/styles/home.css" type="text/css">
 	<link rel="stylesheet" href="/styles/block.css" type="text/css">
+	<link rel="stylesheet" href="/styles/popup.css" type="text/css">
 	<link rel="stylesheet" href="/styles/title.css" type="text/css">
 	<link rel="stylesheet" href="/styles/pagination.css" type="text/css">
+	<link rel="stylesheet" href="/styles/button.css" type="text/css">
+	<link rel="stylesheet" href="/styles/search.css" type="text/css">
 	<link rel="stylesheet" href="/styles/bootstrap-social.css" title="text/css">
 	<link rel="stylesheet" href="/styles/font-awesome.min.css" title="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
@@ -18,8 +21,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://use.fontawesome.com/3a447f8ed4.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </head>
-<body>
+<body >
 	<div class="navi">
 		<nav class="navbar-block navbar-fixed-top">
 			<div class="container-fluid ">
@@ -29,27 +33,27 @@
 				<% if(!req.session.etat || req.session.etat == "connecté"){ %>
 					<% if(req.session.user) { %>
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="/">Home</a></li>
+							<li class="active"><a id="button-home" style="cursor:pointer;">Home</a></li>
 							<% if(!req.session.user.admin) { %>
-								<li><a href="/Users">Users</a></li>
+								<li><a id="button-user" style="cursor:pointer;">Users</a></li>
 								<li><a href="#">Séries</a></li>
 							<% } else { %>
 								<li><a href="/Gestion">Gestion utilisateurs</a></li>
 							<% } %>
 						</ul>
-						<form class="navbar-form navbar-left" action="/movie/searchMovie" role="search">
+						<div class="navbar-form navbar-left" role="search">
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Search" name="movie">
+								<input type="text" class="form-control" placeholder="Search" id="movie">
 							</div>
-							<button type="submit" class="btn btn-default">Submit</button>
-						</form>
+							<button type="button" class="btn btn-default" id="searchSub">Submit</button>
+						</div>
 					<% } %>
 				<% } %>
 				<ul class="nav navbar-nav navbar-right">
 					<% if(!req.session.etat || req.session.etat == "déconnecté"){ %>
-						<li><a href="login"><span class="glyphicon glyphicon-user"></span> Sign In</a></li>
+						<li><a id="button-login" style="cursor:pointer;"><span class="glyphicon glyphicon-user"></span> Sign In</a></li>
 					<% }else{ %>
-						<li><a href="/Users/me">My Account</a></li>
+						<li><a id="button-myAc" style="cursor:pointer;">My Account</a></li>
 						<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 					<% } %>
 				</ul>
@@ -58,10 +62,24 @@
 	</div>
 	<div id="message">
 	</div>
-<%- body %>
 
+	<div id="all_popup">
 
+	</div>
+	<div id="central">
 
+		<%- body %>
+	</div>
+	<div id="popbot">
+	</div>
+
+	<input id="clickstatus" type="hidden" value="">
+	<input id="mouseX" type="hidden" value="">
+	<input id="mouseY" type="hidden" value="">
+	<input id="idpopup" type="hidden" value="">
+	<input id="Zindex" type="hidden" value="100">
+	<div id="addscript">
+	</div>
     <!--
         Client-side Templates
         ========================
@@ -84,7 +102,7 @@
     -->
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
 
@@ -112,8 +130,17 @@
     -->
 
     <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/actionPopup.js"></script>
     <script src="/js/gestionUsers.js"></script>
+    <script src="/js/home.js"></script>
+    <script src="/js/loadMovie.js"></script>
+    <script src="/js/myAccount.js"></script>
     <script src="/js/pagination.js"></script>
+    <script src="/js/popup.js"></script>
+    <script src="/js/search.js"></script>
+	<script src="/js/user.js"></script>
+    <script src="/js/login.js"></script>
     <!--SCRIPTS END-->
 </body>
 </html>

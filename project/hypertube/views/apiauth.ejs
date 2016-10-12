@@ -1,0 +1,31 @@
+<% if(typeof(error) !== 'undefined' && error == "badlog"){ %>
+    <div class="errorLogin messageTop">
+        Vous vous êtes trompé dans votre identifiant de connexion ou votre mot de passe !!
+    </div>
+<% }else if(typeof(error) !== 'undefined' && error == "notActive"){ %>
+    <div class="errorLogin messageTop">
+        Vous n'avez pas encore activé votre compte via le mail envoyé !!
+    </div>
+<% }else if(typeof badmail  != "undefined" && badmail == "pseudo"){ %>
+  <div class="errorLogin messageTop">
+    Aucun compte avec ce pseudo !!
+  </div>
+<% } %>
+<h1 class="title-header">Sign in</h1>
+<div class="central">
+	<div class="block-register" style="width:500px;">
+		<form class="login" action="/ApiAuth" method="post">
+		    <div>
+		        <label class="register-min-title">Pseudo:</label>
+		        <input class="form-control" type="text" name="pseudo"/>
+		    </div>
+		    <div>
+		        <label class="register-min-title">Password:</label>
+		        <input class="form-control" type="password" name="password"/>
+		    </div>
+		    <div>
+		        <button class="btn-hp hvr-bounce-to-bottom" type="submit" style="margin-top:10px;">Log In</button>
+		    </div>
+		</form>
+	</div>
+</div>

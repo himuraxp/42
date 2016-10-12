@@ -20,7 +20,26 @@ module.exports = {
 		res.redirect('/');
 
 	},
-
+	///////////////////////authApi//////////////////////////
+	create: function (req, res) {
+		if (!req.body.password) {
+			return res.json(401, {err: 'Password doesn\'t match, What a shame!'});
+		}
+		User.create(req.body).exec(function (err, user) {
+			if (err) {
+				return res.json(err.status, {err: err});
+			}
+			// If user created successfuly we return user and token as response
+			if (user) {
+				token = jwToken.issue({id: user.id})
+				User.query("update user set token = '"+token+"'where id = '"+user.id+"'"
+				, function(err, update){
+					if (err) throw err
+					res.json(200, {user: user, token: token});
+				});
+			}
+		});
+	},
 	///////////////////////twitter////////////////////////////
 	'twitter': function(req, res, next){
 		passport.authenticate('twitter',
@@ -97,6 +116,34 @@ module.exports = {
 
 	///////////////////////42/callback////////////////////////////
 	'auth_42/callback': function(req, res, next){
+		passport.authenticate('oauth2',
+		function(req, res) {
+			res.redirect('/');
+		})(req, res, next);
+	},
+
+	///////////////////////42////////////////////////////
+	'auth_hypertube': function(req, res, next){
+
+		passport.authenticate('oauth2',
+		function (err, user) {
+			req.logIn(user, function (err) {
+				if(err) {
+					console.log(err);
+					req.session.flash = 'There was an error';
+					res.redirect('login');
+				} else {
+					req.session.etat = "connecté";
+					req.session.user = user;
+					req.session.me = user.firstName;
+					res.redirect('/');
+				}
+			});
+		})(req, res, next);
+	},
+
+	///////////////////////42/callback////////////////////////////
+	'auth_hypertube/callback': function(req, res, next){
 		passport.authenticate('oauth2',
 		function(req, res) {
 			res.redirect('/');
@@ -190,7 +237,7 @@ module.exports = {
 								}
 							}
 						});
-					}else {
+					} else {
 						const fs = require('fs');
 						var filename = files[0].fd.substring(files[0].fd.lastIndexOf('/')+1);
 						var uploadLocation = process.cwd() +'/assets/images/' + filename;
@@ -249,23 +296,7 @@ module.exports = {
 			});
 		}
 	},
-	///////////////////////createUserByApi////////////////////////////
 
-	createApi: function (req, res) {
-		if (req.body.password !== req.body.confirmPassword) {
-			return res.json(401, {err: 'Password doesn\'t match, What a shame!'});
-		}
-		Users.create(req.body).exec(function (err, user) {
-			if (err) {
-				return res.json(err.status, {err: err});
-			}
-			// If user created successfuly we return user and token as response
-			if (user) {
-				// NOTE: payload is { id: user.id}
-				res.json(200, {user: user, token: jwToken.issue({id: user.id})});
-			}
-		});
-	},
 	///////////////////////createUser////////////////////////////
 	createUser: function (req, res) {
 		var str = req.param('password');
@@ -307,7 +338,6 @@ module.exports = {
 				fs.createReadStream(uploadLocation).pipe(fs.createWriteStream(tempLocation));
 
 				files.forEach(function(path){
-
 					var bcrypt = require('bcrypt');
 					bcrypt.genSalt(12, function(err, salt) {
 						bcrypt.hash(req.param('firstName')+req.param('lastName'), salt, function(err, hash) {
@@ -318,44 +348,62 @@ module.exports = {
 								code = code.replace(/\//g, "");
 								path = path.fd.replace(/.*assets/, "");
 								User.create( {facebookId : "fb_Id"+code,
-								twitterId: "tw_Id"+code,
-								googleId: "g+_eId"+code,
-								id_42: "42_id"+code,
-								firstName: req.param('firstName'),
-								lastName: req.param('lastName'),
-								email: req.param('Email'),
-								pseudo: req.param('pseudo'),
-								password: req.param('password'),
-								language: req.param('languageSelect'),
-								codeActive: code,
-								photo: path}, function(err, created){
+									twitterId: "tw_Id"+code,
+									googleId: "g+_eId"+code,
+									id_42: "42_id"+code,
+									firstName: req.param('firstName'),
+									lastName: req.param('lastName'),
+									email: req.param('Email'),
+									pseudo: req.param('pseudo'),
+									password: req.param('password'),
+									language: req.param('languageSelect'),
+									codeActive: code,
+									photo: path},
+									function(err, created){
 									if (!err){
-										var nodemailer = require('nodemailer');
-										var transporter = nodemailer.createTransport({
-											service: 'Gmail',
-											auth: {
-												user: 'michaelbouhier66@gmail.com',
-												pass: 'bikernumber13'
-											}
-										});
+										User.findOne({email: req.param('Email')}, function(err, user){
+											if (err) {
+												console.log("error = " + err);
+											} else {
+												console.log("user.id = " + user.id);
+												token = jwToken.issue({id: user.id})
+												console.log("token = " + token);
+												console.log(req.param("Email"));
+												User.query("update user set token = '"+token+"' where email = '"+req.param("Email")+"'", function(err, update) {
+													if (err) {
+														console.log("error = " + err);
+													} else {
+														console.log("save ok");
+														var nodemailer = require('nodemailer');
+														var transporter = nodemailer.createTransport({
+															service: 'Gmail',
+															auth: {
+																user: 'michaelbouhier66@gmail.com',
+																pass: 'bikernumber13'
+															}
+														});
 
-										// setup e-mail data with unicode symbols
-										var mailOptions = {
-											from: '"Admin Hyper" <no-reply@hypertube.com>', // sender address
-											to: req.param('Email'), // list of receivers
-											subject: 'Inscription', // Subject line
-											//     text: 'Hello world ?', // plaintext body
-											html: '<b>Cliquez sur ce lien pour activez votre compte :</b>'+
-											'<a href="http://localhost:1337/Users/activedAccount/'+req.param('Email')+'&'+code+'">Activez votre compte</a>'// html body
-										};
-										// send mail with defined transport object
-										transporter.sendMail(mailOptions, function(error, info){
-											if(error){
-												return console.log(error);
+														// setup e-mail data with unicode symbols
+														var mailOptions = {
+															from: '"Admin Hyper" <no-reply@hypertube.com>', // sender address
+															to: req.param('Email'), // list of receivers
+															subject: 'Inscription', // Subject line
+															//     text: 'Hello world ?', // plaintext body
+															html: '<b>Cliquez sur ce lien pour activez votre compte :</b>'+
+															'<a href="http://localhost:1337/Users/activedAccount/'+req.param('Email')+'&'+code+'">Activez votre compte</a>'// html body
+														};
+														// send mail with defined transport object
+														transporter.sendMail(mailOptions, function(error, info){
+															if(error){
+																return console.log(error);
+															}
+															console.log('Message sent: ' + info.response);
+															return res.view('homepage',  {created: "created"});
+														});
+													}
+												});
 											}
-											console.log('Message sent: ' + info.response);
-										});
-										return res.view('homepage',  {created: "created"});
+										})
 									}
 									else {
 										console.log(err);

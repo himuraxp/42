@@ -78,6 +78,7 @@
 }
 .btn-hp {
 	margin: auto;
+	margin-top: 5px;
 	width: 100%;
 	border-radius: 4px;
 	color: whitesmoke;
@@ -85,7 +86,7 @@
 	background-color: rgba(164,212,170,0.8);
 	font-size: 1.5em;
 	font-family: 'Baloo Bhai', cursive;
-	border: 3px solid rgba(91,81,80,0.8);
+	border: 2px solid rgba(91,81,80,0.8);
 	box-shadow: 0 0 4px #e6efc2;
 }
 .register{
@@ -175,7 +176,7 @@
 }
 @keyframes message {
 	0% {margin-left: -100%;}
-	10% {margin-left: 0;}
-	90% {margin-left: 0;}
+	10% {margin-left: 6%;}
+	90% {margin-left: 6%;}
 	100% {margin-left: -100%;}
 }

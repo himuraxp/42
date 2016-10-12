@@ -1,5 +1,9 @@
+<% if(req.session.etat === "connecté" && req.session.user.active === 1 && (req.session.user.admin === 1 || req.session.user.admin === 2)) { %>
+<div class="button-update">
+	<a href="http://localhost:1337/movie/dbMovie"><i class="fa fa-database" aria-hidden="true"></i></a>
+</div>
 <% var count = 0 %>
-<h1 class="title-header">Gestion Utilisateurs</h1>
+<h1 class="title-header" style="margin-top:30px;">Gestion Utilisateurs</h1>
 <div id="block-gestion" class="block-gestion">
 	<% if(req.session.match && req.session.match[0] == "email"){ %>
 	<div class="errorSignup messageTop">
@@ -131,3 +135,15 @@
 	</form>
 </div>
 <script src="/js/pagination.js"></script>
+<% } else { %>
+	<a href="/login"><button class="btn-hp hvr-bounce-to-bottom">Me connecter</button></a>
+	<h1 class="title-header">Il vous faut être connecté, avec un actif et en tant qu'administrateur pour accéder à cette page !</h1>
+	<script type="text/javascript">
+	$(document).ready( function() {
+		function clearNav() {
+			$(".navi").remove();
+		}
+		clearNav();
+	})
+	</script>
+<% } %>

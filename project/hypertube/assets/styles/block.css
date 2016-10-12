@@ -28,3 +28,28 @@
 	background-color: rgba(91,81,80,0.8);
 	box-shadow: 0 0 4px #e6efc2;
 }
+
+.block-search{
+	display: flex;
+	margin: auto;
+	position: fixed;
+	top: 110px;
+	left: 30px;
+	margin-top: 15px;
+	width: 500px;
+	padding: 20px;
+	border-radius: 4px;
+	background-color: rgba(91,81,80,0.9);
+	box-shadow: 0 0 4px #e6efc2;
+}
+
+.block-search img {
+	height: 380px;
+	margin: -20px;
+}
+
+.block-info {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 40px;
+}

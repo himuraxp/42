@@ -42,3 +42,6 @@ button, input, select, textarea {
 	line-height: initial;
 	outline: none;
 }
+input[type="submit"] {
+    font-family: FontAwesome;
+}

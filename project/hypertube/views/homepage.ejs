@@ -1,3 +1,4 @@
+<start>
 <h1 class="title-header">Bonjour <%= req.session.me ? req.session.me : ''%>, bienvenue sur Hypertube !</h1>
   <div class="central">
       <% if(typeof created != 'undefined' && created == "created"){ %>
@@ -80,3 +81,4 @@
         <% } %>
       </div>
   </div>
+<end>
